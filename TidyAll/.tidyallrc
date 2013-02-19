@@ -1,3 +1,9 @@
+; Example-Entry:
+;
+; [+Code::TidyAll::Plugin::AGPLValidator]
+; select = **/*.{pl,pm}
+; ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
+
 [PerlTidy]
 select = **/*.{pl,pm,t}
 argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
