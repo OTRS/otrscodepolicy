@@ -1,8 +1,0 @@
-#!/usr/bin/perl
-
-use strict;
-use warnings;
-
-use Code::TidyAll::Git::Precommit;    
-
-Code::TidyAll::Git::Precommit->check();
