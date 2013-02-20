@@ -1,4 +1,4 @@
-package Code::TidyAll::Plugin::AGPLValidator;
+package OTRS::TidyAll::Plugin::AGPLValidator;
 BEGIN {
   $Code::TidyAll::Plugin::PerlTidy::AGPLValidator::VERSION = '0.1';
 }
