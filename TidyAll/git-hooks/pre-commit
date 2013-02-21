@@ -45,7 +45,7 @@ sub Code::TidyAll::Git::Precommit::check {
 #        my ($conf_file) = grep { -f } map { join( "/", $root_dir, $_ ) } @conf_names
 #          or die sprintf( "could not find conf file %s", join( " or ", @conf_names ) );
 # --
-        my $conf_file = dirname(readlink($0)) . '/../TidyAll/.tidyallrc';
+        my $conf_file = dirname(readlink($0)) . '/../.tidyallrc';
 # --
         # Store the stash, and restore it upon exiting this scope
         unless ( $self->no_stash ) {
@@ -63,7 +63,7 @@ sub Code::TidyAll::Git::Precommit::check {
 # --
         # Change to otrs-code-policy directory to be able to load all plugins.
         my $RootDir = getcwd();
-        chdir dirname(readlink($0)) . '/../';
+        chdir dirname(readlink($0)) . '/../../';
         $self->tidyall_options->{root_dir} = $RootDir;
 # --
         my $tidyall = $tidyall_class->new_from_conf_file(
