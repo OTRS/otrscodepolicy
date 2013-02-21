@@ -1,6 +1,6 @@
 package OTRS::TidyAll::Plugin::AGPLValidator;
 BEGIN {
-  $Code::TidyAll::Plugin::PerlTidy::AGPLValidator::VERSION = '0.1';
+  $OTRS::TidyAll::Plugin::PerlTidy::AGPLValidator::VERSION = '0.1';
 }
 use Moo;
 extends 'Code::TidyAll::Plugin';
@@ -36,7 +36,7 @@ sub transform_source {
     {
         die('WARNING: AGPL3LicenseCheck - Found no valid licence header!');
     }
-	
+
 	my $Flag = 0;
     # The following code replace the license GPL2 with AGPL3 in pl-files
     if ( $Code =~ s{$GPLLongRegExp}{$AGPLLong}xms ) {

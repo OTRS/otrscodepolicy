@@ -1,6 +1,6 @@
-package Code::TidyAll::Plugin::ReplaceCopyright;
+package OTRS::TidyAll::Plugin::ReplaceCopyright;
 BEGIN {
-    $Code::TidyAll::Plugin::PerlTidy::ReplaceCopyright::VERSION = '0.1';
+    $OTRS::TidyAll::Plugin::PerlTidy::ReplaceCopyright::VERSION = '0.1';
     $^I = '.tmp';
 }
 use Moo;
