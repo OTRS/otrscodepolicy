@@ -18,12 +18,12 @@ argv = -severity 5
 select = **/*.pm
 ignore = Kernel/cpan-lib/*.pm
 
-[+OTRS::TidyAll::Plugin::AGPLValidator]
+[+TidyAll::Plugin::OTRS::AGPLValidator]
 select = **/*.{pl,pm}
 ignore = Kernel/cpan-lib/*.pm
 ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
 
-;[+OTRS::TidyAll::Plugin::ReplaceCopyright]
+;[+TidyAll::Plugin::OTRS::ReplaceCopyright]
 ;select = **/*.{pl,pm}
 ;ignore = Kernel/cpan-lib/*.pm
 ;ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml

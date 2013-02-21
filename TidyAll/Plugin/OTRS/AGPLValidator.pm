@@ -1,6 +1,6 @@
-package OTRS::TidyAll::Plugin::AGPLValidator;
+package TidyAll::Plugin::OTRS::AGPLValidator;
 BEGIN {
-  $OTRS::TidyAll::Plugin::PerlTidy::AGPLValidator::VERSION = '0.1';
+  $TidyAll::Plugin::OTRS::PerlTidy::AGPLValidator::VERSION = '0.1';
 }
 use Moo;
 extends 'Code::TidyAll::Plugin';
