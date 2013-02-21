@@ -12,6 +12,7 @@ It is able to use the .tidyallrc from the main otrs-code-policy module.
 
 use Code::TidyAll::Git::Precommit;
 use File::Basename;
+use Cwd;
 
 use Capture::Tiny qw(capture_stdout capture_stderr);
 use Code::TidyAll;
@@ -45,7 +46,6 @@ sub Code::TidyAll::Git::Precommit::check {
 #          or die sprintf( "could not find conf file %s", join( " or ", @conf_names ) );
 # --
         my $conf_file = dirname(readlink($0)) . '/../TidyAll/.tidyallrc';
-        push @INC, dirname(readlink($0)) . '/../';
 # --
         # Store the stash, and restore it upon exiting this scope
         unless ( $self->no_stash ) {
@@ -53,23 +53,34 @@ sub Code::TidyAll::Git::Precommit::check {
             scope_guard { run( $self->git_path, "stash", "pop", "-q" ) };
         }
 
+
         # Gather file paths to be committed
         my $output = capturex( $self->git_path, "status", "--porcelain" );
         my @files = grep { -f } ( $output =~ /^[MA]\s+(.*)/gm );
 
+# --
+# OTRS
+# --
+        # Change to otrs-code-policy directory to be able to load all plugins.
+        my $RootDir = getcwd();
+        chdir dirname(readlink($0)) . '/../';
+        $self->tidyall_options->{root_dir} = $RootDir;
+# --
         my $tidyall = $tidyall_class->new_from_conf_file(
             $conf_file,
             no_cache   => 1,
             check_only => 1,
             mode       => 'commit',
             %{ $self->tidyall_options },
+        );
+        my @results = $tidyall->process_files( map { "$root_dir/$_" } @files );
+
 # --
 # OTRS
 # --
-            root_dir   => (dirname($0) . '/../..'),
+        # Change working directory back.
+        chdir $RootDir;
 # --
-        );
-        my @results = $tidyall->process_files( map { "$root_dir/$_" } @files );
 
         if ( my @error_results = grep { $_->error } @results ) {
             my $error_count = scalar(@error_results);
