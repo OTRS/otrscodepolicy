@@ -82,7 +82,6 @@ sub transform_source {
         die("WARNING: AGPL3LicenseCheck() - There is strange license wording! Line: $1");
     }
 
-    print "NOTICE: _AGPL3LicenseCheck() ok\n";
     return $Code;
 }
 

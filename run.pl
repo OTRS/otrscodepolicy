@@ -9,10 +9,32 @@ use File::Spec;
 use FindBin qw($RealBin);
 use Code::TidyAll;
 use File::Spec;
+use Getopt::Long;
+use File::Find;
+
+my ($Verbose, $Directory);
+GetOptions(
+    'verbose' => \$Verbose,
+    'directory=s' => \$Directory,
+);
 
 my $conf_file = dirname($0) . '/TidyAll/tidyallrc';
 # Change to otrs-code-policy directory to be able to load all plugins.
 my $RootDir = getcwd();
+
+my @Files;
+if (length $Directory) {
+    sub Wanted {
+        return if (!-f $File::Find::name);
+        push @Files, $File::Find::name;
+    };
+
+    File::Find::find(
+        \&Wanted,
+        File::Spec->catfile($RootDir, $Directory),
+    );
+}
+
 chdir dirname($0);
 
 my $tidyall = Code::TidyAll->new_from_conf_file(
@@ -22,8 +44,16 @@ my $tidyall = Code::TidyAll->new_from_conf_file(
     mode       => 'cli',
     root_dir   => $RootDir,
     data_dir   => File::Spec->tmpdir(),
+    verbose    => $Verbose ? 1 : 0,
 );
-my @results = $tidyall->process_all();
+
+my @results;
+if (length $Directory) {
+    @results = $tidyall->process_files(@Files);
+}
+else {
+    @results = $tidyall->process_all();
+}
 
 # Change working directory back.
 chdir $RootDir;

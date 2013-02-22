@@ -7,21 +7,25 @@
 [PerlTidy]
 select = **/*.{pl,pm,t}
 ignore = cpan-lib/
+ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
 argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
 
 [PerlCritic]
 select = **/*.{pl,pm,t}
 ignore = cpan-lib/
+ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
 only_modes = tests cli
 argv = -severity 5
 
 [PodTidy]
 select = **/*.pm
 ignore = cpan-lib/
+;ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
 
 [+TidyAll::Plugin::OTRS::AGPLValidator]
 select = **/*.{pl,pm}
 ignore = cpan-lib/
+ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
 ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
 
 ;[+TidyAll::Plugin::OTRS::ReplaceCopyright]
