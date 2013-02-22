@@ -13,6 +13,7 @@ It is able to use the .tidyallrc from the main otrs-code-policy module.
 use Code::TidyAll::Git::Precommit;
 use File::Basename;
 use Cwd;
+use File::Spec;
 
 use Capture::Tiny qw(capture_stdout capture_stderr);
 use Code::TidyAll;
@@ -65,6 +66,7 @@ sub Code::TidyAll::Git::Precommit::check {
         my $RootDir = getcwd();
         chdir dirname(readlink($0)) . '/../../';
         $self->tidyall_options->{root_dir} = $RootDir;
+        $self->tidyall_options->{data_dir} = File::Spec->tmpdir();
 # --
         my $tidyall = $tidyall_class->new_from_conf_file(
             $conf_file,
