@@ -9,7 +9,7 @@ use File::Spec;
 use FindBin qw($RealBin);
 use Code::TidyAll;
 
-my $conf_file = dirname($0) . '/TidyAll/.tidyallrc';
+my $conf_file = dirname($0) . '/TidyAll/tidyallrc';
 # Change to otrs-code-policy directory to be able to load all plugins.
 my $RootDir = getcwd();
 chdir dirname($0);
@@ -18,7 +18,7 @@ my $tidyall = Code::TidyAll->new_from_conf_file(
     $conf_file,
     no_cache   => 1,
     check_only => 1,
-    mode       => 'commit',
+    mode       => 'cli',
     root_dir   => $RootDir,
 );
 my @results = $tidyall->process_all();

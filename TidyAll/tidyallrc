@@ -6,24 +6,25 @@
 
 [PerlTidy]
 select = **/*.{pl,pm,t}
-ignore = Kernel/cpan-lib/*.pm
+ignore = cpan-lib/
 argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
 
 [PerlCritic]
 select = **/*.{pl,pm,t}
-ignore = Kernel/cpan-lib/*.pm
+ignore = cpan-lib/
+only_modes = tests cli
 argv = -severity 5
 
 [PodTidy]
 select = **/*.pm
-ignore = Kernel/cpan-lib/*.pm
+ignore = cpan-lib/
 
 [+TidyAll::Plugin::OTRS::AGPLValidator]
 select = **/*.{pl,pm}
-ignore = Kernel/cpan-lib/*.pm
+ignore = cpan-lib/
 ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
 
 ;[+TidyAll::Plugin::OTRS::ReplaceCopyright]
 ;select = **/*.{pl,pm}
-;ignore = Kernel/cpan-lib/*.pm
+;ignore = cpan-lib/
 ;ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
