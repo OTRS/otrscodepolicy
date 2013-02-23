@@ -68,10 +68,19 @@ sub _variable_is_camelcase {
 
     my $name = "$elem";
 
+    # Allow Perl builtins.
     return 1 if $name eq '$a';
     return 1 if $name eq '$b';
 
+    # Ignore function calls
+    return 1 if substr($name, 0, 1) eq '&';
+
+    # Allow short variable names with lowercase characters like $s.
+    return 1 if length $name == 2;
+
     my $is_camelcase = !( $name !~ m{ \A [\*\@\$\%]_*[A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
+
+    #print STDERR "$name" if !$is_camelcase;
 
     return $is_camelcase;
 }
