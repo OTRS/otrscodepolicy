@@ -1,104 +1,38 @@
-; Example-Entry:
-;
-; [+Code::TidyAll::Plugin::AGPLValidator]
-; select = **/*.{pl,pm}
-; ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
-
-[PerlCritic strict checks]
+[PerlCritic checks]
 select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-ignore = Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm
-ignore = bin/otrs.CheckModules.pl
+ignore = Kernel/cpan-lib/**/*
 only_modes = tests cli
-argv = -severity 5 --exclude OTRS --exclude InputOutput::RequireEncodingWithUTF8Layer
+argv = -severity 5
 
-[PerlCritic OTRS::ProhibitDumper]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-ignore = Kernel/System/Main.pm Kernel/System/Log.pm
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitDumper
+;[PerlTidy]
+;select = **/*.{pl,pm,t}
+;ignore = Kernel/cpan-lib/**/*
+;ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+;ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+;argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
 
-[PerlCritic OTRS::ProhibitFetchrowHashref]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitFetchrowHashref
-
-[PerlCritic OTRS::ProhibitLocaltime]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitLocaltime
-
-[PerlCritic OTRS::ProhibitLowPrecendeceOps]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitLowPrecendeceOps
-
-[PerlCritic OTRS::ProhibitOpen]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-ignore = bin/**
-ignore = Kernel/Config/Defaults.pm Kernel/System/Main.pm
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitOpen
-
-[PerlCritic OTRS::ProhibitRequire]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitRequire
-
-[PerlCritic OTRS::ProhibitRmtree]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitRmtree
-
-[PerlCritic OTRS::ProhibitSomeCoreFunctions]
-select = Kernel/Modules/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::ProhibitSomeCoreFunctions
-
-[PerlCritic OTRS::RequireCamelCase]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::RequireCamelCase
-
-[PerlCritic OTRS::RequireParensWithMethods]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::RequireParensWithMethods
-
-[PerlCritic OTRS::RequireTrueReturnValueForModules]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-only_modes = tests cli
-argv = -severity 5 --single-policy OTRS::RequireTrueReturnValueForModules
-
-[PerlTidy]
-select = **/*.{pl,pm,t}
-ignore = cpan-lib/**
-ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
-argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
-
-[PodTidy]
-select = **/*.pm
-ignore = cpan-lib/**
-ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
+[PodChecker]
+select = **/*.{pm,pod}
+ignore = Kernel/cpan-lib/**/*
+ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+ignore = Kernel/Modules/*.pm Custom/Kernel/Modules/*.pm
+ignore = Kernel/Output/HTML/*.pm Custom/Kernel/Output/HTML/*.pm
+; POD in subdirectories is quite incomplete
+ignore = Kernel/System/*/**/* Custom/Kernel/System/*/**/*
 
 [+TidyAll::Plugin::OTRS::AGPLValidator]
 select = **/*.{pl,pm}
-ignore = cpan-lib/**
-ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
+ignore = Kernel/cpan-lib/**/*
+ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
 
 ;[+TidyAll::Plugin::OTRS::ReplaceCopyright]
 ;select = **/*.{pl,pm}
-;ignore = cpan-lib/**
+;ignore = Kernel/cpan-lib/**/*
 ;ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
+
+;[PodTidy]
+;select = **/*.pm
+;ignore = Kernel/cpan-lib/**/*
+;ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/Files/ZZZ*.pm Kernel/Config/GenericAgent*.pm
