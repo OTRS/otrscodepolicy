@@ -5,26 +5,35 @@ BEGIN {
 use Moo;
 extends 'Code::TidyAll::Plugin';
 
-sub transform_source {
+my $GPLLongRegExp = <<'END_REGEXP';
+    \# \s -- \n
+    \# \s This \s program \s is \s free \s software
+    .*?
+    \# \s+ Foundation, \s+ Inc., \s+ 51 \s+ Franklin \s+ St, \s+ Fifth \s+ Floor, \s+ Boston, \s+ MA \s+ 02111-1301 \s+ USA \n
+    \# \s -- \n
+END_REGEXP
+
+my $GPLShortRegExp = <<'END_REGEXP';
+    \# \s -- \n
+    \# \s This \s software \s comes \s with \s ABSOLUTELY \s NO \s WARRANTY.
+    .*?
+    \# \s+ did \s+ not \s+ receive \s+ this \s+ file, \s+ see  \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
+    \# \s -- \n
+END_REGEXP
+
+my $GPLPerldocRegExp = <<'END_REGEXP';
+    =head1 \s+ TERMS \s+ AND \s+ CONDITIONS \n
+    \n
+    This  \s+ software  \s+ is  \s+ part  \s+ of  \s+ the  \s+ OTRS  \s+ project  \s+ \(http:\/\/otrs\.org\/\)\. \n
+    .+?
+    did \s+ not \s+ receive \s+ this \s+ file, \s+ see \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
+END_REGEXP
+
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
-	my $AGPLLong      = _AGPLLong();
-    my $GPLLongRegExp = <<'    END_REGEXP';
-        \# \s -- \n
-        \# \s This \s program \s is \s free \s software
-        .*?
-        \# \s+ Foundation, \s+ Inc., \s+ 51 \s+ Franklin \s+ St, \s+ Fifth \s+ Floor, \s+ Boston, \s+ MA \s+ 02111-1301 \s+ USA \n
-        \# \s -- \n
-    END_REGEXP
-
+    my $AGPLLong      = _AGPLLong();
     my $AGPLShort      = _AGPLShort();
-    my $GPLShortRegExp = <<'    END_REGEXP';
-        \# \s -- \n
-        \# \s This \s software \s comes \s with \s ABSOLUTELY \s NO \s WARRANTY.
-        .*?
-        \# \s+ did \s+ not \s+ receive \s+ this \s+ file, \s+ see  \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
-        \# \s -- \n
-    END_REGEXP
 
     # check if there is a valid licence header!
     if (
@@ -34,8 +43,20 @@ sub transform_source {
         && $Code !~ m{\Q$AGPLLong\E}
         )
     {
-        die('WARNING: AGPL3LicenseCheck - Found no valid licence header!');
+        die('AGPL3LicenseCheck - Found no valid licence header!');
     }
+
+    # check if there other strange license content
+    if ( $Code =~ m{(^ [^\n]* (?: \(GPL\) | /gpl ) [^\n]* $)}smx ) {
+        die("AGPL3LicenseCheck() - There is strange license wording! Line: $1");
+    }
+}
+
+sub transform_source {
+    my ( $Self, $Code ) = @_;
+
+	my $AGPLLong      = _AGPLLong();
+    my $AGPLShort      = _AGPLShort();
 
 	my $Flag = 0;
     # The following code replace the license GPL2 with AGPL3 in pl-files
@@ -51,13 +72,6 @@ sub transform_source {
     }
 
     my $AGPLPerldoc      = _AGPLPerldoc();
-    my $GPLPerldocRegExp = <<'    END_REGEXP';
-        =head1 \s+ TERMS \s+ AND \s+ CONDITIONS \n
-        \n
-        This  \s+ software  \s+ is  \s+ part  \s+ of  \s+ the  \s+ OTRS  \s+ project  \s+ \(http:\/\/otrs\.org\/\)\. \n
-        .+?
-        did \s+ not \s+ receive \s+ this \s+ file, \s+ see \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
-    END_REGEXP
 
     # The following code replace the license GPL2 with AGPL3 in perldoc content
     if ( $Code =~ s{$GPLPerldocRegExp}{$AGPLPerldoc}xms ) {
@@ -76,11 +90,6 @@ sub transform_source {
     # Links to AGPL should be within L<> (especially at the end of a sentence)
     # pod2html (resp. Pod::Html) would be "confused" otherwise
     $Code =~ s! ^ ([^\#] [a-zA-Z0-9 ]+?) (http:// [^\s]+ agpl\.txt) ([^>])!$1L<$2>$3!xgms;
-
-    # check if there other strange license content
-    if ( $Code =~ m{(^ [^\n]* (?: \(GPL\) | /gpl ) [^\n]* $)}smx ) {
-        die("WARNING: AGPL3LicenseCheck() - There is strange license wording! Line: $1");
-    }
 
     return $Code;
 }
