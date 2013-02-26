@@ -43,7 +43,7 @@ sub validate_source {
         && $Code !~ m{\Q$AGPLLong\E}
         )
     {
-        die('AGPL3LicenseCheck - Found no valid licence header!');
+        die('AGPL3LicenseCheck - Found no valid license header!');
     }
 
     # check if there other strange license content
