@@ -1,6 +1,7 @@
 [PerlCritic checks]
 select = **/*.{pl,pm,t}
 ignore = Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 only_modes = tests cli
 argv = -severity 5
 
@@ -10,6 +11,7 @@ argv = -severity 5
 ;ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ;ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ;argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
+;ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [PodChecker]
 select = **/*.{pm,pod}
@@ -20,17 +22,20 @@ ignore = Kernel/Modules/*.pm Custom/Kernel/Modules/*.pm
 ignore = Kernel/Output/HTML/*.pm Custom/Kernel/Output/HTML/*.pm
 ; POD in subdirectories is quite incomplete
 ignore = Kernel/System/*/**/* Custom/Kernel/System/*/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::XMLLint]
 select = **/*.xml
 argv = --noout --nonet
 ignore = Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::AGPLValidator]
 select = **/*.{pl,pm}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;[+TidyAll::Plugin::OTRS::ReplaceCopyright]
 ;select = **/*.{pl,pm}

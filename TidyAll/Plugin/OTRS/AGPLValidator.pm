@@ -75,7 +75,7 @@ sub transform_source {
 
     # Links to AGPL should be within L<> (especially at the end of a sentence)
     # pod2html (resp. Pod::Html) would be "confused" otherwise
-    $Code =~ s! ^ ([^\#] .+?) (http:// [^\s]+ agpl\.txt) ([^>])!$1L<$2>$3!xgms;
+    $Code =~ s! ^ ([^\#] [a-zA-Z0-9 ]+?) (http:// [^\s]+ agpl\.txt) ([^>])!$1L<$2>$3!xgms;
 
     # check if there other strange license content
     if ( $Code =~ m{(^ [^\n]* (?: \(GPL\) | /gpl ) [^\n]* $)}smx ) {
