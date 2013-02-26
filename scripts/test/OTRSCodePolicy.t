@@ -13,6 +13,7 @@ use utf8;
 use Kernel::Config;
 use File::Find;
 use Code::TidyAll;
+use Cwd;
 
 my $ConfigObject = Kernel::Config->new();
 
@@ -24,16 +25,20 @@ my $Wanted = sub {
     push @Files, $File::Find::name;
 };
 
+my $OldWorkingDir = getcwd();
+# Change to toplevel dir so that perlcritic finds all plugins.
+chdir($Home);
+
 File::Find::find( $Wanted, $Home );
 
 my $TidyAll = Code::TidyAll->new_from_conf_file(
     "$Home/TidyAll/tidyallrc",
     no_cache   => 1,
     check_only => 1,
-    mode       => 'test',
+    mode       => 'tests',
     root_dir   => $Home,
     data_dir   => File::Spec->tmpdir(),
-    #verbose    => $Verbose ? 1 : 0,
+    #verbose    => 1,
 );
 
 my $I;
@@ -50,8 +55,11 @@ for my $File (@Files) {
         "$File check results " . ( $Result->error() || '' ),
     );
     
-    last if $I++ > 10;
+    last if $I++ > 100;
     
 }
+
+# Change back to previous working directory.
+chdir($OldWorkingDir);
 
 1;
