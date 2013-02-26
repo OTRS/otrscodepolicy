@@ -13,7 +13,7 @@ my $Directory = getcwd;
 # install hook
 unlink File::Spec->catfile($Directory, '.git','hooks','pre-commit');
 symlink(
-    File::Spec->catfile($RealBin, 'TidyAll', 'git-hooks','pre-commit'),
+    File::Spec->catfile($RealBin, 'git-hooks','pre-commit'),
     File::Spec->catfile($Directory, '.git','hooks','pre-commit')
 );
 
