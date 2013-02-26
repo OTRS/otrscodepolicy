@@ -37,10 +37,11 @@ ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = test/sample/*,*.{sopm,xml,sql},Copyright.dtl,test-email,COPYING,RELEASE,CREDITS
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-;[+TidyAll::Plugin::OTRS::ReplaceCopyright]
-;select = **/*.{pl,pm}
-;ignore = Kernel/cpan-lib/**/*
-;ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
+[+TidyAll::Plugin::OTRS::ReplaceCopyright]
+select = **/*.{pl,pm}
+ignore = Kernel/cpan-lib/**/*
+ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
 
 ;[PodTidy]
 ;select = **/*.pm

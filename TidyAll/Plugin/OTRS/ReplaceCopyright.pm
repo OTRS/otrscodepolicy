@@ -8,25 +8,11 @@ use File::Basename;
 use File::Copy qw(copy);
 extends 'Code::TidyAll::Plugin';
 
-sub transform_file {
-    my ( $Self, $File ) = @_;
+sub transform_source {
+    my ( $Self, $Code ) = @_;
 
-	my @Original_Filepath = keys $Self->{tidyall}{plugins_for_path};
-
-	my( $Filename, $Directory ) = fileparse( $Original_Filepath[0] );
-
-	# config
-    my $StartYear = 0;
-    my $Copy = '';
-
-    if ( $Directory =~ m{\/cvs\/} ) {
-        $Copy = 'OTRS AG, http://otrs.org/';
-        $StartYear = 2001;
-    }
-    else {
-        $Copy = 'OTRS AG, http://otrs.com/';
-        $StartYear = 2003;
-    }
+    my $Copy = 'OTRS AG, http://otrs.com/';
+    my $StartYear = 2001;
 
     my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = localtime(time());
     $Year += 1900;
@@ -36,62 +22,62 @@ sub transform_file {
         $YearString = $Year;
     }
 
-    # not for cpan files
-    return 1 if $Directory =~ /Kernel\/cpan-lib/;
+    my $Output;
 
-    copy($File, "$File.tmp");
-    open my $In, '<', $File           or die "FILTER: Can't open $File: $!\n";
-    open my $Out, '>', "$File.$$.tmp" or die "FILTER: Can't write $File.tmp: $!\n";
-
-    IN:
-    while ( my $Line = <$In> ) {
+    LINE:
+    for my $Line ( split(/\n/, $Code) ) {
         if ($Line !~ m{Copyright}smx) {
-            print $Out $Line;
-            next IN;
+            $Output .= $Line . "\n";
+            next LINE;
         }
 
         # white list
         # special setting for c.a.p.e. IT and Stefan Schmidt
         if ($Line =~ m{( c\.a\.p\.e\. \s IT | Stefan \s Schmidt )}smx ) {
-            print $Out $Line;
-            next IN;
+            $Output .= $Line . "\n";
+            next LINE;
         }
 
+        my $OldLine = $Line;
+
         # special settings for the language directory
-        if ($Line !~ m{OTRS}smx && $Directory =~ m{Kernel\/Language} ) {
-            print $Out $Line;
-            next IN;
+        if ($Line !~ m{OTRS}smx && $Code =~ m{ package \s+ Kernel::Language:: }smx ) {
+            $Output .= $Line . "\n";
+            next LINE;
         }
 
         # for the commandline help
         # e.g : print "Copyright (c) 2003-2008 OTRS AG, http://www.otrs.com/\n";
         if ($Line !~ m{^\# \s Copyright}smx) {
-            if ($Line =~ m{^ (.+?) Copyright \s \( [Cc] \) .+? OTRS \s (AG|GmbH) }smx) {
-                 print "NOTICE: Old: $Line";
-                 $Line =~ s{^ (.+?) Copyright \s \( [Cc] \) .+? OTRS \s (AG|GmbH) }{$1Copyright (C) $YearString OTRS AG}smx;
-                 print "NOTICE: New: $Line";
+            if ($Line =~ m{^ (.+?) Copyright \s \( [Cc] \) .+? OTRS \s (AG|GmbH), \s http://otrs.(?:org|com)/}smx) {
+                 $Line =~ s{
+                     ^ (.+?) Copyright \s \( [Cc] \) .+? OTRS \s (AG|GmbH), \s http://otrs.(?:org|com)/
+                 }
+                 {$1Copyright (C) $YearString $Copy}smx;
+
+                 if ( $Line ne $OldLine) {
+                     print "ReplaceCopyright: Old: $OldLine\n";
+                     print "ReplaceCopyright: New: $Line\n";
+                 }
             }
-            print $Out $Line;
-            next IN;
+            $Output .= $Line . "\n";
+            next LINE;
         }
 
         # check string in the comment line
         if ($Line !~ m{^\# \s Copyright \s \( [Cc] \) \s $YearString \s $Copy$}smx ) {
-            print "NOTICE: Old: $Line";
-            print "NOTICE: New: # Copyright (C) $YearString $Copy\n";
-            $Line = "# Copyright (C) $YearString $Copy\n";
+            $Line = "# Copyright (C) $YearString $Copy";
+
+             if ( $Line ne $OldLine) {
+                 print "ReplaceCopyright: Old: $OldLine\n";
+                 print "ReplaceCopyright: New: $Line\n";
+             }
         }
 
-        print $Out $Line;
+        $Output .= $Line . "\n";
     }
 
-    close $Out;
-    close $In;
-    unlink $File or die "FILTER: Can't unlink: $!\n";
-    rename "$File.$$.tmp", $File or die "FILTER: Can't rename: $!\n";
-
-    print "NOTICE: _ReplaceCopyright() ok\n";
-    return 1;
+    return $Output;
 }
 
 1;
