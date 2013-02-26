@@ -77,7 +77,7 @@ elsif (!$All) {
     @Files = Code::TidyAll::Git::Util::git_uncommitted_files( $RootDir );
 }
 
-chdir dirname($0 . "/..");
+chdir dirname($0) . "/..";
 
 my $TidyAll = Code::TidyAll->new_from_conf_file(
     $conf_file,

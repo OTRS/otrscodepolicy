@@ -21,6 +21,11 @@ ignore = Kernel/Output/HTML/*.pm Custom/Kernel/Output/HTML/*.pm
 ; POD in subdirectories is quite incomplete
 ignore = Kernel/System/*/**/* Custom/Kernel/System/*/**/*
 
+[+TidyAll::Plugin::XMLLint]
+select = **/*.xml
+argv = --noout --nonet
+ignore = Kernel/cpan-lib/**/*
+
 [+TidyAll::Plugin::OTRS::AGPLValidator]
 select = **/*.{pl,pm}
 ignore = Kernel/cpan-lib/**/*
