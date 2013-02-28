@@ -6,14 +6,14 @@ ignore = scripts/test/sample/**/*
 only_modes = tests cli
 argv = -severity 5
 
-;[PerlTidy]
-;select = **/*.{pl,pm,t}
-;ignore = Kernel/cpan-lib/**/*
-;ignore = Kernel/Config.pm Kernel/Config/**/*.pm
-;ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
-;ignore = scripts/test/sample/**/*
-;ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-;argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
+[PerlTidy]
+select = **/*.{pl,pm,t}
+ignore = Kernel/cpan-lib/**/*
+ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
 
 [PodChecker]
 select = **/*.{pm,pod}
