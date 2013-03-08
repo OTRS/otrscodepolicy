@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 BEGIN {
-  $TidyAll::Plugin::OTRS::PerlTidy::SQLReservedWordsCheck::VERSION = '0.1';
+  $TidyAll::Plugin::OTRS::SQLReservedWordsCheck::VERSION = '0.1';
 }
 use Moo;
 extends 'Code::TidyAll::Plugin';

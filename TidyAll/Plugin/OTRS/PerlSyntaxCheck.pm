@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 BEGIN {
-  $TidyAll::Plugin::OTRS::PerlTidy::PerlSyntaxCheck::VERSION = '0.1';
+  $TidyAll::Plugin::OTRS::PerlSyntaxCheck::VERSION = '0.1';
 }
 use Moo;
 extends 'Code::TidyAll::Plugin';

@@ -1,21 +1,21 @@
-[PerlCritic checks]
-select = **/*.{pl,pm,t}
-ignore = Kernel/cpan-lib/**/*
-ignore = Perl/Critic/**/* TidyAll/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = scripts/test/sample/**/*
-only_modes = tests cli
-argv = -severity 5
+;[PerlCritic checks]
+;select = **/*.{pl,pm,t}
+;ignore = Kernel/cpan-lib/**/*
+;ignore = Perl/Critic/**/* TidyAll/**/*
+;ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+;ignore = scripts/test/sample/**/*
+;only_modes = tests cli
+;argv = -severity 5
 
-[PerlTidy]
-select = **/*.{pl,pm,t}
-ignore = Kernel/cpan-lib/**/*
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
-ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
-ignore = Perl/Critic/**/* TidyAll/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
+;[PerlTidy]
+;select = **/*.{pl,pm,t}
+;ignore = Kernel/cpan-lib/**/*
+;ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+;ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+;ignore = Perl/Critic/**/* TidyAll/**/*
+;ignore = scripts/test/sample/**/*
+;ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+;argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
 
 [PodChecker]
 select = **/*.{pm,pod}
@@ -36,7 +36,19 @@ ignore = Kernel/cpan-lib/**/*
 ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
+
+[+TidyAll::Plugin::OTRS::TabsCheck]
+select = **/*.{pl,pm,t,dtl,js,xml,opm,sopm}
+ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+[+TidyAll::Plugin::OTRS::FourSpacesCheck]
+select = **/*.{xml,opm,sopm}
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::XMLLint]
 select = **/*.xml

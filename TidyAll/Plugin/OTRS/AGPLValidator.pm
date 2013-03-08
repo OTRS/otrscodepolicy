@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 BEGIN {
-  $TidyAll::Plugin::OTRS::PerlTidy::AGPLValidator::VERSION = '0.1';
+  $TidyAll::Plugin::OTRS::AGPLValidator::VERSION = '0.1';
 }
 use Moo;
 extends 'Code::TidyAll::Plugin';

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 BEGIN {
-    $TidyAll::Plugin::OTRS::PerlTidy::ReplaceCopyright::VERSION = '0.1';
+    $TidyAll::Plugin::PerlTidy::ReplaceCopyright::VERSION = '0.1';
 }
 use Moo;
 use File::Basename;
