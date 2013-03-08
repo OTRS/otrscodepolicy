@@ -27,7 +27,7 @@ sub validate_source {
         # at runtime.
         if (
             $Line =~ m{ \A \s* use }xms
-            && $Line !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename ) }xms
+            && $Line !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic | Cwd ) }xms
         )
         {
             $Line = "#$Line";

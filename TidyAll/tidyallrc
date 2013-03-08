@@ -1,6 +1,7 @@
 [PerlCritic checks]
 select = **/*.{pl,pm,t}
 ignore = Kernel/cpan-lib/**/*
+ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 only_modes = tests cli
@@ -11,6 +12,7 @@ select = **/*.{pl,pm,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
@@ -22,6 +24,7 @@ ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = Kernel/Modules/*.pm Custom/Kernel/Modules/*.pm
 ignore = Kernel/Output/HTML/*.pm Custom/Kernel/Output/HTML/*.pm
+ignore = Perl/Critic/**/* TidyAll/**/*
 ; POD in subdirectories is quite incomplete
 ignore = Kernel/System/*/**/* Custom/Kernel/System/*/**/*
 ignore = scripts/test/sample/**/*
@@ -47,6 +50,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 select = **/*.{pl,pm}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = **/Copyright.dtl
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
@@ -56,6 +60,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 select = **/*.{pl,pm,t,xml,dtl}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = **/Copyright.dtl
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
