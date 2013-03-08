@@ -45,6 +45,12 @@ ignore = Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::XMLCheckWithOurParsers]
+select = **/*.xml
+ignore = Kernel/cpan-lib/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::SQLReservedWordsCheck]
 select = **/*.{xml,opm,sopm}
 ignore = Kernel/cpan-lib/**/*
