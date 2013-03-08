@@ -29,12 +29,13 @@ use File::Find;
 use Code::TidyAll;
 use Code::TidyAll::Git::Util;
 
-my ( $Verbose, $Directory, $All, $Help );
+my ( $Verbose, $Directory, $File, $All, $Help );
 GetOptions(
     'verbose'     => \$Verbose,
     'all'         => \$All,
     'directory=s' => \$Directory,
-    'help' => \$Help,
+    'file=s'      => \$File,
+    'help'        => \$Help,
 );
 
 if ($Help) {
@@ -49,6 +50,7 @@ Usage: otrs-code-policy/run.pl [options]
 Options:
     -a, --all           Check all files recursively
     -d, --directory     Check only subdirectory
+    -f, --file          Check only one file
     -v, --verbose       Activate diagnostics
     -h, --help          Show this usage message
 EOF
@@ -75,6 +77,9 @@ if ( length $Directory ) {
         $Wanted,
         File::Spec->catfile( $RootDir, $Directory ),
     );
+}
+if ( length $File ) {
+    @Files = (File::Spec->catfile( $RootDir, $File ));
 }
 elsif (!$All) {
     @Files = Code::TidyAll::Git::Util::git_uncommitted_files( $RootDir );
