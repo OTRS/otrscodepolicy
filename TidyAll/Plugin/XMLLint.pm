@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 package TidyAll::Plugin::XMLLint;
 BEGIN {
   $TidyAll::Plugin::XMLLint::VERSION = '0.01';

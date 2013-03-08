@@ -27,6 +27,15 @@ ignore = Kernel/System/*/**/* Custom/Kernel/System/*/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::PerlSyntaxCheck]
+select = **/*.{pl,pm,t}
+ignore = Kernel/cpan-lib/**/*
+ignore = bin/otrs.Scheduler4win*.pl
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
+
+
 [+TidyAll::Plugin::XMLLint]
 select = **/*.xml
 argv = --noout --nonet

@@ -1,4 +1,8 @@
 package TidyAll::Plugin::OTRS::AGPLValidator;
+
+use strict;
+use warnings;
+
 BEGIN {
   $TidyAll::Plugin::OTRS::PerlTidy::AGPLValidator::VERSION = '0.1';
 }

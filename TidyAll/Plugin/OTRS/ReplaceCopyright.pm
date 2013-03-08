@@ -1,7 +1,10 @@
 package TidyAll::Plugin::OTRS::ReplaceCopyright;
+
+use strict;
+use warnings;
+
 BEGIN {
     $TidyAll::Plugin::OTRS::PerlTidy::ReplaceCopyright::VERSION = '0.1';
-    $^I = '.tmp';
 }
 use Moo;
 use File::Basename;
