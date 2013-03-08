@@ -78,7 +78,7 @@ if ( length $Directory ) {
         File::Spec->catfile( $RootDir, $Directory ),
     );
 }
-if ( length $File ) {
+elsif ( length $File ) {
     @Files = (File::Spec->catfile( $RootDir, $File ));
 }
 elsif (!$All) {
