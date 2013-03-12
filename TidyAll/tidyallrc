@@ -58,6 +58,13 @@ ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::JavaScriptDebugCheck]
+select = **/*.js
+ignore = Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::XMLLint]
 select = **/*.xml
 argv = --noout --nonet
