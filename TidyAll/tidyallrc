@@ -46,7 +46,7 @@ ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::FourSpacesCheck]
-select = **/*.{xml,opm,sopm}
+select = **/*.{opm,sopm}
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
