@@ -50,6 +50,14 @@ select = **/*.{opm,sopm}
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::DTLFormat]
+select = **/*.dtl
+ignore = Kernel/cpan-lib/**/*
+ignore = **/*ActivityDialogFooter.dtl
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::XMLLint]
 select = **/*.xml
 argv = --noout --nonet
