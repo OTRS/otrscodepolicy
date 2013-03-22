@@ -99,7 +99,7 @@ my $TidyAll = Code::TidyAll->new_from_conf_file(
 
 my @Results;
 if ( !$All ) {
-    @Results = $TidyAll->process_files(@Files);
+    @Results = $TidyAll->process_paths(@Files);
 }
 else {
     @Results = $TidyAll->process_all();
