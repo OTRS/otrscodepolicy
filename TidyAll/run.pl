@@ -63,7 +63,7 @@ my $conf_file = dirname($0) . '/tidyallrc';
 my $RootDir = getcwd();
 
 my @Files;
-if ( length $Directory ) {
+if ( defined $Directory && length $Directory ) {
 
     my $Wanted = sub {
         # Skip non-regular files and directories.
@@ -78,7 +78,7 @@ if ( length $Directory ) {
         File::Spec->catfile( $RootDir, $Directory ),
     );
 }
-elsif ( length $File ) {
+elsif ( defined $File && length $File ) {
     @Files = (File::Spec->catfile( $RootDir, $File ));
 }
 elsif (!$All) {
