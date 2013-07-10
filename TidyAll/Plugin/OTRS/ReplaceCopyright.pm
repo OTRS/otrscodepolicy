@@ -6,10 +6,9 @@ use warnings;
 BEGIN {
     $TidyAll::Plugin::PerlTidy::ReplaceCopyright::VERSION = '0.1';
 }
-use Moo;
 use File::Basename;
 use File::Copy qw(copy);
-extends 'Code::TidyAll::Plugin';
+use base qw(Code::TidyAll::Plugin);
 
 sub transform_source {
     my ( $Self, $Code ) = @_;

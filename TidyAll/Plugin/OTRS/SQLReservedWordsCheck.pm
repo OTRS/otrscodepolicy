@@ -6,8 +6,7 @@ use warnings;
 BEGIN {
   $TidyAll::Plugin::OTRS::SQLReservedWordsCheck::VERSION = '0.1';
 }
-use Moo;
-extends 'Code::TidyAll::Plugin';
+use base qw(Code::TidyAll::Plugin);
 
 sub validate_source {
     my ( $Self, $Code ) = @_;

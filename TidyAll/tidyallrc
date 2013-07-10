@@ -65,7 +65,7 @@ ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::XMLLint]
+[+TidyAll::Plugin::OTRS::XMLLint]
 select = **/*.xml
 argv = --noout --nonet
 ignore = Kernel/cpan-lib/**/*

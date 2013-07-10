@@ -1,13 +1,12 @@
 use strict;
 use warnings;
 
-package TidyAll::Plugin::XMLLint;
+package TidyAll::Plugin::OTRS::XMLLint;
 BEGIN {
-  $TidyAll::Plugin::XMLLint::VERSION = '0.01';
+  $TidyAll::Plugin::OTRS::XMLLint::VERSION = '0.01';
 }
 use Capture::Tiny qw(capture_merged);
-use Moo;
-extends 'Code::TidyAll::Plugin';
+use base qw(Code::TidyAll::Plugin);
 
 sub _build_cmd { 'xmllint' }
 
