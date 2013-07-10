@@ -6,10 +6,12 @@ use warnings;
 BEGIN {
   $TidyAll::Plugin::OTRS::JavaScriptDebugCheck::VERSION = '0.1';
 }
-use base qw(Code::TidyAll::Plugin);
+use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 sub validate_source {
     my ( $Self, $Code ) = @_;
+
+    return if $Self->is_disabled(Code => $Code);
 
     my $Error;
     my $Counter;

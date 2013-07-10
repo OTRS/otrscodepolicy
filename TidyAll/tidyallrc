@@ -1,11 +1,10 @@
-[PerlCritic checks]
+[+TidyAll::Plugin::OTRS::PerlCritic]
 select = **/*.{pl,pm,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 only_modes = tests cli
-argv = -severity 5
 
 [PerlTidy]
 select = **/*.{pl,pm,t}

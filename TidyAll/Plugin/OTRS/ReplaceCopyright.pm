@@ -8,10 +8,12 @@ BEGIN {
 }
 use File::Basename;
 use File::Copy qw(copy);
-use base qw(Code::TidyAll::Plugin);
+use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 sub transform_source {
     my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->is_disabled(Code => $Code);
 
     my $Copy = 'OTRS AG, http://otrs.com/';
     my $StartYear = 2001;

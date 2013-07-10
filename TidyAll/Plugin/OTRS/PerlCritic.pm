@@ -1,23 +1,25 @@
 use strict;
 use warnings;
 
-package TidyAll::Plugin::OTRS::XMLLint;
+package TidyAll::Plugin::OTRS::PerlCritic;
 BEGIN {
-  $TidyAll::Plugin::OTRS::XMLLint::VERSION = '0.01';
+  $TidyAll::Plugin::OTRS::PerlCritic::VERSION = '0.01';
 }
-use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use Perl::Critic;
 
-sub _build_cmd { 'xmllint' }
+our $Critic = Perl::Critic->new( -severity => 5 );
 
 sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->is_disabled( Filename => $Filename );
 
-    my $cmd = sprintf( "%s %s %s", $Self->cmd, $Self->argv, $Filename );
-    my ($output, @result) = capture_merged { system($cmd) };
-    die "$output\n" if @result; # non-zero exit code
+    my @Violations = $Critic->critique($Filename);
+
+    if (@Violations) {
+        die "@Violations";
+    }
 }
 
 1;

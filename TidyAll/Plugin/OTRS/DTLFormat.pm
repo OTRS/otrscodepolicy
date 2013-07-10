@@ -6,10 +6,12 @@ use warnings;
 BEGIN {
   $TidyAll::Plugin::OTRS::DTLFormat::VERSION = '0.1';
 }
-use base qw(Code::TidyAll::Plugin);
+use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 sub transform_source {
     my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->is_disabled(Code => $Code);
 
     # get attributes
     my $Count = -1;

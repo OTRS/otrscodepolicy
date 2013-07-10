@@ -6,7 +6,7 @@ use warnings;
 BEGIN {
   $TidyAll::Plugin::OTRS::AGPLValidator::VERSION = '0.1';
 }
-use base qw(Code::TidyAll::Plugin);
+use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 my $GPLLongRegExp = <<'END_REGEXP';
     \# \s -- \n
@@ -35,6 +35,8 @@ END_REGEXP
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
+    return if $Self->is_disabled(Code => $Code);
+
     my $AGPLLong      = _AGPLLong();
     my $AGPLShort      = _AGPLShort();
 
@@ -57,6 +59,8 @@ sub validate_source {
 
 sub transform_source {
     my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->is_disabled(Code => $Code);
 
 	my $AGPLLong      = _AGPLLong();
     my $AGPLShort      = _AGPLShort();

@@ -6,13 +6,14 @@ use warnings;
 BEGIN {
   $TidyAll::Plugin::OTRS::TabsCheck::VERSION = '0.1';
 }
-use base qw(Code::TidyAll::Plugin);
+use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 use XML::Parser;
 
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
+    return if $Self->is_disabled(Code => $Code);
 
     my $LineCounter = 1;
     my $Errors;
