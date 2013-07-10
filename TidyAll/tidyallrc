@@ -61,6 +61,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 select = **/*.js
 ignore = Kernel/cpan-lib/**/*
 ignore = **/thirdparty/**/*
+ignore = **/js-cache/*.js
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
