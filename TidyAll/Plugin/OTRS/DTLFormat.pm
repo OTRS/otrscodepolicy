@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::DTLFormat;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::DTLFormat::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 sub transform_source {

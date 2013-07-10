@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::JavaScriptDebugCheck;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::JavaScriptDebugCheck::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 sub validate_source {

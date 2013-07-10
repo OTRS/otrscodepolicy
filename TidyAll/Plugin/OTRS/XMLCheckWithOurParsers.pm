@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::XMLCheckWithOurParsers;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::XMLCheckWithOurParsers::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 use XML::Parser;

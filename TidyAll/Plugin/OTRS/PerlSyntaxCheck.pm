@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::PerlSyntaxCheck;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::PerlSyntaxCheck::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 use File::Temp;

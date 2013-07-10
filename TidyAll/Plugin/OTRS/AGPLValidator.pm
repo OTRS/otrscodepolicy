@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::AGPLValidator;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::AGPLValidator::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 my $GPLLongRegExp = <<'END_REGEXP';

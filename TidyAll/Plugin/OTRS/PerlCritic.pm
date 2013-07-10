@@ -2,9 +2,7 @@ use strict;
 use warnings;
 
 package TidyAll::Plugin::OTRS::PerlCritic;
-BEGIN {
-  $TidyAll::Plugin::OTRS::PerlCritic::VERSION = '0.01';
-}
+
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 use Perl::Critic;
 

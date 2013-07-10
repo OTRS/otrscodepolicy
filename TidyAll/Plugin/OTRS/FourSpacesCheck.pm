@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::FourSpacesCheck;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::FourSpacesCheck::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 use XML::Parser;

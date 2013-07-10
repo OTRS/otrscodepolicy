@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::ReplaceCopyright;
 use strict;
 use warnings;
 
-BEGIN {
-    $TidyAll::Plugin::PerlTidy::ReplaceCopyright::VERSION = '0.1';
-}
 use File::Basename;
 use File::Copy qw(copy);
 use base qw(TidyAll::Plugin::OTRS::PluginBase);

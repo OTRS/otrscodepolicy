@@ -3,9 +3,6 @@ package TidyAll::Plugin::OTRS::SQLReservedWordsCheck;
 use strict;
 use warnings;
 
-BEGIN {
-  $TidyAll::Plugin::OTRS::SQLReservedWordsCheck::VERSION = '0.1';
-}
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
 sub validate_source {

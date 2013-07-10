@@ -2,9 +2,7 @@ use strict;
 use warnings;
 
 package TidyAll::Plugin::OTRS::XMLLint;
-BEGIN {
-  $TidyAll::Plugin::OTRS::XMLLint::VERSION = '0.01';
-}
+
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::PluginBase);
 
