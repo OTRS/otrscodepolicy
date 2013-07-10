@@ -41,6 +41,7 @@ select = **/*.{pl,pm,t,dtl,js,xml,opm,sopm}
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/cpan-lib/**/*
 ignore = **/thirdparty/**/*
+ignore = **/{js-cache,css-cache}/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
