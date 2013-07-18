@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::XMLCheckWithOurParsers;
+package TidyAll::Plugin::OTRS::XML::CheckWithOurParsers;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 use XML::Parser;
 

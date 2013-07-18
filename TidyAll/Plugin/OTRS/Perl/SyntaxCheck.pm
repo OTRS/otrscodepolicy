@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::PerlSyntaxCheck;
+package TidyAll::Plugin::OTRS::Perl::SyntaxCheck;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 use File::Temp;
 

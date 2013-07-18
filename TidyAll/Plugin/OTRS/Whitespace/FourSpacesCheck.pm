@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::FourSpacesCheck;
+package TidyAll::Plugin::OTRS::Whitespace::FourSpacesCheck;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 use XML::Parser;
 

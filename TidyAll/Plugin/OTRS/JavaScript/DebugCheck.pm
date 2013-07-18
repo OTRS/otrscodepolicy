@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::JavaScriptDebugCheck;
+package TidyAll::Plugin::OTRS::JavaScript::DebugCheck;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub validate_source {
     my ( $Self, $Code ) = @_;

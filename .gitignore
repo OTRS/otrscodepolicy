@@ -2,3 +2,4 @@
 .tidyall.d
 perltidy.LOG
 .includepath
+.DS_Store

@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::SQLReservedWordsCheck;
+package TidyAll::Plugin::OTRS::SQL::ReservedWordsCheck;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub validate_source {
     my ( $Self, $Code ) = @_;

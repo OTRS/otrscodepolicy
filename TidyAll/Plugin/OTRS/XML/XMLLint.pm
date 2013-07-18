@@ -1,10 +1,10 @@
 use strict;
 use warnings;
 
-package TidyAll::Plugin::OTRS::XMLLint;
+package TidyAll::Plugin::OTRS::XML::XMLLint;
 
 use Capture::Tiny qw(capture_merged);
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd { 'xmllint' }
 

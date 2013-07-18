@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::PluginBase;
+package TidyAll::Plugin::OTRS::Base;
 
 use strict;
 use warnings;

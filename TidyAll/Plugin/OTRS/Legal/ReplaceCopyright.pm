@@ -1,11 +1,11 @@
-package TidyAll::Plugin::OTRS::ReplaceCopyright;
+package TidyAll::Plugin::OTRS::Legal::ReplaceCopyright;
 
 use strict;
 use warnings;
 
 use File::Basename;
 use File::Copy qw(copy);
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub transform_source {
     my ( $Self, $Code ) = @_;

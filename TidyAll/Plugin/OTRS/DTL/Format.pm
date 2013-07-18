@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::DTLFormat;
+package TidyAll::Plugin::OTRS::DTL::Format;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub transform_source {
     my ( $Self, $Code ) = @_;

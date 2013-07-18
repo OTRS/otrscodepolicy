@@ -1,9 +1,9 @@
-package TidyAll::Plugin::OTRS::AGPLValidator;
+package TidyAll::Plugin::OTRS::Legal::AGPLValidator;
 
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 
 my $GPLLongRegExp = <<'END_REGEXP';
     \# \s -- \n

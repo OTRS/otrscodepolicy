@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 
-package TidyAll::Plugin::OTRS::PerlCritic;
+package TidyAll::Plugin::OTRS::Perl::PerlCritic;
 
-use base qw(TidyAll::Plugin::OTRS::PluginBase);
+use base qw(TidyAll::Plugin::OTRS::Base);
 use Perl::Critic;
 
 our $Critic = Perl::Critic->new( -severity => 5 );
