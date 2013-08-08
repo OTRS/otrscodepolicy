@@ -29,10 +29,11 @@ use File::Find;
 use Code::TidyAll;
 use Code::TidyAll::Git::Util;
 
-my ( $Verbose, $Directory, $File, $All, $Help );
+my ( $Verbose, $Directory, $File, $Cached, $All, $Help );
 GetOptions(
     'verbose'     => \$Verbose,
     'all'         => \$All,
+    'cached'      => \$Cached,
     'directory=s' => \$Directory,
     'file=s'      => \$File,
     'help'        => \$Help,
@@ -51,6 +52,7 @@ Options:
     -a, --all           Check all files recursively
     -d, --directory     Check only subdirectory
     -f, --file          Check only one file
+    -c, --cached        Check only cached (staged files)
     -v, --verbose       Activate diagnostics
     -h, --help          Show this usage message
 EOF
@@ -80,6 +82,13 @@ if ( defined $Directory && length $Directory ) {
 }
 elsif ( defined $File && length $File ) {
     @Files = (File::Spec->catfile( $RootDir, $File ));
+}
+elsif ( defined $Cached && length $Cached ) {
+    my @StagedFiles = `git diff --name-only --cached`;
+    for my $StagedFile (@StagedFiles) {
+        chomp $StagedFile;
+        push @Files, (File::Spec->catfile( $RootDir, $StagedFile ))
+    }
 }
 elsif (!$All) {
     @Files = Code::TidyAll::Git::Util::git_uncommitted_files( $RootDir );
