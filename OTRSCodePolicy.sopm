@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <Name>otrs-code-policy</Name>
+    <Name>OTRSCodePolicy</Name>
     <Version>0.0.0</Version>
 
     <Framework>3.3.x</Framework>
@@ -42,9 +42,9 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/CheckWithOurParsers.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLConfigSyntaxCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLLint.pm"/>
-        <File Permission="644" Location="TidyAll/git-hooks/pre-commit"/>
-        <File Permission="644" Location="TidyAll/install.pl"/>
-        <File Permission="644" Location="TidyAll/run.pl"/>
+        <File Permission="755" Location="TidyAll/git-hooks/pre-commit"/>
+        <File Permission="755" Location="TidyAll/install.pl"/>
+        <File Permission="755" Location="TidyAll/run.pl"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
     </Filelist>
