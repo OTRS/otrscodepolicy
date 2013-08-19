@@ -9,7 +9,6 @@
     <ModuleRequired Version="0.17">Code::TidyAll</ModuleRequired>
     <ModuleRequired>Perl::Critic</ModuleRequired>
     <ModuleRequired>Perl::Tidy</ModuleRequired>
-    <ModuleRequired>Perl::XML::Parser</ModuleRequired>
 
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>

@@ -32,13 +32,6 @@ sub transform_source {
             next LINE;
         }
 
-        # white list
-        # special setting for c.a.p.e. IT and Stefan Schmidt
-        if ($Line =~ m{( c\.a\.p\.e\. \s IT | Stefan \s Schmidt )}smx ) {
-            $Output .= $Line . "\n";
-            next LINE;
-        }
-
         my $OldLine = $Line;
 
         # special settings for the language directory
