@@ -21,6 +21,11 @@
 use strict;
 use warnings;
 
+use File::Basename;
+use FindBin qw($RealBin);
+use lib dirname($RealBin);
+use lib dirname($RealBin) . "/Kernel/cpan-lib";
+
 use Cwd;
 use File::Basename;
 use File::Spec;

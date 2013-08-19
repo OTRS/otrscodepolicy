@@ -16,6 +16,56 @@
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Cache.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Config/INI/Reader.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Git/Precommit.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Git/Prereceive.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Git/Util.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/CSSUnminifier.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/JSBeautify.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/JSHint.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/JSLint.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/MasonTidy.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/PHPCodeSniffer.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/PerlCritic.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/PerlTidy.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/PodChecker.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/PodSpell.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/PodTidy.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin/SortLines.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Plugin.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Result.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/SVN/Precommit.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/SVN/Util.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Test/Class.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Test/Plugin/AToZ.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Test/Plugin/CheckUpper.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Test/Plugin/RepeatFoo.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Test/Plugin/ReverseFoo.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Test/Plugin/UpperText.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Util/Zglob.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/Util.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Basic.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Conf.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Git.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/CSSUnminifier.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/JSBeautify.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/JSHint.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/JSLint.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/MasonTidy.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/PHPCodeSniffer.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/PerlCritic.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/PerlTidy.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/PodChecker.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/PodSpell.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/PodTidy.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin/SortLines.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Plugin.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/SVN.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Util.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll/t/Zglob.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Code/TidyAll.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Test/Code/TidyAll.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitFetchrowHashref.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitGoto.pm"/>
