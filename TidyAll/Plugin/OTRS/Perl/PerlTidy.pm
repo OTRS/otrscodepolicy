@@ -11,7 +11,7 @@ sub transform_source {
     my ( $Self, $Source ) = @_;
 
     # Don't modify files which are derived files (have change markers).
-    if ( $Source =~ m{\$OldId:|^\#\s*origin:}smx ) {
+    if ( $Source =~ m{ \$OldId: | ^ \# \s* \$origin: }xms ) {
         return $Source;
     }
 
