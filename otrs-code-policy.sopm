@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <Name>otrs-code-policy</Name>
+    <Version>0.0.0</Version>
+
+    <Framework>3.3.x</Framework>
+    <Framework>3.2.x</Framework>
+
+    <ModuleRequired Version="0.17">Code::TidyAll</ModuleRequired>
+    <ModuleRequired>Perl::Critic</ModuleRequired>
+    <ModuleRequired>Perl::Tidy</ModuleRequired>
+    <ModuleRequired>Perl::XML::Parser</ModuleRequired>
+
+    <Vendor>OTRS AG</Vendor>
+    <URL>http://otrs.org/</URL>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Description Lang="en">OTRS code quality checks.</Description>
+    <Filelist>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitFetchrowHashref.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitGoto.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLocaltime.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitRequire.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitRmtree.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitSomeCoreFunctions.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Base.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Format.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/DebugCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/JavaScriptDebugCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWordsCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpacesCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/TabsCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/CheckWithOurParsers.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLConfigSyntaxCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLLint.pm"/>
+        <File Permission="644" Location="TidyAll/git-hooks/pre-commit"/>
+        <File Permission="644" Location="TidyAll/install.pl"/>
+        <File Permission="644" Location="TidyAll/run.pl"/>
+        <File Permission="644" Location="TidyAll/tidyallrc"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
+    </Filelist>
+</otrs_package>
