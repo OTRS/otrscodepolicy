@@ -10,7 +10,7 @@ use base qw(Code::TidyAll::Plugin);
 sub is_disabled {
     my ($Self, %Param) = @_;
 
-    my $PluginPackage = Scalar::Util::reftype($Self);
+    my $PluginPackage = Scalar::Util::blessed($Self);
 
     if (!$Param{Code} && !$Param{Filename}) {
         print STDERR "Need Code or Filename!\n";

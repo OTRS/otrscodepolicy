@@ -18,7 +18,7 @@ sub validate_source {
     for my $Line (split /\n/, $Code) {
         $Counter++;
         if ($Counter == 1) {
-            if ($Counter == 1 && $Line !~ /^<\?xml.+\?>/ || $Line !~ /version="1.0"/ || $Line !~ /encoding="(?:iso-8859-1|utf-8)"/) {
+            if ($Counter == 1 && $Line !~ /^<\?xml.+\?>/ || $Line !~ /version="1.0"/ || $Line !~ /encoding="(?:iso-8859-1|utf-8)"/i) {
                 $Error .= "The first line of the file should have the content <?xml version=\"1.0\" encoding=\"utf-8\" ?>.\n";
             }
         }
