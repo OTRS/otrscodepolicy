@@ -1,7 +1,7 @@
+package TidyAll::Plugin::OTRS::Perl::PerlCritic;
+
 use strict;
 use warnings;
-
-package TidyAll::Plugin::OTRS::Perl::PerlCritic;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 use Perl::Critic;

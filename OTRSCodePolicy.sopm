@@ -3,6 +3,8 @@
     <Name>OTRSCodePolicy</Name>
     <Version>0.0.0</Version>
 
+<!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
+
     <Framework>3.3.x</Framework>
     <Framework>3.2.x</Framework>
 

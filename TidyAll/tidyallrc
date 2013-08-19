@@ -6,7 +6,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 only_modes = tests cli
 
-[PerlTidy]
+[+TidyAll::Plugin::OTRS::Perl::PerlTidy]
 select = **/*.{pl,pm,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
@@ -114,8 +114,16 @@ ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs
 [+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
 select = *.{sopm}
 ignore = Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ; remove later
 ignore = OTRSCodePolicy.sopm
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+[+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
+select = **/*
+ignore = Kernel/cpan-lib/**/*
+ignore = **/{thirdparty,js-cache,css-cache,img,icons,fonts}/*
+ignore = **/*.{png,psd,jpg,jpeg,gif,tiff,tif,ttf,project,odg,mwb,screen,story,pdf,dia}
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;[PodTidy]
