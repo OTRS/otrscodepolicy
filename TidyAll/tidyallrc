@@ -111,6 +111,13 @@ ignore = **/Copyright.dtl
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
 
+[+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
+select = *.{sopm}
+ignore = Kernel/cpan-lib/**/*
+; remove later
+ignore = OTRSCodePolicy.sopm
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 ;[PodTidy]
 ;select = **/*.pm
 ;ignore = Kernel/cpan-lib/**/*
