@@ -58,6 +58,13 @@ ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::DTL::LQData]
+select = **/*.dtl
+ignore = Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::JavaScript::DebugCheck]
 select = **/*.js
 ignore = Kernel/cpan-lib/**/*
