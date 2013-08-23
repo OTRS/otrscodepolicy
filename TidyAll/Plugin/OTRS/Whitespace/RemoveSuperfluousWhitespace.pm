@@ -1,0 +1,22 @@
+package TidyAll::Plugin::OTRS::Whitespace::RemoveSuperfluousWhitespace;
+
+use strict;
+use warnings;
+
+use base qw(TidyAll::Plugin::OTRS::Base);
+
+sub transform_source {
+    my ( $Self, $Code ) = @_;
+
+    return if $Self->is_disabled(Code => $Code);
+
+    # Remove trailing spaces at end of lines
+    $Code =~ s/^(.+?)[ ]+\n/$1\n/xmsg;
+
+    # Remove empty trailing lines
+    $Code =~ s/\n(\s|\n)+\z/\n/xmsg;
+
+    return $Code;
+}
+
+1;

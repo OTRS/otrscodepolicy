@@ -1,5 +1,5 @@
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
-select = **/*.{pl,pm,t}
+select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
@@ -7,7 +7,7 @@ ignore = scripts/test/sample/**/*
 only_modes = tests cli
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
-select = **/*.{pl,pm,t}
+select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
@@ -30,14 +30,23 @@ ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::SyntaxCheck]
-select = **/*.{pl,pm,t}
+select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Whitespace::TabsCheck]
-select = **/*.{pl,pm,t,dtl,js,xml,opm,sopm}
+select = **/*.{pl,pm,psgi,t,dtl,js,xml,opm,sopm}
+ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = **/{js-cache,css-cache}/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+[+TidyAll::Plugin::OTRS::Whitespace::RemoveSuperfluousWhitespace]
+select = **/*.{pl,pm,psgi,t,dtl,js,xml,opm,sopm,md}
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/cpan-lib/**/*
 ignore = **/thirdparty/**/*
@@ -99,7 +108,7 @@ ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
-select = **/*.{pl,pm}
+select = **/*.{pl,pm,t,dtl}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Perl/Critic/**/* TidyAll/**/*
@@ -109,7 +118,7 @@ ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,t,xml,dtl}
+select = **/*.{pl,pm,psgi,t,xml,dtl}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Perl/Critic/**/* TidyAll/**/*

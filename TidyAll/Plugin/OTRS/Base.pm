@@ -12,12 +12,12 @@ sub is_disabled {
 
     my $PluginPackage = Scalar::Util::blessed($Self);
 
-    if (!$Param{Code} && !$Param{Filename}) {
+    if (!defined $Param{Code} && !defined $Param{Filename}) {
         print STDERR "Need Code or Filename!\n";
         die;
     }
 
-    my $Code = $Param{Code} || $Self->_get_file_contents($Param{Filename});
+    my $Code = defined $Param{Code} ? $Param{Code} : $Self->_GetFileContents($Param{Filename});
 
     if ($Code =~ m{nofilter\([^()]*\Q$PluginPackage\E[^()]*\)}ismx) {
         return 1;
@@ -26,7 +26,7 @@ sub is_disabled {
     return;
 }
 
-sub _get_file_contents {
+sub _GetFileContents {
     my ($Self, $Filename) = @_;
 
     my $FileHandle;
