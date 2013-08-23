@@ -138,7 +138,8 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
 select = **/*
 ignore = Kernel/cpan-lib/**/*
-ignore = **/{thirdparty,js-cache,css-cache,img,icons,fonts}/*
+ignore = **/{thirdparty,js-cache,css-cache,img,icons,fonts}/**/*
+ignore = **/.*
 ignore = **/*.{png,psd,jpg,jpeg,gif,tiff,tif,ttf,project,odg,mwb,screen,story,pdf,dia}
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
