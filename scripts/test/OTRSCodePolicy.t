@@ -8,29 +8,34 @@
 # --
 use strict;
 use warnings;
+
 use vars (qw($Self));
 use utf8;
-use Kernel::Config;
+
 use File::Find;
 use Code::TidyAll;
 use Cwd;
 
+use Kernel::Config;
+
 my $ConfigObject = Kernel::Config->new();
 
+# Get all files in the OTRS directory
 my $Home = $ConfigObject->Get('Home');
 my @Files;
-
 my $Wanted = sub {
+    # Skip non-regular files and directories.
     return if ( !-f $File::Find::name );
+    # Also skip symbolic links, TidyAll does not like them.
+    return if ( -l $File::Find::name );
     push @Files, $File::Find::name;
 };
+File::Find::find( $Wanted, $Home );
 
 my $OldWorkingDir = getcwd();
 
 # Change to toplevel dir so that perlcritic finds all plugins.
 chdir($Home);
-
-File::Find::find( $Wanted, $Home );
 
 my $TidyAll = Code::TidyAll->new_from_conf_file(
     "$Home/TidyAll/tidyallrc",
@@ -43,10 +48,9 @@ my $TidyAll = Code::TidyAll->new_from_conf_file(
     #verbose    => 1,
 );
 
-my $I;
-
 FILE:
 for my $File (@Files) {
+
     my $Result = $TidyAll->process_file($File);
 
     next FILE if $Result->state() eq 'no_match';    # no plugins apply, ignore file
@@ -56,9 +60,6 @@ for my $File (@Files) {
         'error',
         "$File check results " . ( $Result->error() || '' ),
     );
-
-    last if $I++ > 100;
-
 }
 
 # Change back to previous working directory.
