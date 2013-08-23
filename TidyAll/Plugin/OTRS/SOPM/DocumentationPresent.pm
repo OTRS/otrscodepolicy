@@ -8,7 +8,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->is_disabled(Code => $Code);
+    return if $Self->IsPluginDisabled(Code => $Code);
 
     my $DocumentationPresent = $Code =~ m{^\s*<File.+Location="doc/(?:de|en)}smx;
 

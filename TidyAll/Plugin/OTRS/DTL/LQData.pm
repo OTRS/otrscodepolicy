@@ -8,7 +8,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->is_disabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled(Code => $Code);
 
     my $Counter;
     my $ErrorMessage;

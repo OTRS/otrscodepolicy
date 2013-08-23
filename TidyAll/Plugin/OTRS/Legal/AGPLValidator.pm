@@ -32,7 +32,7 @@ END_REGEXP
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->is_disabled(Code => $Code);
+    return if $Self->IsPluginDisabled(Code => $Code);
 
     my $AGPLLong      = _AGPLLong();
     my $AGPLShort      = _AGPLShort();
@@ -57,7 +57,7 @@ sub validate_source {
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->is_disabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled(Code => $Code);
 
 	my $AGPLLong      = _AGPLLong();
     my $AGPLShort      = _AGPLShort();

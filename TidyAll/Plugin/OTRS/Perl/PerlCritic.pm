@@ -11,7 +11,7 @@ our $Critic = Perl::Critic->new( -severity => 5 );
 sub validate_file {
     my ( $Self, $Filename ) = @_;
 
-    return if $Self->is_disabled( Filename => $Filename );
+    return if $Self->IsPluginDisabled( Filename => $Filename );
 
     my @Violations = $Critic->critique($Filename);
 

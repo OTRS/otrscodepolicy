@@ -11,7 +11,7 @@ sub _build_cmd { 'xmllint' }
 sub validate_file {
     my ( $Self, $Filename ) = @_;
 
-    return if $Self->is_disabled( Filename => $Filename );
+    return if $Self->IsPluginDisabled( Filename => $Filename );
 
     my $cmd = sprintf( "%s %s %s", $Self->cmd, $Self->argv, $Filename );
     my ($output, @result) = capture_merged { system($cmd) };

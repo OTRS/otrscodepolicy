@@ -8,7 +8,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->is_disabled(Code => $Code);
+    return if $Self->IsPluginDisabled(Code => $Code);
 
     # Remove trailing spaces at end of lines
     $Code =~ s/^(.+?)[ ]+\n/$1\n/xmsg;

@@ -10,7 +10,7 @@ use File::Temp;
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->is_disabled(Code => $Code);
+    return if $Self->IsPluginDisabled(Code => $Code);
 
     my $TempFile = File::Temp->new();
 

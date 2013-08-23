@@ -7,7 +7,7 @@ use Scalar::Util;
 
 use base qw(Code::TidyAll::Plugin);
 
-sub is_disabled {
+sub IsPluginDisabled {
     my ($Self, %Param) = @_;
 
     my $PluginPackage = Scalar::Util::blessed($Self);
