@@ -127,6 +127,14 @@ ignore = **/Copyright.dtl
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
 
+[+TidyAll::Plugin::OTRS::Common::HeaderlineFilename]
+select = **/*.{pl,pm,psgi,t,dtl,js}
+ignore = Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = **/Copyright.dtl
+ignore = **/AAA*dtl
+
 [+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
 select = *.{sopm}
 ignore = Kernel/cpan-lib/**/*
