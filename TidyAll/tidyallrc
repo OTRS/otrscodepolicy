@@ -43,6 +43,9 @@ ignore = scripts/test/sample/**/*
 ignore = Kernel/{Modules,Output}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::DBObject]
+select = Kernel/Modules/**/*.pm
+
 [+TidyAll::Plugin::OTRS::Perl::PODSpelling]
 select = **/*.{pm}
 ignore = Kernel/cpan-lib/**/*
