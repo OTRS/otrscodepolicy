@@ -36,7 +36,7 @@ ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Perl::PerldocSpelling]
+[+TidyAll::Plugin::OTRS::Perl::PODSpelling]
 select = **/*.{pm}
 ignore = Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
@@ -203,7 +203,7 @@ select = **/*
 ignore = Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache,img,icons,fonts}/**/*
 ignore = **/.*
-ignore = **/*.{png,psd,jpg,jpeg,gif,tiff,tif,ttf,project,odg,mwb,screen,story,pdf,dia}
+ignore = **/*.{png,psd,jpg,jpeg,gif,tiff,tif,ttf,project,odg,mwb,screen,story,pdf,dia,old,save,backup}
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;[PodTidy]

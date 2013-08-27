@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Perl::PerldocSpelling;
+package TidyAll::Plugin::OTRS::Perl::PODSpelling;
 
 use strict;
 use warnings;
