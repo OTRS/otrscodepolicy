@@ -188,15 +188,12 @@ ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
 select = *.{sopm}
-ignore = Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-; remove later
-ignore = OTRSCodePolicy.sopm
 
 [+TidyAll::Plugin::OTRS::SOPM::RequiredElements]
 select = *.{sopm}
-ignore = Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+[+TidyAll::Plugin::OTRS::Legal::SOPMLicenseCheck]
+select = *.{sopm}
 
 [+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
 select = **/*
