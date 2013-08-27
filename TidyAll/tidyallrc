@@ -36,6 +36,12 @@ ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::ScriptFormat]
+select = **/*.{pl,psgi}
+ignore = Kernel/cpan-lib/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Whitespace::TabsCheck]
 select = **/*.{pl,pm,psgi,t,dtl,js,xml,opm,sopm}
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
