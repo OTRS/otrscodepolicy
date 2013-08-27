@@ -16,7 +16,7 @@ sub validate_file {
     my @Violations = $Critic->critique($Filename);
 
     if (@Violations) {
-        die "@Violations";
+        die __PACKAGE__ . "\n@Violations";
     }
 }
 
