@@ -187,7 +187,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ; remove later
 ignore = OTRSCodePolicy.sopm
 
-[+TidyAll::Plugin::OTRS::SOPM::Validate]
+[+TidyAll::Plugin::OTRS::SOPM::RequiredElements]
 select = *.{sopm}
 ignore = Kernel/cpan-lib/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*

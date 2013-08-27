@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::SOPM::Validate;
+package TidyAll::Plugin::OTRS::SOPM::RequiredElements;
 
 use strict;
 use warnings;
