@@ -14,8 +14,15 @@ sub validate_source {
 
     my ($Counter, $Flag, $ErrorMessage);
 
+    LINE:
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
+
+        # Allow ## no critic and ## use critic
+        next if $Line =~ m{^ \s* \#\# \s+ (?:no|use) \s+ critic}xms;
+        # Allow ## nofilter
+        next if $Line =~ m{^ \s* \#\# \s+ nofilter }xms;
+
         if ($Line =~ /^[^#]/ && $Counter < 24) {
             $Flag = 1;
         }
