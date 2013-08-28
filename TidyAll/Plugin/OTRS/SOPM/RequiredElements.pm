@@ -27,7 +27,9 @@ sub validate_source {
     my $DatabaseUpgrade = 0;
     my $NameLength = 0;
 
-    foreach my $Line (split /\n/, $Code) {
+    my @CodeLines = split /\n/, $Code;
+
+    for my $Line (@CodeLines) {
         $Counter++;
         if ($Line =~ /<Name>[^<>]+<\/Name>/) {
             $Name = 1;

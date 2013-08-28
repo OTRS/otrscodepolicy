@@ -22,7 +22,9 @@ sub validate_source {
 
     my $ErrorMessage;
 
-    foreach my $Line ( split /\n/, $Code ){
+    my @CodeLines = split /\n/, $Code;
+
+    for my $Line (@CodeLines) {
         $Counter++;
         if ($Line =~ m{^=item}smx) {
             if ($Line =~ /=item (.+)\(\)/) {
