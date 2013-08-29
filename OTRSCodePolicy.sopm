@@ -42,6 +42,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/SOPMLicenseCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Migrations/RemoveCVSIDs.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/DBObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
