@@ -39,8 +39,9 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::Perl::LayoutObject]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
+ignore = scripts/test/**/*
 ignore = Kernel/{Modules,Output}/**/*
+ignore = Kernel/System/Web/*.pm
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
@@ -206,11 +207,9 @@ select = *.{sopm}
 select = *.{sopm}
 
 [+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
-select = **/*
+select = **/*.{pl,psgi,pm,t,xml,js,dtl,css}
 ignore = Kernel/cpan-lib/**/*
-ignore = **/{thirdparty,js-cache,css-cache,img,icons,fonts}/**/*
-ignore = **/.*
-ignore = **/*.{png,psd,jpg,jpeg,gif,tiff,tif,ttf,project,odg,mwb,screen,story,pdf,dia,old,save,backup}
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;[PodTidy]

@@ -46,9 +46,6 @@ sub transform_source {
     # Remove VERSION from POD
     $Code =~ s{ ^=head1 [ ]* VERSION \n+ ^\$Revision: .*? \n+}{}xmsg;
 
-    # remove double POD =cut lines
-    $Code =~ s{ ^=cut\n+^=cut\n+}{=cut\n}xmsg;
-
     # delete the 'use vars qw($VERSION);' line
     $Code =~ s{ ( ^ $ \n )?  ^ use [ ] vars [ ] qw\(\$VERSION\); $ \n }{}ixms;
 
