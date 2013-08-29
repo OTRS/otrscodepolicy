@@ -30,14 +30,30 @@
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Base.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/HeaderlineFilename.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Baselink.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/CGIHandle.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/LQData.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Select.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Format.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/DebugCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/JavaScriptDebugCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/SOPMLicenseCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/DBObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PODSpelling.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlTidy.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ScriptFormat.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/RequiredElements.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWordsCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/RemoveSuperfluousWhitespace.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpacesCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/TabsCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/CheckWithOurParsers.pm"/>
@@ -48,5 +64,6 @@
         <File Permission="755" Location="TidyAll/run.pl"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
+        <File Permission="644" Location="cpanfile"/>
     </Filelist>
 </otrs_package>
