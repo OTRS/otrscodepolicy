@@ -24,8 +24,10 @@ my $ConfigObject = Kernel::Config->new();
 my $Home = $ConfigObject->Get('Home');
 my @Files;
 my $Wanted = sub {
+
     # Skip non-regular files and directories.
     return if ( !-f $File::Find::name );
+
     # Also skip symbolic links, TidyAll does not like them.
     return if ( -l $File::Find::name );
     push @Files, $File::Find::name;

@@ -169,10 +169,10 @@ sub validate_source {
         $Text .= "ERROR: <BuildHost> no longer used in .sopms!\n";
         $OK = 0;
     }
-    if (!$DescriptionDE) {
-        $Text .= "ERROR: You have forgot to use the element <Description Lang=\"de\">!\n";
-        $OK = 0;
-    }
+    #if (!$DescriptionDE) {
+    #    $Text .= "ERROR: You have forgot to use the element <Description Lang=\"de\">!\n";
+    #    $OK = 0;
+    #}
     if (!$DescriptionEN) {
         $Text .= "ERROR: You have forgot to use the element <Description Lang=\"en\">!\n";
         $OK = 0;
