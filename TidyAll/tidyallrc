@@ -41,7 +41,8 @@ select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = scripts/test/**/*
 ignore = Kernel/{Modules,Output}/**/*
-ignore = Kernel/System/Web/*.pm
+ignore = Kernel/System/Web/*
+ignore = Kernel/System/DynamicField/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
