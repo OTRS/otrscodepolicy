@@ -55,7 +55,7 @@ sub _is_camelcase {
         return 1;
     }
     elsif ( $elem->isa( 'PPI::Statement::Package' ) ) {
-        if ( $name =~ m{ ^Language :: [a-z]{2,3}_ }xms
+        if ( $name =~ m{ Kernel::Language :: [a-z]{2,3}_ }xms
             || $name eq 'main'
             || $name =~ m{ ^var::packagesetup:: }xms
         ) {
