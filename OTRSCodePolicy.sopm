@@ -65,6 +65,5 @@
         <File Permission="755" Location="TidyAll/run.pl"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
-        <File Permission="644" Location="cpanfile"/>
     </Filelist>
 </otrs_package>
