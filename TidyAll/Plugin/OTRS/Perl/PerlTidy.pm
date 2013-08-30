@@ -6,6 +6,7 @@ use warnings;
 use base qw(TidyAll::Plugin::OTRS::Base);
 
 use Capture::Tiny qw(capture_merged);
+use Perl::Tidy;
 
 sub transform_source {
     my ( $Self, $Source ) = @_;

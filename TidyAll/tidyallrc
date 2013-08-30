@@ -3,7 +3,6 @@ select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
-only_modes = tests cli
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
 select = **/*.{pl,pm,psgi,t}
@@ -14,6 +13,8 @@ ignore = Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 argv = -l=100 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl
+; do not run on the UnitTests to save time (needs ~ 5 min for OTRS)
+only_modes = cli commit
 
 [PodChecker]
 select = **/*.{pm,pod}
