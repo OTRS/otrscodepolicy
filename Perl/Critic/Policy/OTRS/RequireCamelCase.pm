@@ -46,19 +46,25 @@ sub _is_camelcase {
     my $words = $elem->find( 'PPI::Token::Word' );
     my $name  = $words->[1];
 
+    return 1 if !$name;
+
     if ( $elem->isa( 'PPI::Statement::Sub' ) and $name eq 'new' ) {
         return 1;
     }
-    elsif ( $elem->isa( 'PPI::Statement::Package' ) and $name eq 'main' ) {
-        return 1;
+    elsif ( $elem->isa( 'PPI::Statement::Package' ) ) {
+        if ( $name =~ m{ ^Language :: [a-z]{2,3}_ }xms
+            || $name eq 'main'
+            || $name =~ m{ ^var::packagesetup:: }xms
+        ) {
+            return 1;
+        }
     }
-    elsif ( $elem->isa( 'PPI::Statement::Package' ) and $name =~ m{ Language :: [a-z]{2,3}_ }xms ) {
-        return 1;
-    }
-
-    return 1 if !$name;
 
     my $is_camelcase = !( $name !~ m{ \A _* [A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
+
+    if (!$is_camelcase) {
+        print STDERR "'$name' is not CamelCase!\n";
+    }
 
     return $is_camelcase;
 }
@@ -80,7 +86,9 @@ sub _variable_is_camelcase {
 
     my $is_camelcase = !( $name !~ m{ \A [\*\@\$\%]_*[A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
 
-    #print STDERR "$name" if !$is_camelcase;
+    if (!$is_camelcase) {
+        print STDERR "'$name' is not CamelCase!\n";
+    }
 
     return $is_camelcase;
 }
