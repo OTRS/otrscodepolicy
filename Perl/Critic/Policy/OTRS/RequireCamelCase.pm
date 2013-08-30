@@ -27,6 +27,8 @@ sub applies_to {
     keys %dispatcher,
 }
 
+my @Errors;
+
 sub violates {
     my ( $self, $elem ) = @_;
 
@@ -37,7 +39,8 @@ sub violates {
     my $success = $self->$sub( $elem );
 
     return if $success;
-    return $self->violation( $DESC, $EXPL, $elem );
+
+    return $self->violation( "$DESC. Errors: " . join(", ", @Errors), $EXPL, $elem );
 }
 
 sub _is_camelcase {
@@ -63,7 +66,7 @@ sub _is_camelcase {
     my $is_camelcase = !( $name !~ m{ \A _* [A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
 
     if (!$is_camelcase) {
-        print STDERR "'$name' is not CamelCase!\n";
+        push @Errors, $name;
     }
 
     return $is_camelcase;
@@ -87,7 +90,7 @@ sub _variable_is_camelcase {
     my $is_camelcase = !( $name !~ m{ \A [\*\@\$\%]_*[A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
 
     if (!$is_camelcase) {
-        print STDERR "'$name' is not CamelCase!\n";
+        push @Errors, $name;
     }
 
     return $is_camelcase;
