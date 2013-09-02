@@ -5,6 +5,7 @@ use warnings;
 
 use Perl::Critic::Utils qw{ :severities :classification :ppi };
 use base 'Perl::Critic::Policy';
+use base 'Perl::Critic::PolicyOTRS';
 
 use Readonly;
 
@@ -31,6 +32,8 @@ my @Errors;
 
 sub violates {
     my ( $self, $elem ) = @_;
+
+    return if $self->IsFrameworkVersionLessThan(3, 3);
 
     my $ref = ref $elem;
     my $sub = $dispatcher{$ref};

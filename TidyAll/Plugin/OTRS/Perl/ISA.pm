@@ -28,6 +28,7 @@ sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if ($Self->IsFrameworkVersionLessThan(3, 3));
 
     # remove useless use vars qw(@ISA); (where ISA is not used)
     if ( $Code !~ m{\@ISA.*\@ISA}smx ) {

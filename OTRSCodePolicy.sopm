@@ -17,6 +17,7 @@
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitFetchrowHashref.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitGoto.pm"/>

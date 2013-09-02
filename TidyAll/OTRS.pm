@@ -64,7 +64,7 @@ sub DetermineFrameworkVersionFromDirectory {
     }
 
     if ($Self->{FrameworkVersionMajor}) {
-        print "found OTRS version $Self->{FrameworkVersionMajor}.$Self->{FrameworkVersionMajor}\n";
+        print "found OTRS version $Self->{FrameworkVersionMajor}.$Self->{FrameworkVersionMinor}\n";
         return;
     }
 
