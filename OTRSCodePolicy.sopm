@@ -50,7 +50,8 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlTidy.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PODSpelling.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PodChecker.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PodSpelling.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ScriptFormat.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
