@@ -13,7 +13,7 @@ use vars (qw($Self));
 use utf8;
 
 use File::Find;
-use Code::TidyAll;
+use TidyAll::OTRS;
 use Cwd;
 
 use Kernel::Config;
@@ -39,7 +39,7 @@ my $OldWorkingDir = getcwd();
 # Change to toplevel dir so that perlcritic finds all plugins.
 chdir($Home);
 
-my $TidyAll = Code::TidyAll->new_from_conf_file(
+my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     "$Home/TidyAll/tidyallrc",
     no_cache   => 1,
     check_only => 1,
@@ -49,6 +49,7 @@ my $TidyAll = Code::TidyAll->new_from_conf_file(
 
     #verbose    => 1,
 );
+$TidyAll->DetermineFrameworkVersionFromDirectory();
 
 FILE:
 for my $File (@Files) {
