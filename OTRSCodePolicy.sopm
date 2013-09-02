@@ -39,7 +39,6 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/LQData.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Select.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/DebugCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/JavaScriptDebugCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/SOPMLicenseCheck.pm"/>
