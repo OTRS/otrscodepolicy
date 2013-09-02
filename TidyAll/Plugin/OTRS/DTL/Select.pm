@@ -13,6 +13,8 @@ sub validate_source {
     my ($Counter, $ErrorMessage);
 
     for my $Line ( split /\n/, $Code ) {
+        $Counter++;
+
         # look for forbidden selects that are not one-line, empty selects
         if ($Line =~ /<select/ && $Line !~ /<option/ && $Line !~ /<[\/]select/ ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
