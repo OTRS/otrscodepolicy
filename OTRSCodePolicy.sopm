@@ -7,6 +7,7 @@
 
     <Framework>3.3.x</Framework>
     <Framework>3.2.x</Framework>
+    <Framework>3.1.x</Framework>
 
     <ModuleRequired Version="0.17">Code::TidyAll</ModuleRequired>
     <ModuleRequired>Perl::Critic</ModuleRequired>

@@ -9,6 +9,7 @@ sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled(Code => $Code);
+    return if ($Self->IsFrameworkVersionLessThan(3, 2));
 
     my $DocumentationPresent = $Code =~ m{^\s*<File.+Location="doc/(?:de|en)}smx;
 
