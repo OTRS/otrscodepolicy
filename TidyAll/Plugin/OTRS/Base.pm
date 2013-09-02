@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Scalar::Util;
+use TidyAll::OTRS;
 
 use base qw(Code::TidyAll::Plugin);
 
@@ -29,10 +30,10 @@ sub IsPluginDisabled {
 sub IsFrameworkVersionLessThan {
     my ($Self, $FrameworkVersionMajor, $FrameworkVersionMinor) = @_;
 
-    if ($Self->{tidyall}->{FrameworkVersionMajor}) {
-        return 1 if $Self->{tidyall}->{FrameworkVersionMajor} < $FrameworkVersionMajor;
-        return 0 if $Self->{tidyall}->{FrameworkVersionMajor} > $FrameworkVersionMajor;
-        return 1 if $Self->{tidyall}->{FrameworkVersionMinor} < $FrameworkVersionMinor;
+    if ($TidyAll::OTRS::FrameworkVersionMajor) {
+        return 1 if $TidyAll::OTRS::FrameworkVersionMajor < $FrameworkVersionMajor;
+        return 0 if $TidyAll::OTRS::FrameworkVersionMajor > $FrameworkVersionMajor;
+        return 1 if $TidyAll::OTRS::FrameworkVersionMinor < $FrameworkVersionMinor;
         return 0;
     }
 

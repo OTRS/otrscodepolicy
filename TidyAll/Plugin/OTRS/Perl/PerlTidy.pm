@@ -11,6 +11,8 @@ use Perl::Tidy;
 sub transform_source {
     my ( $Self, $Source ) = @_;
 
+    return $Source if $Self->IsPluginDisabled(Code => $Source);
+
     # Don't modify files which are derived files (have change markers).
     if ( $Source =~ m{ \$OldId: | ^ \# \s* \$origin: }xms ) {
         return $Source;

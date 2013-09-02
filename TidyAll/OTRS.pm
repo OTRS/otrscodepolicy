@@ -15,6 +15,9 @@ package TidyAll::OTRS;
 use IO::File;
 use base qw(Code::TidyAll);
 
+our $FrameworkVersionMajor = 0;
+our $FrameworkVersionMinor = 0;
+
 sub new_from_conf_file {
     my ($Class, $ConfigFile, %Param) = @_;
 
@@ -29,17 +32,14 @@ sub DetermineFrameworkVersionFromDirectory {
 
     print "Checking OTRS framework version... ";
 
-    $Self->{FrameworkVersionMajor} = 0;
-    $Self->{FrameworkVersionMinor} = 0;
-
     # First check if we have an OTRS directory, use RELEASE info then.
     if (-r $Self->{root_dir} . '/RELEASE') {
         my $FileHandle = IO::File->new( $Self->{root_dir} . '/RELEASE', 'r' );
         my @Content = $FileHandle->getlines();
 
         my ($VersionMajor, $VersionMinor) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
-        $Self->{FrameworkVersionMajor} = $VersionMajor;
-        $Self->{FrameworkVersionMinor} = $VersionMinor;
+        $FrameworkVersionMajor = $VersionMajor;
+        $FrameworkVersionMinor = $VersionMinor;
     }
     else {
         # Now check if we have a module directory with an SOPM file in it.
@@ -51,20 +51,20 @@ sub DetermineFrameworkVersionFromDirectory {
             for my $Line (@Content) {
                 if ($Line =~ m{<Framework>}) {
                     my ($VersionMajor, $VersionMinor) = $Line =~ m{<Framework>(\d+)\.(\d+)\.[^<*]</Framework>}xms;
-                    if ( $VersionMajor > $Self->{FrameworkVersionMajor}
-                        || ( $VersionMajor == $Self->{FrameworkVersionMajor}
-                            && $VersionMinor > $Self->{FrameworkVersionMinor} )
+                    if ( $VersionMajor > $FrameworkVersionMajor
+                        || ( $VersionMajor == $FrameworkVersionMajor
+                            && $VersionMinor > $FrameworkVersionMinor )
                     ) {
-                        $Self->{FrameworkVersionMajor} = $VersionMajor;
-                        $Self->{FrameworkVersionMinor} = $VersionMinor;
+                        $FrameworkVersionMajor = $VersionMajor;
+                        $FrameworkVersionMinor = $VersionMinor;
                     }
                 }
             }
         }
     }
 
-    if ($Self->{FrameworkVersionMajor}) {
-        print "found OTRS version $Self->{FrameworkVersionMajor}.$Self->{FrameworkVersionMinor}\n";
+    if ($FrameworkVersionMajor) {
+        print "found OTRS version $FrameworkVersionMajor.$FrameworkVersionMinor\n";
         return;
     }
 
