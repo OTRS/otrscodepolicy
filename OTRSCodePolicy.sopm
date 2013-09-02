@@ -62,6 +62,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/CheckWithOurParsers.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLConfigSyntaxCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLLint.pm"/>
+        <File Permission="644" Location="TidyAll/OTRS.pm"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="755" Location="TidyAll/git-hooks/pre-commit"/>
         <File Permission="755" Location="TidyAll/install.pl"/>

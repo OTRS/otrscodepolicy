@@ -10,7 +10,8 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return if $Self->IsPluginDisabled(Code => $Code);
+    return if ($Self->IsFrameworkVersionLessThan(3, 3));
 
     # Don't allow push @ISA.
     if ( $Code =~ m{push\(?\s*\@ISA }xms ) {
@@ -19,6 +20,7 @@ Don't push to \@ISA, this can cause problems in persistent environments.
 Use Main::RequireBaseClass() instead.
 EOF
     }
+
     return;
 }
 

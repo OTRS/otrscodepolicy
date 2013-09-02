@@ -21,6 +21,10 @@
 use strict;
 use warnings;
 
+use File::Basename;
+use FindBin qw($RealBin);
+use lib dirname($RealBin);
+
 use Cwd;
 use File::Basename;
 use File::Spec;
@@ -28,6 +32,8 @@ use Getopt::Long;
 use File::Find;
 use Code::TidyAll;
 use Code::TidyAll::Git::Util;
+
+use TidyAll::OTRS;
 
 my ( $Verbose, $Directory, $File, $Cached, $All, $Help );
 GetOptions(
@@ -96,7 +102,7 @@ elsif (!$All) {
 
 chdir dirname($0) . "/..";
 
-my $TidyAll = Code::TidyAll->new_from_conf_file(
+my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     $conf_file,
     no_cache   => 1,
     check_only => 0,
@@ -105,6 +111,8 @@ my $TidyAll = Code::TidyAll->new_from_conf_file(
     data_dir   => File::Spec->tmpdir(),
     verbose    => $Verbose ? 1 : 0,
 );
+
+$TidyAll->DetermineFrameworkVersionFromDirectory();
 
 my @Results;
 if ( !$All ) {

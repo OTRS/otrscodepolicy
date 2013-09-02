@@ -25,6 +25,8 @@ use IPC::System::Simple qw(capturex run);
 use Moo;
 use Try::Tiny;
 
+use TidyAll::OTRS;
+
 no warnings qw(redefine);
 sub Code::TidyAll::Git::Precommit::check {
     my ( $class, %params ) = @_;
@@ -46,7 +48,14 @@ sub Code::TidyAll::Git::Precommit::check {
 #        my ($conf_file) = grep { -f } map { join( "/", $root_dir, $_ ) } @conf_names
 #          or die sprintf( "could not find conf file %s", join( " or ", @conf_names ) );
 # --
-        my $conf_file = dirname(readlink($0)) . '/../tidyallrc';
+        my $ScriptDirectory;
+        if (-l $0) {
+            $ScriptDirectory = dirname(readlink($0));
+        }
+        else {
+            $ScriptDirectory = dirname($0);
+        }
+        my $conf_file = $ScriptDirectory . '/../tidyallrc';
 # --
         # Store the stash, and restore it upon exiting this scope
         unless ( $self->no_stash ) {
@@ -64,9 +73,10 @@ sub Code::TidyAll::Git::Precommit::check {
 # --
         # Change to otrs-code-policy directory to be able to load all plugins.
         my $RootDir = getcwd();
-        chdir dirname(readlink($0)) . '/../../';
+        chdir $ScriptDirectory . '/../../';
         $self->tidyall_options->{root_dir} = $RootDir;
         $self->tidyall_options->{data_dir} = File::Spec->tmpdir();
+        $self->tidyall_options->{tidyall_class} = 'TidyAll::OTRS';
 # --
         my $tidyall = $tidyall_class->new_from_conf_file(
             $conf_file,
@@ -75,7 +85,12 @@ sub Code::TidyAll::Git::Precommit::check {
             mode       => 'commit',
             %{ $self->tidyall_options },
         );
-        my @results = $tidyall->process_files( map { "$root_dir/$_" } @files );
+# --
+# OTRS
+# --
+        $tidyall->DetermineFrameworkVersionFromDirectory();
+# --
+        my @results = $tidyall->process_paths( map { "$root_dir/$_" } @files );
 
 # --
 # OTRS

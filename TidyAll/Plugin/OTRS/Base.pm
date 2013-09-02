@@ -26,6 +26,21 @@ sub IsPluginDisabled {
     return;
 }
 
+sub IsFrameworkVersionLessThan {
+    my ($Self, $FrameworkVersionMajor, $FrameworkVersionMinor) = @_;
+
+    if ($Self->{tidyall}->{FrameworkVersionMajor}) {
+        return 1 if $Self->{tidyall}->{FrameworkVersionMajor} < $FrameworkVersionMajor;
+        return 0 if $Self->{tidyall}->{FrameworkVersionMajor} > $FrameworkVersionMajor;
+        return 1 if $Self->{tidyall}->{FrameworkVersionMinor} < $FrameworkVersionMinor;
+        return 0;
+    }
+
+    # Default: if framework is unknown, return false (strict checks).
+    return 0;
+
+}
+
 sub _GetFileContents {
     my ($Self, $Filename) = @_;
 
