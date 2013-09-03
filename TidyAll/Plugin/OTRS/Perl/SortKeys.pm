@@ -22,7 +22,7 @@ sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled(Code => $Code);
-    #return $Code if ($Self->IsFrameworkVersionLessThan(3, 3));
+    return $Code if ($Self->IsFrameworkVersionLessThan(3, 2));
 
     $Code =~ s{ ^ (\s* for \s+ my \s+ \$ \w+ \s+ \( \s*) keys \s+ }{$1sort keys }xmsg;
     $Code =~ s{ ^ (\s* for \s+ \( \s*) keys \s+ }{$1sort keys }xmsg;

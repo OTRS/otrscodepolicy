@@ -11,7 +11,7 @@ sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled(Code => $Code);
-    #return $Code if ($Self->IsFrameworkVersionLessThan(3, 3));
+    return $Code if ($Self->IsFrameworkVersionLessThan(3, 2));
 
     # The following test matches only for a foreach without a "#" in the
     # beginning of a line. The foreach has to be the first expression in a
