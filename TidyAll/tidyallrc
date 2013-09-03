@@ -30,6 +30,12 @@ ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::ForeachToFor]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::UseWarnings]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*

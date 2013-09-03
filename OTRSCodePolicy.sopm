@@ -46,6 +46,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/SOPMLicenseCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Migrations/RemoveCVSIDs.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/DBObject.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForeachToFor.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
