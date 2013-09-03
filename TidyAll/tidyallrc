@@ -30,6 +30,12 @@ ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::UseWarnings]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::LayoutObject]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
@@ -213,7 +219,7 @@ select = *.{sopm}
 select = *.{sopm}
 
 [+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
-select = **/*.{pl,psgi,pm,t,xml,js,dtl,css}
+select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm}
 ignore = Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
