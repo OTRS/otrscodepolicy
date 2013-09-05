@@ -63,6 +63,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/RequiredElements.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ColumnTypesCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWordsCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpacesCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/RemoveSuperfluousWhitespace.pm"/>
