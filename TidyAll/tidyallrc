@@ -265,6 +265,9 @@ ignore = Kernel/Config/Files/ZZZ*.pm
 [+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
 select = *.{opm,sopm}
 
+[+TidyAll::Plugin::OTRS::SOPM::Name]
+select = *.{opm,sopm}
+
 [+TidyAll::Plugin::OTRS::SOPM::PackageRequired]
 select = *.{opm,sopm}
 

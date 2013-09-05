@@ -15,7 +15,7 @@ sub validate_file {
 
     my $cmd = sprintf( "%s %s %s", $Self->cmd, $Self->argv, $Filename );
     my ($output, @result) = capture_merged { system($cmd) };
-    die "$output\n" if @result; # non-zero exit code
+    die __PACKAGE__ . "\n$output\n" if @result; # non-zero exit code
 }
 
 1;
