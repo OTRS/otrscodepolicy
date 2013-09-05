@@ -63,6 +63,12 @@ ignore = Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::ParamObject]
+select = **/*.{pl,psgi}
+select = Kernel/System/**/*.pm
+ignore = Kernel/System/Web/*
+ignore = Kernel/System/DynamicField/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
 select = Kernel/Modules/**/*.pm
 

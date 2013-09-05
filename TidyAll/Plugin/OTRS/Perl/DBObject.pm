@@ -24,7 +24,6 @@ sub validate_source {
         $ErrorMessage .= "Line $Counter: $Line\n";
     }
 
-    # Check for presence of shebang line
     if ( $ErrorMessage ) {
         die __PACKAGE__ . "\n" . <<EOF;
 Don't use the DBObject in frontend modules.

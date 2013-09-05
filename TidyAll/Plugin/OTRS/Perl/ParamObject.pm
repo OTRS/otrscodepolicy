@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Perl::LayoutObject;
+package TidyAll::Plugin::OTRS::Perl::ParamObject;
 
 use strict;
 use warnings;
@@ -13,9 +13,9 @@ sub validate_source {
     return $Code if $Self->IsPluginDisabled(Code => $Code);
     return if ($Self->IsFrameworkVersionLessThan(3, 3));
 
-    if ( $Code =~ m{LayoutObject}xms ) {
+    if ( $Code =~ m{ParamObject}xms ) {
         die __PACKAGE__ . "\n" . <<EOF;
-Don't use the LayoutObject in bin/ or in Kernel/System.
+Don't use the ParamObject in bin/ or in Kernel/System.
 EOF
     }
     return;
