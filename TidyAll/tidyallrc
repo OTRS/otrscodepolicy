@@ -91,6 +91,12 @@ ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::PodNewDoc]
+select = **/*.{pm}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::ScriptFormat]
 select = **/*.{pl,psgi}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*

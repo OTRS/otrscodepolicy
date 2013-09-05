@@ -1,0 +1,54 @@
+package TidyAll::Plugin::OTRS::Perl::PodNewDoc;
+
+use strict;
+use warnings;
+
+use File::Basename;
+
+use base qw(TidyAll::Plugin::OTRS::Base);
+
+sub validate_source {
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if ($Self->IsFrameworkVersionLessThan(3, 2));
+
+    my $ErrorMessage;
+
+    # search for a new perldoc
+    return 1 if $Code !~ m{=item \s new\(\) \n (.+?) =cut}xms;
+    my $PodString = $1;
+
+    # get all use calls
+    my @Uses = $PodString =~ m{^ \s{4} use \s .+? ; \s* $}smxg;
+    my %UseElement = map {$_ =~ m{^ \s{4} use \s (.+?) ; \s* $}smx; $1 => 1;} @Uses;
+
+    # get all new calls
+    my @News = $PodString =~ m{^ \s{4} my \s \$ .+? = [^\n]+? \( .*? $}smxg;
+    my %NewElement = map {$_ =~ m{^ \s{4} my \s \$ .+? = \s ([^\n]+?) ->new\( .*? $}smx; $1 => 1;} @News;
+
+    # compare use calls with new calls
+    USE:
+    for my $Use (keys %UseElement) {
+        next USE if $NewElement{$Use};
+        $ErrorMessage .= "You call a use for $Use, but there is no 'new' call.\n" ;
+    }
+
+    # compare new calls with use calls
+    NEW:
+    for my $New (keys %NewElement) {
+        next NEW if $UseElement{$New};
+        $ErrorMessage .= "You call a new for $New, but there is no 'use' call.\n" ;
+    }
+
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n" . <<EOF;
+The perldoc for new() is inconsistent.
+$ErrorMessage
+EOF
+    }
+
+    return;
+}
+
+1;
