@@ -170,6 +170,13 @@ ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::DTL::UniqueBlock]
+select = **/*.dtl
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::JavaScript::DebugCheck]
 select = **/*.js
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
