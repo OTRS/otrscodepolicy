@@ -14,7 +14,7 @@ sub validate_source {
     my $DocumentationPresent = $Code =~ m{^\s*<File.+Location="doc/(?:de|en)}smx;
 
     if (!$DocumentationPresent) {
-        die "Every OPM package needs to include documentation!";
+        die __PACKAGE__ . "\nEvery OPM package needs to include documentation!";
     }
 }
 

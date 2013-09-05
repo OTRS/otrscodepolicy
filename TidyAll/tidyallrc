@@ -263,13 +263,16 @@ ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
-select = *.{sopm}
+select = *.{opm,sopm}
+
+[+TidyAll::Plugin::OTRS::SOPM::PackageRequired]
+select = *.{opm,sopm}
 
 [+TidyAll::Plugin::OTRS::SOPM::RequiredElements]
-select = *.{sopm}
+select = *.{opm,sopm}
 
 [+TidyAll::Plugin::OTRS::Legal::SOPMLicenseCheck]
-select = *.{sopm}
+select = *.{opm,sopm}
 
 [+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
 select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm}
