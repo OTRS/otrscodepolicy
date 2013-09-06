@@ -27,7 +27,7 @@ sub validate_source {
             if ($2 ne '.' && $2 ne '?' && $2 ne '!') {
                 $ErrorMessage .= "Line $Counter: $Line\n";
             }
-            elsif ($1 !~ /[A-ZËÜÖ]/) {
+            elsif ($1 !~ /[A-ZËÜÖ"]/) {
                 $ErrorMessage .= "Line $Counter: $Line\n";
             }
         }
