@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::XML::XMLConfigFullSentenceCheck;
+package TidyAll::Plugin::OTRS::XML::ConfigDescription;
 
 use strict;
 use warnings;

@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Legal::SOPMLicenseCheck;
+package TidyAll::Plugin::OTRS::Legal::SOPMLicense;
 
 use strict;
 use warnings;

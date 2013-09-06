@@ -35,20 +35,20 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/HeaderlineFilename.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Baselink.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/CGIHandle.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Format.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/LQData.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/Select.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/DTL/UniqueBlock.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/DebugCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/JavaScript/DebugCode.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/SOPMLicenseCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Migrations/RemoveCVSIDs.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/DBObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForeachToFor.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForMyCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForMy.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
@@ -68,15 +68,15 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/Name.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/PackageRequired.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/RequiredElements.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ColumnTypesCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWordsCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpacesCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/RemoveSuperfluousWhitespace.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/TabsCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/CheckWithOurParsers.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLConfigFullSentenceCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLConfigSyntaxCheck.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/XMLLint.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ColumnTypes.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWords.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/Tabs.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/TrailingWhitespace.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/ConfigDescription.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/ConfigSyntax.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/Lint.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/LintWithOurParsers.pm"/>
         <File Permission="644" Location="TidyAll/OTRS.pm"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="755" Location="TidyAll/git-hooks/pre-commit"/>

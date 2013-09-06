@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::JavaScript::DebugCheck;
+package TidyAll::Plugin::OTRS::JavaScript::DebugCode;
 
 use strict;
 use warnings;

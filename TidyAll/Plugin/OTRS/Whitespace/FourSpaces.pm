@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Whitespace::FourSpacesCheck;
+package TidyAll::Plugin::OTRS::Whitespace::FourSpaces;
 
 use strict;
 use warnings;

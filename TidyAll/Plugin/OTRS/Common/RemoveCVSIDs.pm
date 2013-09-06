@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs;
+package TidyAll::Plugin::OTRS::Common::RemoveCVSIDs;
 
 use strict;
 use warnings;

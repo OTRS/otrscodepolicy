@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Whitespace::RemoveSuperfluousWhitespace;
+package TidyAll::Plugin::OTRS::Whitespace::TrailingWhitespace;
 
 use strict;
 use warnings;

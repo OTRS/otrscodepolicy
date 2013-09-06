@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::XML::CheckWithOurParsers;
+package TidyAll::Plugin::OTRS::XML::LintWithOurParsers;
 
 use strict;
 use warnings;

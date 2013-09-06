@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Perl::ForMyCheck;
+package TidyAll::Plugin::OTRS::Perl::ForMy;
 
 use strict;
 use warnings;

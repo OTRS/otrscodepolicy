@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::SQL::ColumnTypesCheck;
+package TidyAll::Plugin::OTRS::SQL::ColumnTypes;
 
 use strict;
 use warnings;

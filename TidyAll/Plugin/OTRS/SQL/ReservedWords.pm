@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::SQL::ReservedWordsCheck;
+package TidyAll::Plugin::OTRS::SQL::ReservedWords;
 
 use strict;
 use warnings;

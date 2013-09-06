@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::XML::XMLConfigSyntaxCheck;
+package TidyAll::Plugin::OTRS::XML::ConfigSyntax;
 
 use strict;
 use warnings;

@@ -1,7 +1,8 @@
+package TidyAll::Plugin::OTRS::XML::Lint;
+
 use strict;
 use warnings;
 
-package TidyAll::Plugin::OTRS::XML::XMLLint;
 
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);

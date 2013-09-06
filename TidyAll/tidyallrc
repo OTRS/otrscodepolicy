@@ -103,7 +103,7 @@ ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Perl::ForMyCheck]
+[+TidyAll::Plugin::OTRS::Perl::ForMy]
 select = **/*.{pl,psgi,pm,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
@@ -115,7 +115,7 @@ ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Whitespace::TabsCheck]
+[+TidyAll::Plugin::OTRS::Whitespace::Tabs]
 select = **/*.{pl,pm,psgi,t,dtl,js,xml,opm,sopm}
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
@@ -124,7 +124,7 @@ ignore = **/{js-cache,css-cache}/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Whitespace::RemoveSuperfluousWhitespace]
+[+TidyAll::Plugin::OTRS::Whitespace::TrailingWhitespace]
 select = **/*.{pl,pm,psgi,t,dtl,js,xml,opm,sopm,md}
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
@@ -133,7 +133,7 @@ ignore = **/{js-cache,css-cache}/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Whitespace::FourSpacesCheck]
+[+TidyAll::Plugin::OTRS::Whitespace::FourSpaces]
 select = **/*.{opm,sopm}
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
@@ -183,7 +183,7 @@ ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::JavaScript::DebugCheck]
+[+TidyAll::Plugin::OTRS::JavaScript::DebugCode]
 select = **/*.js
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = **/thirdparty/**/*
@@ -191,35 +191,35 @@ ignore = **/js-cache/*.js
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::XML::XMLLint]
+[+TidyAll::Plugin::OTRS::XML::ConfigSyntax]
+select = **/*.xml
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+[+TidyAll::Plugin::OTRS::XML::ConfigDescription]
+select = Kernel/Config/**/*.xml
+
+[+TidyAll::Plugin::OTRS::XML::Lint]
 select = **/*.xml
 argv = --noout --nonet
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::XML::CheckWithOurParsers]
+[+TidyAll::Plugin::OTRS::XML::LintWithOurParsers]
 select = ;**/*.xml
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::XML::XMLConfigSyntaxCheck]
-select = **/*.xml
-ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-
-[+TidyAll::Plugin::OTRS::XML::XMLConfigFullSentenceCheck]
-select = Kernel/Config/**/*.xml
-
-[+TidyAll::Plugin::OTRS::SQL::ReservedWordsCheck]
+[+TidyAll::Plugin::OTRS::SQL::ReservedWords]
 select = **/*.{xml,opm,sopm}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::SQL::ColumnTypesCheck]
+[+TidyAll::Plugin::OTRS::SQL::ColumnTypes]
 select = **/*.{xml,opm,sopm}
 ignore = Kernel/Config/Files/**/*
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
@@ -277,10 +277,10 @@ select = *.{opm,sopm}
 [+TidyAll::Plugin::OTRS::SOPM::RequiredElements]
 select = *.{opm,sopm}
 
-[+TidyAll::Plugin::OTRS::Legal::SOPMLicenseCheck]
+[+TidyAll::Plugin::OTRS::Legal::SOPMLicense]
 select = *.{opm,sopm}
 
-[+TidyAll::Plugin::OTRS::Migrations::RemoveCVSIDs]
+[+TidyAll::Plugin::OTRS::Common::RemoveCVSIDs]
 select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm}
 ignore = Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*

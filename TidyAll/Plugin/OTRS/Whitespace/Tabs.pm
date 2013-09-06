@@ -1,4 +1,4 @@
-package TidyAll::Plugin::OTRS::Whitespace::TabsCheck;
+package TidyAll::Plugin::OTRS::Whitespace::Tabs;
 
 use strict;
 use warnings;
