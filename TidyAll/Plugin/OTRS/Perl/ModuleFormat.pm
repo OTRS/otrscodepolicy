@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Perl::ModuleFormat;
 
 use strict;
@@ -10,7 +19,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
 
     # Check for absense of shebang line
     if ( $Code =~ m{\A\#!}xms ) {

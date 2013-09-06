@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/Perl/SortKeys.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Perl::SortKeys;
 
 use strict;
@@ -11,7 +20,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 
 This module inserts a sort statements to lines like
 
-    for my $Module (keys %Modules) ...
+    for my $Module (sort keys %Modules) ...
 
 because the keys randomness can be a source of problems
 that is hard to debug.
@@ -21,8 +30,8 @@ that is hard to debug.
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
-    return $Code if ($Self->IsFrameworkVersionLessThan(3, 2));
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
 
     $Code =~ s{ ^ (\s* for \s+ my \s+ \$ \w+ \s+ \( \s*) keys \s+ }{$1sort keys }xmsg;
     $Code =~ s{ ^ (\s* for \s+ \( \s*) keys \s+ }{$1sort keys }xmsg;

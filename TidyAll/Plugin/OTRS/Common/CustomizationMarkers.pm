@@ -1,4 +1,14 @@
+# --
+# TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Common::CustomizationMarkers;
+## nofilter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
 
 use strict;
 use warnings;
@@ -10,9 +20,9 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-    my ($Counter, $Flag, $ErrorMessage);
+    my ( $Counter, $Flag, $ErrorMessage );
 
     LINE:
     for my $Line ( split /\n/, $Code ) {
@@ -20,25 +30,26 @@ sub validate_source {
 
         # Allow ## no critic and ## use critic
         next if $Line =~ m{^ \s* \#\# \s+ (?:no|use) \s+ critic}xms;
+
         # Allow ## nofilter
         next if $Line =~ m{^ \s* \#\# \s+ nofilter }xms;
 
-        if ($Line =~ /^[^#]/ && $Counter < 24) {
+        if ( $Line =~ /^[^#]/ && $Counter < 24 ) {
             $Flag = 1;
         }
-        if ($Line =~ /^ *# --$/ && ($Counter > 23 || ($Counter > 10 && $Flag))) {
+        if ( $Line =~ /^ *# --$/ && ( $Counter > 23 || ( $Counter > 10 && $Flag ) ) ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ($Line =~ /^ *# -$/) {
+        elsif ( $Line =~ /^ *# -$/ ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ($Line =~ /^ *##+ -+$/) {
+        elsif ( $Line =~ /^ *##+ -+$/ ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ($Line =~ /^ *#+ *[\*\+]+$/) {
+        elsif ( $Line =~ /^ *#+ *[\*\+]+$/ ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ($Line =~ /^ *##+/) {
+        elsif ( $Line =~ /^ *##+/ ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }

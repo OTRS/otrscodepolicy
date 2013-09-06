@@ -1,4 +1,14 @@
+# --
+# TidyAll/Plugin/OTRS/Perl/ISA.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Perl::ISA;
+## nofilter(TidyAll::Plugin::OTRS::Perl::ISA)
 
 use strict;
 use warnings;
@@ -10,8 +20,8 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->IsPluginDisabled(Code => $Code);
-    return if ($Self->IsFrameworkVersionLessThan(3, 3));
+    return if $Self->IsPluginDisabled( Code => $Code );
+    return if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
 
     # Don't allow push @ISA.
     if ( $Code =~ m{push\(?\s*\@ISA }xms ) {
@@ -27,8 +37,8 @@ EOF
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
-    return $Code if ($Self->IsFrameworkVersionLessThan(3, 3));
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
 
     # remove useless use vars qw(@ISA); (where ISA is not used)
     if ( $Code !~ m{\@ISA.*\@ISA}smx ) {

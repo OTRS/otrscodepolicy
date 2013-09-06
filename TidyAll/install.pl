@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # --
 # TidyAll/install.pl - install otrs-code-policy commit hooks into modules
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -29,10 +29,10 @@ use FindBin qw($RealBin);
 my $Directory = getcwd;
 
 # install hook
-unlink File::Spec->catfile($Directory, '.git','hooks','pre-commit');
+unlink File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' );
 symlink(
-    File::Spec->catfile($RealBin, 'git-hooks','pre-commit'),
-    File::Spec->catfile($Directory, '.git','hooks','pre-commit')
+    File::Spec->catfile( $RealBin, 'git-hooks', 'pre-commit.pl' ),
+    File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' )
 );
 
 print "Installed hook in $Directory.\n\n";

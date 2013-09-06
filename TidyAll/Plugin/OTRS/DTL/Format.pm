@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/DTL/Format.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::DTL::Format;
 
 use strict;
@@ -8,65 +17,65 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
 
     # get attributes
-    my $Count = -1;
-    my $Space = '    ';
-    my $Content = '';
-    my $Script = 0;
-    my $TextArea = 0;
-    my $Style = 0;
-    my $Counter = 0;
+    my $Count        = -1;
+    my $Space        = '    ';
+    my $Content      = '';
+    my $Script       = 0;
+    my $TextArea     = 0;
+    my $Style        = 0;
+    my $Counter      = 0;
     my $TextAreaFlag = 0;
 
-    for my $Line ( split(/\n/, $Code) ) {
+    for my $Line ( split( /\n/, $Code ) ) {
         $Counter++;
         $Line .= "\n";
 
-        if ($Line =~ /^#/) {
+        if ( $Line =~ /^#/ ) {
             $Content .= $Line;
         }
-        elsif ($Line =~ /<textarea/i && $Line !~ m|</textarea>|i) {
+        elsif ( $Line =~ /<textarea/i && $Line !~ m|</textarea>|i ) {
             $TextArea = 1;
             $Content .= $Line;
         }
         elsif ($TextArea) {
             $Content .= $Line;
-            if ($Line =~ /<\/textarea/i) {
+            if ( $Line =~ /<\/textarea/i ) {
                 $TextArea = 0;
             }
         }
-        elsif ($Line =~ /<script/i) {
+        elsif ( $Line =~ /<script/i ) {
             $Script = 1;
             $Content .= $Line;
         }
         elsif ($Script) {
             $Content .= $Line;
-            if ($Line =~ /<\/script/i) {
+            if ( $Line =~ /<\/script/i ) {
                 $Script = 0;
             }
         }
-        elsif ($Line =~ /<style/i) {
+        elsif ( $Line =~ /<style/i ) {
             $Style = 1;
             $Content .= $Line;
         }
         elsif ($Style) {
             $Content .= $Line;
-            if ($Line =~ /<\/style/i) {
+            if ( $Line =~ /<\/style/i ) {
                 $Style = 0;
             }
         }
-        elsif ($Line =~ /^\s*$/ || $Line =~ /^\$/) {
+        elsif ( $Line =~ /^\s*$/ || $Line =~ /^\$/ ) {
             $Content .= $Line;
         }
-        elsif ($Line =~ /^(\s+?|)(<\!--.*)$/) {
-            $Content .= $2."\n";
+        elsif ( $Line =~ /^(\s+?|)(<\!--.*)$/ ) {
+            $Content .= $2 . "\n";
         }
         else {
-            my $NextCount = 0;
-            my $ContentCount = 0;
-            my $CloseCount = 0;
+            my $NextCount         = 0;
+            my $ContentCount      = 0;
+            my $CloseCount        = 0;
             my @IndentingElements = qw(
                 body
                 h1
@@ -100,13 +109,14 @@ sub transform_source {
                 dt
                 dd
             );
-            my $IndentingElementString = join('|', @IndentingElements);
-            if ($Line =~ /^(\s+?|)\<\/($IndentingElementString)(\s|>)/i) {
+            my $IndentingElementString = join( '|', @IndentingElements );
+
+            if ( $Line =~ /^(\s+?|)\<\/($IndentingElementString)(\s|>)/i ) {
                 $NextCount = 1;
             }
-            elsif ($Line =~ /^(\s+?|)<($IndentingElementString)(\s|>)/i) {
-                $Count ++;
-                if ($Line =~ /<\/$2/) {
+            elsif ( $Line =~ /^(\s+?|)<($IndentingElementString)(\s|>)/i ) {
+                $Count++;
+                if ( $Line =~ /<\/$2/ ) {
                     $CloseCount = 1;
                 }
             }
@@ -115,12 +125,12 @@ sub transform_source {
             }
             $Line =~ s/^(\s*|\s|)(.*)$/$2/;
             my $LineNew = '';
-            if ($Count+$ContentCount) {
-                for (1..$Count+$ContentCount) {
+            if ( $Count + $ContentCount ) {
+                for ( 1 .. $Count + $ContentCount ) {
                     $LineNew .= $Space;
                 }
             }
-            $Content .= $LineNew.$Line;
+            $Content .= $LineNew . $Line;
             if ($NextCount) {
                 $Count--;
             }
@@ -131,11 +141,12 @@ sub transform_source {
 
         if ($TextAreaFlag) {
             $TextAreaFlag = 0;
-            if ($Line =~ /^ /) {
-                print "WARNING: _DTLText() please check, please check the textarea-tag at Line $Counter, perhaps there are problems with the spaces.\n";
+            if ( $Line =~ /^ / ) {
+                print
+                    "WARNING: _DTLText() please check, please check the textarea-tag at Line $Counter, perhaps there are problems with the spaces.\n";
             }
         }
-        if ($Line =~ /<textarea/i && $Line !~ /<\/textarea/i ) {
+        if ( $Line =~ /<textarea/i && $Line !~ /<\/textarea/i ) {
             $TextAreaFlag = 1;
         }
 

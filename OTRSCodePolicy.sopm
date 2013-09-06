@@ -79,7 +79,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/LintWithOurParsers.pm"/>
         <File Permission="644" Location="TidyAll/OTRS.pm"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
-        <File Permission="755" Location="TidyAll/git-hooks/pre-commit"/>
+        <File Permission="755" Location="TidyAll/git-hooks/pre-commit.pl"/>
         <File Permission="755" Location="TidyAll/install.pl"/>
         <File Permission="755" Location="TidyAll/run.pl"/>
     </Filelist>

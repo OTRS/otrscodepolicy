@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # --
 # TidyAll/run.pl - manually execute otrs-code-policy checks
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -74,8 +74,10 @@ my @Files;
 if ( defined $Directory && length $Directory ) {
 
     my $Wanted = sub {
+
         # Skip non-regular files and directories.
         return if ( !-f $File::Find::name );
+
         # Also skip symbolic links, TidyAll does not like them.
         return if ( -l $File::Find::name );
         push @Files, $File::Find::name;
@@ -87,17 +89,17 @@ if ( defined $Directory && length $Directory ) {
     );
 }
 elsif ( defined $File && length $File ) {
-    @Files = (File::Spec->catfile( $RootDir, $File ));
+    @Files = ( File::Spec->catfile( $RootDir, $File ) );
 }
 elsif ( defined $Cached && length $Cached ) {
     my @StagedFiles = `git diff --name-only --cached`;
     for my $StagedFile (@StagedFiles) {
         chomp $StagedFile;
-        push @Files, (File::Spec->catfile( $RootDir, $StagedFile ))
+        push @Files, ( File::Spec->catfile( $RootDir, $StagedFile ) )
     }
 }
-elsif (!$All) {
-    @Files = Code::TidyAll::Git::Util::git_uncommitted_files( $RootDir );
+elsif ( !$All ) {
+    @Files = Code::TidyAll::Git::Util::git_uncommitted_files($RootDir);
 }
 
 chdir dirname($0) . "/..";

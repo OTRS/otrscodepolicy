@@ -1,4 +1,14 @@
+# --
+# TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Common::RemoveCVSIDs;
+## nofilter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
 
 use strict;
 use warnings;
@@ -10,8 +20,8 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
-    return $Code if ($Self->IsFrameworkVersionLessThan(3, 2));
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
 
     # remove $Id lines and the following separator line
     #

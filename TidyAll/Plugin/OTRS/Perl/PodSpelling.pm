@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/Perl/PodSpelling.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Perl::PodSpelling;
 
 use strict;
@@ -10,8 +19,8 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
-    return $Code if ($Self->IsFrameworkVersionLessThan(3, 2));
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
 
     my $FunctionItem        = '';
     my $FunctionSub         = '';
@@ -27,55 +36,56 @@ sub validate_source {
 
     for my $Line (@CodeLines) {
         $Counter++;
-        if ($Line =~ m{^=item}smx) {
-            if ($Line =~ /=item (.+)\(\)/) {
+        if ( $Line =~ m{^=item}smx ) {
+            if ( $Line =~ /=item (.+)\(\)/ ) {
                 $FunctionItem = $1;
                 $FunctionItem =~ s/ //;
                 $ItemLine = $Line;
                 chomp($ItemLine);
             }
             else {
-                $ErrorMessage .= "Item without function (near Line $Counter), the line should look like '=item functionname()'\n";
+                $ErrorMessage
+                    .= "Item without function (near Line $Counter), the line should look like '=item functionname()'\n";
                 $ErrorMessage .= "Line $Counter: $Line";
             }
         }
-        if ($FunctionItem && $Line =~ /->(.+?)\(/ && !$FunctionDescription) {
+        if ( $FunctionItem && $Line =~ /->(.+?)\(/ && !$FunctionDescription ) {
             $FunctionDescription = $1;
             $FunctionDescription =~ s/ //;
 
-            if ($Line =~ /\$Self->/)  {
+            if ( $Line =~ /\$Self->/ ) {
                 chomp($DescriptionLine);
                 $ErrorMessage .= "Don't use \$Self in perldoc\n";
                 $ErrorMessage .= "Line $Counter: $Line";
             }
-            elsif ($FunctionItem ne $FunctionDescription) {
+            elsif ( $FunctionItem ne $FunctionDescription ) {
                 $DescriptionLine = $Line;
                 chomp($DescriptionLine);
                 $ErrorMessage .= "$ItemLine <-> $DescriptionLine \n";
             }
-            if ($FunctionItem && $Line !~ /\$[A-Za-z0-9]+->(.+?)\(/ && $FunctionItem ne 'new') {
+            if ( $FunctionItem && $Line !~ /\$[A-Za-z0-9]+->(.+?)\(/ && $FunctionItem ne 'new' ) {
                 $ErrorMessage .= "The function syntax is't correct!\n";
                 $ErrorMessage .= "Line $Counter: $Line";
             }
         }
-        if ($FunctionItem && $Line =~ /sub/) {
-            if ($Line =~ /sub (.+) {/) {
+        if ( $FunctionItem && $Line =~ /sub/ ) {
+            if ( $Line =~ /sub (.+) {/ ) {
                 $FunctionSub = $1;
                 $FunctionSub =~ s/ //;
                 $SubLine = $Line;
 
-                if ($FunctionSub ne $FunctionItem) {
+                if ( $FunctionSub ne $FunctionItem ) {
                     chomp($SubLine);
                     $ErrorMessage .= "$ItemLine <-> $SubLine \n";
                 }
             }
-            $FunctionItem = '';
+            $FunctionItem        = '';
             $FunctionDescription = '';
         }
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ ."\n$ErrorMessage";
+        die __PACKAGE__ . "\n$ErrorMessage";
     }
 
     return;

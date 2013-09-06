@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Perl::SyntaxCheck;
 
 use strict;
@@ -10,20 +19,21 @@ use File::Temp;
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->IsPluginDisabled(Code => $Code);
+    return if $Self->IsPluginDisabled( Code => $Code );
 
-    my ($CleanedSource, $DeletableStatement);
+    my ( $CleanedSource, $DeletableStatement );
 
     LINE:
-    for my $Line ( split(/\n/, $Code) ) {
+    for my $Line ( split( /\n/, $Code ) ) {
 
         $Line =~ s{\[gettimeofday\]}{1}smx;
 
-        # We'll skip all use *; statements exept a few because the modules cannot all be found at runtime.
+  # We'll skip all use *; statements exept a few because the modules cannot all be found at runtime.
         if (
             $Line =~ m{ \A \s* use \s+ }xms
-            && $Line !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic | UUID::Tiny | Cwd | POSIX ) }xms
-        )
+            && $Line
+            !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic | UUID::Tiny | Cwd | POSIX ) }xms
+            )
         {
             $DeletableStatement = 1;
         }
@@ -32,7 +42,7 @@ sub validate_source {
             $Line = "#$Line";
         }
 
-        if ($Line =~ m{ ; \s* \z }xms) {
+        if ( $Line =~ m{ ; \s* \z }xms ) {
             $DeletableStatement = 0;
         }
 
@@ -48,12 +58,12 @@ sub validate_source {
     # syntax check
     my $ErrorMessage;
     my $FileHandle;
-    if (!open $FileHandle, '-|', "perl -cw " . $TempFile->filename() . " 2>&1") {
+    if ( !open $FileHandle, '-|', "perl -cw " . $TempFile->filename() . " 2>&1" ) {
         die __PACKAGE__ . "\nFILTER: Can't open tempfile: $!\n";
     }
 
-    while (my $Line = <$FileHandle>) {
-        if ($Line !~ /(syntax OK|used only once: possible typo)/) {
+    while ( my $Line = <$FileHandle> ) {
+        if ( $Line !~ /(syntax OK|used only once: possible typo)/ ) {
             $ErrorMessage .= $Line;
         }
     }

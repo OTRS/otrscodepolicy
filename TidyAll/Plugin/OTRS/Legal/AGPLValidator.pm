@@ -1,4 +1,15 @@
+# --
+# TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Legal::AGPLValidator;
+## nofilter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
+## nofilter(TidyAll::Plugin::OTRS::Legal::AGPLValidator)
 
 use strict;
 use warnings;
@@ -32,10 +43,10 @@ END_REGEXP
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return if $Self->IsPluginDisabled(Code => $Code);
+    return if $Self->IsPluginDisabled( Code => $Code );
 
-    my $AGPLLong      = _AGPLLong();
-    my $AGPLShort      = _AGPLShort();
+    my $AGPLLong  = _AGPLLong();
+    my $AGPLShort = _AGPLShort();
 
     # check if there is a valid licence header!
     if (
@@ -57,12 +68,13 @@ sub validate_source {
 sub transform_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-	my $AGPLLong      = _AGPLLong();
-    my $AGPLShort      = _AGPLShort();
+    my $AGPLLong  = _AGPLLong();
+    my $AGPLShort = _AGPLShort();
 
-	my $Flag = 0;
+    my $Flag = 0;
+
     # The following code replace the license GPL2 with AGPL3 in pl-files
     if ( $Code =~ s{$GPLLongRegExp}{$AGPLLong}xms ) {
         print "NOTICE: _AGPL3LicenseCheck() replaced the license GPL2 with AGPL3 in pl-files\n";
@@ -75,15 +87,17 @@ sub transform_source {
         $Flag = 1;
     }
 
-    my $AGPLPerldoc      = _AGPLPerldoc();
+    my $AGPLPerldoc = _AGPLPerldoc();
 
     # The following code replace the license GPL2 with AGPL3 in perldoc content
     if ( $Code =~ s{$GPLPerldocRegExp}{$AGPLPerldoc}xms ) {
-        print "NOTICE: _AGPL3LicenseCheck() replaced the license GPL2 with AGPL3 in perldoc content\n";
+        print
+            "NOTICE: _AGPL3LicenseCheck() replaced the license GPL2 with AGPL3 in perldoc content\n";
         $Flag = 1;
     }
 
-    my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
+    my $OldFSFAddress
+        = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
     my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA';
 
     if ( $Code =~ s{$OldFSFAddress}{$NewFSFAddress}xms ) {

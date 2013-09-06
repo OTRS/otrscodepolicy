@@ -19,25 +19,25 @@ our $FrameworkVersionMajor = 0;
 our $FrameworkVersionMinor = 0;
 
 sub new_from_conf_file {
-    my ($Class, $ConfigFile, %Param) = @_;
+    my ( $Class, $ConfigFile, %Param ) = @_;
 
     # possibly call Parent->new(@args) first
-    my $Self = $Class->SUPER::new_from_conf_file($ConfigFile, %Param);
+    my $Self = $Class->SUPER::new_from_conf_file( $ConfigFile, %Param );
 
     return $Self;
 }
 
 sub DetermineFrameworkVersionFromDirectory {
-    my ($Self, %Param) = @_;
+    my ( $Self, %Param ) = @_;
 
     print "Checking OTRS framework version... ";
 
     # First check if we have an OTRS directory, use RELEASE info then.
-    if (-r $Self->{root_dir} . '/RELEASE') {
+    if ( -r $Self->{root_dir} . '/RELEASE' ) {
         my $FileHandle = IO::File->new( $Self->{root_dir} . '/RELEASE', 'r' );
         my @Content = $FileHandle->getlines();
 
-        my ($VersionMajor, $VersionMinor) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
+        my ( $VersionMajor, $VersionMinor ) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
         $FrameworkVersionMajor = $VersionMajor;
         $FrameworkVersionMinor = $VersionMinor;
     }
@@ -45,16 +45,22 @@ sub DetermineFrameworkVersionFromDirectory {
         # Now check if we have a module directory with an SOPM file in it.
         my @SOPMFiles = glob $Self->{root_dir} . "/*.sopm";
         if (@SOPMFiles) {
+
             # Use the highest framework version from the first SOPM file.
             my $FileHandle = IO::File->new( $SOPMFiles[0], 'r' );
             my @Content = $FileHandle->getlines();
             for my $Line (@Content) {
-                if ($Line =~ m{<Framework>}) {
-                    my ($VersionMajor, $VersionMinor) = $Line =~ m{<Framework>(\d+)\.(\d+)\.[^<*]</Framework>}xms;
-                    if ( $VersionMajor > $FrameworkVersionMajor
-                        || ( $VersionMajor == $FrameworkVersionMajor
-                            && $VersionMinor > $FrameworkVersionMinor )
-                    ) {
+                if ( $Line =~ m{<Framework>} ) {
+                    my ( $VersionMajor, $VersionMinor )
+                        = $Line =~ m{<Framework>(\d+)\.(\d+)\.[^<*]</Framework>}xms;
+                    if (
+                        $VersionMajor > $FrameworkVersionMajor
+                        || (
+                            $VersionMajor == $FrameworkVersionMajor
+                            && $VersionMinor > $FrameworkVersionMinor
+                        )
+                        )
+                    {
                         $FrameworkVersionMajor = $VersionMajor;
                         $FrameworkVersionMinor = $VersionMinor;
                     }

@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/Common/HeaderlineFilename.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::Common::HeaderlineFilename;
 
 use strict;
@@ -11,11 +20,10 @@ sub validate_file {
     my ( $Self, $File ) = @_;
 
     my $Code = $Self->_GetFileContents($File);
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
 
     $File = basename $File;
-    my ($Filename, $FileExtension) = $File =~ /([\w_\-.]+\.(\w+?))$/;
-
+    my ( $Filename, $FileExtension ) = $File =~ /([\w_\-.]+\.(\w+?))$/;
 
     my @Lines = split /\n/, $Code;
 
@@ -23,9 +31,10 @@ sub validate_file {
     if ( $Lines[0] =~ m{\A\#!}smx ) {
         shift @Lines;
     }
+
     #die $Lines[1];
 
-    if ($Lines[1] !~ m{$Filename}smx) {
+    if ( $Lines[1] !~ m{$Filename}smx ) {
         die __PACKAGE__ . "\n" . <<EOF;
 The used filename is different of the filename in the headerline of the script!
 File $Filename -> Line $Lines[1]

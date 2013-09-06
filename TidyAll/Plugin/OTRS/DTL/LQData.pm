@@ -1,3 +1,12 @@
+# --
+# TidyAll/Plugin/OTRS/DTL/LQData.pm - code quality plugin
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
 package TidyAll::Plugin::OTRS::DTL::LQData;
 
 use strict;
@@ -8,14 +17,14 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled(Code => $Code);
-    return if ($Self->IsFrameworkVersionLessThan(3, 2));
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
 
     my $Counter;
     my $ErrorMessage;
 
     for my $Line ( split /\n/, $Code ) {
-        $Counter ++;
+        $Counter++;
 
         # next if IE behavior need to get ignored
         # see bug#5579 - Spaces in filenames are converted to + characters when downloading in IE.
@@ -31,9 +40,10 @@ sub validate_source {
         next if $Line =~ m{^[\t ]*\#}xms;
 
         # now check href attribute
-        if ($Line !~ /href="(|#)"/i && $Line =~ /href=(.+?)[ >]/i) {
-            if ($1 =~ /=\$QData/si) {
-                $ErrorMessage .= __PACKAGE__ . ": please check, use \$LQData instead of \$QData in a href string Line $Counter ($Line)\n";
+        if ( $Line !~ /href="(|#)"/i && $Line =~ /href=(.+?)[ >]/i ) {
+            if ( $1 =~ /=\$QData/si ) {
+                $ErrorMessage .= __PACKAGE__
+                    . ": please check, use \$LQData instead of \$QData in a href string Line $Counter ($Line)\n";
             }
         }
     }
