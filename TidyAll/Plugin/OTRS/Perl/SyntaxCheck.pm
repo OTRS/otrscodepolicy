@@ -22,7 +22,7 @@ sub validate_source {
         # We'll skip all use *; statements exept a few because the modules cannot all be found at runtime.
         if (
             $Line =~ m{ \A \s* use \s+ }xms
-            && $Line !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic | Cwd ) }xms
+            && $Line !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic | Cwd | POSIX ) }xms
         )
         {
             $DeletableStatement = 1;
