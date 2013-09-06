@@ -16,7 +16,7 @@ use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-=head1
+=head1 SYNOPSIS
 
 This module checks for sub declarations with the brace in the following
 line and corrects them.

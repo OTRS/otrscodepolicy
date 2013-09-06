@@ -74,7 +74,7 @@ select = Kernel/Modules/**/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::PodChecker]
 select = **/*.{pm,pod}
-ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = Kernel/Modules/*.pm Custom/Kernel/Modules/*.pm
