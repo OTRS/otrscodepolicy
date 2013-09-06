@@ -30,4 +30,19 @@ EOF
     return;
 }
 
+sub transform_source {
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
+
+    # For framework 3.2 or later, rewrite /usr/bin/perl -w to
+    # /usr/bin/perl
+    # we use 'use warnings;' which works lexical and not global
+
+    $Code =~ s{\A\#!/usr/bin/perl[ ]-w}{\#!/usr/bin/perl}xms;
+
+    return $Code;
+}
+
 1;
