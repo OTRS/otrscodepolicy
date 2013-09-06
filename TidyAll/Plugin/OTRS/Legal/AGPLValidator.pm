@@ -40,7 +40,7 @@ my $GPLPerldocRegExp = <<'END_REGEXP';
     did \s+ not \s+ receive \s+ this \s+ file, \s+ see \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
 END_REGEXP
 
-sub validate_source {
+sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
@@ -65,7 +65,7 @@ sub validate_source {
     }
 }
 
-sub transform_source {
+sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

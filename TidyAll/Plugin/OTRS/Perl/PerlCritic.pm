@@ -17,7 +17,7 @@ use Perl::Critic;
 
 our $Critic = Perl::Critic->new( -severity => 5 );
 
-sub validate_file {
+sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

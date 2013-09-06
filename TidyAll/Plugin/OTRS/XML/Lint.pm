@@ -15,17 +15,17 @@ use warnings;
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-sub _build_cmd {'xmllint'}
+sub _build_cmd {'xmllint'}    ## no critic
 
-sub validate_file {
+sub validate_file {           ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
 
-    my $cmd = sprintf( "%s %s %s", $Self->cmd, $Self->argv, $Filename );
-    my ( $output, @result ) = capture_merged { system($cmd) };
-    if ( @result && $result[0] ) {
-        die __PACKAGE__ . "\n$output\n";    # non-zero exit code
+    my $Command = sprintf( "%s %s %s", $Self->cmd(), $Self->argv(), $Filename );
+    my ( $Output, @Result ) = capture_merged { system($Command) };
+    if ( @Result && $Result[0] ) {
+        die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
     }
 }
 

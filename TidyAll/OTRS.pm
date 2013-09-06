@@ -18,7 +18,7 @@ use base qw(Code::TidyAll);
 our $FrameworkVersionMajor = 0;
 our $FrameworkVersionMinor = 0;
 
-sub new_from_conf_file {
+sub new_from_conf_file {    ## no critic
     my ( $Class, $ConfigFile, %Param ) = @_;
 
     # possibly call Parent->new(@args) first

@@ -1,6 +1,6 @@
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* TidyAll/**/*
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* ;TidyAll/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 

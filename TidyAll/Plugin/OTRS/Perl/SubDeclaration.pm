@@ -34,7 +34,7 @@ will become:
 
 =cut
 
-sub transform_source {
+sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

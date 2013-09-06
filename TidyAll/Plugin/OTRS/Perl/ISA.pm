@@ -17,7 +17,7 @@ use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-sub validate_source {
+sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
@@ -34,7 +34,7 @@ EOF
     return;
 }
 
-sub transform_source {
+sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

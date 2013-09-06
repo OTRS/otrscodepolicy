@@ -17,7 +17,7 @@ use File::Basename;
 use File::Copy qw(copy);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-sub transform_source {
+sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

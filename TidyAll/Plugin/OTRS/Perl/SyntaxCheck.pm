@@ -16,7 +16,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 
 use File::Temp;
 
-sub validate_source {
+sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
@@ -58,7 +58,7 @@ sub validate_source {
     # syntax check
     my $ErrorMessage;
     my $FileHandle;
-    if ( !open $FileHandle, '-|', "perl -cw " . $TempFile->filename() . " 2>&1" ) {
+    if ( !open $FileHandle, '-|', "perl -cw " . $TempFile->filename() . " 2>&1" ) {    ## no critic
         die __PACKAGE__ . "\nFILTER: Can't open tempfile: $!\n";
     }
 

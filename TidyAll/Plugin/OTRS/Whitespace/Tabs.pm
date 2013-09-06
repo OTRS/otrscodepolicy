@@ -16,7 +16,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 
 use XML::Parser;
 
-sub validate_source {
+sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );

@@ -54,7 +54,7 @@ sub _GetFileContents {
     my ( $Self, $Filename ) = @_;
 
     my $FileHandle;
-    if ( !open $FileHandle, '<', $Filename ) {
+    if ( !open $FileHandle, '<', $Filename ) {    ## no critic
         print STDERR "Can't open $Filename\n";
         die;
     }

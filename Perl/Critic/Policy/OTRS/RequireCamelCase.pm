@@ -19,9 +19,9 @@ sub default_severity     { return $SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 
 my %dispatcher = (
-    'PPI::Statement::Sub'     => \&_is_camelcase,
-    'PPI::Statement::Package' => \&_is_camelcase,
-    'PPI::Token::Symbol'      => \&_variable_is_camelcase,
+    'PPI::Statement::Sub'     => \&IsCamelCase,
+    'PPI::Statement::Package' => \&IsCamelCase,
+    'PPI::Token::Symbol'      => \&VariableIsCamelCase,
 );
 
 sub applies_to {
@@ -31,77 +31,78 @@ sub applies_to {
 sub new {
     my ($ClassName, @Parameters) = @_;
     my $Self = $ClassName->SUPER::new(@Parameters);
-    $Self->{Errors} = ();
     return $Self;
 }
 
 sub violates {
-    my ( $self, $elem ) = @_;
+    my ( $Self, $Element ) = @_;
 
-    return if $self->IsFrameworkVersionLessThan(3, 3);
+    return if $Self->IsFrameworkVersionLessThan(3, 3);
 
-    my $ref = ref $elem;
-    my $sub = $dispatcher{$ref};
-    return if !$sub;
+    $Self->{Errors} = ();
 
-    my $success = $self->$sub( $elem );
+    my $Function = $dispatcher{ref $Element};
+    return if !$Function;
+    return if $Self->$Function( $Element );
 
-    return if $success;
-
-    return $self->violation( "$DESC. Errors: " . join(", ", @{$self->{Errors}}), $EXPL, $elem );
+    return $Self->violation( "$DESC: " . join(", ", @{$Self->{Errors}}), $EXPL, $Element );
 }
 
-sub _is_camelcase {
-    my ( $self, $elem ) = @_;
+sub IsCamelCase {
+    my ( $Self, $Element ) = @_;
 
-    my $words = $elem->find( 'PPI::Token::Word' );
-    my $name  = $words->[1];
+    my $Name = $Element->find( 'PPI::Token::Word' )->[1];
 
-    return 1 if !$name;
+    return 1 if !$Name;
 
-    if ( $elem->isa( 'PPI::Statement::Sub' ) and $name eq 'new' ) {
+    my %AllowedFunctions = (
+        new => 1,
+    );
+
+    if ( $Element->isa( 'PPI::Statement::Sub' ) && $AllowedFunctions{$Name} ) {
         return 1;
     }
-    elsif ( $elem->isa( 'PPI::Statement::Package' ) ) {
-        if ( $name =~ m{ Kernel::Language :: [a-z]{2,3}_ }xms
-            || $name eq 'main'
-            || $name =~ m{ ^var::packagesetup:: }xms
+    elsif ( $Element->isa( 'PPI::Statement::Package' ) ) {
+        if ( $Name =~ m{ Kernel::Language :: [a-z]{2,3}_ }xms
+            || $Name eq 'main'
+            || $Name =~ m{ ^var::packagesetup:: }xms
         ) {
             return 1;
         }
     }
 
-    my $is_camelcase = !( $name !~ m{ \A _* [A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
+    my $IsCamelCase = !( $Name !~ m{ \A _* [A-Z][a-z]* }xms || $Name =~ m{ [^_]_ }xms );
 
-    if (!$is_camelcase) {
-        push @{$self->{Errors}}, $name;
+    if (!$IsCamelCase) {
+        push @{$Self->{Errors}}, $Name;
     }
 
-    return $is_camelcase;
+    return $IsCamelCase;
 }
 
-sub _variable_is_camelcase {
-    my ( $self, $elem ) = @_;
+sub VariableIsCamelCase {
+    my ( $Self, $Element ) = @_;
 
-    my $name = "$elem";
+    my $Name = "$Element";
+    return 1 if !$Name;
 
     # Allow Perl builtins.
-    return 1 if $name eq '$a';
-    return 1 if $name eq '$b';
+    return 1 if $Name eq '$a';
+    return 1 if $Name eq '$b';
 
     # Ignore function calls
-    return 1 if substr($name, 0, 1) eq '&';
+    return 1 if substr($Name, 0, 1) eq '&';
 
     # Allow short variable names with lowercase characters like $s.
-    return 1 if length $name == 2;
+    return 1 if length $Name == 2;
 
-    my $is_camelcase = !( $name !~ m{ \A [\*\@\$\%]_*[A-Z][a-z]* }xms || $name =~ m{ [^_]_ }xms );
+    my $IsCamelCase = !( $Name !~ m{ \A [\*\@\$\%]_*[A-Z][a-z]* }xms || $Name =~ m{ [^_]_ }xms );
 
-    if (!$is_camelcase) {
-        push @{$self->{Errors}}, $name;
+    if (!$IsCamelCase) {
+        push @{$Self->{Errors}}, $Name;
     }
 
-    return $is_camelcase;
+    return $IsCamelCase;
 }
 
 1;

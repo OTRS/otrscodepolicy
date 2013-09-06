@@ -17,14 +17,14 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 use Capture::Tiny qw(capture_merged);
 use Perl::Tidy;
 
-sub transform_source {
-    my ( $Self, $Source ) = @_;
+sub transform_source { ## no critic
+    my ( $Self, $Code ) = @_;
 
-    return $Source if $Self->IsPluginDisabled(Code => $Source);
+    return $Code if $Self->IsPluginDisabled(Code => $Code);
 
     # Don't modify files which are derived files (have change markers).
-    if ( $Source =~ m{ \$OldId: | ^ \# \s* \$origin: }xms ) {
-        return $Source;
+    if ( $Code =~ m{ \$OldId: | ^ \# \s* \$origin: }xms ) {
+        return $Code;
     }
 
     # perltidy reports errors in two different ways.
@@ -34,15 +34,21 @@ sub transform_source {
     my ( $Output, $ErrorFlag, $ErrorFile, $Destination );
     $Output = capture_merged {
         $ErrorFlag = Perl::Tidy::perltidy(
-            argv        => $Self->argv,
-            source      => \$Source,
+            argv        => $Self->argv(),
+            source      => \$Code,
             destination => \$Destination,
             errorfile   => \$ErrorFile
         );
     };
-    die $ErrorFile       if $ErrorFile;
-    die $Output          if $ErrorFlag;
-    print STDERR $Output if defined($Output);
+    if ($ErrorFile) {
+        die __PACKAGE__ . "\n$ErrorFile";
+    }
+    if ($ErrorFlag) {
+        die __PACKAGE__ . "\n$Output";
+    }
+    if ( defined $Output ) {
+        print STDERR $Output;
+    }
     return $Destination;
 }
 

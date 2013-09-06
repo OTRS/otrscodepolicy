@@ -18,7 +18,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 
 # Perl::Critic will make sure that use strict is enabled.
 # Now we check that use warnings is also.
-sub transform_source {
+sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

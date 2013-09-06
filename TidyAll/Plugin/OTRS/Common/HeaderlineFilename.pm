@@ -16,7 +16,7 @@ use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-sub validate_file {
+sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 
     my $Code = $Self->_GetFileContents($File);

@@ -10,8 +10,9 @@
 
 use strict;
 use warnings;
+## no critic
 
-=cut
+=head1 SYNOPSIS
 
 Slightly modified version of Code::TidyAll::Git::Precommit.
 It is able to use the .tidyallrc from the main otrs-code-policy module.

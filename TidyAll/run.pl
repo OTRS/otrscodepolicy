@@ -65,7 +65,7 @@ EOF
     exit 0;
 }
 
-my $conf_file = dirname($0) . '/tidyallrc';
+my $ConfigurationFile = dirname($0) . '/tidyallrc';
 
 # Change to otrs-code-policy directory to be able to load all plugins.
 my $RootDir = getcwd();
@@ -105,7 +105,7 @@ elsif ( !$All ) {
 chdir dirname($0) . "/..";
 
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
-    $conf_file,
+    $ConfigurationFile,
     no_cache   => 1,
     check_only => 0,
     mode       => 'cli',
@@ -128,7 +128,7 @@ else {
 chdir $RootDir;
 
 my $FailMsg;
-if ( my @ErrorResults = grep { $_->error } @Results ) {
+if ( my @ErrorResults = grep { $_->error() } @Results ) {
     my $ErrorCount = scalar(@ErrorResults);
     $FailMsg = sprintf(
         "%d file%s did not pass tidyall check\n",

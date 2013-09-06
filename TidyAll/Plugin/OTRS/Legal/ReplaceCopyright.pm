@@ -16,7 +16,7 @@ use File::Basename;
 use File::Copy qw(copy);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-sub transform_source {
+sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
@@ -24,7 +24,7 @@ sub transform_source {
     my $Copy      = 'OTRS AG, http://otrs.com/';
     my $StartYear = 2001;
 
-    my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = localtime( time() );
+    my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = localtime( time() );    ## no critic
     $Year += 1900;
 
     my $YearString = "$StartYear-$Year";

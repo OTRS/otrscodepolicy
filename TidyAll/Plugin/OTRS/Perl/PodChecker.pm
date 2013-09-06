@@ -8,6 +8,8 @@
 # --
 
 package TidyAll::Plugin::OTRS::Perl::PodChecker;
+use strict;
+use warnings;
 
 use Capture::Tiny qw(capture_merged);
 use Pod::Checker;
@@ -15,7 +17,7 @@ use Pod::Checker;
 use base 'Code::TidyAll::Plugin';
 use base 'TidyAll::Plugin::OTRS::Base';
 
-sub validate_file {
+sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );
@@ -24,7 +26,9 @@ sub validate_file {
     my $Checker = new Pod::Checker();
     my $Output = capture_merged { $Checker->parse_from_file( $File, \*STDERR ) };
 
-    if ( $Checker->num_errors && $Output ) {
+    # Only die if Output is filled with errors. Otherwise it could be
+    #   that there just was no POD in the file.
+    if ( $Checker->num_errors() && $Output ) {
         die __PACKAGE__ . "\n$Output";
     }
 }
