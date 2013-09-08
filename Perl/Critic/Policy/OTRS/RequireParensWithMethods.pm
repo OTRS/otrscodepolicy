@@ -10,7 +10,7 @@ use Readonly;
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Method invokation should use "()"};
+Readonly::Scalar my $DESC => q{Method invocation should use "()"};
 Readonly::Scalar my $EXPL => q{Use "->MethodName()" instead of "->MethodName".};
 
 sub supported_parameters { return; }
