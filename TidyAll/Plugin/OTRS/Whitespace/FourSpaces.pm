@@ -21,8 +21,8 @@ sub validate_source {    ## no critic
 
     return if $Self->IsPluginDisabled( Code => $Code );
 
-    my $LineCounter = 1;
-    my $Errors;
+    my $Counter;
+    my $ErrorMessage;
     my $IsTextArea = 0;    # in config files
     my $IsSOPMData = 0;    # database entries of sopm files
 
@@ -31,6 +31,8 @@ sub validate_source {    ## no critic
     #
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
+
+        $Counter++;
 
         # textareas in config files
         if ( $Line =~ /<TextArea>/ ) {
@@ -53,15 +55,17 @@ sub validate_source {    ## no critic
             my $Length      = length $SpaceString;
 
             if ( $Length % 4 && !$IsTextArea && !$IsSOPMData ) {
-                $Errors
-                    .= "Spaces at the beginning of a line should be in steps of four, error in line $LineCounter.\n"
+                $ErrorMessage .= "Line $Counter: $Line\n";
             }
         }
-
-        $LineCounter++;
     }
 
-    die $Errors if ($Errors);
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n" . <<EOF;
+Spaces at the beginning of a line should be in steps of four!
+$ErrorMessage
+EOF
+    }
 }
 
 1;

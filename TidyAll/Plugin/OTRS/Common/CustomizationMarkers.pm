@@ -17,6 +17,13 @@ use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+=head1 SYNOPSIS
+
+This plugin checks that only valid OTRS customization markers are used
+to mark changed lines in customized/derived files.
+
+=cut
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 

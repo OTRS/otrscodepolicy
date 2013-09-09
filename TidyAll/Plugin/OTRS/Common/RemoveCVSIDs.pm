@@ -17,6 +17,14 @@ use File::Basename;
 use File::Copy qw(copy);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+=head1 SYNOPSIS
+
+This plugin removes old $Id:$ tags and similar tags that were automatically
+inserted by CVS but are no longer supported by git, such as the $VERSION
+variable assignment. Please verify if your code still runs after the removal.
+
+=cut
+
 sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 

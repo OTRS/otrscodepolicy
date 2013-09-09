@@ -56,12 +56,12 @@ sub validate_source {    ## no critic
         && $Code !~ m{\Q$AGPLLong\E}
         )
     {
-        die('AGPL3LicenseCheck - Found no valid license header!');
+        die __PACKAGE__ . "\nFound no valid license header!";
     }
 
     # check if there other strange license content
     if ( $Code =~ m{(^ [^\n]* (?: \(GPL\) | /gpl ) [^\n]* $)}smx ) {
-        die("AGPL3LicenseCheck() - There is strange license wording! Line: $1");
+        die __PACKAGE__ . "\nThere is strange license wording!\nLine: $1";
     }
 }
 

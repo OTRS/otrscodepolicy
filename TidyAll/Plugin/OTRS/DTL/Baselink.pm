@@ -14,6 +14,12 @@ use warnings;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+=head1 SYNOPSIS
+
+This plugin verifies that $Env{"Baselink"} is not used in form tags.
+
+=cut
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
@@ -33,7 +39,9 @@ EOF
         }
     }
 
-    die $ErrorMessage if $ErrorMessage;
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n$ErrorMessage";
+    }
 }
 
 1;

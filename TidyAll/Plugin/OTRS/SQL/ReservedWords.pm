@@ -20,14 +20,19 @@ sub validate_source {    ## no critic
     return if $Self->IsPluginDisabled( Code => $Code );
 
     my $TableCreate = 0;
+    my $Counter;
 
     for my $Line ( split( /\n/, $Code ) ) {
+        $Counter++;
         if ( $Line =~ /<Table/ ) {
             $TableCreate = 1;
         }
         if ( $TableCreate && $Line =~ /<Column.+?Name="(.+?)".*?\/>/i ) {
             if ( !$1 ) {
-                die "ERROR: " . $Line . "\n";
+                die __PACKAGE__ . "\n" . <<EOF;
+Found an empty column name!
+Line $Counter: $Line
+EOF
             }
 
             for my $ReservedWord (
@@ -219,10 +224,10 @@ sub validate_source {    ## no critic
 
                 if ( $1 && $1 =~ /^$ReservedWord$/i ) {
                     die <<EOF;
-ERROR: You use a reserved SQL-Word!
-You can use the following domains for your own checking:
+You use a reserved SQL-Word!
+Line $Counter: $Line
+You can use the following tool for your own checking:
 http://www.petefreitag.com/tools/sql_reserved_words_checker/
-http://www.ianywhere.com/developer/product_manuals/sqlanywhere/0901/de/html/dbrfde9/00000010.htm
 EOF
                 }
             }

@@ -48,7 +48,9 @@ sub validate_source {    ## no critic
         }
     }
 
-    die $ErrorMessage if $ErrorMessage;
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n$ErrorMessage";
+    }
 }
 
 1;

@@ -16,6 +16,13 @@ use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+=head1 SYNOPSIS
+
+This plugin checks that the headerline has the correct file name (see
+second line of this file as an example).
+
+=cut
+
 sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 

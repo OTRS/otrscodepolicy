@@ -21,8 +21,8 @@ sub validate_source {    ## no critic
 
     return if $Self->IsPluginDisabled( Code => $Code );
 
-    my $LineCounter = 1;
-    my $Errors;
+    my $Counter = 1;
+    my $ErrorMessage;
 
     #
     # Check for stray tabs
@@ -30,14 +30,20 @@ sub validate_source {    ## no critic
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
 
+        $Counter++;
+
         if ( $Line =~ m/\t/ ) {
-            $Errors .= "TabsCheck: tabulators used in line $LineCounter, please remove.\n";
+            $ErrorMessage .= "Line $Counter: $Line\n";
         }
 
-        $LineCounter++;
     }
 
-    die $Errors if ($Errors);
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n" . <<EOF;
+Please substitute all tabulators with four spaces.
+$ErrorMessage
+EOF
+    }
 }
 
 1;

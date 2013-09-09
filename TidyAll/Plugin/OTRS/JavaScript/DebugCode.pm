@@ -19,18 +19,20 @@ sub validate_source {    ## no critic
 
     return if $Self->IsPluginDisabled( Code => $Code );
 
-    my $Error;
+    my $ErrorMessage;
     my $Counter;
 
     for my $Line ( split( /\n/, $Code ) ) {
         $Counter++;
         if ( $Line =~ m{ console\.log\( }xms ) {
-            $Error
+            $ErrorMessage
                 .= "ERROR: JavaScriptDebugCheck() found a console.log() statement in line( $Counter ): $Line\n";
-            $Error .= "This will break IE and Opera. Please remove it from your code.\n";
+            $ErrorMessage .= "This will break IE and Opera. Please remove it from your code.\n";
         }
     }
-    die $Error if ($Error);
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n$ErrorMessage";
+    }
 }
 
 1;
