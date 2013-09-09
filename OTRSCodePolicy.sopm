@@ -20,13 +20,11 @@
     <Filelist>
         <File Permission="644" Location="Perl/Critic/PolicyOTRS.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitFetchrowHashref.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitGoto.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLocaltime.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitRequire.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitRmtree.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitSomeCoreFunctions.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
