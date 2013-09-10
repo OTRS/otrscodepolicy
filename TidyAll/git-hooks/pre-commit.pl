@@ -43,7 +43,7 @@ sub Run {
 
         # Gather file paths to be committed
         my $Output = capturex( 'git', "status", "--porcelain" );
-        my @ChangedFiles = grep {-f} ( $Output =~ /^[MA]+\s+(.*)/gm );
+        my @ChangedFiles = grep {-f} ( $Output =~ /^\s?[MA]+\s+(.*)/gm );
         return if !@ChangedFiles;
 
         # Find OTRSCodePolicy configuration
@@ -84,7 +84,7 @@ sub Run {
         die "Error during pre-commit hook (use --no-verify to skip hook):\n$Exception";
     };
     if ($ErrorMessage) {
-        die "$ErrorMessage";
+        die "$ErrorMessage\nYou can use --no-verify to skip the hook\n";
     }
 }
 
