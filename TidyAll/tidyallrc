@@ -134,6 +134,12 @@ ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::Goto]
+select = **/*.{pl,psgi,pm,t}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::ISA]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*

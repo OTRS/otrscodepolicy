@@ -21,7 +21,6 @@
         <File Permission="644" Location="Kernel/cpan-lib/Pod/Strip.pm"/>
         <File Permission="644" Location="Perl/Critic/PolicyOTRS.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitGoto.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
@@ -46,6 +45,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/DieExit.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForeachToFor.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForMy.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Goto.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Localtime.pm"/>
