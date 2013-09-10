@@ -28,7 +28,7 @@ sub validate_source {    ## no critic
 
         next LINE if $Line =~ m/^\s*\#/smx;
 
-        if ( $Line =~ m{^ \s* (die|exit) (\s|\() }smx ) {
+        if ( $Line =~ m{^ \s* (die|exit) (;|\s|\() }smx ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
