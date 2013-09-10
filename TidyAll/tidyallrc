@@ -122,6 +122,12 @@ select = Kernel/Modules/**/*.pm
 [+TidyAll::Plugin::OTRS::Perl::DieExit]
 select = Kernel/Modules/**/*.{pm}
 
+[+TidyAll::Plugin::OTRS::Perl::Dumper]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::ForeachToFor]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
