@@ -22,7 +22,6 @@
         <File Permission="644" Location="Perl/Critic/PolicyOTRS.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitGoto.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLocaltime.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
@@ -49,6 +48,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ForMy.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Localtime.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ParamObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>

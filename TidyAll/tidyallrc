@@ -150,6 +150,12 @@ ignore = Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::Localtime]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = scripts/test/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::ModuleFormat]
 select = **/*.{pm,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
