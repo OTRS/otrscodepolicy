@@ -25,7 +25,6 @@
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLocaltime.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitSomeCoreFunctions.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
