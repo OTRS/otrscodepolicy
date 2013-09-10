@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/Perl/Require.pm - code quality plugin
+# TidyAll/Plugin/OTRS/Perl/Print.pm - code quality plugin
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::Require;
+package TidyAll::Plugin::OTRS::Perl::Print;
 
 use strict;
 use warnings;
@@ -26,14 +26,16 @@ sub validate_source {    ## no critic
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
-        if ( $Line =~ m/^\s*require/smx ) {
+        next LINE if $Line =~ m/^\s*\#/smx;
+
+        if ( $Line =~ m{^ \s* print (\s|\() }smx ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
-Don't use require directly, but Main::Require instead.
+Don't use print in modules.
 $ErrorMessage
 EOF
     }
