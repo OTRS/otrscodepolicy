@@ -175,13 +175,13 @@ ignore = Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
-select = ;**/*.{pl,pm,psgi,t}
+select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
-select = ;**/*.{pl,pm,psgi,t}
+select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
