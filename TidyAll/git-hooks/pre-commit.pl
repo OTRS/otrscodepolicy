@@ -19,8 +19,12 @@ It is able to use the .tidyallrc from the main otrs-code-policy module.
 
 =cut
 
-use Code::TidyAll::Git::Precommit;
 use File::Basename;
+use FindBin qw($RealBin);
+use lib dirname($RealBin);
+use lib dirname($RealBin) . '/Kernel/cpan-lib';
+
+use Code::TidyAll::Git::Precommit;
 use Cwd;
 use File::Spec;
 

@@ -25,7 +25,6 @@
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLocaltime.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitRequire.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitSomeCoreFunctions.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
@@ -57,6 +56,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PodChecker.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PodNewDoc.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PodSpelling.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Require.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ScriptFormat.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SortKeys.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SubDeclaration.pm"/>

@@ -14,6 +14,7 @@ use warnings;
 
 use Scalar::Util;
 use TidyAll::OTRS;
+use Pod::Strip;
 
 use base qw(Code::TidyAll::Plugin);
 
@@ -48,6 +49,19 @@ sub IsFrameworkVersionLessThan {
 
     # Default: if framework is unknown, return false (strict checks).
     return 0;
+}
+
+#Process Perl code and replace all Pod sections with comments.
+
+sub StripPod {
+    my ( $Self, %Param ) = @_;
+
+    my $PodStrip = Pod::Strip->new();
+    $PodStrip->replace_with_comments(1);
+    my $Code;
+    $PodStrip->output_string( \$Code );
+    $PodStrip->parse_string_document( $Param{Code} );
+    return $Code;
 }
 
 sub _GetFileContents {
