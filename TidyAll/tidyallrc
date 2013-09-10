@@ -119,6 +119,9 @@ select = *.{opm,sopm}
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
 select = Kernel/Modules/**/*.pm
 
+[+TidyAll::Plugin::OTRS::Perl::DieExit]
+select = Kernel/Modules/**/*.{pm}
+
 [+TidyAll::Plugin::OTRS::Perl::ForeachToFor]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
@@ -204,7 +207,6 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::Print]
 select = Kernel/Modules/**/*.{pm}
-select = **/*.{pm}
 
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}

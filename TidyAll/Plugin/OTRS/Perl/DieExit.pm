@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/Perl/Print.pm - code quality plugin
+# TidyAll/Plugin/OTRS/Perl/DieExit.pm - code quality plugin
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::Print;
+package TidyAll::Plugin::OTRS::Perl::DieExit;
 
 use strict;
 use warnings;
@@ -28,14 +28,14 @@ sub validate_source {    ## no critic
 
         next LINE if $Line =~ m/^\s*\#/smx;
 
-        if ( $Line =~ m{^ \s* print (\s|\() }smx ) {
+        if ( $Line =~ m{^ \s* (die|exit) (\s|\() }smx ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
-Don't use 'print' in modules.
+Don't use 'die' and 'exit' in modules.
 $ErrorMessage
 EOF
     }
