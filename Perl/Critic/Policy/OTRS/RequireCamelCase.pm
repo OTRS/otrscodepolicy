@@ -106,4 +106,3 @@ sub VariableIsCamelCase {
 }
 
 1;
-

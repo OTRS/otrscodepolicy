@@ -26,4 +26,3 @@ sub violates {
 }
 
 1;
-
