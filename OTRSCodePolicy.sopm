@@ -48,7 +48,6 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Goto.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Localtime.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/ParamObject.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>
@@ -62,6 +61,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SortKeys.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SubDeclaration.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Time.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/FileRights.pm"/>

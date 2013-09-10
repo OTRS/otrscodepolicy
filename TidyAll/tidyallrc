@@ -123,7 +123,7 @@ select = Kernel/Modules/**/*.pm
 select = Kernel/Modules/**/*.{pm}
 
 [+TidyAll::Plugin::OTRS::Perl::Dumper]
-select = **/*.{pl,pm,psgi,t}
+select = **/*.{pl,pm,psgi}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
@@ -162,12 +162,6 @@ ignore = Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Perl::Localtime]
-select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
-ignore = scripts/test/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-
 [+TidyAll::Plugin::OTRS::Perl::ModuleFormat]
 select = **/*.{pm,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
@@ -181,13 +175,13 @@ ignore = Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
-select = **/*.{pl,pm,psgi,t}
+select = ;**/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/* ;TidyAll/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
-select = **/*.{pl,pm,psgi,t}
+select = ;**/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
@@ -229,6 +223,7 @@ select = Kernel/Modules/**/*.{pm}
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = scripts/test/Selenium/**/*.t
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
@@ -255,6 +250,12 @@ select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
 ignore = bin/otrs.Scheduler4win*.pl
 ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+[+TidyAll::Plugin::OTRS::Perl::Time]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = scripts/test/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::UseWarnings]

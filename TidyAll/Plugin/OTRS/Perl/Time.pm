@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/Perl/Localtime.pm - code quality plugin
+# TidyAll/Plugin/OTRS/Perl/Time.pm - code quality plugin
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,8 +7,8 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::Localtime;
-## nofilter(TidyAll::Plugin::OTRS::Perl::Localtime)
+package TidyAll::Plugin::OTRS::Perl::Time;
+## nofilter(TidyAll::Plugin::OTRS::Perl::Time)
 
 use strict;
 use warnings;

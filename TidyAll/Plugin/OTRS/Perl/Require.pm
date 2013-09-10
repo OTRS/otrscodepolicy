@@ -20,6 +20,8 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
+    $Code = $Self->StripPod(Code => $Code);
+
     my ( $ErrorMessage, $Counter );
 
     LINE:
