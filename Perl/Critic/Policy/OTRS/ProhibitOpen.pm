@@ -16,7 +16,7 @@ Readonly::Scalar my $EXPL => q{Use file operation methods of MainObject instead.
 sub supported_parameters { return; }
 sub default_severity     { return $SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
-sub applies_to           { return 'PPI::Token::Word'  }
+sub applies_to           { return 'PPI::Token::Word' }
 
 sub violates {
     my ( $self, $elem ) = @_;

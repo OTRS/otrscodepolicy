@@ -23,15 +23,15 @@ sub applies_to           { return 'PPI::Document' }
 sub violates {
     my ( $self, $elem ) = @_;
 
-    return if $self->_is_script( $elem );
-    return if $self->_returns_1( $elem );
+    return if $self->_is_script($elem);
+    return if $self->_returns_1($elem);
     return $self->violation( $DESC, $EXPL, $elem );
 }
 
 sub _returns_1 {
     my ( $self, $elem ) = @_;
 
-    my $last_statement = ( grep{ ref $_ eq 'PPI::Statement' }$elem->schildren )[-1];
+    my $last_statement = ( grep { ref $_ eq 'PPI::Statement' } $elem->schildren )[-1];
     return 0 if !$last_statement;
     return 1 if $last_statement eq '1;';
     return 0;

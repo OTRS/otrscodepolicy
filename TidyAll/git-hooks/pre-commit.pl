@@ -10,59 +10,43 @@
 
 use strict;
 use warnings;
-## no critic
 
 =head1 SYNOPSIS
 
-Slightly modified version of Code::TidyAll::Git::Precommit.
-It is able to use the .tidyallrc from the main otrs-code-policy module.
+This commit hook loads the OTRS version of Code::TidyAll
+with the custom plugins, executes it for any modified files
+and returns a corresponding status code.
 
 =cut
 
 use File::Basename;
 use FindBin qw($RealBin);
-use lib dirname($RealBin);
-use lib dirname($RealBin) . '/Kernel/cpan-lib';
+use lib dirname($RealBin) . '/../';
+use lib dirname($RealBin) . '/../Kernel/cpan-lib';
 
-use Code::TidyAll::Git::Precommit;
 use Cwd;
 use File::Spec;
 
-use Capture::Tiny qw(capture_stdout capture_stderr);
 use Code::TidyAll;
-use Code::TidyAll::Util qw(dirname mkpath realpath tempdir_simple write_file);
-use Cwd qw(cwd);
-use Guard;
-use Log::Any qw($log);
 use IPC::System::Simple qw(capturex run);
-use Moo;
 use Try::Tiny;
-
 use TidyAll::OTRS;
 
-no warnings qw(redefine);
+sub Run {
 
-sub Code::TidyAll::Git::Precommit::check {
-    my ( $class, %params ) = @_;
-
-    my $fail_msg;
+    my $ErrorMessage;
 
     try {
-        my $self          = $class->new(%params);
-        my $tidyall_class = $self->tidyall_class;
-
         # Find conf file at git root
-        my $root_dir = capturex( $self->git_path, "rev-parse", "--show-toplevel" );
-        chomp($root_dir);
+        my $RootDir = capturex( 'git', "rev-parse", "--show-toplevel" );
+        chomp($RootDir);
 
-        # ---
-        # OTRS
-        # ---
-        #        my @conf_names =
-        #          $self->conf_name ? ( $self->conf_name ) : Code::TidyAll->default_conf_names;
-        #        my ($conf_file) = grep { -f } map { join( "/", $root_dir, $_ ) } @conf_names
-        #          or die sprintf( "could not find conf file %s", join( " or ", @conf_names ) );
-        # ---
+        # Gather file paths to be committed
+        my $Output = capturex( 'git', "status", "--porcelain" );
+        my @ChangedFiles = grep {-f} ( $Output =~ /^[MA]+\s+(.*)/gm );
+        return if !@ChangedFiles;
+
+        # Find OTRSCodePolicy configuration
         my $ScriptDirectory;
         if ( -l $0 ) {
             $ScriptDirectory = dirname( readlink($0) );
@@ -70,68 +54,39 @@ sub Code::TidyAll::Git::Precommit::check {
         else {
             $ScriptDirectory = dirname($0);
         }
-        my $conf_file = $ScriptDirectory . '/../tidyallrc';
+        my $ConfigFile = $ScriptDirectory . '/../tidyallrc';
 
-        # ---
-        # Store the stash, and restore it upon exiting this scope
-        unless ( $self->no_stash ) {
-            run( $self->git_path, "stash", "-q", "--keep-index" );
-            scope_guard { run( $self->git_path, "stash", "pop", "-q" ) };
-        }
-
-        # Gather file paths to be committed
-        my $output = capturex( $self->git_path, "status", "--porcelain" );
-        my @files = grep {-f} ( $output =~ /^[MA]\s+(.*)/gm );
-
-        # ---
-        # OTRS
-        # ---
         # Change to otrs-code-policy directory to be able to load all plugins.
-        my $RootDir = getcwd();
         chdir $ScriptDirectory . '/../../';
-        $self->tidyall_options->{root_dir}      = $RootDir;
-        $self->tidyall_options->{data_dir}      = File::Spec->tmpdir();
-        $self->tidyall_options->{tidyall_class} = 'TidyAll::OTRS';
 
-        # ---
-        my $tidyall = $tidyall_class->new_from_conf_file(
-            $conf_file,
+        my $TidyAll = TidyAll::OTRS->new_from_conf_file(
+            $ConfigFile,
             no_cache   => 1,
             check_only => 1,
             mode       => 'commit',
-            %{ $self->tidyall_options },
+            root_dir   => $RootDir,
+            data_dir   => File::Spec->tmpdir(),
         );
+        $TidyAll->DetermineFrameworkVersionFromDirectory();
+        my @CheckResults = $TidyAll->process_paths( map {"$RootDir/$_"} @ChangedFiles );
 
-        # ---
-        # OTRS
-        # ---
-        $tidyall->DetermineFrameworkVersionFromDirectory();
-
-        # ---
-        my @results = $tidyall->process_paths( map {"$root_dir/$_"} @files );
-
-        # ---
-        # OTRS
-        # ---
-        # Change working directory back.
-        chdir $RootDir;
-
-        # ---
-
-        if ( my @error_results = grep { $_->error } @results ) {
-            my $error_count = scalar(@error_results);
-            $fail_msg = sprintf(
-                "%d file%s did not pass tidyall check\n",
-                $error_count, $error_count > 1 ? "s" : ""
+        if ( my @ErrorResults = grep { $_->error() } @CheckResults ) {
+            my $ErrorCount = scalar(@ErrorResults);
+            $ErrorMessage = sprintf(
+                "%d file%s did not pass TidyAll check\n",
+                $ErrorCount,
+                $ErrorCount > 1 ? "s" : ""
             );
         }
     }
     catch {
-        my $error = $_;
-        die "Error during pre-commit hook (use --no-verify to skip hook):\n$error";
+        my $Exception = $_;
+        die "Error during pre-commit hook (use --no-verify to skip hook):\n$Exception";
     };
-    die "$fail_msg\n" if $fail_msg;
+    if ($ErrorMessage) {
+        die "$ErrorMessage";
+    }
 }
 
-print "OTRS code policy check running...\n";
-Code::TidyAll::Git::Precommit->check();
+print "OTRSCodePolicy commit hook starting...\n";
+Run();

@@ -31,7 +31,7 @@ sub violates {
     # $Variable->method();
     return if ref $method eq 'PPI::Structure::Subscript';
 
-    my $list   = $method->snext_sibling;
+    my $list = $method->snext_sibling;
     return if ref $list eq 'PPI::Structure::List';
 
     return $self->violation( $DESC, $EXPL, $elem );

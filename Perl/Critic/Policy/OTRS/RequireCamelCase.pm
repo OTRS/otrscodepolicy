@@ -29,7 +29,7 @@ sub applies_to {
 }
 
 sub new {
-    my ($ClassName, @Parameters) = @_;
+    my ( $ClassName, @Parameters ) = @_;
     my $Self = $ClassName->SUPER::new(@Parameters);
     return $Self;
 }
@@ -37,21 +37,21 @@ sub new {
 sub violates {
     my ( $Self, $Element ) = @_;
 
-    return if $Self->IsFrameworkVersionLessThan(3, 3);
+    return if $Self->IsFrameworkVersionLessThan( 3, 3 );
 
     $Self->{Errors} = ();
 
-    my $Function = $dispatcher{ref $Element};
+    my $Function = $dispatcher{ ref $Element };
     return if !$Function;
-    return if $Self->$Function( $Element );
+    return if $Self->$Function($Element);
 
-    return $Self->violation( "$DESC: " . join(", ", @{$Self->{Errors}}), $EXPL, $Element );
+    return $Self->violation( "$DESC: " . join( ", ", @{ $Self->{Errors} } ), $EXPL, $Element );
 }
 
 sub IsCamelCase {
     my ( $Self, $Element ) = @_;
 
-    my $Name = $Element->find( 'PPI::Token::Word' )->[1];
+    my $Name = $Element->find('PPI::Token::Word')->[1];
 
     return 1 if !$Name;
 
@@ -59,22 +59,24 @@ sub IsCamelCase {
         new => 1,
     );
 
-    if ( $Element->isa( 'PPI::Statement::Sub' ) && $AllowedFunctions{$Name} ) {
+    if ( $Element->isa('PPI::Statement::Sub') && $AllowedFunctions{$Name} ) {
         return 1;
     }
-    elsif ( $Element->isa( 'PPI::Statement::Package' ) ) {
-        if ( $Name =~ m{ Kernel::Language :: [a-z]{2,3}_ }xms
+    elsif ( $Element->isa('PPI::Statement::Package') ) {
+        if (
+            $Name =~ m{ Kernel::Language :: [a-z]{2,3}_ }xms
             || $Name eq 'main'
             || $Name =~ m{ ^var::packagesetup:: }xms
-        ) {
+            )
+        {
             return 1;
         }
     }
 
     my $IsCamelCase = !( $Name !~ m{ \A _* [A-Z][a-z]* }xms || $Name =~ m{ [^_]_ }xms );
 
-    if (!$IsCamelCase) {
-        push @{$Self->{Errors}}, $Name;
+    if ( !$IsCamelCase ) {
+        push @{ $Self->{Errors} }, $Name;
     }
 
     return $IsCamelCase;
@@ -91,15 +93,15 @@ sub VariableIsCamelCase {
     return 1 if $Name eq '$b';
 
     # Ignore function calls
-    return 1 if substr($Name, 0, 1) eq '&';
+    return 1 if substr( $Name, 0, 1 ) eq '&';
 
     # Allow short variable names with lowercase characters like $s.
     return 1 if length $Name == 2;
 
     my $IsCamelCase = !( $Name !~ m{ \A [\*\@\$\%]_*[A-Z][a-z]* }xms || $Name =~ m{ [^_]_ }xms );
 
-    if (!$IsCamelCase) {
-        push @{$Self->{Errors}}, $Name;
+    if ( !$IsCamelCase ) {
+        push @{ $Self->{Errors} }, $Name;
     }
 
     return $IsCamelCase;
