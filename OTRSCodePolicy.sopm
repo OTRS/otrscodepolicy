@@ -20,7 +20,6 @@
     <Filelist>
         <File Permission="644" Location="Kernel/cpan-lib/Pod/Strip.pm"/>
         <File Permission="644" Location="Perl/Critic/PolicyOTRS.pm"/>
-        <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitDumper.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
