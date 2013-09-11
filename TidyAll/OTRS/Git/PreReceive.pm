@@ -109,6 +109,7 @@ sub HandleInput {
             $ErrorCount > 1 ? "s" : ""
         );
     }
+
     return $ErrorMessage;
 }
 
