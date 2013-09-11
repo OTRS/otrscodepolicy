@@ -110,7 +110,6 @@ sub HandleInput {
         );
     }
 
-
     return $ErrorMessage;
 }
 
