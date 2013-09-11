@@ -131,7 +131,7 @@ sub CreateTidyAll {
     my @FileList = $Self->GetGitFileList($Commit);
 
     # Look for a RELEASE file first to determine the framework version
-    if ( grep { $_ eq 'RELEASE2' } @FileList ) {
+    if ( grep { $_ eq 'RELEASE' } @FileList ) {
         my @Content = split /\n/, $Self->GetGitFileContents( 'RELEASE', $Commit );
 
         my ( $VersionMajor, $VersionMinor ) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
