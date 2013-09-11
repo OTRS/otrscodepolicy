@@ -55,7 +55,6 @@ sub Run {
         local $ENV{GIT_DIR} = $RootDirectory;
 
         my $RepositoryName = [ split m{/}, $RootDirectory ]->[-1];
-        print "Found RepositoryName $RepositoryName\n";
         if ( $IgnoreRepositories{$RepositoryName} ) {
             print "Skipping checks for repository $RepositoryName.\n";
             return;
