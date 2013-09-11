@@ -30,23 +30,35 @@ use Try::Tiny;
 use TidyAll::OTRS;
 use Moo;
 
+# Ignore these repositories so that we can always push to them
+my %IgnoreRepositories = (
+    'otrscodepolicy' => 1,
+);
+
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    print "OTRSCodePolicy pre receive hook starting...\n";
-
-    my $Input = $Param{Input};
-    if ( !$Input ) {
-        $Input = do { local $/; <STDIN> };
-    }
-
-    # Debug
-    #print "Got data:\n$Input";
-
     my $ErrorMessage;
     try {
+
+        print "OTRSCodePolicy pre receive hook starting...\n";
+
+        my $Input = $Param{Input};
+        if ( !$Input ) {
+            $Input = do { local $/; <STDIN> };
+        }
+
+        # Debug
+        #print "Got data:\n$Input";
+
         my $RootDirectory = Cwd::realpath();
         local $ENV{GIT_DIR} = $RootDirectory;
+
+        my $RepositoryName = [ split m{/}, $RootDirectory ]->[-1];
+        if ( $IgnoreRepositories{$RepositoryName} ) {
+            print "Skipping checks for repository $RepositoryName.\n";
+            return;
+        }
 
         $ErrorMessage = $Self->HandleInput($Input);
     }
