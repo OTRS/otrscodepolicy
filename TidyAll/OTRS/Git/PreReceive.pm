@@ -30,9 +30,9 @@ use Try::Tiny;
 use TidyAll::OTRS;
 use Moo;
 
-# Ignore these repositories so that we can always push to them
+# Ignore these repositories on the server so that we can always push to them.
 my %IgnoreRepositories = (
-    'otrscodepolicy' => 1,
+    'otrscodepolicy.git' => 1,
 );
 
 sub Run {
