@@ -30,19 +30,18 @@ use Try::Tiny;
 use TidyAll::OTRS;
 use Moo;
 
-
 sub Run {
-    my ($Self, %Param) = @_;
+    my ( $Self, %Param ) = @_;
 
     print "OTRSCodePolicy pre receive hook starting...\n";
 
     my $Input = $Param{Input};
-    if (!$Input) {
+    if ( !$Input ) {
         $Input = do { local $/; <STDIN> };
     }
+
     # Debug
     #print "Got data:\n$Input";
-
 
     my $ErrorMessage;
     try {
@@ -53,10 +52,14 @@ sub Run {
     }
     catch {
         my $Exception = $_;
+
         #die $Exception;
         print STDERR "*** Error running pre-receive hook (allowing push to proceed):\n$Exception";
     };
-    die "$ErrorMessage\n" if $ErrorMessage;
+    if ($ErrorMessage) {
+        print "$ErrorMessage\n";
+        print "Push still accepted until real checks are activated.\n";
+    }
 }
 
 sub HandleInput {
@@ -64,9 +67,9 @@ sub HandleInput {
 
     my @Lines = split( "\n", $Input );
 
-    my ( @Results );
+    my (@Results);
 
-    foreach my $Line (@Lines) {
+    for my $Line (@Lines) {
         chomp($Line);
         my ( $Base, $Commit, $Ref ) = split( /\s+/, $Line );
 
@@ -76,7 +79,7 @@ sub HandleInput {
         my $TidyAll = $Self->CreateTidyAll($Commit);
 
         my @ChangedFiles = $Self->GetChangedFiles( $Base, $Commit );
-        foreach my $File (@ChangedFiles) {
+        for my $File (@ChangedFiles) {
             my $Contents = $Self->GetGitFileContents( $File, $Commit );
             if ( $Contents =~ /\S/ && $Contents =~ /\n/ ) {
                 push( @Results, $TidyAll->process_source( $Contents, $File ) );
@@ -85,9 +88,10 @@ sub HandleInput {
     }
 
     my $ErrorMessage;
-    if ( my @ErrorResults = grep { $_->error } @Results ) {
+    if ( my @ErrorResults = grep { $_->error() } @Results ) {
         my $ErrorCount = scalar(@ErrorResults);
-        $ErrorMessage = sprintf( "%d file%s did not pass tidyall check",
+        $ErrorMessage = sprintf(
+            "%d file%s did not pass tidyall check",
             $ErrorCount,
             $ErrorCount > 1 ? "s" : ""
         );
@@ -103,8 +107,8 @@ sub CreateTidyAll {
 
     my $TidyAll = TidyAll::OTRS->new_from_conf_file(
         $ConfigFile,
-        mode  => 'commit',
-        quiet => 1,
+        mode       => 'commit',
+        quiet      => 1,
         no_cache   => 1,
         no_backups => 1,
         check_only => 1,
@@ -114,19 +118,20 @@ sub CreateTidyAll {
     my @FileList = $Self->GetGitFileList($Commit);
 
     # Look for a RELEASE file first to determine the framework version
-    if (grep {$_ eq 'RELEASE2'} @FileList) {
-        my @Content = split /\n/, $Self->GetGitFileContents('RELEASE', $Commit);
+    if ( grep { $_ eq 'RELEASE2' } @FileList ) {
+        my @Content = split /\n/, $Self->GetGitFileContents( 'RELEASE', $Commit );
 
         my ( $VersionMajor, $VersionMinor ) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
         $TidyAll::OTRS::FrameworkVersionMajor = $VersionMajor;
         $TidyAll::OTRS::FrameworkVersionMinor = $VersionMinor;
     }
+
     # Look for any SOPM files
     else {
         FILE:
         for my $File (@FileList) {
-            if ( substr($File, -5, 5) eq '.sopm' ) {
-                my @Content = split /\n/, $Self->GetGitFileContents($File, $Commit);
+            if ( substr( $File, -5, 5 ) eq '.sopm' ) {
+                my @Content = split /\n/, $Self->GetGitFileContents( $File, $Commit );
 
                 for my $Line (@Content) {
                     if ( $Line =~ m{<Framework>} ) {
@@ -152,7 +157,8 @@ sub CreateTidyAll {
     }
 
     if ($TidyAll::OTRS::FrameworkVersionMajor) {
-        print "found OTRS version $TidyAll::OTRS::FrameworkVersionMajor.$TidyAll::OTRS::FrameworkVersionMinor\n";
+        print
+            "found OTRS version $TidyAll::OTRS::FrameworkVersionMajor.$TidyAll::OTRS::FrameworkVersionMinor\n";
     }
     else {
         print "could not determine OTRS version!\n";
@@ -176,7 +182,7 @@ sub GetGitFileList {
 sub GetChangedFiles {
     my ( $Self, $Base, $Commit ) = @_;
     my $Output = capturex( 'git', "diff", "--numstat", "--name-only", "$Base..$Commit" );
-    my @Files = grep { /\S/ } split( "\n", $Output );
+    my @Files = grep {/\S/} split( "\n", $Output );
     return @Files;
 }
 

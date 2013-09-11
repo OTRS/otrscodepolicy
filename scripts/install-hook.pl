@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # --
-# TidyAll/install.pl - install otrs-code-policy commit hooks into modules
+# scripts/install-hook.pl - install otrs-code-policy commit hooks into modules
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
