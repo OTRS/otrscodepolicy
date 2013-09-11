@@ -120,7 +120,8 @@ sub CreateTidyAll {
 
     my $TidyAll = TidyAll::OTRS->new_from_conf_file(
         $ConfigFile,
-        mode       => 'commit',
+        mode => 'commit',
+
         #quiet      => 1,
         no_cache   => 1,
         no_backups => 1,
