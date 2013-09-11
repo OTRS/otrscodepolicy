@@ -55,6 +55,7 @@ sub Run {
         local $ENV{GIT_DIR} = $RootDirectory;
 
         my $RepositoryName = [ split m{/}, $RootDirectory ]->[-1];
+        print "Found RepositoryName $RepositoryName\n";
         if ( $IgnoreRepositories{$RepositoryName} ) {
             print "Skipping checks for repository $RepositoryName.\n";
             return;
@@ -120,7 +121,7 @@ sub CreateTidyAll {
     my $TidyAll = TidyAll::OTRS->new_from_conf_file(
         $ConfigFile,
         mode       => 'commit',
-        quiet      => 1,
+        #quiet      => 1,
         no_cache   => 1,
         no_backups => 1,
         check_only => 1,
