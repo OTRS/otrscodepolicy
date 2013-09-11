@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # --
-# TidyAll/git-hooks/pre-commit.pl - git pre commit hook
+# TidyAll/git-hooks/pre-receive.pl - git pre receive hook
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -16,7 +16,7 @@ use FindBin qw($RealBin);
 use lib dirname($RealBin) . '/../';
 use lib dirname($RealBin) . '/../Kernel/cpan-lib';
 
-use TidyAll::OTRS::Git::PreCommit;
+use TidyAll::OTRS::Git::PreReceive;
 
-my $PreCommit = TidyAll::OTRS::Git::PreCommit->new();
-$PreCommit->Run();
+my $PreReceive = TidyAll::OTRS::Git::PreReceive->new();
+$PreReceive->Run();

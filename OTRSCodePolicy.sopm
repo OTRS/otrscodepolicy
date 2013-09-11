@@ -78,9 +78,13 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/Lint.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/LintWithOurParsers.pm"/>
         <File Permission="644" Location="TidyAll/OTRS.pm"/>
+        <File Permission="644" Location="TidyAll/OTRS/Git/PreCommit.pm"/>
+        <File Permission="644" Location="TidyAll/OTRS/Git/PreReceive.pm"/>
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="755" Location="TidyAll/git-hooks/pre-commit.pl"/>
+        <File Permission="755" Location="TidyAll/git-hooks/pre-receive.pl"/>
         <File Permission="755" Location="TidyAll/install.pl"/>
         <File Permission="755" Location="TidyAll/run.pl"/>
+        <File Permission="755" Location="TidyAll/uninstall.pl"/>
     </Filelist>
 </otrs_package>

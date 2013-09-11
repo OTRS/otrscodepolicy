@@ -24,6 +24,10 @@ sub new_from_conf_file {    ## no critic
     # possibly call Parent->new(@args) first
     my $Self = $Class->SUPER::new_from_conf_file( $ConfigFile, %Param );
 
+    # Reset when a new object is created
+    $FrameworkVersionMajor = 0;
+    $FrameworkVersionMinor = 0;
+
     return $Self;
 }
 
