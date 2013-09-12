@@ -87,18 +87,33 @@ sub HandleInput {
         my ( $Base, $Commit, $Ref ) = split( /\s+/, $Line );
 
         if (substr($Ref, 0, 9) eq 'refs/tags') {
+            print "$Ref is a tag, ignoring.\n";
             # This is a tag, no need to verify any files.
             next LINE;
         }
 
         print "Checking framework version for $Ref... ";
 
+        my @FileList = $Self->GetGitFileList($Commit);
+
         # Create tidyall for each branch separately
-        my $TidyAll = $Self->CreateTidyAll($Commit);
+        my $TidyAll = $Self->CreateTidyAll($Commit, \@FileList);
 
         my @ChangedFiles = $Self->GetChangedFiles( $Base, $Commit );
+
+        FILE:
         for my $File (@ChangedFiles) {
+
+            # Don't try to validate deleted files.
+            if ( !grep {$_ eq $File} @FileList ) {
+                print "$File was deleted, ignoring.\n";
+                next FILE;
+            }
+
+            # Get file from git repository.
             my $Contents = $Self->GetGitFileContents( $File, $Commit );
+
+            # Only validate files which actually have some content.
             if ( $Contents =~ /\S/ && $Contents =~ /\n/ ) {
                 push( @Results, $TidyAll->process_source( $Contents, $File ) );
             }
@@ -119,7 +134,7 @@ sub HandleInput {
 }
 
 sub CreateTidyAll {
-    my ( $Self, $Commit ) = @_;
+    my ( $Self, $Commit, $FileList ) = @_;
 
     # Find OTRSCodePolicy configuration
     my $ConfigFile = dirname(__FILE__) . '/../../tidyallrc';
@@ -135,10 +150,9 @@ sub CreateTidyAll {
     );
 
     # Now we try to determine the OTRS version from the commit
-    my @FileList = $Self->GetGitFileList($Commit);
 
     # Look for a RELEASE file first to determine the framework version
-    if ( grep { $_ eq 'RELEASE' } @FileList ) {
+    if ( grep { $_ eq 'RELEASE' } @{ $FileList } ) {
         my @Content = split /\n/, $Self->GetGitFileContents( 'RELEASE', $Commit );
 
         my ( $VersionMajor, $VersionMinor ) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
@@ -149,7 +163,7 @@ sub CreateTidyAll {
     # Look for any SOPM files
     else {
         FILE:
-        for my $File (@FileList) {
+        for my $File (@{ $FileList }) {
             if ( substr( $File, -5, 5 ) eq '.sopm' ) {
                 my @Content = split /\n/, $Self->GetGitFileContents( $File, $Commit );
 
