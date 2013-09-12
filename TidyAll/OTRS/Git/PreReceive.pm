@@ -81,9 +81,15 @@ sub HandleInput {
 
     my (@Results);
 
+    LINE:
     for my $Line (@Lines) {
         chomp($Line);
         my ( $Base, $Commit, $Ref ) = split( /\s+/, $Line );
+
+        if (substr($Ref, 0, 9) eq 'refs/tags') {
+            # This is a tag, no need to verify any files.
+            next LINE;
+        }
 
         print "Checking framework version for $Ref... ";
 
