@@ -27,6 +27,8 @@
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
         <File Permission="755" Location="scripts/install-hook.pl"/>
         <File Permission="755" Location="scripts/uninstall-hook.pl"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins.pm"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
