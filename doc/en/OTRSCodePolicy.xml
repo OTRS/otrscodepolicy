@@ -82,6 +82,9 @@
                 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
                 ]]></screen>
                 </para></listitem>
+                <listitem><para>
+                    Some of the checks are implemented as Perl::Critic policies. To disable these individually, you can place "## no critic" marks as it is usual for Perl::Critic.
+                </para></listitem>
             </itemizedlist>
         </para>
     </section>
