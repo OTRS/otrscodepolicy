@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+    "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<book lang='en'>
+
+<bookinfo>
+<title>$Name</title>
+<edition>$Description Version $Version</edition>
+
+<copyright>
+<year>$YearStamp</year>
+<holder>$Vendor, $URL</holder>
+</copyright>
+
+<date>$DateStamp</date>
+
+<legalnotice>
+    <para>$License</para>
+    <para>This work is copyrighted by $Vendor, Norsk-Data-Str. 1, 61352 Bad Homburg, Germany.</para>
+    <para>Build Date: $DateStamp</para>
+</legalnotice>
+
+</bookinfo>
+
+<preface id="preface" >
+    <title>Preface</title>
+    <para>
+        OTRSCodePolicy is a general code quality checker that can also make changes to the code.
+    </para>
+</preface>
+
+<chapter>
+    <title>Feature List</title>
+    <section>
+        <title>How it can be used</title>
+        <para>
+            <itemizedlist>
+                <listitem><para>manually (see below)</para></listitem>
+                <listitem><para>as a pre commit hook that validates your local changes</para></listitem>
+                <listitem><para>as a pre receive filter that checks what you push to git.otrs.org</para></listitem>
+                <listitem><para>as a unit test that you can run locally and also runs on the UT</para></listitem>
+                servers (for the framework)
+            </itemizedlist>
+        </para>
+    </section>
+    <section>
+        <title>What's cool about it</title>
+        <para>
+            <itemizedlist>
+                <listitem><para>modular, easy to extend and configure</para></listitem>
+                <listitem><para>single point of contact for all code quality issues</para></listitem>
+                <listitem><para>already runs on the UT servers to maintain code quality in the framework continuously</para></listitem>
+                <listitem><para>automatically detects the framework version, code checks can run conditionally - this means we can make it stricter for future versions of OTRS - also should not complain about code in packages for older OTRS versions too much</para></listitem>
+                <listitem><para>You can disable single filters directly in your code instead of in a huge configuration file with tons of exceptions.</para></listitem>
+            </itemizedlist>
+        </para>
+    </section>
+    <section>
+        <title>How to run it to validate your code</title>
+        <para>
+            <itemizedlist>
+                <listitem><para>manually: call /ws/OTRSCodePolicy/TidyAll/run.pl from the toplevel of your repository (I have a git alias for this). Checks changed files (no arguments), all files (--all), a directory (--directory) or a file (--file).</para></listitem>
+                <listitem><para>pre commit hook: call /ws/OTRSCodePolicy/scripts/install-hook.pl in every local repository that you want to have the pre commit hook. It will automatically be run by "git commit" and reject your commit if a problem was found. Skip with "git commit --no-verify".</para></listitem>
+                <listitem><para>UnitTest: install package into OTRS, then run bin/otrs.UnitTest.pl.</para></listitem>
+            </itemizedlist>
+        </para>
+    </section>
+    <section>
+        <title>How to configure it</title>
+        <para>
+            <itemizedlist>
+                <listitem><para>Configuration is done in TidyAll/tidyallrc. This file contains only directory-level configuration, no exceptions for single customized files or modules.</para></listitem>
+                <listitem><para>If you need to make an exception in a file for a certain filter, you can use this syntax: nofilter(Name::Of::Filter).
+
+                <screen><![CDATA[
+                Example Perl:
+                ## nofilter(TidyAll::Plugin::OTRS::Perl::ISA)
+
+                Example SOPM:
+                <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
+                ]]></screen>
+                </para></listitem>
+            </itemizedlist>
+        </para>
+    </section>
+</chapter>
+
+<chapter>
+    <title>System Requirements</title>
+    <section>
+        <title>Framework</title>
+        <para>The following OTRS framework is required:</para>
+        <para>
+        $Framework
+        </para>
+    </section>
+    <section>
+        <title>Packages</title>
+        <para>The following packages are required:</para>
+        <para>
+        $PackageRequired
+        </para>
+    </section>
+    <section>
+        <title>Operating System</title>
+        <para>This package requires one of the following operating systems:</para>
+        <para>
+        $OS
+        </para>
+    </section>
+    <section>
+        <title>Third Party Software</title>
+        <para>This third party software is required to use this package:</para>
+        <para>
+            <itemizedlist>
+                <listitem><para>xmllint (often in the libxml2-utils package)</para></listitem>
+            </itemizedlist>
+        </para>
+    </section>
+</chapter>
+
+<chapter>
+    <title>Installation</title>
+    <para>The following instructions explain how to install the package.</para>
+    <section>
+        <title>Admin Interface</title>
+        <para>
+            Please use the following URL to install the package utilizing the admin
+            interface (please note that you need to be in the admin group).
+        </para>
+        <para>
+            <ulink url="http://localhost/otrs/index.pl?Action=AdminPackageManager">
+                http://localhost/otrs/index.pl?Action=AdminPackageManager
+            </ulink>
+        </para>
+    </section>
+    <section>
+        <title>Command Line</title>
+        <para>
+            Whenever you cannot use the Admin Interface for whatever reason,
+            you may use the following command line tool (&quot;bin/otrs.PackageManager.pl&quot;)
+            instead.
+        </para>
+        <para>
+        <screen>
+            shell> bin/otrs.PackageManager.pl  -a install -p /path/to/$Name-$Version.opm
+        </screen>
+        </para>
+    </section>
+</chapter>
+
+<chapter>
+    <!-- You can build this chapter by running module-tools/Config2Docbook.pl -->
+    <title>Configuration</title>
+    <para>
+        This package does not need to be configured.
+    </para>
+</chapter>
+<chapter>
+    <title>Filelist</title>
+    <!-- Standard text. Don't change this -->
+    <para>This list shows all included files and the referring permissions.</para>
+    <para>
+       $Filelist
+    </para>
+</chapter>
+
+<chapter>
+    <title>ChangeLog</title>
+    <para>
+    $ChangeLog
+    </para>
+</chapter>
+
+<chapter>
+    <title>Contacts</title>
+    <para>People who are involved in this implementation.</para>
+    <section>
+        <title>OTRS AG</title>
+        <para>
+            Accounting: Rene Bakker &lt;sales@otrs.com&gt;, Phone +49 (0)6172 681988 0
+        </para>
+        <para>
+            Technical: Manuel Hecht &lt;dev-support@otrs.com&gt;, Phone +49 (0)6172 681988 0
+        </para>
+    </section>
+</chapter>
+
+</book>
