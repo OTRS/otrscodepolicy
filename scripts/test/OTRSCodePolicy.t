@@ -50,6 +50,7 @@ my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     #verbose    => 1,
 );
 $TidyAll->DetermineFrameworkVersionFromDirectory();
+$TidyAll->GetFileListFromDirectory();
 
 FILE:
 for my $File (@Files) {

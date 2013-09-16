@@ -17,8 +17,9 @@ use base qw(Code::TidyAll);
 
 our $FrameworkVersionMajor = 0;
 our $FrameworkVersionMinor = 0;
+our @FileList              = ();    # all files in current repository
 
-sub new_from_conf_file {    ## no critic
+sub new_from_conf_file {            ## no critic
     my ( $Class, $ConfigFile, %Param ) = @_;
 
     # possibly call Parent->new(@args) first
@@ -27,6 +28,7 @@ sub new_from_conf_file {    ## no critic
     # Reset when a new object is created
     $FrameworkVersionMajor = 0;
     $FrameworkVersionMinor = 0;
+    @FileList              = ();
 
     return $Self;
 }
@@ -79,6 +81,32 @@ sub DetermineFrameworkVersionFromDirectory {
     }
 
     print "could not determine OTRS version!\n";
+    return;
+}
+
+sub GetFileListFromDirectory {
+    my ( $Self, %Param ) = @_;
+
+    my $Wanted = sub {
+
+        # Skip non-regular files and directories.
+        return if ( !-f $File::Find::name );
+
+        # Also skip symbolic links, TidyAll does not like them.
+        return if ( -l $File::Find::name );
+
+        # Skip git and tidyall cache files
+        return if index( $File::Find::name, '.git/' ) > -1;
+        return if index( $File::Find::name, '.tidyall.d/' ) > -1;
+
+        push @FileList, $File::Find::name;
+    };
+
+    File::Find::find(
+        $Wanted,
+        $Self->{root_dir},
+    );
+
     return;
 }
 

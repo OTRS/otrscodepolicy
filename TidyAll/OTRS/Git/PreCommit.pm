@@ -73,6 +73,8 @@ sub Run {
             data_dir   => File::Spec->tmpdir(),
         );
         $TidyAll->DetermineFrameworkVersionFromDirectory();
+        $TidyAll->GetFileListFromDirectory();
+
         my @CheckResults = $TidyAll->process_paths( map {"$RootDir/$_"} @ChangedFiles );
 
         if ( my @ErrorResults = grep { $_->error() } @CheckResults ) {

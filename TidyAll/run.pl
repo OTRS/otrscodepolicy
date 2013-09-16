@@ -81,6 +81,11 @@ if ( defined $Directory && length $Directory ) {
 
         # Also skip symbolic links, TidyAll does not like them.
         return if ( -l $File::Find::name );
+
+        # Skip git and tidyall cache files
+        return if index( $File::Find::name, '.git/' ) > -1;
+        return if index( $File::Find::name, '.tidyall.d/' ) > -1;
+
         push @Files, $File::Find::name;
     };
 
@@ -116,6 +121,7 @@ my $TidyAll = TidyAll::OTRS->new_from_conf_file(
 );
 
 $TidyAll->DetermineFrameworkVersionFromDirectory();
+$TidyAll->GetFileListFromDirectory();
 
 my @Results;
 if ( !$All ) {

@@ -150,6 +150,14 @@ sub CreateTidyAll {
         check_only => 1,
     );
 
+    # We cannot use these functions here because we have a bare git repository,
+    #   so we have to do it on our own.
+    #$TidyAll->DetermineFrameworkVersionFromDirectory();
+    #$TidyAll->GetFileListFromDirectory();
+
+    # Set the list of files to be checked
+    @TidyAll::OTRS::FileList = @{$FileList};
+
     # Now we try to determine the OTRS version from the commit
 
     # Look for a RELEASE file first to determine the framework version
