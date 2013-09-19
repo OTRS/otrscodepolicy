@@ -15,6 +15,11 @@ package TidyAll::OTRS;
 use IO::File;
 use base qw(Code::TidyAll);
 
+# Require some needed modules here for clarity
+use Code::TidyAll 0.17;
+use Perl::Critic;
+use Perl::Tidy;
+
 our $FrameworkVersionMajor = 0;
 our $FrameworkVersionMinor = 0;
 our @FileList              = ();    # all files in current repository
