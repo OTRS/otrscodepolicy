@@ -24,10 +24,26 @@ sub validate_source {    ## no critic
 
     my @SOPMFileList;
 
+    # Only validate files in subdirectories that are active for checking by
+    #   default or actually appear on the list of packaged files.
+    my %ValidateUnpackagedFilesInDirectories = (
+        bin     => 1,
+        Custom => 1,
+        Kernel => 1,
+        var    => 1,
+        scripts => 1,
+    );
+
     LINE:
     for my $Line ( split /\n/, $Code ) {
         if ( $Line =~ m/<File.*Location="([^"]+)".*\/>/ ) {
-            push @SOPMFileList, $1;
+            my $File = $1;
+            push @SOPMFileList, $File;
+
+            my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
+            if ($ToplevelDirectory) {
+                $ValidateUnpackagedFilesInDirectories{ $ToplevelDirectory } = 1;
+            }
         }
     }
 
@@ -40,13 +56,10 @@ sub validate_source {    ## no critic
 
     FILE:
     for my $File (@TidyAll::OTRS::FileList) {
-        # Files to ignore. Only list files here which may be present
-        #   in the git repositories. Others should be ignored in
-        #   TidyAll::OTRS::GetFileListFromDirectory().
-        next if substr( $File, 0, 3 ) eq 'doc';
-        next if substr( $File, 0, 11 ) eq 'development';
-        next if substr( $File, -5 ) eq '.sopm';
-        next if $File =~ m{(^|/)[.]};    # ignore hidden files
+
+        my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
+        next if (!$ToplevelDirectory);
+        next if !$ValidateUnpackagedFilesInDirectories{ $ToplevelDirectory };
 
         if ( !grep { $_ eq $File } @SOPMFileList ) {
             $ErrorMessageUnpackagedFiles .= "$File\n";
