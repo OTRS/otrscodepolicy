@@ -48,7 +48,7 @@ sub Run {
 
         # Gather file paths to be committed
         my $Output = capturex( 'git', "status", "--porcelain" );
-        my @ChangedFiles = grep {-f} ( $Output =~ /^\s?[MA]+\s+(.*)/gm );
+        my @ChangedFiles = grep {-f} ( $Output =~ /^[MA]+\s+(.*)/gm );
         return if !@ChangedFiles;
 
         # Find OTRSCodePolicy configuration
