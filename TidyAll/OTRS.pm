@@ -100,11 +100,16 @@ sub GetFileListFromDirectory {
         # Also skip symbolic links, TidyAll does not like them.
         return if ( -l $File::Find::name );
 
-        # Skip git and tidyall cache files
+        # Files to ignore. Only list files here which cannot be present
+        #   in a git repository.
         return if index( $File::Find::name, '.git/' ) > -1;
         return if index( $File::Find::name, '.tidyall.d/' ) > -1;
+        return if index( $File::Find::name, 'perltidy.LOG' ) > -1;
 
-        push @FileList, $File::Find::name;
+        my $RelativeFileName = substr( $File::Find::name, length $Self->{root_dir} );
+        $RelativeFileName =~ s{^/*}{};
+
+        push @FileList, $RelativeFileName;
     };
 
     File::Find::find(

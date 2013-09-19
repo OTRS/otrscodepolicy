@@ -67,6 +67,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Time.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/FileList.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/FileRights.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/Name.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/PackageRequired.pm"/>
