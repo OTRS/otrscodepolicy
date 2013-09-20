@@ -1,5 +1,5 @@
 # --
-# OTRSCodePolicyPlugins/Common/HeaderlineFilename.t - code policy self tests
+# OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t - code policy self tests
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see

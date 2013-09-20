@@ -24,10 +24,11 @@
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
-        <File Permission="755" Location="scripts/install-hook.pl"/>
-        <File Permission="755" Location="scripts/uninstall-hook.pl"/>
+        <File Permission="755" Location="scripts/install-git-hooks.pl"/>
+        <File Permission="755" Location="scripts/uninstall-git-hooks.pl"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins.pm"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
@@ -87,6 +88,7 @@
         <File Permission="644" Location="TidyAll/tidyallrc"/>
         <File Permission="755" Location="TidyAll/git-hooks/pre-commit.pl"/>
         <File Permission="755" Location="TidyAll/git-hooks/pre-receive.pl"/>
+        <File Permission="755" Location="TidyAll/git-hooks/prepare-commit-msg.pl"/>
         <File Permission="755" Location="TidyAll/run.pl"/>
     </Filelist>
 </otrs_package>

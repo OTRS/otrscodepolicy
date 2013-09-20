@@ -32,24 +32,26 @@ sub violates {
     my $OpenMode;
 
     # parentheses around open are present: open()
-    if (Scalar::Util::blessed($NextSibling) eq 'PPI::Structure::List') {
+    if ( Scalar::Util::blessed($NextSibling) eq 'PPI::Structure::List' ) {
         my $Quote = $NextSibling->find('PPI::Token::Quote')->[0];
-        return if (!$Quote);
+        return if ( !$Quote );
         $OpenMode = $Quote->string();
     }
+
     # parentheses are not present
     else {
         # Loop until we found the Token after the first comma
         my $Counter;
-        while ($Counter++ < 10) {
+        while ( $Counter++ < 10 ) {
             $NextSibling = $NextSibling->snext_sibling();
 
             if (
                 Scalar::Util::blessed($NextSibling) eq 'PPI::Token::Operator'
                 && $NextSibling->content() eq ','
-            ) {
+                )
+            {
                 my $Quote = $NextSibling->snext_sibling();
-                return if (!$Quote || !$Quote->isa('PPI::Token::Quote'));
+                return if ( !$Quote || !$Quote->isa('PPI::Token::Quote') );
                 $OpenMode = $Quote->string();
                 last;
             }

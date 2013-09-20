@@ -28,9 +28,9 @@ sub validate_source {    ## no critic
     #   default or actually appear on the list of packaged files.
     my %ValidateUnpackagedFilesInDirectories = (
         bin     => 1,
-        Custom => 1,
-        Kernel => 1,
-        var    => 1,
+        Custom  => 1,
+        Kernel  => 1,
+        var     => 1,
         scripts => 1,
     );
 
@@ -42,7 +42,7 @@ sub validate_source {    ## no critic
 
             my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
             if ($ToplevelDirectory) {
-                $ValidateUnpackagedFilesInDirectories{ $ToplevelDirectory } = 1;
+                $ValidateUnpackagedFilesInDirectories{$ToplevelDirectory} = 1;
             }
         }
     }
@@ -58,8 +58,8 @@ sub validate_source {    ## no critic
     for my $File (@TidyAll::OTRS::FileList) {
 
         my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
-        next if (!$ToplevelDirectory);
-        next if !$ValidateUnpackagedFilesInDirectories{ $ToplevelDirectory };
+        next if ( !$ToplevelDirectory );
+        next if !$ValidateUnpackagedFilesInDirectories{$ToplevelDirectory};
 
         if ( !grep { $_ eq $File } @SOPMFileList ) {
             $ErrorMessageUnpackagedFiles .= "$File\n";

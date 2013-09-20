@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # --
-# scripts/install-hook.pl - install otrs-code-policy commit hooks into modules
+# scripts/uninstall-git-hooks.pl - install otrs-code-policy commit hooks into modules
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
@@ -23,15 +23,9 @@ use warnings;
 
 use Cwd;
 use File::Spec;
-use FindBin qw($RealBin);
 
 my $Directory = getcwd;
 
-# install hook
 unlink File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' );
-symlink(
-    File::Spec->catfile( $RealBin, '..', 'TidyAll', 'git-hooks', 'pre-commit.pl' ),
-    File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' )
-);
-
-print "Installed git commit hook in $Directory.\n\n";
+unlink File::Spec->catfile( $Directory, '.git', 'hooks', 'prepare-commit-msg' );
+print "Removed git hooks in $Directory.\n\n";
