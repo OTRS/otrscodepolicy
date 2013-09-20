@@ -64,7 +64,7 @@ sub Run {
         $Self->Is(
             $Exception,
             $Test->{Exception},
-            "$Test->{Name} - exception found",
+            "$Test->{Name} - exception found: $@",
         );
 
         next TEST if $Exception;
