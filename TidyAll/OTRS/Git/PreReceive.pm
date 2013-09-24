@@ -88,8 +88,16 @@ sub HandleInput {
 
         if ( substr( $Ref, 0, 9 ) eq 'refs/tags' ) {
             print "$Ref is a tag, ignoring.\n";
+            next LINE;
+        }
 
-            # This is a tag, no need to verify any files.
+        if ($Base eq '0000000000000000000000000000000000000000') {
+            print "No base commit found, stopping.\n";
+            next LINE;
+        }
+
+        if ($Commit eq '0000000000000000000000000000000000000000') {
+            print "No target commit found, stopping.\n";
             next LINE;
         }
 
