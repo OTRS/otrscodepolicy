@@ -18,5 +18,11 @@ use lib dirname($RealBin) . '/../Kernel/cpan-lib';
 
 use TidyAll::OTRS::Git::PreCommit;
 
+# skip merge commits
+if ( -e '.git/MERGE_MSG' ) {
+    print "merge commit. skipping commit hook...\n";
+    exit;
+}
+
 my $PreCommit = TidyAll::OTRS::Git::PreCommit->new();
 $PreCommit->Run();
