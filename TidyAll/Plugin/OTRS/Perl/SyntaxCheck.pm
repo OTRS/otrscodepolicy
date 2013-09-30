@@ -12,7 +12,7 @@ package TidyAll::Plugin::OTRS::Perl::SyntaxCheck;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use base qw(TidyAll::Plugin::OTRS::Perl);
 
 use File::Temp;
 

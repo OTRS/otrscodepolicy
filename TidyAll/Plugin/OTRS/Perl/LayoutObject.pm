@@ -15,13 +15,16 @@ use warnings;
 
 use File::Basename;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use base qw(TidyAll::Plugin::OTRS::Perl);
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
+
+    $Code = $Self->StripPod( Code => $Code );
+    $Code = $Self->StripComments( Code => $Code );
 
     if ( $Code =~ m{LayoutObject}xms ) {
         die __PACKAGE__ . "\n" . <<EOF;

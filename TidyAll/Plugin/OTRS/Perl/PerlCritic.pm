@@ -12,7 +12,7 @@ package TidyAll::Plugin::OTRS::Perl::PerlCritic;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use base qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
 our $Critic = Perl::Critic->new( -severity => 5 );
