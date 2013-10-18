@@ -69,7 +69,7 @@ sub Run {
     if ($ErrorMessage) {
         print STDERR "$ErrorMessage\n";
         print STDERR "*** Push was rejected. Please fix the errors and try again. ***";
-        die;
+        exit 1;
     }
 }
 
