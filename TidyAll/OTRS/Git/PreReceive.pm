@@ -90,12 +90,12 @@ sub HandleInput {
             next LINE;
         }
 
-        if ($Base eq '0000000000000000000000000000000000000000') {
+        if ( $Base eq '0000000000000000000000000000000000000000' ) {
             print "No base commit found, stopping.\n";
             next LINE;
         }
 
-        if ($Commit eq '0000000000000000000000000000000000000000') {
+        if ( $Commit eq '0000000000000000000000000000000000000000' ) {
             print "No target commit found, stopping.\n";
             next LINE;
         }

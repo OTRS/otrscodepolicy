@@ -68,6 +68,7 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Time.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration.xsd"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/StaticFiles/XSD/Database.xsd"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
@@ -82,6 +83,8 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/Tabs.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/TrailingWhitespace.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/Configuration/XSDValidator.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/Database/XSDValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/ConfigDescription.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/ConfigSyntax.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/XML/Lint.pm"/>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+
+    <xs:element name="otrs_config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ConfigItem" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="version" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="init" use="required" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ConfigItem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Description"/>
+                <xs:element name="Group" type="xs:string" />
+                <xs:element name="SubGroup" type="xs:string" />
+                <xs:element name="ValidateModule" type="xs:string" minOccurs="0" />
+                <xs:element ref="Setting"/>
+            </xs:sequence>
+            <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="Valid" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="Required" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="ConfigLevel" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Description">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Setting">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="String"/>
+                <xs:element ref="Option"/>
+                <xs:element ref="Hash"/>
+                <xs:element ref="Array"/>
+                <xs:element ref="TextArea"/>
+                <xs:element ref="TimeVacationDays"/>
+                <xs:element ref="TimeVacationDaysOneTime"/>
+                <xs:element ref="TimeWorkingHours"/>
+                <xs:element ref="FrontendModuleReg"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="String">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="Regex" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Check" use="optional" type="xs:anySimpleType"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Option">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="Key" use="required" type="xs:anySimpleType"/>
+                                <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="SelectedID" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Location" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Hash">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType mixed="true">
+                        <xs:choice minOccurs="0">
+                            <xs:element ref="Hash"/>
+                            <xs:element ref="Array"/>
+                        </xs:choice>
+                        <xs:attribute name="Key" use="required" type="xs:anySimpleType"/>
+                        <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="SelectedID" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Array">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType mixed="true">
+                        <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="SelectedID" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TextArea">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TimeVacationDays">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="Month" use="required" type="xs:anySimpleType"/>
+                                <xs:attribute name="Day" use="required" type="xs:anySimpleType"/>
+                                <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TimeVacationDaysOneTime">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="Year" use="required" type="xs:anySimpleType"/>
+                                <xs:attribute name="Month" use="required" type="xs:anySimpleType"/>
+                                <xs:attribute name="Day" use="required" type="xs:anySimpleType"/>
+                                <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TimeWorkingHours">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Day" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="Hour" minOccurs="0" maxOccurs="unbounded" type="xs:integer"/>
+                        </xs:sequence>
+                        <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+                        <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="FrontendModuleReg" type="xs:anyType">
+    </xs:element>
+</xs:schema>
