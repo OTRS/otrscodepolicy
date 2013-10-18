@@ -67,8 +67,9 @@ sub Run {
         print STDERR "*** Error running pre-receive hook (allowing push to proceed):\n$Exception";
     };
     if ($ErrorMessage) {
-        print "$ErrorMessage\n";
-        die "*** Push was rejected. Please fix the errors and try again. ***";
+        print STDERR "$ErrorMessage\n";
+        print STDERR "*** Push was rejected. Please fix the errors and try again. ***";
+        die;
     }
 }
 
