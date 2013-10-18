@@ -74,6 +74,8 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/Name.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/PackageRequired.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/RequiredElements.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/SOPM.xsd"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/XSDValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ColumnTypes.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWords.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>

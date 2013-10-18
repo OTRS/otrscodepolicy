@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/XML/Lint.pm - code quality plugin
+# TidyAll/Plugin/OTRS/SOPM/XSDValidator.pm - code quality plugin
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,22 +7,25 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::XML::Lint;
+package TidyAll::Plugin::OTRS::SOPM::XSDValidator;
 
 use strict;
 use warnings;
 
+use File::Basename;
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd {    ## no critic
-    return 'xmllint --noout --nonet'
+    my $XSDFile = dirname(__FILE__) . '/SOPM.xsd';
+    return "xmllint --noout --nonet --schema $XSDFile";
 }
 
 sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
+    return if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
 
     my $Command = sprintf( "%s %s %s", $Self->cmd(), $Self->argv(), $Filename );
     my ( $Output, @Result ) = capture_merged { system($Command) };

@@ -278,6 +278,9 @@ select = *.{opm,sopm}
 [+TidyAll::Plugin::OTRS::SOPM::RequiredElements]
 select = *.{opm,sopm}
 
+[+TidyAll::Plugin::OTRS::SOPM::XSDValidator]
+select = *.{opm,sopm}
+
 ;
 ; SQL
 ;
@@ -337,7 +340,6 @@ select = Kernel/Config/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Lint]
 select = **/*.xml
-argv = --noout --nonet
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
