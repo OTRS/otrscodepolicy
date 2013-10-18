@@ -18,6 +18,7 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if ( $Self->IsFrameworkVersionLessThan( 2, 4 ) );
 
     # get attributes
     my $Count        = -1;
