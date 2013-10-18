@@ -68,13 +68,14 @@
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/Time.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/StaticFiles/XSD/Database.xsd"/>
+        <File Permission="644" Location="TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/FileList.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/FileRights.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/Name.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/PackageRequired.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/RequiredElements.pm"/>
-        <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/SOPM.xsd"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SOPM/XSDValidator.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ColumnTypes.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/SQL/ReservedWords.pm"/>

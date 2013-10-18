@@ -17,7 +17,7 @@ use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd {    ## no critic
-    my $XSDFile = dirname(__FILE__) . '/SOPM.xsd';
+    my $XSDFile = dirname(__FILE__) . '/../StaticFiles/XSD/SOPM.xsd';
     return "xmllint --noout --nonet --schema $XSDFile";
 }
 
