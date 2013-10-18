@@ -64,13 +64,11 @@ sub Run {
     }
     catch {
         my $Exception = $_;
-
-        #die $Exception;
         print STDERR "*** Error running pre-receive hook (allowing push to proceed):\n$Exception";
     };
     if ($ErrorMessage) {
         print "$ErrorMessage\n";
-        print "Push still accepted until real checks are activated.\n";
+        die "*** Push was rejected. Please fix the errors and try again. ***".
     }
 }
 
