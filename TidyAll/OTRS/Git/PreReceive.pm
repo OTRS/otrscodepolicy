@@ -68,7 +68,7 @@ sub Run {
     };
     if ($ErrorMessage) {
         print "$ErrorMessage\n";
-        die "*** Push was rejected. Please fix the errors and try again. ***".
+        die "*** Push was rejected. Please fix the errors and try again. ***";
     }
 }
 
