@@ -215,6 +215,7 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:element ref="TableCreate" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="TableAlter" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
@@ -223,19 +224,23 @@
     <xs:element name="DatabaseUninstall">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
-                <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableCreate" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="TableAlter" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="DatabaseReinstall">
         <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                </xs:extension>
-            </xs:simpleContent>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="TableCreate" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableAlter" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="DatabaseUpgrade">
@@ -243,6 +248,7 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:element ref="TableCreate" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="TableAlter" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
