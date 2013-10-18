@@ -338,6 +338,10 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
 select = Kernel/Config/**/*.xml
 
+[+TidyAll::Plugin::OTRS::XML::Database::XSDValidator]
+select = scripts/database/*.xml
+select = scripts/database/update/*.xml
+
 [+TidyAll::Plugin::OTRS::XML::Lint]
 select = **/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*

@@ -2,6 +2,18 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
     <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
 
+    <xs:element name="database">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="Table" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableCreate" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableAlter" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="DatabaseInstall">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
@@ -48,6 +60,20 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="Table">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="Column" maxOccurs="unbounded" />
+                <xs:element ref="ForeignKey" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="Index" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="Unique" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="TableCreate">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
@@ -77,6 +103,8 @@
             </xs:choice>
             <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
             <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="NameOld" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="NameNew" use="optional" type="xs:anySimpleType"/>
             <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
         </xs:complexType>
     </xs:element>
@@ -132,6 +160,7 @@
                     <xs:attribute name="Default" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="NameOld" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="NameNew" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Required" use="optional" type="xs:anySimpleType"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -205,11 +234,10 @@
 
     <xs:element name="UniqueCreate">
         <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="xs:string">
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
-                </xs:extension>
-            </xs:simpleContent>
+            <xs:sequence>
+                <xs:element ref="UniqueColumn" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
         </xs:complexType>
     </xs:element>
 
@@ -239,6 +267,7 @@
             <xs:simpleContent>
                 <xs:extension base="xs:string">
                     <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Size" use="optional" type="xs:anySimpleType"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
