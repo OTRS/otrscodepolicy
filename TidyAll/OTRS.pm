@@ -22,6 +22,7 @@ use Perl::Tidy;
 
 our $FrameworkVersionMajor = 0;
 our $FrameworkVersionMinor = 0;
+our $ThirdpartyModule      = 0;
 our @FileList              = ();    # all files in current repository
 
 sub new_from_conf_file {            ## no critic
@@ -33,6 +34,7 @@ sub new_from_conf_file {            ## no critic
     # Reset when a new object is created
     $FrameworkVersionMajor = 0;
     $FrameworkVersionMinor = 0;
+    $ThirdpartyModule      = 0;
     @FileList              = ();
 
     return $Self;
@@ -40,8 +42,6 @@ sub new_from_conf_file {            ## no critic
 
 sub DetermineFrameworkVersionFromDirectory {
     my ( $Self, %Param ) = @_;
-
-    print "Checking OTRS framework version... ";
 
     # First check if we have an OTRS directory, use RELEASE info then.
     if ( -r $Self->{root_dir} . '/RELEASE' ) {
@@ -76,16 +76,31 @@ sub DetermineFrameworkVersionFromDirectory {
                         $FrameworkVersionMinor = $VersionMinor;
                     }
                 }
+                elsif ( $Line =~ m{<Vendor>} && $Line !~ m{OTRS} ) {
+                    $ThirdpartyModule = 1;
+                }
             }
         }
     }
 
     if ($FrameworkVersionMajor) {
-        print "found OTRS version $FrameworkVersionMajor.$FrameworkVersionMinor\n";
-        return;
+        print "Found OTRS version $FrameworkVersionMajor.$FrameworkVersionMinor.\n";
+    }
+    else {
+        print "Could not determine OTRS version (assuming latest version)!\n";
     }
 
-    print "could not determine OTRS version!\n";
+    if ($ThirdpartyModule) {
+        print
+            "This seems to be module not copyrighted by OTRS AG. Copyright information will not be changed.\n";
+    }
+    else {
+        print
+            "This seems to be module copyrighted by OTRS AG. Copyright information will automatically be assigned to OTRS AG.\n";
+        print
+            "  Change the <Vendor> tag in your SOPM to avoid this if copyright belongs to another party.\n";
+    }
+
     return;
 }
 

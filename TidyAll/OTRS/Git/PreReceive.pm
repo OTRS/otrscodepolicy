@@ -199,6 +199,9 @@ sub CreateTidyAll {
                             $TidyAll::OTRS::FrameworkVersionMinor = $VersionMinor;
                         }
                     }
+                    elsif ( $Line =~ m{<Vendor>} && $Line !~ m{OTRS} ) {
+                        $TidyAll::OTRS::ThirdpartyModule = 1;
+                    }
                 }
 
                 last FILE;
@@ -208,10 +211,21 @@ sub CreateTidyAll {
 
     if ($TidyAll::OTRS::FrameworkVersionMajor) {
         print
-            "found OTRS version $TidyAll::OTRS::FrameworkVersionMajor.$TidyAll::OTRS::FrameworkVersionMinor\n";
+            "Found OTRS version $TidyAll::OTRS::FrameworkVersionMajor.$TidyAll::OTRS::FrameworkVersionMinor\n";
     }
     else {
-        print "could not determine OTRS version!\n";
+        print "Could not determine OTRS version (assuming latest version)!\n";
+    }
+
+    if ($TidyAll::OTRS::ThirdpartyModule) {
+        print
+            "This seems to be module not copyrighted by OTRS AG. Copyright information will not be changed.\n";
+    }
+    else {
+        print
+            "This seems to be module copyrighted by OTRS AG. Copyright information will automatically be assigned to OTRS AG.\n";
+        print
+            "  Change the <Vendor> tag in your SOPM to avoid this if copyright belongs to another party.\n";
     }
 
     return $TidyAll;
