@@ -1,5 +1,10 @@
 package Perl::Critic::Policy::OTRS::RequireCamelCase;
 
+# nofilter(TidyAll::Plugin::OTRS::Common::HeaderlineFilename)
+# nofilter(TidyAll::Plugin::OTRS::Legal::ReplaceCopyright)
+# nofilter(TidyAll::Plugin::OTRS::Legal::AGPLValidator)
+# nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+
 use strict;
 use warnings;
 

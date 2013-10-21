@@ -1,9 +1,14 @@
 package Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules;
 
-# ABSTRACT: Check if modules have a "true" return value
+# nofilter(TidyAll::Plugin::OTRS::Common::HeaderlineFilename)
+# nofilter(TidyAll::Plugin::OTRS::Legal::ReplaceCopyright)
+# nofilter(TidyAll::Plugin::OTRS::Legal::AGPLValidator)
+# nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
 
 use strict;
 use warnings;
+
+# SYNOPSIS: Check if modules have a "true" return value
 
 use Perl::Critic::Utils qw{ :severities :classification :ppi };
 use base 'Perl::Critic::Policy';

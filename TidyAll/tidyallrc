@@ -4,7 +4,7 @@
 
 [+TidyAll::Plugin::OTRS::Common::HeaderlineFilename]
 select = **/*.{pl,pm,psgi,t,dtl,js}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = scripts/test/sample/**/*
@@ -12,7 +12,7 @@ ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkers]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = scripts/test/sample/**/*
@@ -88,7 +88,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
 select = **/*.{pl,pm,t,dtl}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = scripts/test/sample/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
@@ -96,7 +96,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
 select = **/*.{pl,pm,psgi,t,xml,dtl}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
@@ -168,7 +168,7 @@ ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/* Perl/Critic/**/*
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = scripts/test/sample/**/*
 ; do not run for commits to save time
