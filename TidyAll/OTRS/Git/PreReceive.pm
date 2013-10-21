@@ -225,7 +225,7 @@ sub CreateTidyAll {
         print
             "This seems to be module copyrighted by OTRS AG. Copyright information will automatically be assigned to OTRS AG.\n";
         print
-            "  Change the <Vendor> tag in your SOPM to avoid this if copyright belongs to another party.\n";
+            "  If this is not correct, you can change the <Vendor> tag in your SOPM.\n";
     }
 
     return $TidyAll;
