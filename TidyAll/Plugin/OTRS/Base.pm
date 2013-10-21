@@ -51,6 +51,12 @@ sub IsFrameworkVersionLessThan {
     return 0;
 }
 
+sub IsThirdpartyModule {
+    my ($Self) = @_;
+
+    return $TidyAll::OTRS::ThirdpartyModule ? 1 : 0;
+}
+
 #Process Perl code and replace all Pod sections with comments.
 
 sub StripPod {

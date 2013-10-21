@@ -23,6 +23,9 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if ( $Self->IsFrameworkVersionLessThan( 2, 4 ) );
 
+    # Don't replace copyright in thirdparty code.
+    return $Code if $Self->IsThirdpartyModule();
+
     my $Copy      = 'OTRS AG, http://otrs.com/';
     my $StartYear = 2001;
 
