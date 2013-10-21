@@ -15,7 +15,7 @@
     <xs:element name="ConfigItem">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="Description"/>
+                <xs:element name="Description" type="TranslatableString" />
                 <xs:element name="Group" type="xs:string" />
                 <xs:element name="SubGroup" type="xs:string" />
                 <xs:element name="ValidateModule" type="xs:string" minOccurs="0" />
@@ -28,15 +28,13 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="Description">
-        <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="xs:string">
-                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
-                </xs:extension>
-            </xs:simpleContent>
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="TranslatableString">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
 
     <xs:element name="Setting">
         <xs:complexType>
@@ -57,7 +55,7 @@
     <xs:element name="String">
         <xs:complexType>
             <xs:simpleContent>
-                <xs:extension base="xs:string">
+                <xs:extension base="TranslatableString">
                     <xs:attribute name="Regex" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="Check" use="optional" type="xs:anySimpleType"/>
@@ -72,9 +70,8 @@
                 <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:simpleContent>
-                            <xs:extension base="xs:string">
+                            <xs:extension base="TranslatableString">
                                 <xs:attribute name="Key" use="required" type="xs:anySimpleType"/>
-                                <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -179,6 +176,65 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="FrontendModuleReg" type="xs:anyType">
+    <xs:element name="FrontendModuleReg">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="GroupRo" type="xs:string" />
+                    <xs:element name="Group" type="xs:string"/>
+                    <xs:element name="Description" type="TranslatableString" />
+                    <xs:element name="Title" type="TranslatableString"/>
+                    <xs:element name="NavBarName" type="xs:string"/>
+                </xs:choice>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="NavBar">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                                    <xs:element name="GroupRo" type="xs:string" />
+                                    <xs:element name="Group" type="xs:string"/>
+                                    <xs:element name="Description" type="TranslatableString" />
+                                    <xs:element name="Name" type="TranslatableString" />
+                                    <xs:element name="Link" type="xs:string" />
+                                    <xs:element name="LinkOption" type="xs:string" />
+                                    <xs:element name="NavBar" type="xs:string"/>
+                                    <xs:element name="Type" type="xs:string"/>
+                                    <xs:element name="Block" type="xs:string"/>
+                                    <xs:element name="AccessKey" type="xs:string"/>
+                                    <xs:element name="Prio" type="xs:string"/>
+                                </xs:choice>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="NavBarModule">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                                    <xs:element name="GroupRo" type="xs:string" />
+                                    <xs:element name="Group" type="xs:string"/>
+                                    <xs:element name="Description" type="TranslatableString" />
+                                    <xs:element name="Name" type="TranslatableString" />
+                                    <xs:element name="Module" type="xs:string"/>
+                                    <xs:element name="Block" type="xs:string"/>
+                                    <xs:element name="Prio" type="xs:string"/>
+                                </xs:choice>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Loader">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:choice minOccurs="0" maxOccurs="unbounded" >
+                                    <xs:element name="CSS" type="xs:string"/>
+                                    <xs:element name="CSS_IE8" type="xs:string" />
+                                    <xs:element name="CSS_IE7" type="xs:string" />
+                                    <xs:element name="JavaScript" type="xs:string" />
+                                </xs:choice>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
     </xs:element>
 </xs:schema>
