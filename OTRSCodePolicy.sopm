@@ -22,6 +22,7 @@
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
+        <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireLabels.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
         <File Permission="644" Location="Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
         <File Permission="755" Location="scripts/install-git-hooks.pl"/>
@@ -29,6 +30,7 @@
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins.pm"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>

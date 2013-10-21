@@ -33,12 +33,6 @@ sub applies_to {
     keys %dispatcher,
 }
 
-sub new {
-    my ( $ClassName, @Parameters ) = @_;
-    my $Self = $ClassName->SUPER::new(@Parameters);
-    return $Self;
-}
-
 sub violates {
     my ( $Self, $Element ) = @_;
 
