@@ -21,7 +21,7 @@ sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );
-    return if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
+    return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
     my $Checker = new Pod::Checker();
     my $Output = capture_merged { $Checker->parse_from_file( $File, \*STDERR ) };

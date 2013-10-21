@@ -18,7 +18,7 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
-    return if ( $Self->IsFrameworkVersionLessThan( 2, 4 ) );
+    return if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     if ( $Code !~ m{<License> .+? </License>}smx ) {
         die __PACKAGE__ . "\nCould not find a license header."

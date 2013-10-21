@@ -18,7 +18,7 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
-    return if ( $Self->IsFrameworkVersionLessThan( 3, 1 ) );
+    return if $Self->IsFrameworkVersionLessThan( 3, 1 );
 
     if ( $Code =~ m{<PackageRequired>}smx ) {
         die __PACKAGE__ . "\n" . <<EOF;

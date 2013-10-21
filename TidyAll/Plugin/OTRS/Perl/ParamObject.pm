@@ -20,7 +20,7 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
+    return if $Self->IsFrameworkVersionLessThan( 3, 3 );
 
     $Code = $Self->StripPod( Code => $Code );
     $Code = $Self->StripComments( Code => $Code );

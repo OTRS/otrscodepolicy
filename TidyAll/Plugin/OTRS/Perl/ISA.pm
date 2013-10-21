@@ -21,7 +21,7 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
-    return if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
+    return if $Self->IsFrameworkVersionLessThan( 3, 3 );
 
     # Don't allow push @ISA.
     if ( $Code =~ m{push\(?\s*\@ISA }xms ) {
@@ -38,7 +38,7 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 3 ) );
+    return $Code if $Self->IsFrameworkVersionLessThan( 3, 3 );
 
     # remove useless use vars qw(@ISA); (where ISA is not used)
     if ( $Code !~ m{\@ISA.*\@ISA}smx ) {

@@ -34,7 +34,7 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
+    return $Code if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
     # For framework 3.2 or later, rewrite /usr/bin/perl -w to
     # /usr/bin/perl

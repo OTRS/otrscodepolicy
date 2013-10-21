@@ -21,7 +21,7 @@ sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
-    return if ( $Self->IsFrameworkVersionLessThan( 3, 2 ) );
+    return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
     my @Violations = $Critic->critique($Filename);
 

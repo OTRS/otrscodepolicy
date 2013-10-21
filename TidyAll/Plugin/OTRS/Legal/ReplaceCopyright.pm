@@ -21,7 +21,7 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if ( $Self->IsFrameworkVersionLessThan( 2, 4 ) );
+    return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     # Don't replace copyright in thirdparty code.
     return $Code if $Self->IsThirdpartyModule();
