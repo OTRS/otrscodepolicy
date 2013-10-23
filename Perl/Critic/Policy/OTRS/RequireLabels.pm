@@ -41,7 +41,7 @@ sub violates {
     my $Label = $Children[0]->snext_sibling();
 
     if (
-           !$Label
+        !$Label
         || !$Label->isa('PPI::Token::Word')
         || $Label->content() !~ m{^[A-Z_]+}xms
         )
