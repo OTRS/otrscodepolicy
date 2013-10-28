@@ -92,7 +92,7 @@ sub DetermineFrameworkVersionFromDirectory {
 
     if ($ThirdpartyModule) {
         print
-            "This seems to be a module not copyrighted by OTRS AG. Copyright information will not be changed.\n";
+            "This seems to be a module not copyrighted by OTRS AG. File copyright will not be changed.\n";
     }
     else {
         print
