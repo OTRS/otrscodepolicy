@@ -270,13 +270,13 @@ select = *.{opm,sopm}
 select = *.{opm,sopm}
 
 [+TidyAll::Plugin::OTRS::SOPM::Name]
-select = *.{opm,sopm}
+select = *.{sopm}
 
 [+TidyAll::Plugin::OTRS::SOPM::PackageRequired]
 select = *.{opm,sopm}
 
 [+TidyAll::Plugin::OTRS::SOPM::RequiredElements]
-select = *.{opm,sopm}
+select = *.{sopm}
 
 [+TidyAll::Plugin::OTRS::SOPM::XSDValidator]
 select = *.{opm,sopm}
