@@ -36,7 +36,7 @@ sub validate_source {    ## no critic
 
     LINE:
     for my $Line ( split /\n/, $Code ) {
-        if ( $Line =~ m/<File.*Location="([^"]+)".*\/>/ ) {
+        if ( $Line =~ m/<File.*Location="([^"]+)"/ ) {
             my $File = $1;
             push @SOPMFileList, $File;
 
