@@ -92,11 +92,11 @@ sub DetermineFrameworkVersionFromDirectory {
 
     if ($ThirdpartyModule) {
         print
-            "This seems to be module not copyrighted by OTRS AG. Copyright information will not be changed.\n";
+            "This seems to be a module not copyrighted by OTRS AG. Copyright information will not be changed.\n";
     }
     else {
         print
-            "This seems to be module copyrighted by OTRS AG. Copyright information will automatically be assigned to OTRS AG.\n";
+            "This module seems to be copyrighted by OTRS AG. File copyright will automatically be assigned to OTRS AG.\n";
         print
             "  If this is not correct, you can change the <Vendor> tag in your SOPM.\n";
     }
