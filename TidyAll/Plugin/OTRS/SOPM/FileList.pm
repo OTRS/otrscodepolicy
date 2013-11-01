@@ -61,6 +61,9 @@ sub validate_source {    ## no critic
         next if ( !$ToplevelDirectory );
         next if !$ValidateUnpackagedFilesInDirectories{$ToplevelDirectory};
 
+        # skip documentation soruce files
+        next if $File =~ m{\A doc / [^/]+ / [^\.]+ \. xml \z}msx;
+
         if ( !grep { $_ eq $File } @SOPMFileList ) {
             $ErrorMessageUnpackagedFiles .= "$File\n";
         }
