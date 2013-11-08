@@ -5,10 +5,20 @@
     <xs:element name="otrs_config">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="Git" minOccurs="0" type="xs:string" />
                 <xs:element ref="ConfigItem" maxOccurs="unbounded" />
             </xs:sequence>
             <xs:attribute name="version" use="required" type="xs:anySimpleType"/>
-            <xs:attribute name="init" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="init" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Framework"/>
+                        <xs:enumeration value="Application"/>
+                        <xs:enumeration value="Config"/>
+                        <xs:enumeration value="Changes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
