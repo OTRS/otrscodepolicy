@@ -31,7 +31,7 @@ sub applies_to           { return 'PPI::Statement::Break' }
 sub violates {
     my ( $Self, $Element ) = @_;
 
-    return if $Self->IsFrameworkVersionLessThan( 3, 4 );
+    return if $Self->IsFrameworkVersionLessThan( 3, 5 );
 
     my @Children = $Element->children();
     if ( $Children[0]->content() ne 'next' && $Children[0]->content() ne 'last' ) {
