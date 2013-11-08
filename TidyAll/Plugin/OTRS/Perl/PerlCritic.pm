@@ -15,13 +15,21 @@ use warnings;
 use base qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
-our $Critic = Perl::Critic->new( -severity => 5 );
+our $Critic;
 
 sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
     return if $Self->IsFrameworkVersionLessThan( 3, 2 );
+
+    if (!$Critic) {
+        my $Severity = 5; # TODO: lower to 4 later
+        if ( $Self->IsFrameworkVersionLessThan( 3, 4 ) ) {
+            $Severity = 5; #  less strict for older versions
+        }
+        $Critic = Perl::Critic->new( -severity => $Severity );
+    }
 
     my @Violations = $Critic->critique($Filename);
 
