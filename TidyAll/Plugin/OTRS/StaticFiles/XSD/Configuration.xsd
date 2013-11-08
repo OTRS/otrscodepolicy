@@ -8,7 +8,7 @@
                 <xs:element name="Git" minOccurs="0" type="xs:string" />
                 <xs:element ref="ConfigItem" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="version" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="version" use="required" type="xs:string"/>
             <xs:attribute name="init" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -31,17 +31,37 @@
                 <xs:element name="ValidateModule" type="xs:string" minOccurs="0" />
                 <xs:element ref="Setting"/>
             </xs:sequence>
-            <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
-            <xs:attribute name="Valid" use="required" type="xs:anySimpleType"/>
-            <xs:attribute name="Required" use="required" type="xs:anySimpleType"/>
-            <xs:attribute name="ConfigLevel" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="required" type="xs:string"/>
+            <xs:attribute name="Valid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Required" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ConfigLevel" use="optional" type="xs:int"/>
         </xs:complexType>
     </xs:element>
 
     <xs:complexType name="TranslatableString">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                <xs:attribute name="Translatable" use="optional">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
