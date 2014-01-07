@@ -58,11 +58,11 @@ sub validate_source {    ## no critic
     for my $File (@TidyAll::OTRS::FileList) {
 
         my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
-        next if ( !$ToplevelDirectory );
-        next if !$ValidateUnpackagedFilesInDirectories{$ToplevelDirectory};
+        next FILE if ( !$ToplevelDirectory );
+        next FILE if !$ValidateUnpackagedFilesInDirectories{$ToplevelDirectory};
 
         # skip documentation soruce files
-        next if $File =~ m{\A doc / [^/]+ / [^\.]+ \. xml \z}msx;
+        next FILE if $File =~ m{\A doc / [^/]+ / [^\.]+ \. xml \z}msx;
 
         if ( !grep { $_ eq $File } @SOPMFileList ) {
             $ErrorMessageUnpackagedFiles .= "$File\n";

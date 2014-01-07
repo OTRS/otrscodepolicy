@@ -37,10 +37,10 @@ sub validate_source {    ## no critic
         $Counter++;
 
         # Allow ## no critic and ## use critic
-        next if $Line =~ m{^ \s* \#\# \s+ (?:no|use) \s+ critic}xms;
+        next LINE if $Line =~ m{^ \s* \#\# \s+ (?:no|use) \s+ critic}xms;
 
         # Allow ## nofilter
-        next if $Line =~ m{^ \s* \#\# \s+ nofilter }xms;
+        next LINE if $Line =~ m{^ \s* \#\# \s+ nofilter }xms;
 
         if ( $Line =~ /^[^#]/ && $Counter < 24 ) {
             $Flag = 1;

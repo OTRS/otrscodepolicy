@@ -23,21 +23,24 @@ sub validate_source {    ## no critic
     my $Counter;
     my $ErrorMessage;
 
+    LINE:
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
-        # next if IE behavior need to get ignored
+        # next line if IE behavior need to get ignored
         # see bug#5579 - Spaces in filenames are converted to + characters when downloading in IE.
-        next if $Line =~ /href="\$Env{"CGIHandle"}\/\$QData{"Filename"}?/;
+        next LINE if $Line =~ /href="\$Env{"CGIHandle"}\/\$QData{"Filename"}?/;
 
-        # next if links for agent/customer iface for cockpit is used
+        # next line if links for agent/customer iface for cockpit is used
         # see bug #6172 - Agent/Customer Interface links to instance broken
-        next if $Line =~ m{href="\$QData{" (?: (?: Agent | Customer ) Link | Destination ) "}}xms;
+        if ( $Line =~ m{href="\$QData{" (?: (?: Agent | Customer ) Link | Destination ) "}}xms ) {
+            next LINE;
+        }
 
         # allow the usage of QData if the line is commented out. Otherwise commenting out inherited
         # code (OldId) doesn't work and the filter still complains about the usage of QData in
         # href, although the code itself isn't effective at all
-        next if $Line =~ m{^[\t ]*\#}xms;
+        next LINE if $Line =~ m{^[\t ]*\#}xms;
 
         # now check href attribute
         if ( $Line !~ /href="(|#)"/i && $Line =~ /href=(.+?)[ >]/i ) {
