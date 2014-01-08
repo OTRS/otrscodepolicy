@@ -40,8 +40,7 @@
                 <listitem><para>manually (see below)</para></listitem>
                 <listitem><para>as a pre commit hook that validates your local changes</para></listitem>
                 <listitem><para>as a pre receive filter that checks what you push to git.otrs.org</para></listitem>
-                <listitem><para>as a unit test that you can run locally and also runs on the UT</para></listitem>
-                servers (for the framework)
+                <listitem><para>as a unit test that you can run locally and also runs on the UT servers (for the framework)</para></listitem>
             </itemizedlist>
         </para>
     </section>
