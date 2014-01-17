@@ -279,14 +279,4 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-    <xs:element name="DateTime">
-        <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="TranslatableString">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                </xs:extension>
-            </xs:simpleContent>
-        </xs:complexType>
-    </xs:element>
 </xs:schema>
