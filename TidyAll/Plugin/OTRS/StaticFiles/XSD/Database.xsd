@@ -157,6 +157,8 @@
             <xs:simpleContent>
                 <xs:extension base="xs:string">
                     <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="AutoIncrement" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="PrimaryKey" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="Default" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="NameOld" use="optional" type="xs:anySimpleType"/>
                     <xs:attribute name="NameNew" use="optional" type="xs:anySimpleType"/>
