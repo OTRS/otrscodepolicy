@@ -12,6 +12,10 @@ use warnings;
 use vars (qw($Self));
 use utf8;
 
+use File::Basename;
+use FindBin qw($RealBin);
+use lib dirname($RealBin) . '/Kernel/'; # find TidyAll
+
 use File::Find;
 use TidyAll::OTRS;
 use Cwd;
@@ -40,7 +44,7 @@ my $OldWorkingDir = getcwd();
 chdir($Home);
 
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
-    "$Home/TidyAll/tidyallrc",
+    "$Home/Kernel/TidyAll/tidyallrc",
     no_cache   => 1,
     check_only => 1,
     mode       => 'tests',

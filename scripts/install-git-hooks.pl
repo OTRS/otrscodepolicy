@@ -30,11 +30,11 @@ my $Directory = getcwd;
 # install hook
 unlink File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' );
 symlink(
-    File::Spec->catfile( $RealBin, '..', 'TidyAll', 'git-hooks', 'pre-commit.pl' ),
+    File::Spec->catfile( $RealBin, '..', 'Kernel', 'TidyAll', 'git-hooks', 'pre-commit.pl' ),
     File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' )
 );
 symlink(
-    File::Spec->catfile( $RealBin, '..', 'TidyAll', 'git-hooks', 'prepare-commit-msg.pl' ),
+    File::Spec->catfile( $RealBin, '..', 'Kernel', 'TidyAll', 'git-hooks', 'prepare-commit-msg.pl' ),
     File::Spec->catfile( $Directory, '.git', 'hooks', 'prepare-commit-msg' )
 );
 

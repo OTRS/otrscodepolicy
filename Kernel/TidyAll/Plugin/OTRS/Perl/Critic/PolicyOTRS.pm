@@ -9,11 +9,9 @@
 
 package Perl::Critic::PolicyOTRS;
 
-=cut
-
-Base class for custome Perl::Critic policies.
-
-=cut
+#
+# Base class for custome Perl::Critic policies.
+#
 
 use strict;
 use warnings;

@@ -12,6 +12,9 @@ package TidyAll::Plugin::OTRS::Perl::PerlCritic;
 use strict;
 use warnings;
 
+use File::Basename;
+use lib dirname(__FILE__) . '/../';    # Find our Perl::Critic policies
+
 use base qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
@@ -38,12 +41,14 @@ sub validate_file {    ## no critic
         $Critic = Perl::Critic->new(
             -severity => $Severity
         );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps');
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitOpen');
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireCamelCase');
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireLabels');
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireParensWithMethods');
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules');
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitOpen' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireCamelCase' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireLabels' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireParensWithMethods' );
+        $Critic->add_policy(
+            -policy => 'Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules'
+        );
     }
 
     my @Violations = $Critic->critique($Filename);

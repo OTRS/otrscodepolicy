@@ -11,6 +11,10 @@ package scripts::test::OTRSCodePolicyPlugins;    ## no critic
 use strict;
 use warnings;
 
+use File::Basename;
+use FindBin qw($RealBin);
+use lib dirname($RealBin) . '/Kernel/'; # find TidyAll
+
 use utf8;
 
 use TidyAll::OTRS;
@@ -21,7 +25,7 @@ sub Run {
     my $Home = $Self->{ConfigObject}->Get('Home');
 
     my $TidyAll = TidyAll::OTRS->new_from_conf_file(
-        "$Home/TidyAll/tidyallrc",
+        "$Home/Kernel/TidyAll/tidyallrc",
         no_cache   => 1,
         check_only => 1,
         mode       => 'tests',

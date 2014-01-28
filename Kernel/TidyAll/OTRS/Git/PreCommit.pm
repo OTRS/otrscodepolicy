@@ -20,11 +20,9 @@ and returns a corresponding status code.
 
 =cut
 
-use File::Basename;
-use FindBin qw($RealBin);
-
 use Cwd;
 use File::Spec;
+use File::Basename;
 
 use Code::TidyAll;
 use IPC::System::Simple qw(capturex run);

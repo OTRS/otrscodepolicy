@@ -24,6 +24,7 @@ use warnings;
 use File::Basename;
 use FindBin qw($RealBin);
 use lib dirname($RealBin);
+use lib dirname($RealBin) . '/Kernel';    # Find TidyAll
 use lib dirname($RealBin) . '/Kernel/cpan-lib';
 
 use Cwd;
@@ -66,7 +67,7 @@ EOF
     exit 0;
 }
 
-my $ConfigurationFile = dirname($0) . '/../Kernel/cpan-lib/TidyAll/tidyallrc';
+my $ConfigurationFile = dirname($0) . '/../Kernel/TidyAll/tidyallrc';
 
 # Change to otrs-code-policy directory to be able to load all plugins.
 my $RootDir = getcwd();
