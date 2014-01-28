@@ -33,6 +33,7 @@ symlink(
     File::Spec->catfile( $RealBin, '..', 'Kernel', 'TidyAll', 'git-hooks', 'pre-commit.pl' ),
     File::Spec->catfile( $Directory, '.git', 'hooks', 'pre-commit' )
 );
+unlink File::Spec->catfile( $Directory, '.git', 'hooks', 'prepare-commit-msg' );
 symlink(
     File::Spec->catfile(
         $RealBin, '..', 'Kernel', 'TidyAll', 'git-hooks', 'prepare-commit-msg.pl'
