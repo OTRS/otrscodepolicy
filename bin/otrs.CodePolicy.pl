@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # --
-# TidyAll/run.pl - manually execute otrs-code-policy checks
+# bin/otrs.CodePolicy.pl - manually execute OTRSCodePolicy checks
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
@@ -48,7 +48,7 @@ GetOptions(
 
 if ($Help) {
     print <<EOF;
-Usage: otrs-code-policy/run.pl [options]
+Usage: OTRSCodePolicy/bin/otrs.CodePolicy.pl [options]
 
     Performs OTRS code policy checks. Run this script from the toplevel directory
     of your module. By default it will only process files which are staged for
@@ -66,7 +66,7 @@ EOF
     exit 0;
 }
 
-my $ConfigurationFile = dirname($0) . '/tidyallrc';
+my $ConfigurationFile = dirname($0) . '/../Kernel/cpan-lib/TidyAll/tidyallrc';
 
 # Change to otrs-code-policy directory to be able to load all plugins.
 my $RootDir = getcwd();

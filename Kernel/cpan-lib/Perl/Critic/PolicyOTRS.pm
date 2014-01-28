@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/Perl/Critic/PolicyOTRS.pm - code quality plugin
+# Perl/Critic/PolicyOTRS.pm - code quality plugin
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -8,6 +8,12 @@
 # --
 
 package Perl::Critic::PolicyOTRS;
+
+=cut
+
+Base class for custome Perl::Critic policies.
+
+=cut
 
 use strict;
 use warnings;

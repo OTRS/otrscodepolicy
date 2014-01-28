@@ -15,6 +15,13 @@ use warnings;
 use base qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
+use Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;
+use Perl::Critic::Policy::OTRS::ProhibitOpen;
+use Perl::Critic::Policy::OTRS::RequireCamelCase;
+use Perl::Critic::Policy::OTRS::RequireLabels;
+use Perl::Critic::Policy::OTRS::RequireParensWithMethods;
+use Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules;
+
 our $Critic;
 
 sub validate_file {    ## no critic
@@ -28,7 +35,15 @@ sub validate_file {    ## no critic
         if ( $Self->IsFrameworkVersionLessThan( 3, 4 ) ) {
             $Severity = 5;    #  less strict for older versions
         }
-        $Critic = Perl::Critic->new( -severity => $Severity );
+        $Critic = Perl::Critic->new(
+            -severity => $Severity
+        );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps');
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitOpen');
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireCamelCase');
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireLabels');
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireParensWithMethods');
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules');
     }
 
     my @Violations = $Critic->critique($Filename);
