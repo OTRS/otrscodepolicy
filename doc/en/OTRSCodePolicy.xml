@@ -60,7 +60,7 @@
         <title>How to run it to validate your code</title>
         <para>
             <itemizedlist>
-                <listitem><para>manually: call /path/to/OTRSCodePolicy/TidyAll/run.pl from the toplevel of your repository. Checks changed files (no arguments), all files (--all), a directory (--directory) or a file (--file).</para></listitem>
+                <listitem><para>manually: call /path/to/OTRSCodePolicy/bin/otrs.CodePolicy.pl from the toplevel of your repository. Checks changed files (no arguments), all files (--all), a directory (--directory) or a file (--file).</para></listitem>
                 <listitem><para>pre commit hook: call /path/to/OTRSCodePolicy/scripts/install-git-hooks.pl in every local repository that you want to have the pre commit hook. It will automatically be run by "git commit" and reject your commit if a problem was found. Skip with "git commit --no-verify".</para></listitem>
                 <listitem><para>UnitTest: install package into OTRS, then run bin/otrs.UnitTest.pl.</para></listitem>
             </itemizedlist>
