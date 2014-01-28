@@ -14,26 +14,37 @@ use warnings;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+# This module verifies:
+#   - that all packaged files of an SOPM are available,
+#   - that the SOPM does not try to create new toplevel files or directories in /opt/otrs,
+#   - that all files in a valid toplevel directory are also packaged (except for documentation).
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
-    my ( $ErrorMessageMissingFiles, $ErrorMessageUnpackagedFiles );
+    my ( $ErrorMessageMissingFiles, $ErrorMessageUnpackagedFiles, $ErrorMessageForbiddenToplevel );
+
+    # From OTRS 3.3 on, packages cannot create new toplevel directories/files
+    #   because of stricter permissions.
+    my $AllowOtherToplevelEntries = $Self->IsFrameworkVersionLessThan( 3, 3 ) ? 1 : 0;
 
     my @SOPMFileList;
 
     # Only validate files in subdirectories that are active for checking by
     #   default or actually appear on the list of packaged files.
-    my %ValidateUnpackagedFilesInDirectories = (
+    my %ToplevelDirectories = (
         bin     => 1,
         Custom  => 1,
+        doc     => 1,
         Kernel  => 1,
-        var     => 1,
         scripts => 1,
+        var     => 1,
     );
 
+    # Go trough the files on the SOPM file list
     LINE:
     for my $Line ( split /\n/, $Code ) {
         if ( $Line =~ m/<File.*Location="([^"]+)"/ ) {
@@ -41,12 +52,28 @@ sub validate_source {    ## no critic
             push @SOPMFileList, $File;
 
             my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
-            if ($ToplevelDirectory) {
-                $ValidateUnpackagedFilesInDirectories{$ToplevelDirectory} = 1;
+
+            # Toplevel file
+            if ( !$ToplevelDirectory ) {
+                next LINE if $AllowOtherToplevelEntries;
+
+                # Reject new toplevel files for OTRS 3.3+
+                $ErrorMessageForbiddenToplevel .= "$File\n";
+            }
+
+            # Reject new toplevel directories for OTRS 3.3+
+            elsif ( !$AllowOtherToplevelEntries && !$ToplevelDirectories{$ToplevelDirectory} ) {
+                $ErrorMessageForbiddenToplevel .= "$File\n";
+            }
+            else {
+                # Accept new toplevel directories for older versions, but then
+                #   check that all files in this directory must be on the SOPM file list.
+                $ToplevelDirectories{$ToplevelDirectory} = 1;
             }
         }
     }
 
+    # Now check which files on the SOPM list are not available.
     FILE:
     for my $File (@SOPMFileList) {
         if ( !grep { $_ eq $File } @TidyAll::OTRS::FileList ) {
@@ -54,14 +81,16 @@ sub validate_source {    ## no critic
         }
     }
 
+    # For all allowed toplevel directories, every file that is present
+    #   must also be packaged.
     FILE:
     for my $File (@TidyAll::OTRS::FileList) {
 
         my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
-        next FILE if ( !$ToplevelDirectory );
-        next FILE if !$ValidateUnpackagedFilesInDirectories{$ToplevelDirectory};
+        next FILE if !$ToplevelDirectory;
+        next FILE if !$ToplevelDirectories{$ToplevelDirectory};
 
-        # skip documentation soruce files
+        # skip documentation source files
         next FILE if $File =~ m{\A doc / [^/]+ / [^\.]+ \. xml \z}msx;
 
         if ( !grep { $_ eq $File } @SOPMFileList ) {
@@ -70,6 +99,14 @@ sub validate_source {    ## no critic
     }
 
     my $ErrorMessage;
+
+    if ($ErrorMessageForbiddenToplevel) {
+        $ErrorMessage .= <<EOF;
+The following packaged files try to create new toplevel files or directories in /opt/otrs, which is not possible
+due to permission restrictions:
+$ErrorMessageForbiddenToplevel
+EOF
+    }
 
     if ($ErrorMessageMissingFiles) {
         $ErrorMessage .= <<EOF;
