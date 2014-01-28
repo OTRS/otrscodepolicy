@@ -14,7 +14,7 @@ use utf8;
 
 use File::Basename;
 use FindBin qw($RealBin);
-use lib dirname($RealBin) . '/Kernel/'; # find TidyAll
+use lib dirname($RealBin) . '/Kernel/';    # find TidyAll
 
 use File::Find;
 use TidyAll::OTRS;
