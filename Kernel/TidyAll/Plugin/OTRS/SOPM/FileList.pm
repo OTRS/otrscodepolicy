@@ -90,8 +90,8 @@ sub validate_source {    ## no critic
         next FILE if !$ToplevelDirectory;
         next FILE if !$ToplevelDirectories{$ToplevelDirectory};
 
-        # skip documentation source files
-        next FILE if $File =~ m{\A doc / [^/]+ / [^\.]+ \. xml \z}msx;
+        # Skip documentation files, these don't have to be on the SOPM list.
+        next FILE if $File =~ m{\A doc/ }msx;
 
         if ( !grep { $_ eq $File } @SOPMFileList ) {
             $ErrorMessageUnpackagedFiles .= "$File\n";
