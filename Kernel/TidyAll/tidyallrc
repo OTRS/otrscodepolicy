@@ -250,6 +250,9 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::TranslationEncoding]
+select = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+
 [+TidyAll::Plugin::OTRS::Perl::UseWarnings]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
