@@ -36,6 +36,8 @@ sub validate_source {    ## no critic
     my $DatabaseUpgrade = 0;
     my $NameLength      = 0;
 
+    my $TableNameLength = 30;
+
     my @CodeLines = split /\n/, $Code;
 
     for my $Line (@CodeLines) {
@@ -101,7 +103,7 @@ sub validate_source {    ## no critic
 
         if ( $Line =~ /<(Column.*|TableCreate.*) Name="(.+?)"/ ) {
             $Name = $2;
-            if ( length $Name > 30 ) {
+            if ( length $Name > $TableNameLength ) {
                 $NameLength .= "Line $Counter: $Name\n";
             }
         }
@@ -143,7 +145,7 @@ sub validate_source {    ## no critic
         $ErrorMessage .= "You have forgot to use the element <License>!\n";
     }
     if ($NameLength) {
-        $ErrorMessage .= "Please use Column and Tablenames with less than 24 letters!\n";
+        $ErrorMessage .= "Please use Column and Tablenames with less than $TableNameLength letters!\n";
         $ErrorMessage .= $NameLength;
     }
     if ($ErrorMessage) {
