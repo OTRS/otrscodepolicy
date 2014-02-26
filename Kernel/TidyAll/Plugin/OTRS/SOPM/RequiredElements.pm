@@ -145,7 +145,8 @@ sub validate_source {    ## no critic
         $ErrorMessage .= "You have forgot to use the element <License>!\n";
     }
     if ($NameLength) {
-        $ErrorMessage .= "Please use Column and Tablenames with less than $TableNameLength letters!\n";
+        $ErrorMessage
+            .= "Please use Column and Tablenames with less than $TableNameLength letters!\n";
         $ErrorMessage .= $NameLength;
     }
     if ($ErrorMessage) {
