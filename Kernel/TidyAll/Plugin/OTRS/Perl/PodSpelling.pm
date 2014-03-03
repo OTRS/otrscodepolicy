@@ -64,7 +64,7 @@ sub validate_source {    ## no critic
                 $ErrorMessage .= "$ItemLine <-> $DescriptionLine \n";
             }
             if ( $FunctionItem && $Line !~ /\$[A-Za-z0-9]+->(.+?)\(/ && $FunctionItem ne 'new' ) {
-                $ErrorMessage .= "The function syntax is't correct!\n";
+                $ErrorMessage .= "The function syntax is not correct!\n";
                 $ErrorMessage .= "Line $Counter: $Line";
             }
         }
