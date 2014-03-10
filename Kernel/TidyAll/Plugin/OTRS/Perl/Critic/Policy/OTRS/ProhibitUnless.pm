@@ -10,6 +10,7 @@ use warnings;
 
 use Perl::Critic::Utils qw{ :severities :classification :ppi };
 use base 'Perl::Critic::Policy';
+use base 'Perl::Critic::PolicyOTRS';
 
 use Readonly;
 
