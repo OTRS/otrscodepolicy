@@ -29,7 +29,7 @@ sub violates {
 
     return if $Self->IsFrameworkVersionLessThan( 3, 4 );
 
-    return if ($Element->content() ne 'unless');
+    return if ( $Element->content() ne 'unless' );
     return $Self->violation( $DESC, $EXPL, $Element );
 }
 
