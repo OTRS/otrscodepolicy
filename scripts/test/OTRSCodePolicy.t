@@ -16,7 +16,9 @@ use File::Basename;
 use FindBin qw($RealBin);
 use lib dirname($RealBin) . '/Kernel/';    # find TidyAll
 
-use File::Find;
+use File::Find();
+use File::stat();
+use File::Path();
 use TidyAll::OTRS;
 use Cwd;
 
@@ -24,21 +26,9 @@ use Kernel::Config;
 
 my $ConfigObject = Kernel::Config->new();
 
-# Get all files in the OTRS directory
-my $Home = $ConfigObject->Get('Home');
-my @Files;
-my $Wanted = sub {
-
-    # Skip non-regular files and directories.
-    return if ( !-f $File::Find::name );
-
-    # Also skip symbolic links, TidyAll does not like them.
-    return if ( -l $File::Find::name );
-    push @Files, $File::Find::name;
-};
-File::Find::find( $Wanted, $Home );
-
 my $OldWorkingDir = getcwd();
+
+my $Home = $ConfigObject->Get('Home');
 
 # Change to toplevel dir so that perlcritic finds all plugins.
 chdir($Home);
@@ -50,24 +40,83 @@ my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     mode       => 'tests',
     root_dir   => $Home,
     data_dir   => File::Spec->tmpdir(),
-
-    #verbose    => 1,
+    quiet      => 1,
 );
 $TidyAll->DetermineFrameworkVersionFromDirectory();
 $TidyAll->GetFileListFromDirectory();
 
-FILE:
-for my $File (@Files) {
+#
+# We need a cache for performance reasons. This will live in /tmp to be persistent across
+#   runs of our UT scenarios. Cache based on file name, content and OTRS version.
+#
 
+my $CacheDir = '/tmp/OTRSCodePolicy.t/';
+my $Success = -d $CacheDir || File::Path::make_path($CacheDir);
+$Self->True(
+    $Success,
+    "Created cache directory $CacheDir",
+);
+die if !$Success;
+
+my $CacheTTLSeconds = 6 * 60 * 60;                             # 6 hours
+my $Version         = $Self->{ConfigObject}->Get('Version');
+
+# Clean up old cache files first (TTL expired).
+my $Wanted = sub {
+
+    # Skip nonregular files and directories.
+    return if ( !-f $File::Find::name );
+
+    my $Stat = File::stat::stat($File::Find::name);
+
+    if ( time() - $Stat->ctime() > $CacheTTLSeconds ) {        ## no critic
+            #print STDERR "Unlink cache file $File::Find::name\n";
+        unlink $File::Find::name || die "Could not delete $File::Find::name";
+    }
+};
+File::Find::find( $Wanted, $CacheDir );
+
+FILE:
+for my $File ( $TidyAll->find_matched_files() ) {
+
+    # Check for valid cache file that represents a successful test
+    my $ContentMD5 = $Self->{MainObject}->MD5sum(
+        Filename => $File,
+    );
+
+    my $CacheKey = $Self->{MainObject}->MD5sum(
+        String => "$Version:$File:$ContentMD5",
+    );
+
+    my $CacheFileName = "$CacheDir$CacheKey.ok";
+
+    if ( -e $CacheFileName ) {
+        $Self->Is(
+            'checked',
+            'checked',
+            "$File check results [cached]",
+        );
+        next FILE;
+    }
+
+    # No cache available
     my $Result = $TidyAll->process_file($File);
 
     next FILE if $Result->state() eq 'no_match';    # no plugins apply, ignore file
 
-    $Self->IsNot(
+    $Self->Is(
         $Result->state(),
-        'error',
+        'checked',
         "$File check results " . ( $Result->error() || '' ),
     );
+
+    # Write cache file for successful results
+    if ( $Result->state() eq 'checked' ) {
+        $Self->{MainObject}->FileWrite(
+            Location => $CacheFileName,
+            Content  => \'',
+        );
+    }
 }
 
 # Change back to previous working directory.
