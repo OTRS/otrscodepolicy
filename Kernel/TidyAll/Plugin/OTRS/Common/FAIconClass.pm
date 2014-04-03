@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/XML/Configuratrion/FAIconClass.pm - code quality plugin
+# TidyAll/Plugin/OTRS/Common/FAIconClass.pm - code quality plugin
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::XML::Configuration::FAIconClass;
+package TidyAll::Plugin::OTRS::Common::FAIconClass;
 
 use strict;
 use warnings;
@@ -19,9 +19,6 @@ sub validate_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 3, 4 );
-
-    my $Counter;
-    my $ErrorMessage;
 
     my %Icons = (
         'icon-adjust'                 => 1,
@@ -404,15 +401,29 @@ sub validate_source {    ## no critic
         'icon-zoom-out'               => 1,
     );
 
+    my $Counter;
+    my $ErrorMessage;
+
     LINE:
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
-        # now check item attribute
-        if ( $Line =~ m{<Item[ ]Key="Icon">icon-(.+?)</Item>}msxi ) {
+        # now check for icon-* classes
+        if ( $Line =~ m{class=".*?icon-(.+?)"}msxi # TT
+            || $Line =~ m{<Item[ ]Key="Icon">icon-(.+?)</Item>}msxi # XML Configuration
+            )
+        {
             if ( $Icons{ 'icon-' . $1 } ) {
                 $ErrorMessage
                     .= "Replace font awesome icon class: 'icon-$1', try with: 'fa fa-$1' on line $Counter\n";
+            }
+        }
+
+        # CSS
+        elsif  ( $Line =~ m{\.icon-(.+?) [ ] .* \{}msxi ) {
+            if ( $Icons{ 'icon-' . $1 } ) {
+                $ErrorMessage
+                    .= "Replace font awesome icon class: 'icon-$1', try with: 'fa-$1' on line $Counter\n";
             }
         }
     }

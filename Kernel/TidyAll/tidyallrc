@@ -24,6 +24,13 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Common::FAIconClass]
+select = **/*.{tt,css,}
+select = Kernel/Config/**/*.xml
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 ;
 ; DTL
 ;
@@ -344,9 +351,6 @@ select = Kernel/Config/**/*.xml
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
 
-[+TidyAll::Plugin::OTRS::XML::Configuration::FAIconClass]
-select = Kernel/Config/**/*.xml
-
 [+TidyAll::Plugin::OTRS::XML::Database::XSDValidator]
 select = scripts/database/*.xml
 select = scripts/database/update/*.xml
@@ -360,25 +364,5 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::XML::LintWithOurParsers]
 select = ;**/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-
-;
-; TT
-;
-[+TidyAll::Plugin::OTRS::TT::FAIconClass]
-select = **/*.tt
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-
-;
-; CSS
-;
-[+TidyAll::Plugin::OTRS::CSS::FAIconClass]
-select = **/*.css
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
