@@ -25,6 +25,7 @@
         <File Permission="644" Location="Kernel/TidyAll/OTRS/Git/PreReceive.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/FAIconClass.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/HeaderlineFilename.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Baselink.pm"/>
