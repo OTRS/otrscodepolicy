@@ -372,3 +372,13 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+;
+; CSS
+;
+[+TidyAll::Plugin::OTRS::CSS::FAIconClass]
+select = **/*.css
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
