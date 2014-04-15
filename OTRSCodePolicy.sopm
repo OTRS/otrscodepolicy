@@ -40,6 +40,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitSmartMatchOperator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitOpen.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitUnless.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/RequireCamelCase.pm"/>
