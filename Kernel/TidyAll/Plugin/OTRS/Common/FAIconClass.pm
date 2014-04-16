@@ -409,8 +409,9 @@ sub validate_source {    ## no critic
         $Counter++;
 
         # now check for icon-* classes
-        if ( $Line =~ m{class=".*?icon-(.+?)"}msxi # TT
-            || $Line =~ m{<Item[ ]Key="Icon">icon-(.+?)</Item>}msxi # XML Configuration
+        if (
+            $Line =~ m{class=".*?icon-(.+?)"}msxi                      # TT
+            || $Line =~ m{<Item[ ]Key="Icon">icon-(.+?)</Item>}msxi    # XML Configuration
             )
         {
             if ( $Icons{ 'icon-' . $1 } ) {
@@ -420,7 +421,7 @@ sub validate_source {    ## no critic
         }
 
         # CSS
-        elsif  ( $Line =~ m{\.icon-(.+?) [ ] .* \{}msxi ) {
+        elsif ( $Line =~ m{\.icon-(.+?) [ ] .* \{}msxi ) {
             if ( $Icons{ 'icon-' . $1 } ) {
                 $ErrorMessage
                     .= "Replace font awesome icon class: 'icon-$1', try with: 'fa-$1' on line $Counter\n";
