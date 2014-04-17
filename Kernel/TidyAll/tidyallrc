@@ -24,13 +24,6 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
-[+TidyAll::Plugin::OTRS::Common::FAIconClass]
-select = **/*.{tt,css,}
-select = Kernel/Config/**/*.xml
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-
 ;
 ; DTL
 ;
@@ -365,4 +358,15 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 select = ;**/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+;
+; Migrations 3.4
+;
+
+[+TidyAll::Plugin::OTRS::Migrations::3_4::FontAwesome]
+select = **/*.{tt,css,}
+select = Kernel/Config/**/*.xml
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
