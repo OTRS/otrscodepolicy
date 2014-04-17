@@ -95,7 +95,7 @@ ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,xml,dtl,tt}
+select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = scripts/test/sample/**/*
