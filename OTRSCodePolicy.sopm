@@ -38,6 +38,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/3_4/FontAwesome.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitSmartMatchOperator.pm"/>
@@ -83,6 +84,14 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/SQL/ReservedWords.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Database.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/.DS_Store"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/calstblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/dbhierx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/dbnotnx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/dbpoolx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/docbook.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/htmltblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/xml.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/Tabs.pm"/>
@@ -91,6 +100,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/ConfigSyntax.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/XSDValidator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Database/XSDValidator.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/XSDValidator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Lint.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/LintWithOurParsers.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/tidyallrc"/>
