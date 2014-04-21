@@ -348,6 +348,9 @@ select = Kernel/Config/**/*.xml
 select = scripts/database/*.xml
 select = scripts/database/update/*.xml
 
+[+TidyAll::Plugin::OTRS::XML::Docbook::XSDValidator]
+select = doc/**/*.xml
+
 [+TidyAll::Plugin::OTRS::XML::Lint]
 select = **/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
