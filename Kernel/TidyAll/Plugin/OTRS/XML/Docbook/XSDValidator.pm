@@ -23,14 +23,14 @@ sub validate_file {    ## no critic
     return if $Self->IsFrameworkVersionLessThan( 3, 1 );
 
     # read the file as an array
-    open FH,"$Filename" or die $!;  ## no critic
+    open FH, "$Filename" or die $!;    ## no critic
     my @FileLines = <FH>;
     close FH;
 
     my $Version;
 
     # get the DocBook version from the DocType e.g. 4.4
-    if ($FileLines[1] =~ m{DTD [ ] DocBook [ ] XML [ ] V(\d\.\d)//}msxi) {
+    if ( $FileLines[1] =~ m{DTD [ ] DocBook [ ] XML [ ] V(\d\.\d)//}msxi ) {
         $Version = $1;
     }
     return if !$Version;
@@ -52,7 +52,7 @@ sub validate_file {    ## no critic
 
     # generate the XMLLint command based on the version of the DocBook file
     my $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Docbook/' . $Version . '/docbook.xsd';
-    my $CMD = "xmllint --noout --nonet --nowarning --schema $XSDFile";
+    my $CMD     = "xmllint --noout --nonet --nowarning --schema $XSDFile";
 
     my $Command = sprintf( "%s %s %s", $CMD, $Self->argv(), $Filename );
     my ( $Output, @Result ) = capture_merged { system($Command) };
