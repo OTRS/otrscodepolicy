@@ -25,7 +25,6 @@
         <File Permission="644" Location="Kernel/TidyAll/OTRS/Git/PreReceive.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
-        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/FAIconClass.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/HeaderlineFilename.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Baselink.pm"/>
@@ -84,7 +83,18 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/SQL/ReservedWords.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Database.xsd"/>
-        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/.DS_Store"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/calstblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/dbhierx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/dbnotnx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/dbpoolx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/docbook.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/htmltblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/xml.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_3/calstblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_3/dbhierx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_3/dbnotnx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_3/dbpoolx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_3/docbook.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/calstblx.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/dbhierx.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/dbnotnx.xsd"/>
@@ -92,6 +102,13 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/docbook.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/htmltblx.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_4/xml.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/calstblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/dbhierx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/dbnotnx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/dbpoolx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/docbook.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/htmltblx.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/xml.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/Tabs.pm"/>
