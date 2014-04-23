@@ -16,6 +16,25 @@ use File::Basename;
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+sub transform_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+
+    $Code =~ s{(<imagedata [^>]+ format=")(.+?)(" [^>]+ >)}
+        {
+            my $Start  = $1;
+            my $Format = $2;
+            my $End    = $3;
+            if ($Format ne 'linespecific') {
+                $Format = uc $Format;
+            }
+            my $Result = $Start . $Format . $End;
+        }msxge;
+
+    return $Code;
+}
+
 sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
