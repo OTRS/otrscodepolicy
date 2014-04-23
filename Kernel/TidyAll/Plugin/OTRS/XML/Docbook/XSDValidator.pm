@@ -16,18 +16,45 @@ use File::Basename;
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-sub _build_cmd {    ## no critic
-    my $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Docbook/4_4/docbook.xsd';
-    return "xmllint --noout --nonet --nowarning --schema $XSDFile";
-}
-
 sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
     return if $Self->IsFrameworkVersionLessThan( 3, 1 );
 
-    my $Command = sprintf( "%s %s %s", $Self->cmd(), $Self->argv(), $Filename );
+    # read the file as an array
+    open FH,"$Filename" or die $!;  ## no critic
+    my @FileLines = <FH>;
+    close FH;
+
+    my $Version;
+
+    # get the DocBook version from the DocType e.g. 4.4
+    if ($FileLines[1] =~ m{DTD [ ] DocBook [ ] XML [ ] V(\d\.\d)//}msxi) {
+        $Version = $1;
+    }
+    return if !$Version;
+
+    # check if we have an XSD available for the detected version:
+    my %AvailableVersions = (
+        '4.2' => 1,
+        '4.3' => 1,
+        '4.4' => 1,
+        '4.5' => 1,
+    );
+    if ( !$AvailableVersions{$Version} ) {
+        print STDERR "No DocBook XSD available for version $Version\n";
+        return;
+    }
+
+    # convert the version to a directory safe string e.g. 4_4
+    $Version =~ s{\.}{_};
+
+    # generate the XMLLint command based on the version of the DocBook file
+    my $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Docbook/' . $Version . '/docbook.xsd';
+    my $CMD = "xmllint --noout --nonet --nowarning --schema $XSDFile";
+
+    my $Command = sprintf( "%s %s %s", $CMD, $Self->argv(), $Filename );
     my ( $Output, @Result ) = capture_merged { system($Command) };
 
     # if execution failed, warn about installing package
