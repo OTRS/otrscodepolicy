@@ -21,6 +21,8 @@ sub transform_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
+    # convert format attribute content in imagedata tag to upper case
+    #    e.g. from format="png" to format="PNG"
     $Code =~ s{(<imagedata [^>]+ format=")(.+?)(" [^>]+ >)}
         {
             my $Start  = $1;
