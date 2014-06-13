@@ -110,6 +110,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/htmltblx.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_5/xml.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/TT/Format.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/Tabs.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/TrailingWhitespace.pm"/>
