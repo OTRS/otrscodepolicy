@@ -112,11 +112,11 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
                     <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
                 </xs:extension>
             </xs:simpleContent>
-            <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
         </xs:complexType>
     </xs:element>
 
