@@ -81,37 +81,40 @@ sub transform_source {    ## no critic
             my $ContentCount      = 0;
             my $CloseCount        = 0;
             my @IndentingElements = qw(
+                a
+                b
                 body
+                button
+                colgroup
+                dd
+                div
+                dl
+                dt
+                em
+                fieldset
+                form
                 h1
                 h2
                 h3
                 h4
                 h5
                 h6
-                table
-                thead
-                tfoot
-                tbody
-                tr
-                th
-                td
-                form
-                fieldset
                 head
-                div
-                span
-                p
-                a
-                select
-                button
-                ul
-                ol
-                li
-                colgroup
+                i
                 label
-                dl
-                dt
-                dd
+                li
+                ol
+                p
+                select
+                span
+                table
+                tbody
+                td
+                tfoot
+                th
+                thead
+                tr
+                ul
             );
             my $IndentingElementString = join( '|', @IndentingElements );
 
