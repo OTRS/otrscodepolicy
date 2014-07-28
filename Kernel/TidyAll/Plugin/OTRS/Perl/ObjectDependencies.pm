@@ -59,7 +59,7 @@ sub validate_source {    ## no critic
     # For loops with Get().
     $Code =~ s{
         for \s+ (?: my \s+ \$[a-zA-z0-9_]+ \s+)? \(($ValidListExpression)\)\s*\{\n
-            \s+ \$Self->\{\$.*?\}\s*=\s*\$Kernel::OM->Get\(\s*\$[a-zA-Z0-9_]+?\s*\); \s+
+            \s+ \$Self->\{\$.*?\} \s* (?://|\|\|)?= \s* \$Kernel::OM->Get\(\s*\$[a-zA-Z0-9_]+?\s*\); \s+
         \}
     }{
         push @UsedObjects, $Self->_CleanupObjectList($1);
