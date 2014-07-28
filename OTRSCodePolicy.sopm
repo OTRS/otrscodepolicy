@@ -57,6 +57,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectDependencies.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ParamObject.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlTidy.pm"/>
@@ -129,8 +130,9 @@
         <File Permission="755" Location="scripts/uninstall-git-hooks.pl"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins.pm"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
-        <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
     </Filelist>
 </otrs_package>

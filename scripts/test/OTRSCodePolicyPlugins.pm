@@ -75,7 +75,7 @@ sub Run {
 
         $Self->Is(
             $Source,
-            $Test->{Result},
+            $Test->{Result} // $Test->{Source},
             "$Test->{Name} - result",
         );
     }
