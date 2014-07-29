@@ -35,9 +35,20 @@ EOF
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '3.4',
         Source    => <<'EOF',
-$Kernel::OM->Get('EncodeObject');
+$Kernel::OM->Get('Kernel::System::Encode');
 EOF
         Exception => 0,
+    },
+    {
+        Name      => 'ObjectDependencies, default dependencies used with invalid short form in Get()',
+        Filename  => 'test.pl',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '3.4',
+        Source    => <<'EOF',
+our @ObjectDependencies = ('EncodeObject');
+$Kernel::OM->Get('EncodeObject');
+EOF
+        Exception => 1,
     },
     {
         Name      => 'ObjectDependencies, undeclared dependency used',
@@ -45,7 +56,7 @@ EOF
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '3.4',
         Source    => <<'EOF',
-$Kernel::OM->Get('TicketObject');
+$Kernel::OM->Get('Kernel::System::Ticket');
 EOF
         Exception => 1,
     },
@@ -55,10 +66,35 @@ EOF
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '3.4',
         Source    => <<'EOF',
-our @ObjectDependencies = ('TicketObject');
-$Kernel::OM->Get('TicketObject');
+our @ObjectDependencies = ('Kernel::System::Ticket');
+$Kernel::OM->Get('Kernel::System::Ticket');
 EOF
         Exception => 0,
+    },
+    {
+        Name      => 'ObjectDependencies, dependency declared, valid short form',
+        Filename  => 'test.pl',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '3.4',
+        Source    => <<'EOF',
+our @ObjectDependencies = ('Kernel::System::Ticket');
+for my $Needed (qw(TicketObject)) {
+    $Self->{$Needed} = $Kernel::OM->Get($Needed);
+}
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'ObjectDependencies, undeclared dependency in loop',
+        Filename  => 'test.pl',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '3.4',
+        Source    => <<'EOF',
+for my $Needed (qw(TicketObject)) {
+    $Self->{$Needed} = $Kernel::OM->Get($Needed);
+}
+EOF
+        Exception => 1,
     },
     {
         Name      => 'ObjectDependencies, undeclared dependency used with ObjectHash',
@@ -66,7 +102,7 @@ EOF
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '3.4',
         Source    => <<'EOF',
-our @ObjectDependencies = ('TicketObject');
+our @ObjectDependencies = ('Kernel::System::Ticket');
 $Kernel::OM->ObjectHash(
     Objects => [
         'TicketObject',
@@ -83,19 +119,24 @@ EOF
         Framework => '3.4',
         Source    => <<'EOF',
 our @ObjectDependencies = (
-    @Kernel::System::ObjectManager::DefaultObjectDependencies,
-    'TicketObject',
-    qw(CustomObject Custom2Object),
-    'Custom3Object',
+    'Kernel::Config',
+    'Kernel::System::DB',
+    'Kernel::System::Encode',
+    'Kernel::System::Log',
+    'Kernel::System::Main',
+    'Kernel::System::Time',
+    'Kernel::System::Ticket',
+    qw(Kernel::System::CustomObject Kernel::System::Custom2Object),
+    'Kernel::System::Custom3Object',
 );
 $Kernel::OM->ObjectHash(
     Objects => [
-        qw(TicketObject CustomObject),
-        'Custom2Object',
+        qw(TicketObject Kernel::System::CustomObject),
+        'Kernel::System::Custom2Object',
     ],
 );
-$Kernel::OM->Get('Custom3Object');
-$Kernel::OM->Get('MainObject');
+$Kernel::OM->Get('Kernel::System::Custom3Object');
+$Kernel::OM->Get('Kernel::System::Main');
 EOF
         Exception => 0,
     },
@@ -106,17 +147,18 @@ EOF
         Framework => '3.4',
         Source    => <<'EOF',
 our @ObjectDependencies = (
-    'TicketObject',
-    qw(CustomObject Custom2Object),
-    'Custom3Object',
+    'Kernel::System::Ticket',
+    qw(Kernel::System::CustomObject Kernel::System::Custom2Object),
+    'Kernel::System::Custom3Object',
 );
 $Kernel::OM->ObjectHash(
     Objects => [
-        qw(TicketObject CustomObject),
-        'Custom2Object',
+        qw(TicketObject Kernel::System::CustomObject),
+        'Kernel::System::Custom2Object',
     ],
 );
-$Kernel::OM->Get('MainObject');
+$Kernel::OM->Get('Kernel::System::Custom3Object');
+$Kernel::OM->Get('Kernel::System::Main');
 EOF
         Exception => 1,
     },
@@ -126,7 +168,7 @@ EOF
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '3.4',
         Source    => <<'EOF',
-for my $Needed (qw(CustomObject)) {
+for my $Needed (qw(Kernel::System::CustomObject)) {
     $Self->{$Needed} = $Kernel::OM->Get($Needed);
 }
 EOF
@@ -138,7 +180,7 @@ EOF
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '3.4',
         Source    => <<'EOF',
-$Self->{ConfigObject} = $Kernel::OM->Get('ConfigObject');
+$Self->{ConfigObject} = $Kernel::OM->Get('Kernel::System::Config');
 $Kernel::OM->ObjectParamAdd(
     LogObject => {
         LogPrefix => $Self->{ConfigObject}->Get('CGILogPrefix'),
@@ -164,14 +206,19 @@ EOF
         Framework => '3.4',
         Source    => <<'EOF',
 our @ObjectDependencies = (
-    @Kernel::System::ObjectManager::DefaultObjectDependencies,
-    'UserObject',
-    'GroupObject',
-    'SessionObject',
-    'ParamObject',
+    'Kernel::Config',
+    'Kernel::System::DB',
+    'Kernel::System::Encode',
+    'Kernel::System::Log',
+    'Kernel::System::Main',
+    'Kernel::System::Time',
+    'Kernel::System::User',
+    'Kernel::System::Group',
+    'Kernel::System::AuthSession',
+    'Kernel::System::Web::Request',
 );
 
-$Self->{ConfigObject} = $Kernel::OM->Get('ConfigObject');
+$Self->{ConfigObject} = $Kernel::OM->Get('Kernel::Config');
 $Kernel::OM->ObjectParamAdd(
     LogObject => {
         LogPrefix => $Self->{ConfigObject}->Get('CGILogPrefix'),
