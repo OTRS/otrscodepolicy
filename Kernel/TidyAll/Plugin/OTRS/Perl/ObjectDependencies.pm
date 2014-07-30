@@ -92,7 +92,7 @@ my %ObjectAliases = (
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
-return 1;
+
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 3, 4 );
 
