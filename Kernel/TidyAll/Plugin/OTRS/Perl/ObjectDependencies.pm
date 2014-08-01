@@ -192,8 +192,8 @@ sub validate_source {    ## no critic
     }
 
     if (@UndeclaredObjectDependencies) {
-        $ErrorMessage .= "The following objects are used in the code, but not declared as dependencies: ";
-        $ErrorMessage .= join( ', ', @UndeclaredObjectDependencies ) . ".\n";
+        $ErrorMessage .= "The following objects are used in the code, but not declared as dependencies:\n";
+        $ErrorMessage .= join( ",\n", map { "    '$_'" } sort {$a cmp $b} @UndeclaredObjectDependencies ) . ",\n";
     }
 
     if ($ErrorMessage) {
