@@ -109,6 +109,11 @@ select = *.{opm,sopm}
 ; Perl
 ;
 
+[+TidyAll::Plugin::OTRS::Perl::CacheNew]
+select = **/*.{pl,psgi,pm}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
 
