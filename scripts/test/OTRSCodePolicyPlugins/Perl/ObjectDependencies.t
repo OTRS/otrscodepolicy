@@ -237,6 +237,17 @@ for my $Object (
 EOF
         Exception => 0,
     },
+    {
+        Name      => 'ObjectDependencies, object manager disabled',
+        Filename  => 'test.pl',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '3.4',
+        Source    => <<'EOF',
+our $ObjectManagerDisabled = 1;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );

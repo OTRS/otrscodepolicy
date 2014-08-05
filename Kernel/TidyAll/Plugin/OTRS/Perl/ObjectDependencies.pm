@@ -100,7 +100,12 @@ sub validate_source {    ## no critic
     $Code = $Self->StripComments( Code => $Code );
 
     # Skip if the code doesn't use the ObjectManager
-    return if $Code !~ m{\$Kernel::OM};
+    return if $Code !~ m{\$Kernel::OM}smx;
+
+    # Skip if the package cannot be loaded via ObjectManager
+    return if $Code =~ m{
+        ^ \s* our \s* \$ObjectManagerDisabled \s* = \s* 1
+    }smx;
 
     #
     # Ok, first check for the objects that are requested from OM.
