@@ -48,6 +48,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/RequireParensWithMethods.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/RequireTrueReturnValueForModules.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/PolicyOTRS.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/CacheNew.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/DBObject.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/DieExit.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Dumper.pm"/>
@@ -131,6 +132,7 @@
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins.pm"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
