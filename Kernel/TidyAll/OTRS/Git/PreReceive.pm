@@ -33,6 +33,7 @@ use Moo;
 # Ignore these repositories on the server so that we can always push to them.
 my %IgnoreRepositories = (
     'otrscodepolicy.git' => 1,
+    'otrs-github-io.git' => 1,
 );
 
 sub Run {
