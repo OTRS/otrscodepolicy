@@ -20,76 +20,6 @@ use warnings;
 
 use base qw(TidyAll::Plugin::OTRS::Perl);
 
-my @DefaultObjectDependencies = (
-    'Kernel::Config',
-    'Kernel::System::DB',
-    'Kernel::System::Encode',
-    'Kernel::System::Log',
-    'Kernel::System::Main',
-    'Kernel::System::Time',
-);
-
-## nofilter(TidyAll::Plugin::OTRS::Perl::LayoutObject)
-my %ObjectAliases = (
-    'ACLDBACLObject'            => 'Kernel::System::ACL::DB::ACL',
-    'AuthObject'                => 'Kernel::System::Auth',
-    'AutoReponseObject'         => 'Kernel::System::AutoResponse',
-    'CacheObject'               => 'Kernel::System::Cache',
-    'CheckItemObject'           => 'Kernel::System::CheckItem',
-    'ConfigObject'              => 'Kernel::Config',
-    'CryptObject'               => 'Kernel::System::Crypt',
-    'CSVObject'                 => 'Kernel::System::CSV',
-    'CustomerAuthObject'        => 'Kernel::System::CustomerAuth',
-    'CustomerCompanyObject'     => 'Kernel::System::CustomerCompany',
-    'CustomerGroupObject'       => 'Kernel::System::CustomerGroup',
-    'CustomerUserObject'        => 'Kernel::System::CustomerUser',
-    'DBObject'                  => 'Kernel::System::DB',
-    'DebugLogObject'            => 'Kernel::System::GenericInterface::DebugLog',
-    'DynamicFieldBackendObject' => 'Kernel::System::DynamicField::Backend',
-    'DynamicFieldObject'        => 'Kernel::System::DynamicField',
-    'EmailObject'               => 'Kernel::System::Email',
-    'EncodeObject'              => 'Kernel::System::Encode',
-    'EnvironmentObject'         => 'Kernel::System::Environment',
-    'FileTempObject'            => 'Kernel::System::FileTemp',
-    'GenericAgentObject'        => 'Kernel::System::GenericAgent',
-    'GroupObject'               => 'Kernel::System::Group',
-    'HTMLUtilsObject'           => 'Kernel::System::HTMLUtils',
-    'JSONObject'                => 'Kernel::System::JSON',
-    'LanguageObject'            => 'Kernel::Language',
-    'LayoutObject'              => 'Kernel::Output::HTML::Layout',
-    'LinkObject'                => 'Kernel::System::LinkObject',
-    'LoaderObject'              => 'Kernel::System::Loader',
-    'LockObject'                => 'Kernel::System::Lock',
-    'LogObject'                 => 'Kernel::System::Log',
-    'MainObject'                => 'Kernel::System::Main',
-    'PackageObject'             => 'Kernel::System::Package',
-    'ParamObject'               => 'Kernel::System::Web::Request',
-    'PDFObject'                 => 'Kernel::System::PDF',
-    'PIDObject'                 => 'Kernel::System::PID',
-    'PostMasterObject'          => 'Kernel::System::PostMaster',
-    'PriorityObject'            => 'Kernel::System::Priority',
-    'QueueObject'               => 'Kernel::System::Queue',
-    'ServiceObject'             => 'Kernel::System::Service',
-    'SessionObject'             => 'Kernel::System::AuthSession',
-    'SLAObject'                 => 'Kernel::System::SLA',
-    'StandardTemplateObject'    => 'Kernel::System::StandardTemplate',
-    'StateObject'               => 'Kernel::System::State',
-    'StatsObject'               => 'Kernel::System::Stats',
-    'SysConfigObject'           => 'Kernel::System::SysConfig',
-    'SystemAddressObject'       => 'Kernel::System::SystemAddress',
-    'TaskManagerObject'         => 'Kernel::System::Scheduler::TaskManager',
-    'TicketObject'              => 'Kernel::System::Ticket',
-    'TimeObject'                => 'Kernel::System::Time',
-    'TypeObject'                => 'Kernel::System::Type',
-    'UnitTestHelperObject'      => 'Kernel::System::UnitTest::Helper',
-    'UnitTestObject'            => 'Kernel::System::UnitTest',
-    'UserObject'                => 'Kernel::System::User',
-    'ValidObject'               => 'Kernel::System::Valid',
-    'WebserviceObject'          => 'Kernel::System::GenericInterface::Webservice',
-    'XMLObject'                 => 'Kernel::System::XML',
-    'YAMLObject'                => 'Kernel::System::YAML',
-);
-
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
@@ -107,6 +37,12 @@ sub validate_source {    ## no critic
         ^ \s* our \s* \$ObjectManagerDisabled \s* = \s* 1
     }smx;
 
+    my $ErrorMessage;
+
+    if ($Code =~ m{^ \s* our \s* \$ObjectManagerAware}smx) {
+        $ErrorMessage .= "Don't use the deprecated flag \$ObjectManagerAware. It can be removed.\n";
+    }
+
     #
     # Ok, first check for the objects that are requested from OM.
     #
@@ -115,23 +51,13 @@ sub validate_source {    ## no critic
     # Only math what is absolutely needed to avoid false positives.
     my $ValidListExpression = "[\@a-zA-Z0-9_[:space:]:'\",()]+?";
 
-    my %ForbiddenObjectAliasUsage;
-
     # Real Get() calls.
     $Code =~ s{
         \$Kernel::OM->Get\( \s* ([^\$]$ValidListExpression) \s* \)
     }{
-        my @Objects = $Self->_CleanupObjectList(
+        push @UsedObjects, $Self->_CleanupObjectList(
             Code => $1,
-            ResolveObjectAlias => 0,
         );
-        push @UsedObjects, @Objects;
-        for my $Object (@Objects) {
-            # Check if we have a full package name, otherwise complain
-            if (index($Object, '::') < 0) {
-                $ForbiddenObjectAliasUsage{$Object} = 1;
-            }
-        }
         '';
     }esmxg;
 
@@ -143,21 +69,6 @@ sub validate_source {    ## no critic
     }{
         push @UsedObjects, $Self->_CleanupObjectList(
             Code => $1,
-            ResolveObjectAlias => 1,
-        );
-        '';
-    }esmxg;
-
-    # ObjectHash() calls.
-    $Code =~ s{
-        \$Kernel::OM->ObjectHash\(
-            \s+ Objects \s+ => \s+ \[
-                \s* ($ValidListExpression)\s*
-            \]
-    }{
-        push @UsedObjects, $Self->_CleanupObjectList(
-            Code => $1,
-            ResolveObjectAlias => 1,
         );
         '';
     }esmxg;
@@ -165,13 +76,12 @@ sub validate_source {    ## no critic
     #
     # Now check the declared dependencies and compare.
     #
-    my @DeclaredObjectDependencies = @DefaultObjectDependencies;
+    my @DeclaredObjectDependencies;
     $Code =~ s{
         ^our\s+\@ObjectDependencies\s+=\s+\(($ValidListExpression)\);
     }{
         @DeclaredObjectDependencies = $Self->_CleanupObjectList(
             Code => $1,
-            ResolveObjectAlias => 0,
         );
         '';
     }esmx;
@@ -187,15 +97,6 @@ sub validate_source {    ## no critic
         if ( !exists $DeclaredObjectDependencyLookup{$UsedObject} ) {
             push @UndeclaredObjectDependencies, $UsedObject;
         }
-    }
-
-    my $ErrorMessage;
-
-    if (%ForbiddenObjectAliasUsage) {
-        $ErrorMessage
-            .= "Kernel::System::ObjectManager::Get() should only be used with the full package name, not the object alias.\n";
-        $ErrorMessage .= "These aliases were found: "
-            . join( ', ', sort { $a cmp $b } keys %ForbiddenObjectAliasUsage ) . ".\n";
     }
 
     if (@UndeclaredObjectDependencies) {
@@ -227,9 +128,6 @@ sub _CleanupObjectList {
         $Object =~ s/^[("']+//;     # remove leading quotes and parentheses
         $Object =~ s/[)"',]+$//;    # remove trailing comma, quotes and parentheses
         next OBJECT if !$Object;
-        if ( $Param{ResolveObjectAlias} ) {
-            $Object = $ObjectAliases{$Object} // $Object;
-        }
         push @Result, $Object;
     }
 
