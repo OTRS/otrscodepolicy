@@ -18,6 +18,11 @@
                 <xs:element ref="URL"/>
                 <xs:element ref="License"/>
                 <xs:element ref="Description" maxOccurs="unbounded" />
+
+                <xs:element ref="PackageIsVisible" minOccurs="0" />
+                <xs:element ref="PackageIsDownloadable" minOccurs="0" />
+                <xs:element ref="PackageIsRemovable" minOccurs="0" />
+
                 <xs:element ref="ChangeLog" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="OS" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="BuildDate" minOccurs="0" />
@@ -63,6 +68,33 @@
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PackageIsVisible">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="PackageIsDownloadable">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="PackageIsRemovable">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
     </xs:element>
 
     <xs:element name="Filelist">
