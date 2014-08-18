@@ -39,7 +39,7 @@ sub validate_source {    ## no critic
 
     my $ErrorMessage;
 
-    if ($Code =~ m{^ \s* our \s* \$ObjectManagerAware}smx) {
+    if ( $Code =~ m{^ \s* our \s* \$ObjectManagerAware}smx ) {
         $ErrorMessage .= "Don't use the deprecated flag \$ObjectManagerAware. It can be removed.\n";
     }
 
