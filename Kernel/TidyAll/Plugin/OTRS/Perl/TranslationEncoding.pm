@@ -20,7 +20,7 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 3, 4 );
+    return $Code if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
     if ( $Code !~ m{^[ \t]*use\s+utf8;}mx ) {
         die __PACKAGE__ . "\n" . <<EOF;

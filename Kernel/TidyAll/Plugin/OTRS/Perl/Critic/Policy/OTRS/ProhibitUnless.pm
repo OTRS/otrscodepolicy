@@ -27,7 +27,7 @@ sub applies_to           { return 'PPI::Token::Word' }
 sub violates {
     my ( $Self, $Element ) = @_;
 
-    return if $Self->IsFrameworkVersionLessThan( 3, 4 );
+    return if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
     return if ( $Element->content() ne 'unless' );
     return $Self->violation( $DESC, $EXPL, $Element );

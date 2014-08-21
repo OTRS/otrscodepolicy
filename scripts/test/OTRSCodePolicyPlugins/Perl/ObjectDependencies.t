@@ -20,7 +20,7 @@ my @Tests = (
         Name      => 'ObjectDependencies, no OM used.',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;
@@ -33,7 +33,7 @@ EOF
         Name      => 'ObjectDependencies, undeclared dependency used (former default dependency)',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 $Kernel::OM->Get('Kernel::System::Encode');
 EOF
@@ -43,7 +43,7 @@ EOF
         Name => 'ObjectDependencies, default dependencies used with invalid short form in Get()',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 our @ObjectDependencies = ('Kernel::System::Encode');
 $Kernel::OM->Get('EncodeObject');
@@ -54,7 +54,7 @@ EOF
         Name      => 'ObjectDependencies, undeclared dependency used',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 $Kernel::OM->Get('Kernel::System::Ticket');
 EOF
@@ -64,7 +64,7 @@ EOF
         Name      => 'ObjectDependencies, dependency declared',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 our @ObjectDependencies = ('Kernel::System::Ticket');
 $Kernel::OM->Get('Kernel::System::Ticket');
@@ -75,7 +75,7 @@ EOF
         Name      => 'ObjectDependencies, dependency declared, invalid short form',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 our @ObjectDependencies = ('Kernel::System::Ticket');
 for my $Needed (qw(TicketObject)) {
@@ -88,7 +88,7 @@ EOF
         Name      => 'ObjectDependencies, undeclared dependency in loop',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 for my $Needed (qw(Kernel::System::Ticket)) {
     $Self->{$Needed} = $Kernel::OM->Get($Needed);
@@ -100,7 +100,7 @@ EOF
         Name      => 'ObjectDependencies, Get called in for loop',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 for my $Needed (qw(Kernel::System::CustomObject)) {
     $Self->{$Needed} = $Kernel::OM->Get($Needed);
@@ -112,7 +112,7 @@ EOF
         Name      => 'ObjectDependencies, complex code, undeclared dependency',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 $Self->{ConfigObject} = $Kernel::OM->Get('Kernel::System::Config');
 $Kernel::OM->ObjectParamAdd(
@@ -137,7 +137,7 @@ EOF
         Name      => 'ObjectDependencies, complex code, undeclared dependency',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 our @ObjectDependencies = (
     'Kernel::Config',
@@ -175,7 +175,7 @@ EOF
         Name      => 'ObjectDependencies, object manager disabled',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 our $ObjectManagerDisabled = 1;
 $Kernel::OM->Get('Kernel::System::Ticket');
@@ -186,7 +186,7 @@ EOF
         Name      => 'ObjectDependencies, deprecated ObjectManagerAware flag',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 our @ObjectDependencies = ('Kernel::System::Ticket');
 our $ObjectManagerAware = 1;

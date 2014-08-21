@@ -20,7 +20,7 @@ my @Tests = (
         Name      => 'next without label',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
-        Framework => '3.5',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;
@@ -35,7 +35,7 @@ EOF
         Name      => 'next with label',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
-        Framework => '3.5',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;
@@ -60,7 +60,7 @@ EOF
         Name      => 'last without label',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
-        Framework => '3.5',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;
@@ -75,7 +75,7 @@ EOF
         Name      => 'last with label',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
-        Framework => '3.5',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;
@@ -100,7 +100,7 @@ EOF
         Name      => 'next without label',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
-        Framework => '3.5',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;
@@ -115,7 +115,7 @@ EOF
         Name      => 'next with label',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
-        Framework => '3.5',
+        Framework => '4.0',
         Source    => <<'EOF',
 #!/usr/bin/bash
 use strict;

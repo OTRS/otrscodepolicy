@@ -20,7 +20,7 @@ my @Tests = (
         Name      => 'CacheNew, forbidden',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::CacheNew)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 Kernel::System::Cache->new(%{$Self});
 EOF
@@ -30,7 +30,7 @@ EOF
         Name      => 'CacheNew, ok',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::CacheNew)],
-        Framework => '3.4',
+        Framework => '4.0',
         Source    => <<'EOF',
 $Kernel::OM->Get('Kernel::System::Cache');
 EOF
