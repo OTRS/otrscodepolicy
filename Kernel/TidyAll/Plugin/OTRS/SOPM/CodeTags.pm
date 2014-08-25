@@ -52,6 +52,7 @@ sub validate_source {    ## no critic
         $ErrorMessage .= "Wrong tags found: " . join( ', ', @SelfUsed ) . "\n";
     }
 
+    ## nofilter(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)
     my $Example = <<'EOF';
 Here is a valid example tag:
     <CodeInstall Type="post"><![CDATA[
