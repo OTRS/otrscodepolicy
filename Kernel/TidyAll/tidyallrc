@@ -273,6 +273,9 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ; SOPM
 ;
 
+[+TidyAll::Plugin::OTRS::SOPM::CodeTags]
+select = *.{opm,sopm}
+
 [+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
 select = *.{opm,sopm}
 
