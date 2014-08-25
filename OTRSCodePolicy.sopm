@@ -120,6 +120,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/ConfigDescription.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/ConfigSyntax.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/XSDValidator.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/OutputFilterPre.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Database/XSDValidator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/XSDValidator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/XML/Lint.pm"/>
@@ -138,5 +139,6 @@
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/OutputFilterPre.t"/>
     </Filelist>
 </otrs_package>

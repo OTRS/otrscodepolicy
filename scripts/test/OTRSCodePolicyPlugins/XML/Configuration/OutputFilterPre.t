@@ -1,0 +1,98 @@
+# --
+# OTRSCodePolicyPlugins/XML/Configuration/OutputFilterPre.t - code policy self tests
+# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+use strict;
+use warnings;
+
+use vars (qw($Self));
+use utf8;
+
+use scripts::test::OTRSCodePolicyPlugins;
+
+my @Tests = (
+    {
+        Name      => 'OutputFilterPre, ok',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::OutputFilterPre)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+    <ConfigItem Name="Frontend::Output::FilterElementPre###OutputFilterPreOTRSAdjustSortTicketOverview" Required="1" Valid="1">
+        <Description Translatable="1">This Outputfilter set the correct length for content of title column.</Description>
+        <Group>OTRSAdjustSortTicketOverview</Group>
+        <SubGroup>Frontend::Agent::TicketOverview</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::OutputFilterPreOTRSAdjustSortTicketOverview</Item>
+                <Item Key="Debug">0</Item>
+                <Item Key="Templates">
+                    <Hash>
+                        <Item Key="AgentTicketOverviewSmall">1</Item>
+                    </Hash>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'OutputFilterPre, old framework',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::OutputFilterPre)],
+        Framework => '3.3',
+        Source    => <<'EOF',
+    <ConfigItem Name="Frontend::Output::FilterElementPre###OutputFilterPreOTRSAdjustSortTicketOverview" Required="1" Valid="1">
+        <Description Translatable="1">This Outputfilter set the correct length for content of title column.</Description>
+        <Group>OTRSAdjustSortTicketOverview</Group>
+        <SubGroup>Frontend::Agent::TicketOverview</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::OutputFilterPreOTRSAdjustSortTicketOverview</Item>
+                <Item Key="Debug">0</Item>
+                <Item Key="Templates">
+                    <Hash>
+                        <Item Key="ALL">1</Item>
+                    </Hash>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'OutputFilterPre, forbidden ALL used',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::OutputFilterPre)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+    <ConfigItem Name="Frontend::Output::FilterElementPre###OutputFilterPreOTRSAdjustSortTicketOverview" Required="1" Valid="1">
+        <Description Translatable="1">This Outputfilter set the correct length for content of title column.</Description>
+        <Group>OTRSAdjustSortTicketOverview</Group>
+        <SubGroup>Frontend::Agent::TicketOverview</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::OutputFilterPreOTRSAdjustSortTicketOverview</Item>
+                <Item Key="Debug">0</Item>
+                <Item Key="Templates">
+                    <Hash>
+                        <Item Key="ALL">1</Item>
+                    </Hash>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+EOF
+        Exception => 1,
+    },
+
+);
+
+$Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );
+
+1;
