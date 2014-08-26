@@ -170,6 +170,11 @@ select = **/*.{pm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Modules/**/* Custom/Kernel/Modules/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::ObjectNameSpace]
+select = **/*.{pl,pm,t}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = Kernel/Modules/**/* Custom/Kernel/Modules/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::ParamObject]
 select = **/*.{pl,psgi}
 select = Kernel/System/**/*.pm Custom/Kernel/System/**/*.pm
