@@ -38,7 +38,6 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/3_4/FontAwesome.pm"/>
-        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/PO/msgfmt.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitSmartMatchOperator.pm"/>
@@ -76,6 +75,8 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Time.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TranslationEncoding.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/PO/Lint.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/PO/msgfmt.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/CodeTags.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/FileList.pm"/>
@@ -140,6 +141,7 @@
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PO/Lint.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/OutputFilterPre.t"/>
     </Filelist>

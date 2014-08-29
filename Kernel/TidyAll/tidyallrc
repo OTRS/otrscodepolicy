@@ -109,6 +109,9 @@ select = *.{opm,sopm}
 ; POT/PO
 ;
 
+[+TidyAll::Plugin::OTRS::PO::Lint]
+select = i18n/**/*.{pot,po}
+
 [+TidyAll::Plugin::OTRS::PO::msgfmt]
 select = i18n/**/*.{pot,po}
 
