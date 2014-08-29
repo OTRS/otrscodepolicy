@@ -20,6 +20,7 @@
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
         <File Permission="644" Location="Kernel/cpan-lib/Pod/Strip.pm"/>
+        <File Permission="644" Location="Kernel/cpan-lib/Locale/PO.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/OTRS.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/OTRS/Git/PreCommit.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/OTRS/Git/PreReceive.pm"/>
