@@ -106,6 +106,13 @@ ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs
 select = *.{opm,sopm}
 
 ;
+; POT/PO
+;
+
+[+TidyAll::Plugin::OTRS::PO::msgfmt]
+select = i18n/**/*.{pot,po}
+
+;
 ; Perl
 ;
 
