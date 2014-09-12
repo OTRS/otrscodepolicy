@@ -59,7 +59,7 @@ $Self->True(
 die if !$Success;
 
 my $CacheTTLSeconds = 6 * 60 * 60;                             # 6 hours
-my $Version         = $Self->{ConfigObject}->Get('Version');
+my $Version         = $Kernel::OM->Get('Kernel::Config')->Get('Version');
 
 # Clean up old cache files first (TTL expired).
 my $Wanted = sub {
@@ -80,11 +80,11 @@ FILE:
 for my $File ( $TidyAll->find_matched_files() ) {
 
     # Check for valid cache file that represents a successful test
-    my $ContentMD5 = $Self->{MainObject}->MD5sum(
+    my $ContentMD5 = $Kernel::OM->Get('Kernel::System::Main')->MD5sum(
         Filename => $File,
     );
 
-    my $CacheKey = $Self->{MainObject}->MD5sum(
+    my $CacheKey = $Kernel::OM->Get('Kernel::System::Main')->MD5sum(
         String => "$Version:$File:$ContentMD5",
     );
 
@@ -112,7 +112,7 @@ for my $File ( $TidyAll->find_matched_files() ) {
 
     # Write cache file for successful results
     if ( $Result->state() eq 'checked' ) {
-        $Self->{MainObject}->FileWrite(
+        $Kernel::OM->Get('Kernel::System::Main')->FileWrite(
             Location => $CacheFileName,
             Content  => \'',
         );
