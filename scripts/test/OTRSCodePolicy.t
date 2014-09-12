@@ -22,9 +22,25 @@ use File::Path();
 use TidyAll::OTRS;
 use Cwd;
 
+# Don't use OM so that this also works for OTRS 3.3 and lower
 use Kernel::Config;
+use Kernel::System::Encode;
+use Kernel::System::Log;
+use Kernel::System::Main;
 
 my $ConfigObject = Kernel::Config->new();
+my $EncodeObject = Kernel::System::Encode->new(
+    ConfigObject => $ConfigObject,
+);
+my $LogObject = Kernel::System::Log->new(
+    ConfigObject => $ConfigObject,
+    EncodeObject => $EncodeObject,
+);
+my $MainObject = Kernel::System::Main->new(
+    ConfigObject => $ConfigObject,
+    EncodeObject => $EncodeObject,
+    LogObject    => $LogObject,
+);
 
 my $OldWorkingDir = getcwd();
 
@@ -59,7 +75,7 @@ $Self->True(
 die if !$Success;
 
 my $CacheTTLSeconds = 6 * 60 * 60;                             # 6 hours
-my $Version         = $Kernel::OM->Get('Kernel::Config')->Get('Version');
+my $Version         = $ConfigObject->Get('Version');
 
 # Clean up old cache files first (TTL expired).
 my $Wanted = sub {
@@ -80,11 +96,11 @@ FILE:
 for my $File ( $TidyAll->find_matched_files() ) {
 
     # Check for valid cache file that represents a successful test
-    my $ContentMD5 = $Kernel::OM->Get('Kernel::System::Main')->MD5sum(
+    my $ContentMD5 = $MainObject->MD5sum(
         Filename => $File,
     );
 
-    my $CacheKey = $Kernel::OM->Get('Kernel::System::Main')->MD5sum(
+    my $CacheKey = $MainObject->MD5sum(
         String => "$Version:$File:$ContentMD5",
     );
 
@@ -112,7 +128,7 @@ for my $File ( $TidyAll->find_matched_files() ) {
 
     # Write cache file for successful results
     if ( $Result->state() eq 'checked' ) {
-        $Kernel::OM->Get('Kernel::System::Main')->FileWrite(
+        $MainObject->FileWrite(
             Location => $CacheFileName,
             Content  => \'',
         );

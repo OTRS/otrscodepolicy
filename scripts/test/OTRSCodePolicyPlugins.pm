@@ -17,14 +17,31 @@ use lib dirname($RealBin) . '/Kernel/';          # find TidyAll
 
 use utf8;
 
-our $ObjectManagerDisabled = 1;
-
 use TidyAll::OTRS;
+
+use Kernel::Config;
+use Kernel::System::Encode;
+use Kernel::System::Log;
+use Kernel::System::Main;
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    my $Home = $Kernel::OM->Get('Kernel::Config')->Get('Home');
+    my $ConfigObject = Kernel::Config->new();
+    my $EncodeObject = Kernel::System::Encode->new(
+        ConfigObject => $ConfigObject,
+    );
+    my $LogObject = Kernel::System::Log->new(
+        ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+    );
+    my $MainObject = Kernel::System::Main->new(
+        ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+        LogObject    => $LogObject,
+    );
+
+    my $Home = $ConfigObject->Get('Home');
 
     my $TidyAll = TidyAll::OTRS->new_from_conf_file(
         "$Home/Kernel/TidyAll/tidyallrc",
@@ -50,7 +67,7 @@ sub Run {
 
         eval {
             for my $PluginModule ( @{ $Test->{Plugins} } ) {
-                $Kernel::OM->Get('Kernel::System::Main')->Require($PluginModule);
+                $MainObject->Require($PluginModule);
                 my $Plugin = $PluginModule->new(
                     class   => $PluginModule,
                     name    => $PluginModule,
