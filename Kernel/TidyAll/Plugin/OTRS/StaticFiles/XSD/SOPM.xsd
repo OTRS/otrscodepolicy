@@ -41,9 +41,10 @@
                     <xs:element ref="DatabaseUpgrade"/>
                     <xs:element ref="DatabaseReinstall"/>
                     <xs:element ref="DatabaseUninstall"/>
+                    <xs:element ref="PackageMerge"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute name="version" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="version" use="required" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -51,8 +52,8 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Date" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Version" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Date" use="required" type="xs:token"/>
+                    <xs:attribute name="Version" use="required" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -62,9 +63,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Lang" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Format" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Lang" use="optional" type="xs:token"/>
+                    <xs:attribute name="Format" use="optional" type="xs:token"/>
+                    <xs:attribute name="Translatable" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -109,9 +110,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Location" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Permission" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Encode" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Location" use="required" type="xs:token"/>
+                    <xs:attribute name="Permission" use="required" type="xs:token"/>
+                    <xs:attribute name="Encode" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -121,7 +122,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Version" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Version" use="required" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -131,7 +132,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Version" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -141,11 +142,11 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Lang" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Title" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Format" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="required" type="xs:token"/>
+                    <xs:attribute name="Lang" use="optional" type="xs:token"/>
+                    <xs:attribute name="Title" use="optional" type="xs:token"/>
+                    <xs:attribute name="Translatable" use="optional" type="xs:token"/>
+                    <xs:attribute name="Format" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -154,11 +155,11 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Lang" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Title" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Format" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="required" type="xs:token"/>
+                    <xs:attribute name="Lang" use="optional" type="xs:token"/>
+                    <xs:attribute name="Title" use="optional" type="xs:token"/>
+                    <xs:attribute name="Translatable" use="optional" type="xs:token"/>
+                    <xs:attribute name="Format" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -167,11 +168,11 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Lang" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Title" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Format" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="required" type="xs:token"/>
+                    <xs:attribute name="Lang" use="optional" type="xs:token"/>
+                    <xs:attribute name="Title" use="optional" type="xs:token"/>
+                    <xs:attribute name="Translatable" use="optional" type="xs:token"/>
+                    <xs:attribute name="Format" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -180,12 +181,12 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Lang" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Title" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Format" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="required" type="xs:token"/>
+                    <xs:attribute name="Lang" use="optional" type="xs:token"/>
+                    <xs:attribute name="Title" use="optional" type="xs:token"/>
+                    <xs:attribute name="Translatable" use="optional" type="xs:token"/>
+                    <xs:attribute name="Version" use="optional" type="xs:token"/>
+                    <xs:attribute name="Format" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -195,7 +196,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -204,7 +207,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -213,7 +218,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -222,10 +229,25 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="Version" use="required" type="xs:token"/>
+                    <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+                    <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PackageMerge">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="CodeUpgrade"/>
+                    <xs:element ref="DatabaseUpgrade"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" use="required" type="xs:token"/>
+            <xs:attribute name="TargetVersion" use="required" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 

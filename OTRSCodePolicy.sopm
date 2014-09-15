@@ -144,6 +144,7 @@
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PO/Lint.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/OutputFilterPre.t"/>
     </Filelist>
 </otrs_package>

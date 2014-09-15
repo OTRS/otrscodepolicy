@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
     <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
 
+    <!-- OTRS schema files -->
     <xs:element name="database">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
@@ -11,9 +12,11 @@
                 <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
+
+    <!-- OTRS package files (.sopm) -->
     <xs:element name="DatabaseInstall">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
@@ -22,7 +25,9 @@
                 <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+            <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="DatabaseUninstall">
@@ -33,7 +38,9 @@
                 <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+            <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="DatabaseReinstall">
@@ -44,7 +51,9 @@
                 <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+            <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="DatabaseUpgrade">
@@ -55,7 +64,9 @@
                 <xs:element ref="TableDrop" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Insert" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
+            <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -67,9 +78,9 @@
                 <xs:element ref="Index" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Unique" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
+            <xs:attribute name="Version" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -81,9 +92,9 @@
                 <xs:element ref="Index" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Unique" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
+            <xs:attribute name="Version" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -100,11 +111,11 @@
                 <xs:element ref="UniqueCreate" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="UniqueDrop" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="NameOld" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="NameNew" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
+            <xs:attribute name="NameOld" use="optional" type="xs:token"/>
+            <xs:attribute name="NameNew" use="optional" type="xs:token"/>
+            <xs:attribute name="Version" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -112,9 +123,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Version" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -126,13 +137,13 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="AutoIncrement" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Required" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Size" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="PrimaryKey" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Default" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="AutoIncrement" use="optional" type="xs:token"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Required" use="optional" type="xs:token"/>
+                    <xs:attribute name="Size" use="optional" type="xs:token"/>
+                    <xs:attribute name="PrimaryKey" use="optional" type="xs:token"/>
+                    <xs:attribute name="Default" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -141,13 +152,13 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="AutoIncrement" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Required" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Size" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="PrimaryKey" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Default" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="AutoIncrement" use="optional" type="xs:token"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Required" use="optional" type="xs:token"/>
+                    <xs:attribute name="Size" use="optional" type="xs:token"/>
+                    <xs:attribute name="PrimaryKey" use="optional" type="xs:token"/>
+                    <xs:attribute name="Default" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -156,21 +167,21 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="AutoIncrement" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="PrimaryKey" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Default" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="NameOld" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="NameNew" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Required" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Size" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="AutoIncrement" use="optional" type="xs:token"/>
+                    <xs:attribute name="PrimaryKey" use="optional" type="xs:token"/>
+                    <xs:attribute name="Default" use="optional" type="xs:token"/>
+                    <xs:attribute name="NameOld" use="optional" type="xs:token"/>
+                    <xs:attribute name="NameNew" use="optional" type="xs:token"/>
+                    <xs:attribute name="Required" use="optional" type="xs:token"/>
+                    <xs:attribute name="Size" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
     <xs:element name="ColumnDrop">
         <xs:complexType>
-            <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="required" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -181,7 +192,7 @@
             <xs:sequence>
                 <xs:element ref="Reference" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="ForeignTable" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="ForeignTable" use="required" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -190,7 +201,7 @@
             <xs:sequence>
                 <xs:element ref="Reference" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="ForeignTable" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="ForeignTable" use="required" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -199,7 +210,7 @@
             <xs:sequence>
                 <xs:element ref="Reference" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="ForeignTable" use="required" type="xs:anySimpleType"/>
+            <xs:attribute name="ForeignTable" use="required" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -207,8 +218,8 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Local" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Foreign" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Local" use="required" type="xs:token"/>
+                    <xs:attribute name="Foreign" use="required" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -221,7 +232,7 @@
             <xs:sequence>
                 <xs:element ref="UniqueColumn" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -229,7 +240,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -240,7 +251,7 @@
             <xs:sequence>
                 <xs:element ref="UniqueColumn" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -248,7 +259,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -261,7 +272,7 @@
             <xs:sequence>
                 <xs:element ref="IndexColumn" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -269,8 +280,8 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
-                    <xs:attribute name="Size" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Size" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -281,7 +292,7 @@
             <xs:sequence>
                 <xs:element ref="IndexColumn" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="Name" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Name" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -289,7 +300,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Name" use="required" type="xs:anySimpleType"/>
+                    <xs:attribute name="Name" use="required" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -302,9 +313,9 @@
             <xs:sequence>
                 <xs:element ref="Data" maxOccurs="unbounded" />
             </xs:sequence>
-            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-            <xs:attribute name="Table" use="required" type="xs:anySimpleType"/>
-            <xs:attribute name="Version" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Type" use="optional" type="xs:token"/>
+            <xs:attribute name="Table" use="required" type="xs:token"/>
+            <xs:attribute name="Version" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -312,8 +323,8 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Key" use="optional" type="xs:anySimpleType"/>
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
+                    <xs:attribute name="Key" use="optional" type="xs:token"/>
+                    <xs:attribute name="Type" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>

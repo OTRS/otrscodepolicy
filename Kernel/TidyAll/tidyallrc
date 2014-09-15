@@ -392,7 +392,7 @@ select = scripts/database/update/*.xml
 select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Lint]
-select = **/*.xml
+select = **/*.{xml,xsd}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
