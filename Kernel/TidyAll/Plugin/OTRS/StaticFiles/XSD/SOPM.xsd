@@ -230,7 +230,7 @@
             <xs:simpleContent>
                 <xs:extension base="xs:string">
                     <xs:attribute name="Type" use="optional" type="xs:token"/>
-                    <xs:attribute name="Version" use="required" type="xs:token"/>
+                    <xs:attribute name="Version" use="optional" type="xs:token"/>
                     <xs:attribute name="IfPackage" use="optional" type="xs:token"/>
                     <xs:attribute name="IfNotPackage" use="optional" type="xs:token"/>
                 </xs:extension>
