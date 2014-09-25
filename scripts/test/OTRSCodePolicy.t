@@ -74,7 +74,7 @@ $Self->True(
 );
 die if !$Success;
 
-my $CacheTTLSeconds = 6 * 60 * 60;                             # 6 hours
+my $CacheTTLSeconds = 6 * 60 * 60;                     # 6 hours
 my $Version         = $ConfigObject->Get('Version');
 
 # Clean up old cache files first (TTL expired).
@@ -85,7 +85,7 @@ my $Wanted = sub {
 
     my $Stat = File::stat::stat($File::Find::name);
 
-    if ( time() - $Stat->ctime() > $CacheTTLSeconds ) {        ## no critic
+    if ( time() - $Stat->ctime() > $CacheTTLSeconds ) {    ## no critic
             #print STDERR "Unlink cache file $File::Find::name\n";
         unlink $File::Find::name || die "Could not delete $File::Find::name";
     }
