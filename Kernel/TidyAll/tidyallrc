@@ -407,7 +407,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ; Migrations 3.4
 ;
 
-[+TidyAll::Plugin::OTRS::Migrations::3_4::FontAwesome]
+[+TidyAll::Plugin::OTRS::Migrations::OTRS4::FontAwesome]
 select = **/*.{tt,css,}
 select = Kernel/Config/**/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*

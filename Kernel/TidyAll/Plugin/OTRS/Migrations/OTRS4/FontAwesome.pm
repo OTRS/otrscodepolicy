@@ -1,5 +1,5 @@
 # --
-# TidyAll/Plugin/OTRS/Migrations/3_4/FontAwesome.pm - code quality plugin
+# TidyAll/Plugin/OTRS/Migrations/OTRS4/FontAwesome.pm - code quality plugin
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Migrations::3_4::FontAwesome;    ## no critic
+package TidyAll::Plugin::OTRS::Migrations::OTRS4::FontAwesome;    ## no critic
 
 use strict;
 use warnings;
