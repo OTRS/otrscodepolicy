@@ -18,8 +18,14 @@ ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
+[+TidyAll::Plugin::OTRS::Common::ProhibitEmailAddresses]
+select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,sopm}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+
 [+TidyAll::Plugin::OTRS::Common::RemoveCVSIDs]
-select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm}
+select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm,md}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
