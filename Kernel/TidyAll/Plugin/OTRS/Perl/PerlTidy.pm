@@ -28,6 +28,13 @@ sub transform_source { ## no critic
         return $Code;
     }
 
+    # Force re-wrap of wrapped function calls
+    #   -> bring them back to the previous line so that PerlTidy can
+    #   decide again if they have to be wrapped.
+    $Code =~ s{ \n^\s+(->[a-zA-Z0-9_]+[(]) }{$1}smxg;
+    # Force re-wrap of assignments too.
+    $Code =~ s{ \n^\s+(=\s+) }{$1}smxg;
+
     # perltidy reports errors in two different ways.
     # Argument/profile errors are output and an error_flag is returned.
     # Syntax errors are sent to errorfile.
