@@ -62,8 +62,7 @@ sub DetermineFrameworkVersionFromDirectory {
             my @Content = $FileHandle->getlines();
             for my $Line (@Content) {
                 if ( $Line =~ m{<Framework>} ) {
-                    my ( $VersionMajor, $VersionMinor )
-                        = $Line =~ m{<Framework>(\d+)\.(\d+)\.[^<*]</Framework>}xms;
+                    my ( $VersionMajor, $VersionMinor ) = $Line =~ m{<Framework>(\d+)\.(\d+)\.[^<*]</Framework>}xms;
                     if (
                         $VersionMajor > $FrameworkVersionMajor
                         || (

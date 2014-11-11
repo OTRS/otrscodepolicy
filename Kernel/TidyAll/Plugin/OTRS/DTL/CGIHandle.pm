@@ -26,7 +26,7 @@ sub validate_source {    ## no critic
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
-      # allow IE workaround, e. g. <a href="$Env{"CGIHandle"}/$QData{"Filename"}?Action=...">xxx</a>
+        # allow IE workaround, e. g. <a href="$Env{"CGIHandle"}/$QData{"Filename"}?Action=...">xxx</a>
         if ( $Line =~ /<a.+href="\$Env{"CGIHandle"}[^\/](.*)>/ ) {
             $ErrorMessage .= __PACKAGE__ . "\n" . <<EOF;
 \$Env{\"CGIHandle\"} is not allowed in <a>tags. Use \$Env{\"Baselink\"}!

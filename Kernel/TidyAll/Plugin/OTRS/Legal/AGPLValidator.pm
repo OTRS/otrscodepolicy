@@ -98,8 +98,7 @@ sub transform_source {    ## no critic
         $Flag = 1;
     }
 
-    my $OldFSFAddress
-        = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
+    my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
     my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA';
 
     if ( $Code =~ s{$OldFSFAddress}{$NewFSFAddress}xms ) {

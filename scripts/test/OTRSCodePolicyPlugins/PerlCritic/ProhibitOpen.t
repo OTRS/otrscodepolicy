@@ -45,7 +45,7 @@ EOF
         Exception => 1,
     },
     {
-        Name => 'PerlCritic ProhibitOpen regular file, read, no parentheses, bareword filehandle',
+        Name      => 'PerlCritic ProhibitOpen regular file, read, no parentheses, bareword filehandle',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
         Framework => '3.3',

@@ -65,10 +65,9 @@ sub validate_file {    ## no critic
             my @SourceTags = $StrippedSource =~ m{<[^>]*>}smg;
             next STRING if !@SourceTags;
             my %SourceTagCount;
-            @SourceTags
-                = map { $_ =~ s{^<([/a-zA-Z_0-9]+).*}{$1}esmxg; $_ } @SourceTags;    ## no critic
+            @SourceTags = map { $_ =~ s{^<([/a-zA-Z_0-9]+).*}{$1}esmxg; $_ } @SourceTags;    ## no critic
 
-          # Some tags which do not have to be validated as long as the xml structure is still valid.
+            # Some tags which do not have to be validated as long as the xml structure is still valid.
             my %IgnoreTags = (
                 'emphasis'   => 1,
                 '/emphasis'  => 1,

@@ -29,7 +29,7 @@ sub validate_source {    ## no critic
 
         $Line =~ s{\[gettimeofday\]}{1}smx;
 
-  # We'll skip all use *; statements exept a few because the modules cannot all be found at runtime.
+        # We'll skip all use *; statements exept a few because the modules cannot all be found at runtime.
         if (
             $Line =~ m{ \A \s* use \s+ }xms
             && $Line

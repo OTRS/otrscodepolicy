@@ -34,8 +34,7 @@ sub validate_source {    ## no critic
 
     # get all new calls
     my @News = $PodString =~ m{^ \s{4} (?:my|local) \s \$ .+? = [^\n]+? new \s* \( .*? $}smxg;
-    my %NewElement
-        = map { m{^ \s{4} (?:my|local) \s \$ .+? = \s ([^\n]+?) ->new\( .*? $}smx; $1 => 1; } @News;
+    my %NewElement = map { m{^ \s{4} (?:my|local) \s \$ .+? = \s ([^\n]+?) ->new\( .*? $}smx; $1 => 1; } @News;
 
     # compare use calls with new calls
     USE:

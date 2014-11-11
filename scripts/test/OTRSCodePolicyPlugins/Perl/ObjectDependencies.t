@@ -40,7 +40,7 @@ EOF
         Exception => 1,
     },
     {
-        Name => 'ObjectDependencies, default dependencies used with invalid short form in Get()',
+        Name      => 'ObjectDependencies, default dependencies used with invalid short form in Get()',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
         Framework => '4.0',

@@ -215,13 +215,13 @@ EOF
                 )
                 )
             {
-# the following words are removed of stefans list, because they don't merge
-# at with http://www.petefreitag.com/tools/sql_reserved_words_checker/
-# ID CATEGORY NAME CONTENT VERSION QUEUE BODY TIMEOUT REFERENCE NOTIFICATION PROJECT TRUSTED
-# all reserved sql-words with small letters are from
-# http://www.petefreitag.com/tools/sql_reserved_words_checker/
-# and http://www.ianywhere.com/developer/product_manuals/sqlanywhere/0901/de/html/dbrfde9/00000010.htm
-# 'reference' and 'login' seems to be allowed (checked by www.petefreitag.com)
+                # the following words are removed of stefans list, because they don't merge
+                # at with http://www.petefreitag.com/tools/sql_reserved_words_checker/
+                # ID CATEGORY NAME CONTENT VERSION QUEUE BODY TIMEOUT REFERENCE NOTIFICATION PROJECT TRUSTED
+                # all reserved sql-words with small letters are from
+                # http://www.petefreitag.com/tools/sql_reserved_words_checker/
+                # and http://www.ianywhere.com/developer/product_manuals/sqlanywhere/0901/de/html/dbrfde9/00000010.htm
+                # 'reference' and 'login' seems to be allowed (checked by www.petefreitag.com)
 
                 if ( $1 && $1 =~ /^$ReservedWord$/i ) {
                     die <<EOF;

@@ -58,8 +58,7 @@ sub Run {
     for my $Test ( @{ $Param{Tests} } ) {
 
         # Set framework version in TidyAll so that plugins can use it.
-        my ( $FrameworkVersionMajor, $FrameworkVersionMinor )
-            = $Test->{Framework} =~ m/(\d+)[.](\d+)/xms;
+        my ( $FrameworkVersionMajor, $FrameworkVersionMinor ) = $Test->{Framework} =~ m/(\d+)[.](\d+)/xms;
         $TidyAll::OTRS::FrameworkVersionMajor = $FrameworkVersionMajor;
         $TidyAll::OTRS::FrameworkVersionMinor = $FrameworkVersionMinor;
 

@@ -176,18 +176,4 @@
     </para>
 </chapter>
 
-<chapter>
-    <title>Contacts</title>
-    <para>People who are involved in this implementation.</para>
-    <section>
-        <title>OTRS AG</title>
-        <para>
-            Accounting: Rene Bakker &lt;sales@otrs.com&gt;, Phone +49 (0)6172 681988 0
-        </para>
-        <para>
-            Technical: Manuel Hecht &lt;dev-support@otrs.com&gt;, Phone +49 (0)6172 681988 0
-        </para>
-    </section>
-</chapter>
-
 </book>
