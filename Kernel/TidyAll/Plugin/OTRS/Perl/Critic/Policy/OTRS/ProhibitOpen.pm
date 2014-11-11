@@ -38,9 +38,9 @@ sub violates {
 
     # parentheses around open are present: open()
     if ( Scalar::Util::blessed($NextSibling) eq 'PPI::Structure::List' ) {
-        my $Quote = $NextSibling->find('PPI::Token::Quote')->[0];
-        return if ( !$Quote );
-        $OpenMode = $Quote->string();
+        my $Quote = $NextSibling->find('PPI::Token::Quote');
+        return if ( ref $Quote ne 'ARRAY' );
+        $OpenMode = $Quote->[0]->string();
     }
 
     # parentheses are not present

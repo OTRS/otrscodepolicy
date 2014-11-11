@@ -148,6 +148,25 @@ my $FH;
 open $FH, $Mode, $Param{Location};
 EOF
     },
+    {
+        Name      => 'PerlCritic ProhibitOpen in another context',
+        Filename  => 'test.pl',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
+        Framework => '3.3',
+        Source    => <<'EOF',
+#!/usr/bin/bash
+use strict;
+use warnings;
+my $GeoIPObject = Geo::IP->open( $GeoIPDatabaseFile, Geo::IP::GEOIP_STANDARD() );
+EOF
+        Exception => 0,
+        Result    => <<'EOF',
+#!/usr/bin/bash
+use strict;
+use warnings;
+my $GeoIPObject = Geo::IP->open( $GeoIPDatabaseFile, Geo::IP::GEOIP_STANDARD() );
+EOF
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );
