@@ -109,6 +109,9 @@ elsif ( !$All ) {
     @Files = Code::TidyAll::Git::Util::git_uncommitted_files($RootDir);
 }
 
+# Ignore non-regular files and symlinks
+@Files = grep {-f && !-l} @Files;
+
 chdir dirname($0) . "/..";
 
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
