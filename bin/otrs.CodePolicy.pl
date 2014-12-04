@@ -110,7 +110,7 @@ elsif ( !$All ) {
 }
 
 # Ignore non-regular files and symlinks
-@Files = grep {-f && !-l} @Files;
+@Files = grep { -f && !-l } @Files;
 
 chdir dirname($0) . "/..";
 
