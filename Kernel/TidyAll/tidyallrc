@@ -184,7 +184,6 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::Perl::ObjectDependencies]
 select = **/*.{pm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = Kernel/Modules/**/* Custom/Kernel/Modules/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ObjectNameSpace]
 select = **/*.{pl,pm,t}
