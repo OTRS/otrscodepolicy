@@ -1,6 +1,6 @@
 # --
 # OTRSCodePolicyPlugins/Common/HeaderlineFilename.t - code policy self tests
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,14 +24,14 @@ my @Tests = (
         Source    => <<'EOF',
 # --
 # Kernel/System/Type.pm - All ticket type related functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 EOF
         Exception => 0,
         Result    => <<'EOF',
 # --
 # Kernel/System/Type.pm - All ticket type related functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 EOF
     },
@@ -43,7 +43,7 @@ EOF
         Source    => <<'EOF',
 # --
 # Kernel/System/Type2.pm - All ticket type related functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 EOF
         Exception => 1,
