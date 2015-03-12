@@ -181,6 +181,9 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::NoExitInConsoleCommands]
+select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Command/**/*.pm
+
 [+TidyAll::Plugin::OTRS::Perl::ObjectDependencies]
 select = **/*.{pm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
