@@ -36,7 +36,7 @@ sub validate_source {    ## no critic
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
-Don't use 'exit' in console commands, use \$Self->ExitCodeOk() or \$Self->ExitCodeError() instead.
+Don't use 'exit' in console commands, use 'return \$Self->ExitCodeOk();' or 'return \$Self->ExitCodeError();' instead.
 $ErrorMessage
 EOF
     }
