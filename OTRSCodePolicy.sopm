@@ -61,6 +61,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ISA.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/LayoutObject.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/NoExitInConsoleCommands.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectDependencies.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectNameSpace.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ParamObject.pm"/>
@@ -141,6 +142,7 @@
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t"/>
+        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t"/>
