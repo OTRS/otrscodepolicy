@@ -88,6 +88,14 @@ ignore = **/js-cache/*.js
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::JavaScript::ESLint]
+select = **/*.js
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = **/js-cache/*.js
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 ;
 ; Legal
 ;
