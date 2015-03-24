@@ -15,6 +15,7 @@ use warnings;
 use Capture::Tiny qw(capture_merged);
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+our $NodePath;
 our $ESLintPath;
 our $ESLintConfigPath;
 
@@ -25,6 +26,16 @@ sub validate_file {    ## no critic
     return if $Self->IsFrameworkVersionLessThan( 5, 0 );
 
     if (!$ESLintPath) {
+        # On some systems (Ubuntu) nodejs is called /usr/bin/nodejs instead of /usr/bin/node,
+        #   which can lead to problems with calling the node scripts directly. Therefore we
+        #   determine the nodejs binary and call it directly.
+        $NodePath = `which nodejs` || `which node`;
+        chomp $NodePath;
+        if (!$NodePath) {
+            print STDERR "Could not find 'nodejs' binary, skipping ESLint tests.\n";
+            return;
+        }
+
         $ESLintPath = `which eslint`;
         chomp $ESLintPath;
         if (!$ESLintPath) {
@@ -47,7 +58,7 @@ sub validate_file {    ## no critic
         }
     }
 
-    my $Command = sprintf( "%s -c %s %s", $ESLintPath, $ESLintConfigPath, $Filename );
+    my $Command = sprintf( "%s %s -c %s %s", $NodePath, $ESLintPath, $ESLintConfigPath, $Filename );
     my ( $Output, @Result ) = capture_merged { system($Command) };
 
     if ( @Result && $Result[0] ) {
