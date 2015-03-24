@@ -37,6 +37,9 @@ my %IgnoreRepositories = (
     # auto-generated documentation
     'otrs-github-io.git' => 1,
 
+    # documentation toolchain
+    'docbuild.git' => 1,
+
     # Thirdparty code
     'bugs-otrs-org.git' => 1,
 );
