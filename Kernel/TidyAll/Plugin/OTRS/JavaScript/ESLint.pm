@@ -48,7 +48,7 @@ sub validate_file {    ## no critic
         $ESLintConfigPath =~ s{ESLint\.pm}{eslintrc};
 
         # force minimum version 0.17.1
-        my $ESLintVersion = `$ESLintPath -v`;
+        my $ESLintVersion = `$NodePath $ESLintPath -v`;
         chomp $ESLintVersion;
         my ($Major, $Minor, $Patch) = $ESLintVersion =~ m{v(\d+)[.](\d+)[.](\d+)};
         my $Compare = sprintf("%03d%03d%03d", $Major, $Minor, $Patch);
