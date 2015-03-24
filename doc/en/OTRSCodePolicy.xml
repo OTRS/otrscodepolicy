@@ -118,6 +118,8 @@
         <para>
             <itemizedlist>
                 <listitem><para>xmllint (often in the libxml2-utils package)</para></listitem>
+                <listitem><para>nodejs</para></listitem>
+                <listitem><para>The nodejs package eslint (install with <literal>npm -g i eslint</literal></para></listitem>
             </itemizedlist>
         </para>
     </section>
