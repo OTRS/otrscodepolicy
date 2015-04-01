@@ -410,6 +410,9 @@ select = doc/**/*.xml
 [+TidyAll::Plugin::OTRS::XML::WSDL::XSDValidator]
 select = **/*.wsdl
 
+[+TidyAll::Plugin::OTRS::XML::WADL::XSDValidator]
+select = **/*.wadl
+
 [+TidyAll::Plugin::OTRS::XML::Lint]
 select = **/*.{xml,xsd}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
