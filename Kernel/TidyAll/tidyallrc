@@ -2,14 +2,6 @@
 ; Common
 ;
 
-[+TidyAll::Plugin::OTRS::Common::HeaderlineFilename]
-select = **/*.{pl,pm,psgi,t,dtl,tt,js}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = scripts/test/sample/**/*
-ignore = Kernel/Config/Files/ZZZ*.pm
-
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkers]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
@@ -426,7 +418,7 @@ ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
-; Migrations 3.4
+; Migrations OTRS 4
 ;
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS4::FontAwesome]
@@ -435,3 +427,15 @@ select = Kernel/Config/**/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
+;
+; Migrations OTRS 5
+;
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS5::HeaderlineFilename]
+select = **/*.{pl,pm,psgi,t,dtl,tt,js}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+ignore = scripts/test/sample/**/*
+ignore = Kernel/Config/Files/ZZZ*.pm

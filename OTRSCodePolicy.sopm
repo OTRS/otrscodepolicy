@@ -27,7 +27,6 @@
         <File Permission="644" Location="Kernel/TidyAll/OTRS/Git/PreReceive.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Base.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
-        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/HeaderlineFilename.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/ProhibitEmailAddresses.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Baselink.pm"/>
@@ -43,6 +42,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS4/FontAwesome.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS5/HeaderlineFilename.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitSmartMatchOperator.pm"/>

@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 # --
-# scripts/install-git-hooks.pl - install otrs-code-policy commit hooks into modules
 # Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
