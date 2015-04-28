@@ -147,7 +147,6 @@
         <File Permission="755" Location="scripts/install-git-hooks.pl"/>
         <File Permission="755" Location="scripts/uninstall-git-hooks.pl"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins.pm"/>
-        <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Common/HeaderlineFilename.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicy.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t"/>
         <File Permission="644" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t"/>
