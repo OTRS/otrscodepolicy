@@ -34,16 +34,16 @@ sub transform_source {    ## no critic
     $Code =~ s{
         (
             \A
-            (?: $CommentStart![^\n]+\n )? # shebang line
-            $CommentStart[ ]--\n          # separator
+            (?: $CommentStart![^\n]+\n )?                   # shebang line
+            $CommentStart[ ]--\n                            # separator
         )
-            $CommentStart[^\n]+\n         # Old documentation header line to be removed
+            (?: $CommentStart \s+ (?!Copyright)[^\n]+\n )+  # Old documentation header lines to be removed
         (
-            $CommentStart[^\n]+\n         # copyright
+            (?: $CommentStart \s+ Copyright[^\n]+\n )+      # copyright
             $CommentStart[ ]--\n          # separator
         )
     }
-    {$1$2}smx;
+    {$1$2}ismx;
 
     return $Code;
 }
