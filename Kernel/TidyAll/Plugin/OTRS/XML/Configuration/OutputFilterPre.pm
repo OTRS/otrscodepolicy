@@ -18,32 +18,20 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
-    return if $Self->IsFrameworkVersionLessThan( 4, 0 );
+    return if $Self->IsFrameworkVersionLessThan( 5, 0 );
 
     my @InvalidSettings;
 
     $Code =~ s{
         (<ConfigItem\s*Name="Frontend::Output::FilterElementPre.*?>)
-        (.*?)
-        </ConfigItem>
-
     }{
-        my $StartTag = $1;
-        my $TagContent = $2;
-
-        if ($TagContent =~ m{ALL}smx) {
-            push @InvalidSettings, $StartTag;
-        }
-
+        push @InvalidSettings, $1;
     }smxge;
 
     my $ErrorMessage;
 
     if (@InvalidSettings) {
-        $ErrorMessage
-            .= "Don't create pre output filters that operate on ALL templates as they prohibit the templates from being cached.\n";
-        $ErrorMessage
-            .= "This can lead to serious performance issues. Please only use pre filters when absolutely neccessary.\n";
+        $ErrorMessage .= "Pre output filters are not supported in OTRS 5+.\n";
         $ErrorMessage .= "Wrong settings found: " . join( ', ', @InvalidSettings ) . "\n";
     }
 
