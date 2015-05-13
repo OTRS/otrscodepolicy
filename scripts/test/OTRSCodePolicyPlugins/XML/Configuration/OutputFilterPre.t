@@ -65,10 +65,10 @@ EOF
         Exception => 0,
     },
     {
-        Name      => 'OputputFilterPost',
+        Name      => 'OputputFilterPost, still allowed',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::OutputFilterPre)],
-        Framework => '4.0',
+        Framework => '5.0',
         Source    => <<'EOF',
     <ConfigItem Name="Frontend::Output::FilterElementPost###OutputFilterPostOTRSAdjustSortTicketOverview" Required="1" Valid="1">
         <Description Translatable="1">This Outputfilter set the correct length for content of title column.</Description>
