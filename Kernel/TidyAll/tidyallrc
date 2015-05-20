@@ -101,7 +101,7 @@ ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist}
+select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = scripts/test/sample/**/*
@@ -436,7 +436,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ;
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::HeaderlineFilename]
-select = **/*.{pl,pm,psgi,t,dtl,tt,js}
+select = **/*.{pl,pm,psgi,t,dtl,tt,js,spec}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
