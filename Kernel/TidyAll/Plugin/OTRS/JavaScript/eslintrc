@@ -15,7 +15,6 @@
         }],
 // Disable rules with errors to only check JSDoc at the first step
 // Enable them later one by one to also lint all other errors
-        "no-unused-vars": 0,
         "no-multi-spaces": 0,
         "no-native-reassign": 0,
         "no-shadow": 0,
