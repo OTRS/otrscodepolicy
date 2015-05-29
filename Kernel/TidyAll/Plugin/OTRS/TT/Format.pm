@@ -84,6 +84,7 @@ sub transform_source {    ## no critic
                 b
                 body
                 button
+                center
                 colgroup
                 dd
                 div

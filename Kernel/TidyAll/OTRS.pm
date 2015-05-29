@@ -116,7 +116,7 @@ sub GetFileListFromDirectory {
         # Files to ignore. Only list files here which cannot be present
         #   in a git repository.
         return if substr( $File::Find::name, 0, 5 ) eq '.git/';
-        return if substr( $File::Find::name, -4 )   eq '.old';
+        return if substr( $File::Find::name, -4 ) eq '.old';
         return if $File::Find::name eq 'perltidy.LOG';
         return if index( $File::Find::name, '.tidyall.d/' ) > -1;
         return if substr( $File::Find::name, -9 ) eq '.DS_Store';
