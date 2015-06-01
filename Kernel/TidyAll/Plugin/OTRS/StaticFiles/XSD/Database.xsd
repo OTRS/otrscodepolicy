@@ -319,10 +319,25 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:complexType name="TranslatableString">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Translatable" use="optional">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="0"/>
+                            <xs:enumeration value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
     <xs:element name="Data">
         <xs:complexType>
             <xs:simpleContent>
-                <xs:extension base="xs:string">
+                <xs:extension base="TranslatableString">
                     <xs:attribute name="Key" use="optional" type="xs:token"/>
                     <xs:attribute name="Type" use="optional" type="xs:token"/>
                 </xs:extension>
