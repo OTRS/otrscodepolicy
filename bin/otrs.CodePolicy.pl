@@ -32,7 +32,7 @@ use File::Spec;
 use Getopt::Long;
 use File::Find;
 use Code::TidyAll;
-use Code::TidyAll::Git::Util;
+use IPC::System::Simple qw(capturex);
 
 use TidyAll::OTRS;
 
@@ -105,7 +105,13 @@ elsif ( defined $Cached && length $Cached ) {
     }
 }
 elsif ( !$All ) {
-    @Files = Code::TidyAll::Git::Util::git_uncommitted_files($RootDir);
+    my $Output = capturex( 'git', "status", "--porcelain" );
+    my @ChangedFiles = grep { -f && !-l } ( $Output =~ /^\s*[MA]+\s+(.*)/gm );
+    push @ChangedFiles, grep { -f && !-l } ( $Output =~ /^\s*RM?+\s+(.*?)\s+->\s+(.*)/gm );
+    for my $ChangedFile (@ChangedFiles) {
+        chomp $ChangedFile;
+        push @Files, ( File::Spec->catfile( $RootDir, $ChangedFile ) )
+    }
 }
 
 # Ignore non-regular files and symlinks
