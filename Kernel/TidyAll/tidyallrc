@@ -125,6 +125,9 @@ select = i18n/**/*.{pot,po}
 ; Perl
 ;
 
+[+TidyAll::Plugin::OTRS::Perl::BinScripts]
+select = bin/*.pl
+
 [+TidyAll::Plugin::OTRS::Perl::CacheNew]
 select = **/*.{pl,psgi,pm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
