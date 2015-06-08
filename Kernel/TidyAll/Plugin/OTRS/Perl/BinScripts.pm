@@ -27,6 +27,7 @@ sub validate_file {    ## no critic
     my %AllowedFiles = (
         'otrs.CheckModules.pl'   => 1,
         'otrs.CheckSum.pl'       => 1,
+        'otrs.CodePolicy.pl'     => 1,
         'otrs.Console.pl'        => 1,
         'otrs.GenericAgent.pl'   => 1,
         'otrs.Daemon.pl'         => 1,
