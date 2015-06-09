@@ -218,11 +218,14 @@
 
     <xs:element name="DateTime">
         <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="TranslatableString">
-                    <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
-                </xs:extension>
-            </xs:simpleContent>
+            <xs:sequence>
+                <xs:element name="Year" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="Month" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="Day" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="Hour" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="Minute" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="Type" use="optional" type="xs:anySimpleType"/>
         </xs:complexType>
     </xs:element>
 
