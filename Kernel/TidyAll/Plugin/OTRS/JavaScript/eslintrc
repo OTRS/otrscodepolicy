@@ -3,38 +3,39 @@
         "browser": true,
         "jquery": true
     },
+    "globals": {
+        "CKEDITOR": true,
+        "isJQueryObject": true,
+        "printStackTrace": true,
+        //qunit stuff
+        "module": true,
+        "test": true,
+        "expect": true,
+        "equal": true,
+        "deepEqual": true,
+        "asyncTest": true,
+        "start": true,
+        "ok": true,
+        "notEqual": true
+    },
     "rules": {
         "quotes": 0,
         "new-cap": 0,
         "global-strict": 0,
         "no-alert": 0,
+        "radix": 2,
         "valid-jsdoc": [2, {
             "requireReturn": false,
             "requireParamDescription": false,
             "requireReturnDescription": false
         }],
+        "no-catch-shadow": 0,
 // Disable rules with errors to only check JSDoc at the first step
 // Enable them later one by one to also lint all other errors
-        "no-multi-spaces": 0,
-        "no-native-reassign": 0,
-        "no-shadow": 0,
         "camelcase": 0,
-        "space-infix-ops": 0,
-        "space-unary-ops": 0,
-        "key-spacing": 0,
-        "comma-spacing": 0,
-        "eol-last": 0,
-        "no-unused-expressions": 0,
-        "no-spaced-func": 0,
-        "consistent-return": 0,
-        "no-undef": 0,
-        "no-eval": 0,
-        "no-catch-shadow": 0,
-        "no-console": 0,
-        "no-use-before-define": 0,
-        "dot-notation": 0,
-        "eqeqeq": 0,
-        "no-extra-semi": 0,
-        "valid-typeof": 0
+
+// new rules, must be activated
+//        "vars-on-top": 2,
+//        "space-in-parens": [2, "never"],
     }
 }
