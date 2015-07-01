@@ -29,9 +29,7 @@ sub validate_file {    ## no critic
         'otrs.CheckSum.pl'       => 1,
         'otrs.CodePolicy.pl'     => 1,
         'otrs.Console.pl'        => 1,
-        'otrs.GenericAgent.pl'   => 1,
         'otrs.Daemon.pl'         => 1,
-        'otrs.Scheduler.pl'      => 1,
         'otrs.SetPermissions.pl' => 1,
     );
 
