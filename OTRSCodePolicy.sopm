@@ -67,6 +67,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/NoExitInConsoleCommands.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectDependencies.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectManagerCreation.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectNameSpace.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ParamObject.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlCritic.pm"/>

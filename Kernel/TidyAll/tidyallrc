@@ -191,6 +191,10 @@ select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Comm
 select = **/*.{pm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::ObjectManagerCreation]
+select = **/*.{pm,pl}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::ObjectNameSpace]
 select = **/*.{pl,pm,t}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
