@@ -30,12 +30,7 @@
             "requireReturnDescription": false
         }],
         "no-catch-shadow": 0,
-// Disable rules with errors to only check JSDoc at the first step
-// Enable them later one by one to also lint all other errors
-        "camelcase": 0,
-
-// new rules, must be activated
-//        "vars-on-top": 2,
-//        "space-in-parens": [2, "never"],
+        "vars-on-top": 2,
+        "space-in-parens": [2, "never"]
     }
 }
