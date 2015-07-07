@@ -23,6 +23,13 @@ ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
+; Cron
+;
+
+[+TidyAll::Plugin::OTRS::Cron::CronScripts]
+select = var/cron/*.dist
+
+;
 ; DTL
 ;
 

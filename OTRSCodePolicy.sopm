@@ -29,6 +29,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/ProhibitEmailAddresses.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Cron/CronScripts.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Baselink.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/CGIHandle.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Format.pm"/>
