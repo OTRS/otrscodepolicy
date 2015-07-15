@@ -419,6 +419,7 @@ select = scripts/database/update/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Docbook::XSDValidator]
 select = doc/**/*.xml
+;select = en/content/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::WSDL::XSDValidator]
 select = **/*.wsdl
