@@ -132,7 +132,6 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/WSDL/Literal.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/WSDL/WSDL.xsd"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd"/>
-        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/TT/Format.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/Tabs.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/TrailingWhitespace.pm"/>

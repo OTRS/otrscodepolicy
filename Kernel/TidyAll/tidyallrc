@@ -104,6 +104,7 @@ select = **/*.{pl,pm,t,dtl,tt}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/*.pm
 ignore = scripts/test/sample/**/*
+ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
@@ -343,12 +344,6 @@ select = *.{sopm}
 ; TT
 ;
 
-[+TidyAll::Plugin::OTRS::TT::Format]
-select = **/*.tt
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; SQL
