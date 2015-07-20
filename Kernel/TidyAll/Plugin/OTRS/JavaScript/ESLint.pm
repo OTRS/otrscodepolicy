@@ -17,6 +17,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 our $NodePath;
 our $ESLintPath;
 our $ESLintConfigPath;
+our $ESLintRulesPath;
 
 sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
@@ -47,6 +48,9 @@ sub validate_file {    ## no critic
         $ESLintConfigPath = __FILE__;
         $ESLintConfigPath =~ s{ESLint\.pm}{eslintrc};
 
+        $ESLintRulesPath = __FILE__;
+        $ESLintRulesPath =~ s{ESLint\.pm}{ESLintRules};
+
         # force minimum version 0.17.1
         my $ESLintVersion = `$NodePath $ESLintPath -v`;
         chomp $ESLintVersion;
@@ -58,7 +62,7 @@ sub validate_file {    ## no critic
         }
     }
 
-    my $Command = sprintf( "%s %s -c %s %s", $NodePath, $ESLintPath, $ESLintConfigPath, $Filename );
+    my $Command = sprintf( "%s %s -c %s --rulesdir %s %s", $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename );
     my ( $Output, @Result ) = capture_merged { system($Command) };
 
     if ( @Result && $Result[0] ) {

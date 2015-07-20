@@ -32,6 +32,9 @@
         }],
         "no-catch-shadow": 0,
         "vars-on-top": 2,
-        "space-in-parens": [2, "never"]
+        "space-in-parens": [2, "never"],
+
+        // OTRS-specific rules
+        "no-window": 2
     }
 }
