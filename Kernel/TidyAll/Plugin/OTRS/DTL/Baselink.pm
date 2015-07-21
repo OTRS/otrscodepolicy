@@ -31,7 +31,7 @@ sub validate_source {    ## no critic
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
-        if ( $Line =~ /<form.+action="\$Env{"Baselink"}"/i ) {
+        if ( $Line =~ /<form.+action="\$Env\{"Baselink"\}"/i ) {
             $ErrorMessage .= __PACKAGE__ . "\n" . <<EOF;
 \$Env{\"Baselink\"} is not allowed in <form>tags. Use \$Env{\"CGIHandle\"}!
 Line $Counter: $Line

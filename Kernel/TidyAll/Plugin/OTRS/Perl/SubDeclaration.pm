@@ -39,8 +39,8 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
-    if ( $Code =~ m|^sub \s+ \w+ \s* \r?\n { |smx ) {
-        $Code =~ s|^(sub \s+ \w+) \s* \r?\n { |$1 {|smxg;
+    if ( $Code =~ m|^sub \s+ \w+ \s* \r?\n \{ |smx ) {
+        $Code =~ s|^(sub \s+ \w+) \s* \r?\n \{ |$1 {|smxg;
     }
 
     return $Code;

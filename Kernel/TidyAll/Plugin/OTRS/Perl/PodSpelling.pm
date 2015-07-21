@@ -68,7 +68,7 @@ sub validate_source {    ## no critic
             }
         }
         if ( $FunctionItem && $Line =~ /sub/ ) {
-            if ( $Line =~ /sub (.+) {/ ) {
+            if ( $Line =~ /sub (.+) \{/ ) {
                 $FunctionSub = $1;
                 $FunctionSub =~ s/ //;
                 $SubLine = $Line;
