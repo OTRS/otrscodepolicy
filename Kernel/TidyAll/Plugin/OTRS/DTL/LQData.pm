@@ -28,11 +28,11 @@ sub validate_source {    ## no critic
 
         # next line if IE behavior need to get ignored
         # see bug#5579 - Spaces in filenames are converted to + characters when downloading in IE.
-        next LINE if $Line =~ /href="\$Env{"CGIHandle"}\/\$QData{"Filename"}?/;
+        next LINE if $Line =~ /href="\$Env\{"CGIHandle"}\/\$QData\{"Filename"\}?/;
 
         # next line if links for agent/customer iface for cockpit is used
         # see bug #6172 - Agent/Customer Interface links to instance broken
-        if ( $Line =~ m{href="\$QData{" (?: (?: Agent | Customer ) Link | Destination ) "}}xms ) {
+        if ( $Line =~ m{href="\$QData\{" (?: (?: Agent | Customer ) Link | Destination ) "\}}xms ) {
             next LINE;
         }
 
