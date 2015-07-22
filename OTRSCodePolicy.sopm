@@ -38,6 +38,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/DTL/UniqueBlock.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/DebugCode.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLintRules/no-window.js"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/eslintrc"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm"/>
