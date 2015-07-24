@@ -84,6 +84,7 @@ sub validate_file {    ## no critic
             for my $SourceTag (@SourceTags) {
                 next SOURCE_TAG if $IgnoreTags{$SourceTag};
                 $SourceTagCount{$SourceTag}++;
+
             }
 
             for my $SourceTag ( sort keys %SourceTagCount ) {
@@ -98,18 +99,33 @@ sub validate_file {    ## no critic
                         .= "  Tag <$SourceTag> was expected $SourceTagCount{$SourceTag} but found $TranslatedTagCount times.\n";
                 }
             }
+
+            # Source and translation should have the same linkend definitions.
+            my @SourceLinkEnds = $Source =~ m{<link[^>]+linkend=["']([^'"]+)['"]}smxg;
+            my @TargetLinkEnds = $Translation =~ m{<link[^>]+linkend=["']([^'"]+)['"]}smxg;
+
+            my $LinkEndsAreDifferent = $Self->_DataDiff(
+                Data1 => [ sort { $a cmp $b } @SourceLinkEnds ],
+                Data2 => [ sort { $a cmp $b } @TargetLinkEnds ],
+            );
+
+            if ($LinkEndsAreDifferent) {
+                $ErrorMessage .= "Linkend definitions are different.\nSource:\n$Source\nTranslation:\n$Translation\n\n";
+            }
         }
-        else {    # regular GUI translation
-                  # my @SourcePlaceholders = $Source =~ m{%s}smg;
-                  # my @TranslationPlaceholders = $Translation =~ m{%s}smg;
-                  # if (scalar @SourcePlaceholders != scalar @TranslationPlaceholders) {
-                  #     $ErrorMessage .= "Invalid translation found in Line: "
-                  #         . $String->loaded_line_number() . "\n";
-                  #     $ErrorMessage .= "  Source: $Source\n";
-                  #     $ErrorMessage .= "  Translation: $Translation\n";
-                  #     $ErrorMessage
-             #         .= "  %s was expected " . scalar(@SourcePlaceholders) . " but found " . scalar(@TranslationPlaceholders) . " times.\n";
-             # }
+
+        # regular GUI translation
+        else {
+# my @SourcePlaceholders = $Source =~ m{%s}smg;
+# my @TranslationPlaceholders = $Translation =~ m{%s}smg;
+# if (scalar @SourcePlaceholders != scalar @TranslationPlaceholders) {
+#     $ErrorMessage .= "Invalid translation found in Line: "
+#         . $String->loaded_line_number() . "\n";
+#     $ErrorMessage .= "  Source: $Source\n";
+#     $ErrorMessage .= "  Translation: $Translation\n";
+#     $ErrorMessage
+#         .= "  %s was expected " . scalar(@SourcePlaceholders) . " but found " . scalar(@TranslationPlaceholders) . " times.\n";
+# }
         }
     }
 
