@@ -25,8 +25,6 @@
 
                 <xs:element ref="ChangeLog" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="OS" minOccurs="0" maxOccurs="unbounded" />
-                <xs:element ref="BuildDate" minOccurs="0" />
-                <xs:element ref="BuildHost" minOccurs="0" />
                 <xs:element ref="Filelist"/>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element ref="IntroInstall"/>
