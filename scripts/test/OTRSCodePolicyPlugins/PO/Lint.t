@@ -25,17 +25,17 @@ msgstr "Ja <link linkend=\"123\">das</link> funktioniert"
 EOF
         Exception => 0,
     },
-    {
-        Name      => 'PO::Lint, valid docbook (ignored tag missing)',
-        Filename  => 'doc-admin-test.xml',
-        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::Lint)],
-        Framework => '4.0',
-        Source    => <<'EOF',
-msgid "Yes <link linkend=\"123\">this</link> works"
-msgstr "Ja das funktioniert"
-EOF
-        Exception => 0,
-    },
+#    {
+#        Name      => 'PO::Lint, valid docbook (ignored tag missing)',
+#        Filename  => 'doc-admin-test.xml',
+#        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::Lint)],
+#        Framework => '4.0',
+#        Source    => <<'EOF',
+#msgid "Yes <link linkend=\"123\">this</link> works"
+#msgstr "Ja das funktioniert"
+#EOF
+#        Exception => 0,
+#    },
     {
         Name      => 'PO::Lint, invalid docbook (invalid xml)',
         Filename  => 'doc-admin-test.xml',
