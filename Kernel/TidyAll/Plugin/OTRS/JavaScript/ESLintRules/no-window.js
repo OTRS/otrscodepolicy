@@ -13,10 +13,11 @@ module.exports = function(context) {
 
     return {
         "MemberExpression": function(node) {
+            var ObjectName,
+                PropertyName,
+                ReservedWords = ["opener", "parent", "open", "name"];
             if (node.object.type === 'Identifier') {
-                var ObjectName = node.object.name,
-                    PropertyName,
-                    ReservedWords = ["opener", "parent", "open", "name"];
+                ObjectName = node.object.name;
 
                 if (ObjectName === 'window') {
                     if (node.property.type === 'Identifier') {

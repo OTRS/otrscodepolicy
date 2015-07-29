@@ -62,8 +62,10 @@ sub validate_file {    ## no critic
         }
     }
 
-    my $Command = sprintf( "%s %s -c %s --rulesdir %s %s",
-        $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename );
+    my $Command = sprintf(
+        "%s %s -c %s --rulesdir %s %s",
+        $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename
+    );
     my ( $Output, @Result ) = capture_merged { system($Command) };
 
     if ( @Result && $Result[0] ) {
