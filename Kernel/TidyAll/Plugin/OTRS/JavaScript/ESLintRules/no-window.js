@@ -15,7 +15,7 @@ module.exports = function(context) {
         "MemberExpression": function(node) {
             var ObjectName,
                 PropertyName,
-                ReservedWords = ["opener", "parent", "open", "name"];
+                ReservedWords = ["opener", "parent", "open", "name", "close"];
             if (node.object.type === 'Identifier') {
                 ObjectName = node.object.name;
 
