@@ -34,6 +34,8 @@
         "no-catch-shadow": 0,
         "vars-on-top": 2,
         "space-in-parens": [2, "never"],
+        "no-eval": 2,
+        "no-implied-eval": 2,
 
         // OTRS-specific rules
         "no-window": 2
