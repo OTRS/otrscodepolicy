@@ -19,6 +19,7 @@
         "ok": true,
         "notEqual": true
     },
+    "extends": "eslint:recommended",
     "rules": {
         "quotes": 0,
         "new-cap": 0,

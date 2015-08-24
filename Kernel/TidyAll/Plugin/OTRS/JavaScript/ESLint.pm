@@ -56,7 +56,7 @@ sub validate_file {    ## no critic
         chomp $ESLintVersion;
         my ( $Major, $Minor, $Patch ) = $ESLintVersion =~ m{v(\d+)[.](\d+)[.](\d+)};
         my $Compare = sprintf( "%03d%03d%03d", $Major, $Minor, $Patch );
-        if ( !length($Major) || $Compare < 17_001 ) {
+        if ( !length($Major) || $Compare < 1_000_001 ) {
             undef $ESLintPath;
             die "Your eslint version ($ESLintVersion) is outdated. Please update with 'npm -g update eslint'.\n";
         }
