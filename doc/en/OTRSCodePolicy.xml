@@ -62,7 +62,7 @@
             <itemizedlist>
                 <listitem><para>manually: call /path/to/OTRSCodePolicy/bin/otrs.CodePolicy.pl from the toplevel of your repository. Checks changed files (no arguments), all files (--all), a directory (--directory) or a file (--file).</para></listitem>
                 <listitem><para>pre commit hook: call /path/to/OTRSCodePolicy/scripts/install-git-hooks.pl in every local repository that you want to have the pre commit hook. It will automatically be run by "git commit" and reject your commit if a problem was found. Skip with "git commit --no-verify".</para></listitem>
-                <listitem><para>UnitTest: install package into OTRS, then run bin/otrs.UnitTest.pl.</para></listitem>
+                <listitem><para>UnitTest: install package into OTRS, then run <filename>bin/otrs.Console.pl Dev::UnitTest::Run</filename>.</para></listitem>
             </itemizedlist>
         </para>
     </section>
@@ -144,13 +144,10 @@
         <title>Command Line</title>
         <para>
             Whenever you cannot use the Admin Interface for whatever reason,
-            you may use the following command line tool (&quot;bin/otrs.PackageManager.pl&quot;)
-            instead.
-        </para>
-        <para>
-        <screen>
-            shell> bin/otrs.PackageManager.pl  -a install -p /path/to/$Name-$Version.opm
-        </screen>
+            you may use the following command line tool instead.
+            <screen><![CDATA[
+shell> bin/otrs.Console.pl Admin::Package::Install /path/to/$Name-$Version.opm
+            ]]></screen>
         </para>
     </section>
 </chapter>

@@ -26,12 +26,13 @@ sub validate_file {    ## no critic
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
     my @ForbiddenCharacters = (
-        '"', '`', '´', '\'', '$', '!', '?,', '*', '(', ')', '{', '}', '[', ']', '#', '<', '>', ':', '\\', '|',
+        ' ', "\n", "\t", '"', '`', '´', '\'', '$', '!', '?,', '*',
+        '(', ')', '{', '}', '[', ']', '#', '<', '>', ':', '\\', '|',
     );
 
     for my $ForbiddenCharacter (@ForbiddenCharacters) {
-        if (index($Filename, $ForbiddenCharacter) > -1) {
-            my $ForbiddenList = join(' ', @ForbiddenCharacters);
+        if ( index( $Filename, $ForbiddenCharacter ) > -1 ) {
+            my $ForbiddenList = join( ' ', @ForbiddenCharacters );
             die __PACKAGE__ . "\n" . <<EOF;
 Forbidden character '$ForbiddenCharacter' found in file name.
 You should not use these characters in file names: $ForbiddenList.
