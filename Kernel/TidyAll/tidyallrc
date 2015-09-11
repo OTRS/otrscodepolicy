@@ -22,6 +22,11 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Common::ValidateFilename]
+select = *
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+
 ;
 ; Cron
 ;
