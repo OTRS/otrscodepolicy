@@ -25,11 +25,18 @@ sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
+    my @ForbiddenCharacters = (
+        '"', '`', '´', '\'', '$', '!', '?,', '*', '(', ')', '{', '}', '[', ']', '#', '<', '>', ':', '\\', '|',
+    );
 
-    if ( $Filename =~ m{[ ]} ) {
-        die __PACKAGE__ . "\n" . <<EOF;
-Dont't use spaces in file names.
+    for my $ForbiddenCharacter (@ForbiddenCharacters) {
+        if (index($Filename, $ForbiddenCharacter) > -1) {
+            my $ForbiddenList = join(' ', @ForbiddenCharacters);
+            die __PACKAGE__ . "\n" . <<EOF;
+Forbidden character '$ForbiddenCharacter' found in file name.
+You should not use these characters in file names: $ForbiddenList.
 EOF
+        }
     }
 
     return;
