@@ -61,11 +61,12 @@ $TidyAll->DetermineFrameworkVersionFromDirectory();
 $TidyAll->GetFileListFromDirectory();
 
 #
-# We need a cache for performance reasons. This will live in /tmp to be persistent across
-#   runs of our UT scenarios. Cache based on file name, content and OTRS version.
+# We need a cache for performance reasons. This will live in /var/otrs-unittest (fallback to /tmp)
+#   to be persistent across runs of our UT scenarios. Cache based on file name, content and OTRS version.
 #
 
-my $CacheDir = '/tmp/OTRSCodePolicy.t/';
+my $CacheDir = -d '/var/otrs-unittest' ? '/var/otrs-unittest' : '/tmp';
+$CacheDir .= '/OTRSCodePolicy.t/';
 my $Success = -d $CacheDir || File::Path::make_path($CacheDir);
 $Self->True(
     $Success,
@@ -73,7 +74,7 @@ $Self->True(
 );
 die if !$Success;
 
-my $CacheTTLSeconds = 6 * 60 * 60;                     # 6 hours
+my $CacheTTLSeconds = 60 * 60 * 24;
 my $Version         = $ConfigObject->Get('Version');
 
 # Clean up old cache files first (TTL expired).
