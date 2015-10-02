@@ -91,6 +91,7 @@
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Time.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TranslationEncoding.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
+        <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UnitTestSysConfigRestore.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/PO/Lint.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/PO/msgfmt.pm"/>
         <File Permission="644" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/CodeTags.pm"/>
