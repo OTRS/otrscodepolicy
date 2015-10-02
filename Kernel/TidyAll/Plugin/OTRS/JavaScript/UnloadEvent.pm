@@ -24,7 +24,7 @@ sub validate_source {    ## no critic
 
     for my $Line ( split( /\n/, $Code ) ) {
         $Counter++;
-        if ( $Line =~ m{ \.bind\('unload }xms || $Line =~ m{ \.on\('unload }xms ) {
+        if ( $Line =~ m{ \.bind\(['"]unload }xms || $Line =~ m{ \.on\(['"]unload }xms ) {
             $ErrorMessage
                 .= "ERROR: Found window unload event in line( $Counter ): $Line\n";
             $ErrorMessage .= "Please use Core.App.BindWindowUnloadEvent() for cross-browser compatibility.\n";
