@@ -88,7 +88,7 @@ sub validate_file {    ## no critic
             }
 
             for my $SourceTag ( sort keys %SourceTagCount ) {
-                my @TranslatedTags     = $Translation =~ m{<$SourceTag}smg;
+                my @TranslatedTags = $Translation =~ m{<$SourceTag}smg;
                 my $TranslatedTagCount = scalar @TranslatedTags;
                 if ( $TranslatedTagCount != $SourceTagCount{$SourceTag} ) {
                     $ErrorMessage .= "Invalid XML translation found in Line: "
@@ -101,7 +101,7 @@ sub validate_file {    ## no critic
             }
 
             # Source and translation should have the same linkend definitions.
-            my @SourceLinkEnds = $Source =~ m{<link[^>]+linkend=["']([^'"]+)['"]}smxg;
+            my @SourceLinkEnds = $Source      =~ m{<link[^>]+linkend=["']([^'"]+)['"]}smxg;
             my @TargetLinkEnds = $Translation =~ m{<link[^>]+linkend=["']([^'"]+)['"]}smxg;
 
             my $LinkEndsAreDifferent = $Self->_DataDiff(
