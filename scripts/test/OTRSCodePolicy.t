@@ -74,23 +74,53 @@ $Self->True(
 );
 die if !$Success;
 
-my $CacheTTLSeconds = 60 * 60 * 24;
-my $Version         = $ConfigObject->Get('Version');
+my $CacheTTLSeconds = 60 * 60 * 24 * 30;
 
+#
 # Clean up old cache files first (TTL expired).
+#
 my $Wanted = sub {
 
     # Skip nonregular files and directories.
     return if ( !-f $File::Find::name );
-
     my $Stat = File::stat::stat($File::Find::name);
-
     if ( time() - $Stat->ctime() > $CacheTTLSeconds ) {    ## no critic
-                                                           #print STDERR "Unlink cache file $File::Find::name\n";
         unlink $File::Find::name || die "Could not delete $File::Find::name";
     }
 };
 File::Find::find( $Wanted, $CacheDir );
+
+#
+# Get a cache version MD5 string that changes when the OTRSCodePolicy module changes.
+#   We do this by getting all file names and contents in Kernel/TidyAll and computing an MD5 on it.
+#   This is not perfect, but probably good enough.
+#
+my $CacheVersionString;
+
+# Collect all CodePolicy files and their contents (timestamps not relevant)
+my $WantedCodePolicy = sub {
+    # Skip hidden directories.
+    return if substr($File::Find::name, 0, 1) eq '.';
+    # Skip nonregular files and directories.
+    return if ( !-f $File::Find::name );
+    my $ContentRef = $MainObject->FileRead(
+        Location => $File::Find::name,
+        Mode => 'utf8',
+    );
+    die if !ref $ContentRef;
+    $CacheVersionString .= "$File::Find::name:$$ContentRef:";
+};
+File::Find::find( $WantedCodePolicy, $ConfigObject->Get('Home') . '/Kernel/TidyAll' );
+
+my $CacheVersionMD5 = $MainObject->MD5sum(
+    String => $CacheVersionString,
+);
+
+#
+# Now perform the real file validation.
+#
+
+my $Version         = $ConfigObject->Get('Version');
 
 FILE:
 for my $File ( $TidyAll->find_matched_files() ) {
@@ -101,7 +131,7 @@ for my $File ( $TidyAll->find_matched_files() ) {
     );
 
     my $CacheKey = $MainObject->MD5sum(
-        String => "$Version:$File:$ContentMD5",
+        String => "$Version:$CacheVersionMD5:$File:$ContentMD5",
     );
 
     my $CacheFileName = "$CacheDir$CacheKey.ok";
