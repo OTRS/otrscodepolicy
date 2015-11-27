@@ -99,13 +99,15 @@ my $CacheVersionString;
 
 # Collect all CodePolicy files and their contents (timestamps not relevant)
 my $WantedCodePolicy = sub {
+
     # Skip hidden directories.
-    return if substr($File::Find::name, 0, 1) eq '.';
+    return if substr( $File::Find::name, 0, 1 ) eq '.';
+
     # Skip nonregular files and directories.
     return if ( !-f $File::Find::name );
     my $ContentRef = $MainObject->FileRead(
         Location => $File::Find::name,
-        Mode => 'utf8',
+        Mode     => 'utf8',
     );
     die if !ref $ContentRef;
     $CacheVersionString .= "$File::Find::name:$$ContentRef:";
@@ -120,7 +122,7 @@ my $CacheVersionMD5 = $MainObject->MD5sum(
 # Now perform the real file validation.
 #
 
-my $Version         = $ConfigObject->Get('Version');
+my $Version = $ConfigObject->Get('Version');
 
 FILE:
 for my $File ( $TidyAll->find_matched_files() ) {
