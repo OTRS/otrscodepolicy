@@ -17,7 +17,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 
 =head1 SYNOPSIS
 
-This plugin disallows problematic email addresses.
+This plugin checks that bin scripts point to new paths.
 
 =cut
 

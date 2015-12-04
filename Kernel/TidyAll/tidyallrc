@@ -449,11 +449,15 @@ select = Kernel/Config/**/*.xml
 select = scripts/database/*.xml
 select = scripts/database/update/*.xml
 
-[+TidyAll::Plugin::OTRS::XML::Docbook::XSDValidator]
+[+TidyAll::Plugin::OTRS::XML::Docbook::BinScripts]
 select = doc/**/*.xml
 ;select = en/content/**/*.xml
 
-[+TidyAll::Plugin::OTRS::XML::Docbook::BinScripts]
+[+TidyAll::Plugin::OTRS::XML::Docbook::ImageOutput]
+select = doc/**/*.xml
+select = en/content/**/*.xml
+
+[+TidyAll::Plugin::OTRS::XML::Docbook::XSDValidator]
 select = doc/**/*.xml
 ;select = en/content/**/*.xml
 
