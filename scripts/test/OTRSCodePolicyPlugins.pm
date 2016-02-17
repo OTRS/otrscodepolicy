@@ -75,15 +75,15 @@ sub Run {
                 );
 
                 for my $Method (qw(preprocess_source process_source_or_file postprocess_source)) {
-                    $Source = $Plugin->$Method( $Source, $Test->{Filename} );
+                    ($Source) = $Plugin->$Method( $Source, $Test->{Filename} );
                 }
             }
         };
 
-        my $Exception = $@ ? 1 : 0;
+        my $Exception = $@;
 
         $Self->Is(
-            $Exception,
+            $Exception ? 1 : 0,
             $Test->{Exception},
             "$Test->{Name} - exception found: $@",
         );
