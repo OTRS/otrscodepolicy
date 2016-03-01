@@ -98,11 +98,6 @@ sub HandleInput {
             next LINE;
         }
 
-        if ( $Base =~ m/^0+$/ ) {
-            print "No base commit found, stopping.\n";
-            next LINE;
-        }
-
         if ( $Commit =~ m/^0+$/ ) {
             print "No target commit found, stopping.\n";
             next LINE;
@@ -250,6 +245,15 @@ sub GetGitFileList {
 
 sub GetChangedFiles {
     my ( $Self, $Base, $Commit ) = @_;
+
+    # Only use the last commit if we have a new branch.
+    #   This is not perfect, but otherwise quite complicated.
+    if ($Base =~ m/^0+$/) {
+        my $Output = capturex( 'git', 'diff-tree', '--no-commit-id', '--name-only', '-r', $Commit );
+        my @Files = grep {/\S/} split( "\n", $Output );
+        return @Files;
+    }
+
     my $Output = capturex( 'git', "diff", "--numstat", "--name-only", "$Base..$Commit" );
     my @Files = grep {/\S/} split( "\n", $Output );
     return @Files;
