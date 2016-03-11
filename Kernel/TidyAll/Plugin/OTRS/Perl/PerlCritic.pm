@@ -19,6 +19,7 @@ use Perl::Critic;
 
 use Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;
 use Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator;
+use Perl::Critic::Policy::OTRS::ProhibitRandInTests;
 use Perl::Critic::Policy::OTRS::ProhibitOpen;
 use Perl::Critic::Policy::OTRS::ProhibitUnless;
 use Perl::Critic::Policy::OTRS::RequireCamelCase;
@@ -44,6 +45,7 @@ sub validate_file {    ## no critic
         );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitRandInTests' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitOpen' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitUnless' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireCamelCase' );
