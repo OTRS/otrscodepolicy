@@ -28,11 +28,12 @@ sub validate_source {    ## no critic
 
         $Line =~ s{\[gettimeofday\]}{1}smx;
 
-        # We'll skip all use *; statements exept a few because the modules cannot all be found at runtime.
+        # We'll skip all use *; statements exept for core modules because the modules cannot be found at runtime.
+        ## nofilter(TidyAll::Plugin::OTRS::Perl::Dumper)
         if (
             $Line =~ m{ \A \s* use \s+ }xms
             && $Line
-            !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Fcntl | Data (?! ::Validate ) | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic::Utils | List::Util | Cwd | POSIX ) }xms
+            !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Fcntl | Data::Dumper | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic::Utils | List::Util | Cwd | POSIX ) }xms
             )
         {
             $DeletableStatement = 1;
