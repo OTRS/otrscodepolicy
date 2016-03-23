@@ -92,6 +92,7 @@
         <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm"/>
         <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TestSubs.pm"/>
         <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Time.pm"/>
+        <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Translatable.pm"/>
         <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TranslationEncoding.pm"/>
         <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseWarnings.pm"/>
         <File Permission="640" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UnitTestSysConfigRestore.pm"/>
