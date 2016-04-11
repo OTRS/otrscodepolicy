@@ -9,6 +9,7 @@
         "isJQueryObject": true,
         "printStackTrace": true,
         //qunit stuff
+        "QUnit": true,
         "module": true,
         "test": true,
         "expect": true,
