@@ -29,7 +29,7 @@ sub validate_source {    ## no critic
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
-        if ( $Line =~ m/^\s*require/smx ) {
+        if ( $Line =~ m/^ \s* require (?: \s | \( )/smx ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
