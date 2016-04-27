@@ -248,7 +248,7 @@ sub GetChangedFiles {
 
     # Only use the last commit if we have a new branch.
     #   This is not perfect, but otherwise quite complicated.
-    if ($Base =~ m/^0+$/) {
+    if ( $Base =~ m/^0+$/ ) {
         my $Output = capturex( 'git', 'diff-tree', '--no-commit-id', '--name-only', '-r', $Commit );
         my @Files = grep {/\S/} split( "\n", $Output );
         return @Files;
