@@ -520,3 +520,23 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::StatisticsPreview]
 select = Kernel/System/Stats/Dynamic/*.pm
+
+;
+; Migrations OTRS 6
+;
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeZoneOffset]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+ignore = scripts/test/sample/**/*
+ignore = Kernel/Config/Files/ZZZ*.pm
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS6::DateTime]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+ignore = scripts/test/sample/**/*
+ignore = Kernel/Config/Files/ZZZ*.pm
