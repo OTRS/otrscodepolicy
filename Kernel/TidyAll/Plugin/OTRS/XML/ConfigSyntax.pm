@@ -21,6 +21,8 @@ sub validate_source {    ## no critic
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
+    my $BeforeOTRS6 = $Self->IsFrameworkVersionLessThan( 6, 0 );
+
     my $ErrorMessage;
     my $Counter;
 
@@ -43,14 +45,28 @@ sub validate_source {    ## no critic
 
         # Validate otrs_config tag
         if ( $Line =~ /^<otrs_config/ ) {
-            if (
-                $Line !~ /init="(Framework|Application|Config|Changes)"/
-                || $Line !~ /version="1.0"/
-                )
-            {
-                $ErrorMessage
-                    .= "The <otrs_config>-tag has missing or incorrect attributes. ExampleLine: <otrs_config version=\"1.0\" init=\"Application\">\n";
-                $ErrorMessage .= "Line $Counter: $Line\n";
+            if ($BeforeOTRS6) {
+                if (
+                    $Line !~ /init="(Framework|Application|Config|Changes)"/
+                    || $Line !~ /version="1.0"/
+                    )
+                {
+                    $ErrorMessage
+                        .= "The <otrs_config>-tag has missing or incorrect attributes. ExampleLine: <otrs_config version=\"1.0\" init=\"Application\">\n";
+                    $ErrorMessage .= "Line $Counter: $Line\n";
+                }
+            }
+            else {
+                # XML files are migrated (OTRS 6)
+                if (
+                    $Line !~ /init="(Framework|Application|Config|Changes)"/
+                    || $Line !~ /version="2.0"/
+                    )
+                {
+                    $ErrorMessage
+                        .= "The <otrs_config>-tag has missing or incorrect attributes. ExampleLine: <otrs_config version=\"2.0\" init=\"Application\">\n";
+                    $ErrorMessage .= "Line $Counter: $Line\n";
+                }
             }
         }
     }

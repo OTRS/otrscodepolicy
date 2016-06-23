@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+
+    <xs:element name="otrs_config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Git" minOccurs="0" type="xs:string" />
+                <xs:element ref="ConfigItem" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="version" use="required" type="xs:string"/>
+            <xs:attribute name="init" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Framework"/>
+                        <xs:enumeration value="Application"/>
+                        <xs:enumeration value="Config"/>
+                        <xs:enumeration value="Changes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ConfigItem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Description" type="TranslatableString" />
+                <xs:element name="Keywords" type="xs:string" />
+                <xs:element name="Navigation" type="xs:string" />
+                <xs:element ref="Value"/>
+            </xs:sequence>
+            <xs:attribute name="Name" use="required" type="xs:string"/>
+            <xs:attribute name="Valid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Required" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ReadOnly" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ConfigLevel" use="optional" type="xs:int"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="TranslatableString">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Translatable" use="optional">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="0"/>
+                            <xs:enumeration value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:element name="Value">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="Hash"/>
+                <xs:element ref="Array"/>
+                <xs:element ref="Item"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Item">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="TranslatableString">                                            
+                                            <xs:attribute name="ValueType" use="optional" type="xs:anySimpleType"/>
+                                            <xs:anyAttribute processContents="lax"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ValueName" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Mon"/>
+                                    <xs:enumeration value="Tue"/>
+                                    <xs:enumeration value="Wed"/>
+                                    <xs:enumeration value="Thu"/>
+                                    <xs:enumeration value="Fri"/>
+                                    <xs:enumeration value="Sat"/>
+                                    <xs:enumeration value="Sun"/>                                       
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>    
+                        <xs:attribute name="ValueType" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Option"/>
+                                    <xs:enumeration value="Day"/>                                       
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>     
+                        <xs:attribute name="Value" use="optional" type="xs:anySimpleType"/>
+                        <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                        <xs:attribute name="ValueMonth" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="([1-9]|1[0-2])" />                                  
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ValueDay" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="([1-9]|1[0-9]|2[0-9]|3[0-1])" />                                  
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ValueYear" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="(2[0-1][0-9][0-9])" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>            
+            <xs:attribute name="ValueType" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="String"/>
+                        <xs:enumeration value="File"/>
+                        <xs:enumeration value="Textarea"/>
+                        <xs:enumeration value="Checkbox"/>
+                        <xs:enumeration value="Select"/>
+                        <xs:enumeration value="Entity"/>
+                        <xs:enumeration value="PerlModule"/>
+                        <xs:enumeration value="Date"/>
+                        <xs:enumeration value="DateTime"/>
+                        <xs:enumeration value="TimeZone"/>
+                        <xs:enumeration value="VacationDays"/>
+                        <xs:enumeration value="VacationDaysOneTime"/>
+                        <xs:enumeration value="WorkingHours"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>                    
+            <xs:attribute name="ValueRegex" use="optional" type="xs:anySimpleType"/>                    
+            <xs:attribute name="SelectedID" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="ValueFilter" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="ValueFileType" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Path"/>
+                        <xs:enumeration value="Directory"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ValueEntityType" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+            <xs:attribute name="ValueStringType" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Password"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:anyAttribute processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Hash">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType mixed="true">
+                        <xs:choice minOccurs="0">
+                            <xs:element ref="Hash"/>
+                            <xs:element ref="Array"/>
+                        </xs:choice>
+                        <xs:attribute name="Key" use="required" type="xs:anySimpleType"/>
+                        <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="SelectedID" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Array">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType mixed="true">
+                        <xs:choice minOccurs="0">
+                            <xs:element ref="Hash"/>
+                            <xs:element ref="Array"/>
+                        </xs:choice>
+                        <xs:attribute name="Translatable" use="optional" type="xs:anySimpleType"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="SelectedID" use="optional" type="xs:anySimpleType"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
