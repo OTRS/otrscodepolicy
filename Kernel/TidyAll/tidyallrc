@@ -445,6 +445,8 @@ select = **/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+; Temporary ignore OTRS 6 new xml SysConfig files.
+ignore = Kernel/Config/**/XML/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
 select = Kernel/Config/**/*.xml
@@ -454,6 +456,8 @@ select = Kernel/Config/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
+; Temporary ignore OTRS 6 new xml SysConfig files.
+ignore = Kernel/Config/**/XML/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Database::XSDValidator]
 select = scripts/database/*.xml
