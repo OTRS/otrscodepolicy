@@ -21,14 +21,11 @@ sub validate_file {    ## no critic
     return if $Self->IsPluginDisabled( Filename => $Filename );
     return if $Self->IsFrameworkVersionLessThan( 3, 3 );
 
-    my $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration/6_0/Configuration.xsd';
+    my $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration.xsd';
 
     # In OTRS 4 and below there were special CSS_IE7 and CSS_IE8 Tags for the loader.
     if ( $Self->IsFrameworkVersionLessThan( 5, 0 ) ) {
-        $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration/4_0/Configuration.xsd';
-    }
-    elsif ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
-        $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration/5_0/Configuration.xsd';
+        $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration_before_5.xsd';
     }
 
     my $Command = sprintf( "xmllint --noout --nonet --schema %s %s %s", $XSDFile, $Self->argv(), $Filename );
