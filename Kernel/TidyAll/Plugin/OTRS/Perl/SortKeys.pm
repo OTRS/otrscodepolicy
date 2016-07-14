@@ -11,6 +11,8 @@ package TidyAll::Plugin::OTRS::Perl::SortKeys;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Perl::SortKeys);
+
 use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Perl);
@@ -36,6 +38,32 @@ sub transform_source {    ## no critic
     $Code =~ s{ ^ (\s* for \s+ \( \s*) keys \s+ }{$1sort keys }xmsg;
 
     return $Code;
+}
+
+sub validate_source {     ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return if $Self->IsPluginDisabled( Code => $Code );
+    return if $Self->IsFrameworkVersionLessThan( 5, 0 );
+
+    my ( $Counter, $ErrorMessage );
+
+    LINE:
+    for my $Line ( split( /\n/, $Code ) ) {
+        $Counter++;
+
+        if ( $Line =~ m{ (?: sort)?[ ]keys \s+ [\$|\\] }xms ) {
+            $ErrorMessage .= "Line $Counter: $Line\n";
+        }
+    }
+
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n" . <<EOF;
+Dont use hash references while accesing its keys
+$ErrorMessage
+EOF
+    }
+    return;
 }
 
 1;
