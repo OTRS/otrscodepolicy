@@ -31,7 +31,7 @@
                 <xs:element name="ValidateModule" type="xs:string" minOccurs="0" />
                 <xs:element ref="Setting"/>
             </xs:sequence>
-            <xs:attribute name="Name" use="required" type="xs:string"/>
+            <xs:attribute name="Name" use="required" type="SettingName"/>
             <xs:attribute name="Valid" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -74,6 +74,12 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+
+    <xs:simpleType name="SettingName">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="250" />
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:element name="Setting">
         <xs:complexType>

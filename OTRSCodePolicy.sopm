@@ -176,6 +176,7 @@
         <File Permission="640" Location="scripts/test/OTRSCodePolicyPlugins/PO/Lint.t"/>
         <File Permission="640" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t"/>
         <File Permission="640" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t"/>
+        <File Permission="640" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/NameLength.t"/>
         <File Permission="640" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/OutputFilterPre.t"/>
     </Filelist>
 </otrs_package>
