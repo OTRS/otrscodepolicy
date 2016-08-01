@@ -8,8 +8,10 @@
         "CKEDITOR": true,
         "isJQueryObject": true,
         "printStackTrace": true,
-        //qunit stuff
         "QUnit": true,
+        // older QUnit stuff
+        // only needed for OTRS <= 5
+        // can be removed later
         "module": true,
         "test": true,
         "expect": true,
