@@ -17,7 +17,7 @@ use base qw(TidyAll::Plugin::OTRS::Perl);
 
 our $ObjectManagerDisabled = 1;
 
-# Make sure Selenium tests only modify the configuration via $Helper->ConfigSettingUpdate().
+# Make sure Selenium tests only modify the configuration via $Helper->ConfigSettingChange().
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
@@ -33,7 +33,7 @@ sub validate_source {    ## no critic
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<'EOF';
 Selenium tests should modify the system configuration exclusively via
-$Helper->ConfigSettingUpdate() (it has the same API as ConfigSettingUpdate()).
+$Helper->ConfigSettingChange() (it has the same API as ConfigSettingUpdate()).
 This also makes "sleep" statements for mod_perl unneeded.
 $ErrorMessage
 EOF
