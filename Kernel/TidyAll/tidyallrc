@@ -320,6 +320,10 @@ ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
+[+TidyAll::Plugin::OTRS::Perl::SeleniumTestConfigChanges]
+select = scripts/test/Selenium/**/*.{t}
+ignore = scripts/test/sample/**/*
+
 [+TidyAll::Plugin::OTRS::Perl::SortKeys]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
@@ -363,10 +367,6 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::TranslationEncoding]
 select = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
-
-[+TidyAll::Plugin::OTRS::Perl::UnitTestConfigChanges]
-select = scripts/test/Selenium/**/*.{t}
-ignore = scripts/test/sample/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::UnitTestSysConfigRestore]
 select = scripts/test/**/*.{t}

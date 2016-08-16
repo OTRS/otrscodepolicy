@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::UnitTestConfigChanges;
+package TidyAll::Plugin::OTRS::Perl::SeleniumTestConfigChanges;
 
 use strict;
 use warnings;
@@ -40,6 +40,21 @@ sub validate_source {    ## no critic
 Selenium tests should modify the system configuration exclusively via
 \$Helper->ConfigSettingChange() (it has the same API as ConfigSettingUpdate()).
 This also makes "sleep" statements for mod_perl unneeded.
+$ErrorMessage
+EOF
+    }
+
+    LINE:
+    for my $Line ( split /\n/, $Code ) {
+        $Counter++;
+        if ( $Line =~ m{RestoreSystemConfiguration}smx ) {
+            $ErrorMessage .= "Line $Counter: $Line\n";
+        }
+    }
+
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n" . <<"EOF";
+Please don't use the 'RestoreSystemConfiguration' flag any more.
 $ErrorMessage
 EOF
     }
