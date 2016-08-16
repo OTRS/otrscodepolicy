@@ -23,7 +23,7 @@ sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
-    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
+    return if $Self->IsFrameworkVersionLessThan( 5, 0 );
 
     my ( $ErrorMessage, $Counter );
 
