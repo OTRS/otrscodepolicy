@@ -27,13 +27,18 @@ sub validate_source {    ## no critic
 
     my ( $ErrorMessage, $Counter );
 
-    if ( $Code =~ m{->ConfigItemUpdate|->ConfigItemReset}smx ) {
-        $ErrorMessage .= "Line $Counter: $Code\n";
+    LINE:
+    for my $Line ( split /\n/, $Code ) {
+        $Counter++;
+        if ( $Line =~ m{->ConfigItemUpdate|->ConfigItemReset}smx ) {
+            $ErrorMessage .= "Line $Counter: $Line\n";
+        }
     }
+
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<'EOF';
+        die __PACKAGE__ . "\n" . <<"EOF";
 Selenium tests should modify the system configuration exclusively via
-$Helper->ConfigSettingChange() (it has the same API as ConfigSettingUpdate()).
+\$Helper->ConfigSettingChange() (it has the same API as ConfigSettingUpdate()).
 This also makes "sleep" statements for mod_perl unneeded.
 $ErrorMessage
 EOF
