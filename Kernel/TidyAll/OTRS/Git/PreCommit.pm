@@ -43,7 +43,8 @@ sub Run {
 
         # Gather file paths to be committed
         my $Output = capturex( 'git', "status", "--porcelain" );
-        my @ChangedFiles = grep { -f && !-l } ( $Output =~ /^\s*[MA]+\s+(.*)/gm );
+        # Fetch only staged files that will be committed.
+        my @ChangedFiles = grep { -f && !-l } ( $Output =~ /^[MA]+\s+(.*)/gm );
         push @ChangedFiles, grep { -f && !-l } ( $Output =~ /^\s*RM?+\s+(.*?)\s+->\s+(.*)/gm );
         return if !@ChangedFiles;
 

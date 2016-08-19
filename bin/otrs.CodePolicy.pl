@@ -106,6 +106,7 @@ elsif ( defined $Cached && length $Cached ) {
 }
 elsif ( !$All ) {
     my $Output = capturex( 'git', "status", "--porcelain" );
+    # Fetch all changed files, staged and unstaged
     my @ChangedFiles = grep { -f && !-l } ( $Output =~ /^\s*[MA]+\s+(.*)/gm );
     push @ChangedFiles, grep { -f && !-l } ( $Output =~ /^\s*RM?+\s+(.*?)\s+->\s+(.*)/gm );
     for my $ChangedFile (@ChangedFiles) {
