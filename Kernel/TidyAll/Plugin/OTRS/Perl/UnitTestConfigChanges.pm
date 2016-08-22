@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::SeleniumTestConfigChanges;
+package TidyAll::Plugin::OTRS::Perl::UnitTestConfigChanges;
 
 use strict;
 use warnings;
@@ -24,6 +24,15 @@ sub validate_source {    ## no critic
 
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 5, 0 );
+
+    # use only for Selenium tests prior to OTRS 6
+    if (
+        $Code !~ m{/Selenium/}smx
+        && $Self->IsFrameworkVersionLessThan( 6, 0 )
+        )
+    {
+        return;
+    }
 
     my ( $ErrorMessage, $Counter );
 
