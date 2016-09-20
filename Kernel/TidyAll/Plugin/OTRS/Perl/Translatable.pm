@@ -27,7 +27,7 @@ sub validate_source {    ## no critic
     if ( $Code =~ m{Translatable\(}xms && $Code !~ m{^use\s+Kernel::Language[^\n]+Translatable}xms ) {
         die __PACKAGE__ . "\n" . <<EOF;
 The code uses Kernel::Language::Translatable(), but does not import it to the current package. Please add:
-use Kernel::Language qw(Translatable);";
+use Kernel::Language qw(Translatable);
 EOF
     }
     return;
