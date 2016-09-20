@@ -18,13 +18,15 @@ sub validate_source {    ## no critic
 
     return if $Self->IsPluginDisabled( Code => $Code );
 
-    my $ExecutablePermissionCheck = qr{Permission="[75]{2}0"};
-    my $StaticPermissionCheck     = qr{Permission="[64]{2}0"};
+    my $ExecutablePermissionCheck = qr{Permission="770"};
+    my $StaticPermissionCheck     = qr{Permission="660"};
+    my $Explanation = 'A <File>-Tag has wrong permissions. Script files normally need 770 rights, the others 660.';
 
     # A little more lenient before OTRS 6 (world permissions)
     if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
-        $ExecutablePermissionCheck = qr{Permission="[750]{3}"};
-        $StaticPermissionCheck     = qr{Permission="[640]{3}"};
+        $ExecutablePermissionCheck = qr{Permission="755"};
+        $StaticPermissionCheck     = qr{Permission="644"};
+        my $Explanation = 'A <File>-Tag has wrong permissions. Script files normally need 755 rights, the others 644.';
     }
 
     my ( $ErrorMessage, $Counter );
@@ -50,7 +52,7 @@ sub validate_source {    ## no critic
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
-A <File>-Tag has wrong permissions. Script files normally need 750 rights, the others 640.
+$Explanation
 $ErrorMessage
 EOF
     }
