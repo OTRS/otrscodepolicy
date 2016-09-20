@@ -64,7 +64,6 @@ sub Run {
 
         my $TidyAll = TidyAll::OTRS->new_from_conf_file(
             $ConfigFile,
-            no_cache   => 1,
             check_only => 1,
             mode       => 'commit',
             root_dir   => $RootDir,

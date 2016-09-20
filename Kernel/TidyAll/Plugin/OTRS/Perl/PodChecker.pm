@@ -23,7 +23,9 @@ sub validate_file {    ## no critic
     return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
     my $Checker = new Pod::Checker();
-    my $Output = capture_merged { $Checker->parse_from_file( $File, \*STDERR ) };
+
+    # Force stringification of $File as it is a Path::Tiny object in Code::TidyAll 0.50+.
+    my $Output = capture_merged { $Checker->parse_from_file( "$File", \*STDERR ) };
 
     # Only die if Output is filled with errors. Otherwise it could be
     #   that there just was no POD in the file.

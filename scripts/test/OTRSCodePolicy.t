@@ -50,7 +50,6 @@ chdir($Home);
 
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     "$Home/Kernel/TidyAll/tidyallrc",
-    no_cache   => 1,
     check_only => 1,
     mode       => 'tests',
     root_dir   => $Home,

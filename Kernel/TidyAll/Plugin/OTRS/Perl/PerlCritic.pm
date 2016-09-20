@@ -56,7 +56,8 @@ sub validate_file {    ## no critic
         );
     }
 
-    my @Violations = $Critic->critique($Filename);
+    # Force stringification of $Filename as it is a Path::Tiny object in Code::TidyAll 0.50+.
+    my @Violations = $Critic->critique("$Filename");
 
     if (@Violations) {
         die __PACKAGE__ . "\n@Violations";

@@ -27,8 +27,12 @@ our @FileList              = ();    # all files in current repository
 sub new_from_conf_file {            ## no critic
     my ( $Class, $ConfigFile, %Param ) = @_;
 
-    # possibly call Parent->new(@args) first
-    my $Self = $Class->SUPER::new_from_conf_file( $ConfigFile, %Param );
+    my $Self = $Class->SUPER::new_from_conf_file(
+        $ConfigFile,
+        %Param,
+        no_cache   => 1,
+        no_backups => 1,
+    );
 
     # Reset when a new object is created
     $FrameworkVersionMajor = 0;

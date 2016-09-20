@@ -123,7 +123,6 @@ chdir dirname($0) . "/..";
 
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     $ConfigurationFile,
-    no_cache   => 1,
     check_only => 0,
     mode       => 'cli',
     root_dir   => $RootDir,
