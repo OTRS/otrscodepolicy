@@ -26,7 +26,7 @@ sub validate_source {    ## no critic
     if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
         $ExecutablePermissionCheck = qr{Permission="755"};
         $StaticPermissionCheck     = qr{Permission="644"};
-        my $Explanation = 'A <File>-Tag has wrong permissions. Script files normally need 755 rights, the others 644.';
+        $Explanation = 'A <File>-Tag has wrong permissions. Script files normally need 755 rights, the others 644.';
     }
 
     my ( $ErrorMessage, $Counter );
