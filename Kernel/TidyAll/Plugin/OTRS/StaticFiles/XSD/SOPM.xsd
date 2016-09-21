@@ -9,7 +9,7 @@
             <xs:sequence>
                 <xs:element ref="Name" />
                 <xs:element ref="Version"/>
-                <xs:element ref="Framework" maxOccurs="unbounded" />
+                <xs:element ref="Framework" maxOccurs="unbounded"/>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element ref="PackageRequired"/>
                     <xs:element ref="ModuleRequired"/>
@@ -252,7 +252,16 @@
     <xs:element name="Name" type="xs:token"/>
     <xs:element name="Vendor" type="xs:token"/>
     <xs:element name="URL" type="xs:token"/>
-    <xs:element name="Framework" type="xs:token"/>
+    <xs:element name="Framework">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:token">
+                    <xs:attribute name="Minimum" use="optional" type="xs:token"/>
+                    <xs:attribute name="Maximum" use="optional" type="xs:token"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="Version" type="xs:token"/>
     <xs:element name="License" type="xs:token"/>
     <xs:element name="OS" type="xs:token"/>
