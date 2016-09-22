@@ -10,6 +10,9 @@ ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
+[+TidyAll::Plugin::OTRS::XML::Docbook::RemoveContactChapter]
+select = doc/**/*.xml
+
 [+TidyAll::Plugin::OTRS::Common::ProhibitEmailAddresses]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,sopm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
@@ -130,9 +133,6 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ;
 
 [+TidyAll::Plugin::OTRS::Legal::AddressUpdate]
-select = doc/**/*.xml
-
-[+TidyAll::Plugin::OTRS::XML::Docbook::RemoveContactChapter]
 select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
