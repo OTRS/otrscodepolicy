@@ -20,7 +20,7 @@ sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );
-    return if $Self->IsFrameworkVersionLessThan( 3, 2 );
+    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
     my $Checker = new Pod::Checker();
 
