@@ -132,6 +132,9 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::Legal::AddressUpdate]
 select = doc/**/*.xml
 
+[+TidyAll::Plugin::OTRS::XML::Docbook::RemoveContactChapter]
+select = doc/**/*.xml
+
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
 select = **/*.{pl,pm,t,dtl,tt}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
