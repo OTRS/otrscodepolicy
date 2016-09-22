@@ -18,6 +18,10 @@ use base qw(TidyAll::Plugin::OTRS::Perl);
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
+    # temporarily disable
+    # TODO CHECK
+    return;
+
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
