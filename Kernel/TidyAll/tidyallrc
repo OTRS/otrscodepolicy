@@ -286,7 +286,7 @@ argv = -l=120 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -no
 only_modes = cli
 
 [+TidyAll::Plugin::OTRS::Perl::PodChecker]
-select = **/*.{pm,pod}
+select = **/*.{pm,pod,pod.dist}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PodNewDoc]
