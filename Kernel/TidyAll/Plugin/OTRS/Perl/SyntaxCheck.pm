@@ -33,7 +33,7 @@ sub validate_source {    ## no critic
         if (
             $Line =~ m{ \A \s* use \s+ }xms
             && $Line
-            !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Fcntl | Data::Dumper | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic::Utils | List::Util | Cwd | POSIX | Encode::Locale ) }xms
+            !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Fcntl | Data::Dumper | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic::Utils | List::Util | Cwd | POSIX ) }xms
             )
         {
             $DeletableStatement = 1;
