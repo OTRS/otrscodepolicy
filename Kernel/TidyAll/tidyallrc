@@ -405,6 +405,12 @@ select = *.{sopm}
 ; TT
 ;
 
+[+TidyAll::Plugin::OTRS::TT::ScriptUsage]
+select = **/*.tt
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = **/thirdparty/**/*
+ignore = scripts/test/sample/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; SQL
