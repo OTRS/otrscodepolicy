@@ -25,6 +25,7 @@ sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
+
     my @ForbiddenCharacters = (
         ' ', "\n", "\t", '"', '`', '´', '\'', '$', '!', '?,', '*',
         '(', ')', '{', '}', '[', ']', '#', '<', '>', ':', '\\', '|',

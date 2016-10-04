@@ -60,12 +60,14 @@ sub validate_source {    ## no critic
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
+
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
 Please remove or replace wrong Separators like '# --', valid only: # --- (for customizing otrs files).
 $ErrorMessage
 EOF
     }
+
     return;
 }
 
