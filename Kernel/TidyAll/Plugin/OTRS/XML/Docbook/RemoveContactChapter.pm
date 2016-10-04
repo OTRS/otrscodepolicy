@@ -18,13 +18,13 @@ sub transform_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-    # Check for 'Contact' / Kontakt' chapter.
-    return $Code if $Code !~ m{ <chapter> [ \n]* <title> [ ]* (?: Contact | Kontakt ) [ ]* </title }xms;
+    # Check for Contact/Contacts/Kontakt chapter.
+    return $Code if $Code !~ m{ <chapter> [ \n]* <title> [ ]* (?: Contact | Contacts | Kontakt ) [ ]* </title }xms;
 
     # remove chapter
     $Code =~ s{
         <chapter> [ \n]*
-        <title> [ ]* (?: Contact | Kontakt ) [ ]* </title>
+        <title> [ ]* (?: Contact | Contacts | Kontakt ) [ ]* </title>
         ( (?! </chapter> ). )* </chapter> [ \n]*
     }{}xms;
 
