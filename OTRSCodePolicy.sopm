@@ -156,6 +156,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Database/XSDValidator.pm"/>
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/BinScripts.pm"/>
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/ImageOutput.pm"/>
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/ReplaceSupportEmail.pm"/>
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/RemoveContactChapter.pm"/>
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/XSDValidator.pm"/>
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/WADL/XSDValidator.pm"/>

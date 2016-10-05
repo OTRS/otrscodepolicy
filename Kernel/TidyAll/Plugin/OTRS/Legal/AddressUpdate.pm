@@ -17,7 +17,6 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
     $Code =~ s{Norsk-Data-Str\.\s+1}{Zimmersmühlenweg 11}smxg;
     $Code =~ s{61352\s+Bad\s+Homburg}{61440 Oberursel}smxg;
