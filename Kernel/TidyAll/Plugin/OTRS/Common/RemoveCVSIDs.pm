@@ -28,7 +28,6 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
     # remove $Id lines and the following separator line
     #
@@ -61,11 +60,15 @@ sub transform_source {    ## no critic
     # Remove VERSION assignment from Code
     $Code =~ s{ ^\$VERSION [ ]* = [ ]* .*? \n}{}xmsg;
 
+    # Remove VERSION from help of pl scripts
+    $Code =~ s{ [ ]+ <Revision \s+ \$VERSION> [ ]+ }{ }xmsg;
+    $Code =~ s{ <Revision \s+ \$VERSION> }{}xmsg;
+
     # Remove VERSION from POD
     $Code =~ s{ ^=head1 [ ]* VERSION \n+ ^\$Revision: .*? \n+}{}xmsg;
 
     # delete the 'use vars qw($VERSION);' line
-    $Code =~ s{ ( ^ $ \n )?  ^ use [ ] vars [ ] qw\(\$VERSION\); $ \n }{}ixms;
+    $Code =~ s{ ( ^ $ \n )? ^ use [ ] vars [ ] qw\(\$VERSION\); $ \n }{}ixms;
 
     # Remove @version tag from CSSDoc
     $Code =~ s{^ [ ]+ [*] [ ]+ [@]version [ ]+ \$Revision: .*? \n}{}xmsg;
