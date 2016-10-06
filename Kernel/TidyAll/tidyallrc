@@ -146,7 +146,7 @@ ignore = scripts/test/sample/**/*
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = var/httpd/htdocs/js/{jstree,thirdparty}/**/*
+ignore = var/httpd/htdocs/js/{jstree,thirdparty,js-cache}/**/*
 ignore = var/httpd/htdocs/yui/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
