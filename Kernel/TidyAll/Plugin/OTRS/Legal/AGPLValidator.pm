@@ -15,101 +15,152 @@ use warnings;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-my $GPLLongRegExp = <<'END_REGEXP';
-    \# \s -- \n
-    \# \s This \s program \s is \s free \s software
-    .*?
-    \# \s+ Foundation, \s+ Inc., \s+ 51 \s+ Franklin \s+ St, \s+ Fifth \s+ Floor, \s+ Boston, \s+ MA \s+ 02111-1301 \s+ USA \n
-    \# \s -- \n
-END_REGEXP
-
-my $GPLShortRegExp = <<'END_REGEXP';
-    \# \s -- \n
-    \# \s This \s software \s comes \s with \s ABSOLUTELY \s NO \s WARRANTY.
-    .*?
-    \# \s+ did \s+ not \s+ receive \s+ this \s+ file, \s+ see  \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
-    \# \s -- \n
-END_REGEXP
-
-my $GPLPerldocRegExp = <<'END_REGEXP';
-    =head1 \s+ TERMS \s+ AND \s+ CONDITIONS \n
-    \n
-    This  \s+ software  \s+ is  \s+ part  \s+ of  \s+ the  \s+ OTRS  \s+ project  \s+ \(http:\/\/otrs\.org\/\)\. \n
-    .+?
-    did \s+ not \s+ receive \s+ this \s+ file, \s+ see \s+ http:\/\/www\.gnu\.org\/licenses\/gpl (?: -2\.0 |  ) \.txt\. \n
-END_REGEXP
-
-sub validate_source {    ## no critic
-    my ( $Self, $Code ) = @_;
-
-    return if $Self->IsPluginDisabled( Code => $Code );
-    return if $Self->IsFrameworkVersionLessThan( 2, 4 );
-
-    my $AGPLLong  = _AGPLLong();
-    my $AGPLShort = _AGPLShort();
-
-    # check if there is a valid licence header!
-    if (
-        $Code !~ m{$GPLLongRegExp}smx
-        && $Code !~ m{$GPLShortRegExp}smx
-        && $Code !~ m{\Q$AGPLShort\E}
-        && $Code !~ m{\Q$AGPLLong\E}
-        )
-    {
-        die __PACKAGE__ . "\nFound no valid license header!";
-    }
-
-    # check if there other strange license content
-    if ( $Code =~ m{(^ [^\n]* (?: \(GPL\) | /gpl ) [^\n]* $)}smx ) {
-        die __PACKAGE__ . "\nThere is strange license wording!\nLine: $1";
-    }
-}
-
 sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
-    my $AGPLLong  = _AGPLLong();
-    my $AGPLShort = _AGPLShort();
+    # Replace this license line in .pm .pl .tt and .js files.
+    #
+    # Original:
+    #     the enclosed file COPYING for license information (GPL). If you
+    #
+    # Replacement:
+    #     the enclosed file COPYING for license information (AGPL). If you
+    #
+    $Code =~ s{
+        ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) the [ \s \w ]+ COPYING [ \s \w ]+ \(GPL\) \. [ \s \w ]+ you
+    }{$1the enclosed file COPYING for license information (AGPL). If you}xmsg;
 
-    my $Flag = 0;
+    # Replace this license line in .pm .pl .tt and .js files.
+    #
+    # Original:
+    #     did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+    #     did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
+    #     did not receive this file, see L<http://www.gnu.org/licenses/gpl-2.0.txt>.
+    #     did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
+    #
+    # Replacement:
+    #     did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+    #
+    $Code =~ s{
+        ^ ( (?: \# \s+ | \/\/ \s+ ) ) did [ \s \w ]+ \, \s+ see \s+ (?: L< |  ) http:\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > |  ) \.
+    }{$1did not receive this file, see http://www.gnu.org/licenses/agpl.txt.}xmsg;
 
-    # The following code replace the license GPL2 with AGPL3 in pl-files
-    if ( $Code =~ s{$GPLLongRegExp}{$AGPLLong}xms ) {
-        print "NOTICE: _AGPL3LicenseCheck() replaced the license GPL2 with AGPL3 in pl-files\n";
-        $Flag = 1;
-    }
+    # Replace this license line in .pm .pl (perldoc) files.
+    #
+    # Original:
+    #     did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+    #     did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
+    #     did not receive this file, see L<http://www.gnu.org/licenses/gpl-2.0.txt>.
+    #     did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+    #     did not receive this file, see <http://www.gnu.org/licenses/agpl.txt>.
+    #
+    # Replacement:
+    #     did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
+    #
+    $Code =~ s{
+        ^ did [ \s \w ]+ \, \s+ see \s+ (?: L< | < |  ) http:\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > | > |  ) \.
+    }{did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.}xmsg;
 
-    # The following code replace the license GPL2 with AGPL3 in pm-files
-    if ( $Code =~ s{$GPLShortRegExp}{$AGPLShort}xms ) {
-        print "NOTICE: _AGPL3LicenseCheck() replaced the license GPL2 with AGPL3 in pm-files\n";
-        $Flag = 1;
-    }
+    # Replace this license line in .pm .pl .tt and .js files.
+    #
+    # Original:
+    #     This software is part of the OTRS project (L<http://otrs.org/>).
+    #     This software is part of the OTRS project (L<http://otrs.com/>).
+    #     This software is part of the OTRS project (<http://otrs.com/>).
+    #
+    # Replacement:
+    #     This software is part of the OTRS project (http://otrs.org/).
+    #
+    $Code =~ s{
+        ^ ( (?: \# \s+ | \/\/ \s+ ) ) This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < ) http:\/\/otrs\. (?: org | com ) \/>\) \.
+    }{$1This software is part of the OTRS project (http://otrs.org/).}xmsg;
 
-    my $AGPLPerldoc = _AGPLPerldoc();
+    # Replace this license line in .pm .pl (perldoc) files.
+    #
+    # Original:
+    #     This software is part of the OTRS project (http://otrs.org/).
+    #     This software is part of the OTRS project (http://otrs.com/).
+    #     This software is part of the OTRS project (<http://otrs.org/>).
+    #
+    # Replacement:
+    #     This software is part of the OTRS project (L<http://otrs.org/>).
+    #
+    $Code =~ s{
+        ^ This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: < |  ) http:\/\/otrs\. (?: org | com ) \/ (?: > |  ) \) \.
+    }{This software is part of the OTRS project (L<http://otrs.org/>).}xmsg;
 
-    # The following code replace the license GPL2 with AGPL3 in perldoc content
-    if ( $Code =~ s{$GPLPerldocRegExp}{$AGPLPerldoc}xms ) {
-        print
-            "NOTICE: _AGPL3LicenseCheck() replaced the license GPL2 with AGPL3 in perldoc content\n";
-        $Flag = 1;
-    }
-
+    # Define old and new FSF FSF Mailing Addresses.
     my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
-    my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA';
+    my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA';
 
+    # Replace FSF Mailing Address.
     if ( $Code =~ s{$OldFSFAddress}{$NewFSFAddress}xms ) {
         print "NOTICE: _AGPL3LicenseCheck() updated the FSF Mailing Address\n";
-        $Flag = 1;
     }
 
-    # Links to AGPL should be within L<> (especially at the end of a sentence)
-    # pod2html (resp. Pod::Html) would be "confused" otherwise
-    $Code =~ s! ^ ([^\#] [a-zA-Z0-9 ]+?) (http:// [^\s]+ agpl\.txt) ([^>])!$1L<$2>$3!xgms;
+    my $AGPLLong = _AGPLLong();
+
+    # Replace the license header in .pl files.
+    $Code =~ s{
+        \# \s+ -- \n
+        \# \s+ This \s+ program \s+ is \s+ free \s+ software; \s+ [ \s \w \, \. \; \# \/ \( \) ]+
+        51 \s+ Franklin \s+ St, \s+ Fifth \s+ Floor, \s+ Boston, \s+ MA \s+ 02110-1301 \s+ USA .*?
+        \# \s+ -- \n
+    }{$AGPLLong}xmsg;
 
     return $Code;
+}
+
+sub validate_file {    ## no critic
+    my ( $Self, $Filename ) = @_;
+
+    return if $Self->IsPluginDisabled( Filename => $Filename );
+
+    my $Code = $Self->_GetFileContents($Filename);
+
+    my ($Filetype) = $Filename =~ m{ .* \. ( .+ ) }xmsi;
+
+    # Check a javascript license header.
+    if ( lc $Filetype eq 'js' ) {
+
+        my $AGPLJavaScript = _AGPLJavaScript();
+
+        die __PACKAGE__ . "\nFound no valid .js license header!" if $Code !~ m{\Q$AGPLJavaScript\E};
+    }
+
+    # Check a perl script license header.
+    elsif ( lc $Filetype eq 'pl' ) {
+
+        my $AGPLLong = _AGPLLong();
+
+        die __PACKAGE__ . "\nFound no valid .pl license header!" if $Code !~ m{\Q$AGPLLong\E};
+    }
+
+    # Check default license header.
+    else {
+
+        my $AGPLShort = _AGPLShort();
+
+        die __PACKAGE__ . "\nFound no valid license header!" if $Code !~ m{\Q$AGPLShort\E};
+    }
+
+    # Check perldoc license header.
+    if ( lc $Filetype eq 'pl' || lc $Filetype eq 'pm' ) {
+
+        if ( $Code =~ m{ =head1 \s+ TERMS \s+ AND \s+ CONDITIONS \n+ This \s+ software \s+ is \s+ part }smx ) {
+
+            my $AGPLPerldoc = _AGPLPerldoc();
+
+            die __PACKAGE__ . "\nFound no valid perldoc license header!" if $Code !~ m{\Q$AGPLPerldoc\E};
+        }
+    }
+
+    # Check if there is aother strange license content.
+    if ( $Code =~ m{(^ [^\n]* (?: \(GPL\) | /gpl ) [^\n]* $)}smx ) {
+        die __PACKAGE__ . "\nThere is strange license wording!\nLine: $1";
+    }
 }
 
 sub _AGPLLong {
@@ -122,12 +173,12 @@ sub _AGPLLong {
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 # or see http://www.gnu.org/licenses/agpl.txt.
 # --
 END_AGPLLONG
@@ -144,11 +195,21 @@ sub _AGPLShort {
 END_AGPLSHORT
 }
 
+sub _AGPLJavaScript {
+    return <<'END_AGPLJAVASCRIPT';
+// --
+// This software comes with ABSOLUTELY NO WARRANTY. For details, see
+// the enclosed file COPYING for license information (AGPL). If you
+// did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+// --
+END_AGPLJAVASCRIPT
+}
+
 sub _AGPLPerldoc {
     return <<'END_AGPLPERLDOC';
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
