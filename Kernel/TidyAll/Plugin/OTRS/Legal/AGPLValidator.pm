@@ -77,7 +77,6 @@ sub transform_source {    ## no critic
         ^ ( (?: \# \s+ | \/\/ \s+ ) ) This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < ) http:\/\/otrs\. (?: org | com ) \/>\) \.
     }{$1This software is part of the OTRS project (http://otrs.org/).}xmsg;
 
-
     # Replace this license line in .pm .pl (perldoc) files.
     #
     # Original:
@@ -121,7 +120,7 @@ sub validate_file {    ## no critic
 
     my $Code = $Self->_GetFileContents($Filename);
 
-    my ( $Filetype ) = $Filename =~ m{ .* \. ( .+ ) }xmsi;
+    my ($Filetype) = $Filename =~ m{ .* \. ( .+ ) }xmsi;
 
     # Check a javascript license header.
     if ( lc $Filetype eq 'js' ) {
