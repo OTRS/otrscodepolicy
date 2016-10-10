@@ -13,6 +13,34 @@ use warnings;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+sub transform_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+
+    # Replace OTRS GmbH with OTRS AG
+    $Code =~ s{ OTRS [ ]+ GmbH }{OTRS AG}xmsg;
+
+    # Replace Version
+    $Code =~ s{ <Version> [^<>\n]* <\/Version> }{<Version>0.0.0</Version>}xmsg;
+
+    # cleanup file tags
+    $Code =~ s{ "\/> }{" \/>}xmsg;
+    $Code =~ s{ "><\/File> }{" \/>}xmsg;
+    $Code =~ s{
+        ^ ( [ ]* <File ) [ ]+ ( Location=" [^ <>\n]+ " ) [ ]+ ( Permission="\d\d\d" ) [ ]+ ( \/> )
+    }{$1 $3 $2 $4}xmsg;
+
+    # Remove BuildHost and BuildDate tags
+    $Code =~ s{ <BuildHost> [^<>\n]* <\/BuildHost> }{}xmsg;
+    $Code =~ s{ <BuildDate> [^<>\n]* <\/BuildDate> }{}xmsg;
+
+    # Remove ChangeLog tags
+    $Code =~ s{ <ChangeLog> [^<>\n]* <\/ChangeLog> }{}xmsg;
+
+    return $Code;
+}
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
@@ -67,6 +95,12 @@ sub validate_source {    ## no critic
         }
         elsif ( $Line =~ /<Framework([^<>]*)>([^<>]+)<\/Framework>/ ) {
             $Framework = 1;
+
+            my $Version = $2;
+
+            if ( $Version !~ m{ \d+ \. \d+ \. [x\d]+ }xms ) {
+                $ErrorMessage .= "Version needs to have the format 0.0.x or 0.0.0!\n";
+            }
         }
         elsif ( $Line =~ /<Version>([^<>]+)<\/Version>/ ) {
             $Version = 1;
@@ -118,10 +152,6 @@ sub validate_source {    ## no critic
     if ($BuildHost) {
         $ErrorMessage .= "<BuildHost> no longer used in .sopms!\n";
     }
-
-    #if (!$DescriptionDE) {
-    #    $ErrorMessage .= "You have forgot to use the element <Description Lang=\"de\">!\n";
-    #}
     if ( !$DescriptionEN ) {
         $ErrorMessage .= "You have forgot to use the element <Description Lang=\"en\">!\n";
     }

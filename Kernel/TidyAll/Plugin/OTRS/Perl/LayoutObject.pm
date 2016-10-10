@@ -30,6 +30,7 @@ sub validate_source {    ## no critic
 Don't use the LayoutObject in bin/ or in Kernel/System.
 EOF
     }
+
     return;
 }
 

@@ -13,6 +13,18 @@ use warnings;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
+sub transform_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+
+    # Replace GPL2 with AGPL3
+    $Code
+        =~ s{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 2, \s June \s 1991</License>}{<License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
+
+    return $Code;
+}
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
@@ -35,19 +47,6 @@ EOF
     }
 
     return;
-
-}
-
-sub transform_source {    ## no critic
-    my ( $Self, $Code ) = @_;
-
-    return $Code if $Self->IsPluginDisabled( Code => $Code );
-
-    # Replace GPL2 with AGPL3
-    $Code
-        =~ s{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 2, \s June \s 1991</License>}{<License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
-
-    return $Code;
 }
 
 1;

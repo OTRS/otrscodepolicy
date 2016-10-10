@@ -46,6 +46,7 @@ sub _is_test {
     my $Document = $Element->document;
     my $Filename = $Document->logical_filename;
     my $IsTest   = $Filename =~ m{ \.t \z }xms;
+
     return $IsTest;
 }
 

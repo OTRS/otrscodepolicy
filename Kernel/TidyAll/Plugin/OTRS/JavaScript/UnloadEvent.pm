@@ -30,6 +30,7 @@ sub validate_source {    ## no critic
             $ErrorMessage .= "Please use Core.App.BindWindowUnloadEvent() for cross-browser compatibility.\n";
         }
     }
+
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n$ErrorMessage";
     }

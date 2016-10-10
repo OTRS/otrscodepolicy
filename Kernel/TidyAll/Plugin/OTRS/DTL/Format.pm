@@ -151,6 +151,7 @@ sub transform_source {    ## no critic
         }
 
     }
+
     return $Content;
 }
 
