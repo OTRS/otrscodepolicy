@@ -54,9 +54,6 @@ sub transform_source {    ## no critic
     # $Id:
     $Code =~ s{ ^ \# [ ] \$Id: $ \n }{}xmsg;
 
-    ## remove $Date $ tag
-    #$Code =~ s{ [ ]* \$Date: [^\$]+ \$ }{}xmsg;
-
     # Remove VERSION assignment from Code
     $Code =~ s{ ^\$VERSION [ ]* = [ ]* .*? \n}{}xmsg;
 
