@@ -15,20 +15,6 @@ use File::Basename;
 
 use base qw(TidyAll::Plugin::OTRS::Perl);
 
-sub validate_source {    ## no critic
-    my ( $Self, $Code ) = @_;
-
-    return $Code if $Self->IsPluginDisabled( Code => $Code );
-
-    # Check for presence of shebang line
-    if ( $Code !~ m{\A\#!/usr/bin/perl\s*(?:-w)?}xms ) {
-        die __PACKAGE__ . "\n" . <<EOF;
-Need #!/usr/bin/perl at the start of script files.
-EOF
-    }
-    return;
-}
-
 sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
@@ -42,6 +28,21 @@ sub transform_source {    ## no critic
     $Code =~ s{\A\#!/usr/bin/perl[ ]-w}{\#!/usr/bin/perl}xms;
 
     return $Code;
+}
+
+sub validate_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+
+    # Check for presence of shebang line
+    if ( $Code !~ m{\A\#!/usr/bin/perl\s*(?:-w)?}xms ) {
+        die __PACKAGE__ . "\n" . <<EOF;
+Need #!/usr/bin/perl at the start of script files.
+EOF
+    }
+
+    return;
 }
 
 1;
