@@ -30,6 +30,7 @@ The code uses Kernel::Language::Translatable(), but does not import it to the cu
 use Kernel::Language qw(Translatable);
 EOF
     }
+
     return;
 }
 

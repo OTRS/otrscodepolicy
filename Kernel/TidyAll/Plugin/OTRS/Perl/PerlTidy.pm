@@ -56,6 +56,7 @@ sub transform_source { ## no critic
     if ( defined $Output ) {
         print STDERR $Output;
     }
+
     return $Destination;
 }
 

@@ -113,26 +113,11 @@ sub validate_file {    ## no critic
                 $ErrorMessage .= "Linkend definitions are different.\nSource:\n$Source\nTranslation:\n$Translation\n\n";
             }
         }
-
-        # regular GUI translation
-        else {
-# my @SourcePlaceholders = $Source =~ m{%s}smg;
-# my @TranslationPlaceholders = $Translation =~ m{%s}smg;
-# if (scalar @SourcePlaceholders != scalar @TranslationPlaceholders) {
-#     $ErrorMessage .= "Invalid translation found in Line: "
-#         . $String->loaded_line_number() . "\n";
-#     $ErrorMessage .= "  Source: $Source\n";
-#     $ErrorMessage .= "  Translation: $Translation\n";
-#     $ErrorMessage
-#         .= "  %s was expected " . scalar(@SourcePlaceholders) . " but found " . scalar(@TranslationPlaceholders) . " times.\n";
-# }
-        }
     }
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n$ErrorMessage";
     }
-
 }
 
 1;

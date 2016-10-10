@@ -17,7 +17,7 @@ use Pod::Strip;
 
 use base qw(TidyAll::Plugin::OTRS::Base);
 
-#Process Perl code and replace all Pod sections with comments.
+# Process Perl code and replace all Pod sections with comments.
 sub StripPod {
     my ( $Self, %Param ) = @_;
 

@@ -55,6 +55,7 @@ Don't use old bin scrips in documentation.
 $ErrorMessage
 EOF
     }
+
     return;
 }
 

@@ -29,6 +29,7 @@ sub validate_source {    ## no critic
 Don't use the ParamObject in bin/ or in Kernel/System.
 EOF
     }
+
     return;
 }
 
