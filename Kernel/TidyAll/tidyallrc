@@ -141,7 +141,7 @@ select = doc/**/*.xml
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
 select = **/*.{pl,pm,t,dtl,tt,js}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = scripts/test/sample/**/*
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
@@ -153,7 +153,7 @@ ignore = var/httpd/htdocs/yui/**/*
 select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js}
 select = .*.dist .bash_completion
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml

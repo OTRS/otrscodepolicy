@@ -93,7 +93,7 @@ sub validate_source {    ## no critic
         elsif ( $Line =~ /<Vendor>([^<>]+)<\/Vendor>/ ) {
             $Vendor = 1;
         }
-        elsif ( $Line =~ /<Framework([^<>]*)>([^<>]+)<\/Framework>/ ) {
+        elsif ( $Line =~ m{ <Framework (?: [ ]+ [^<>]* )? > ( [^<>]+ ) <\/Framework> }xms ) {
             $Framework = 1;
 
             my $Version = $2;
