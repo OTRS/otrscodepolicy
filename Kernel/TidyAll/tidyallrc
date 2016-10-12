@@ -271,7 +271,7 @@ ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
@@ -281,7 +281,7 @@ only_modes = cli tests
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
@@ -358,7 +358,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::Translatable]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language.pm
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/**/*
@@ -445,7 +445,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Whitespace::Tabs]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,opm,sopm}
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/thirdparty/**/*
 ignore = **/{js-cache,css-cache}/*
@@ -454,7 +454,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Whitespace::TrailingWhitespace]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,opm,sopm,md}
-ignore = Kernel/Config.pm Kernel/Config/**/*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/thirdparty/**/*
 ignore = **/{js-cache,css-cache}/*
