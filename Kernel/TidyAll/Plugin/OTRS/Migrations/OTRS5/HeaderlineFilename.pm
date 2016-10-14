@@ -26,6 +26,7 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if $Self->IsFrameworkVersionLessThan( 5, 0 );
 
     # Catch Perl and JS coments
     my $CommentStart = "(?:\\#|//)";
