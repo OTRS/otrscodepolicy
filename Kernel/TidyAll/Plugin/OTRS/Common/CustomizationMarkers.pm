@@ -23,16 +23,78 @@ to mark changed lines in customized/derived files.
 
 =cut
 
+sub transform_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
+
+    # Find somesthing like that and remove the leading spaces
+    #
+    #   # ---
+    #   # OTRSXyZ - Here a comment.
+    #   # ---
+    #
+    #   or
+    #
+    #   # ---
+    #   # OTRSXyZ
+    #   # ---
+    #   # my $Subject = $Kernel::OM->Get('Kernel::System::Ticket')->TicketSubjectClean();
+    #
+    $Code =~ s{
+        (
+            ^ [ ]+ (?: \# | \/\/ ) [ ]+ --- [ ]* $ \n
+            ^ [ ]+ (?: \# | \/\/ ) [ ]+ [A-Za-z0-9]+ (?: [ ]+ - [^\n]+ | ) $ \n
+            ^ [ ]+ (?: \# | \/\/ ) [ ]+ --- [ ]* $ \n
+            (?: ^ [ ]+ (?: \# | \/\/ ) [^\n]* $ \n )*
+        )
+    }{
+        my $String = $1;
+        $String =~ s{ ^ [ ]+ }{}xmsg;
+        $String;
+    }xmsge;
+
+    # Find somesthing like that and remove the leading spaces
+    #
+    #   # ---
+    #
+    $Code =~ s{ ^ [ ]+ ( (?: \# | \/\/ ) ) [ ]+ --- [ ]* $ }{$1 ---}xmsg;
+
+    return $Code;
+}
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
+    # Check the origin if customization markers are found
+    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+
+        my $FoundOrigin;
+        my $Counter = 0;
+        LINE:
+        for my $Line ( split /\n/, $Code ) {
+
+            $Counter++;
+
+            last LINE if $Counter > 5;
+
+            next LINE if $Line !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms;
+
+            $FoundOrigin = 1;
+        }
+
+        die __PACKAGE__ . "\nCustomization markers found but no origin present.\n" if !$FoundOrigin;
+    }
+
     my ( $Counter, $Flag, $ErrorMessage );
 
     LINE:
     for my $Line ( split /\n/, $Code ) {
+
         $Counter++;
 
         # Allow ## no critic and ## use critic
