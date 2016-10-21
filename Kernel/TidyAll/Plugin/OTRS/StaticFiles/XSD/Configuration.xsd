@@ -276,6 +276,8 @@
                                     <xs:element name="Module" type="xs:string"/>
                                     <xs:element name="Block" type="xs:string"/>
                                     <xs:element name="Prio" type="xs:string"/>
+                                    <xs:element name="IconBig" type="xs:string"/>
+                                    <xs:element name="IconSmall" type="xs:string"/>
                                 </xs:choice>
                             </xs:sequence>
                         </xs:complexType>
