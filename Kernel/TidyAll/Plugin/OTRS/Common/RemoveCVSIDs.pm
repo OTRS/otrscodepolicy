@@ -55,18 +55,26 @@ sub transform_source {    ## no critic
     # Postmaster-Test.box files
     # X-CVS: $Id: PostMaster-Test1.box,v 1.2 2007/04/12 23:55:55 martin Exp $
     $Code =~ s{ ^ X-CVS: [ ] \$Id: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ X-CVS: [ ] \$OldId: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ X-CVS: [ ] \$OldId2: [ ] .+? $ \n }{}xmsg;
 
     # docbook and wsdl and other XML files
     # <!-- $Id: get-started.xml,v 1.1 2011-08-15 17:46:09 cr Exp $ -->
     $Code =~ s{ ^ <!-- [ ] \$Id: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ <!-- [ ] \$OldId: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ <!-- [ ] \$OldId2: [ ] .+? $ \n }{}xmsg;
 
     # OTRS config files
     # <CVS>$Id: Framework.xml,v 1.519 2013-02-15 14:07:55 mg Exp $</CVS>
     $Code =~ s{ ^ \s* <CVS> \$Id: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ \s* <CVS> \$OldId: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ \s* <CVS> \$OldId2: [ ] .+? $ \n }{}xmsg;
 
     # remove empty Ids
     # $Id:
     $Code =~ s{ ^ \# [ ] \$Id: $ \n }{}xmsg;
+    $Code =~ s{ ^ \# [ ] \$OldId: $ \n }{}xmsg;
+    $Code =~ s{ ^ \# [ ] \$OldId2: $ \n }{}xmsg;
 
     # Remove VERSION assignment from Code
     $Code =~ s{ ^\$VERSION [ ]* = [ ]* .*? \n}{}xmsg;
