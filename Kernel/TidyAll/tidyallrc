@@ -31,7 +31,7 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 
 [+TidyAll::Plugin::OTRS::Common::RemoveCVSIDs]
-select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm,md}
+select = **/*.{pl,psgi,pm,t,xml,js,dtl,css,sopm,md,tt}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*

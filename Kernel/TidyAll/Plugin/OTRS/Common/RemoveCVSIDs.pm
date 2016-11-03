@@ -37,6 +37,7 @@ sub transform_source {    ## no critic
     # JavaScript files
     # // $Id: Core.Agent.Admin.DynamicField.js,v 1.11 2012-08-06 12:33:24 mg Exp $
     $Code =~ s{ ^ (?: \# | \/\/ ) [ ] \$Id: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ ( (?: \# | \/\/ ) ) [ ] -- $ \n ^ (?: \# | \/\/ ) [ ] -- $ \n }{$1 --\n}xmsg;
 
     # Remove $OldId2, $OldId3 and $OldId4 lines
     #
