@@ -94,25 +94,25 @@ sub validate_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
-#    # Check the origin if customization markers are found
-#    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
-#
-#        my $FoundOrigin;
-#        my $Counter = 0;
-#        LINE:
-#        for my $Line ( split /\n/, $Code ) {
-#
-#            $Counter++;
-#
-#            last LINE if $Counter > 5;
-#
-#            next LINE if $Line !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms;
-#
-#            $FoundOrigin = 1;
-#        }
-#
-#        die __PACKAGE__ . "\nCustomization markers found but no origin present.\n" if !$FoundOrigin;
-#    }
+    #    # Check the origin if customization markers are found
+    #    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+    #
+    #        my $FoundOrigin;
+    #        my $Counter = 0;
+    #        LINE:
+    #        for my $Line ( split /\n/, $Code ) {
+    #
+    #            $Counter++;
+    #
+    #            last LINE if $Counter > 5;
+    #
+    #            next LINE if $Line !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms;
+    #
+    #            $FoundOrigin = 1;
+    #        }
+    #
+    #        die __PACKAGE__ . "\nCustomization markers found but no origin present.\n" if !$FoundOrigin;
+    #    }
 
     my ( $Counter, $Flag, $ErrorMessage );
 
