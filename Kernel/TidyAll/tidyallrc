@@ -2,6 +2,14 @@
 ; Common
 ;
 
+[+TidyAll::Plugin::OTRS::Common::Origin]
+select = **/*.{pl,psgi,pm,t,js,dtl,css,tt}
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+ignore = **/{thirdparty,js-cache,css-cache}/**/*
+ignore = scripts/test/sample/**/*
+ignore = Kernel/Config/Files/ZZZ*.pm
+
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkers]
 select = **/*.{pl,psgi,pm,t,js,dtl,css,tt}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*

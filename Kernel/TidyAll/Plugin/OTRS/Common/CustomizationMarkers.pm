@@ -29,6 +29,30 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
+    # Find wron customization markers without space or with 4 hyphens and correct them
+    #
+    #   #---
+    #
+    #   to
+    #
+    #   # ---
+    #
+    $Code =~ s{ ^ [ ]* ( (?: \# | \/\/ ) ) [ ]* -{3,4} [ ]* $ }{$1 ---}xmsg;
+
+    # Find wron comments and correct them
+    #
+    #   # --------------------
+    #
+    #   or
+    #
+    #   #-----------------------------------
+    #
+    #   to
+    #
+    #   #
+    #
+    $Code =~ s{ ^ ( [ ]* (?: \# | \/\/ ) ) [ ]* -{5,40} [ ]* $ }{$1}xmsg;
+
     # Find somesthing like that and remove the leading spaces
     #
     #   # ---
@@ -45,7 +69,7 @@ sub transform_source {    ## no critic
     $Code =~ s{
         (
             ^ [ ]+ (?: \# | \/\/ ) [ ]+ --- [ ]* $ \n
-            ^ [ ]+ (?: \# | \/\/ ) [ ]+ [A-Za-z0-9]+ (?: [ ]+ - [^\n]+ | ) $ \n
+            ^ [ ]+ (?: \# | \/\/ ) [ ]+ [^ ]+ (?: [ ]+ - [^\n]+ | ) $ \n
             ^ [ ]+ (?: \# | \/\/ ) [ ]+ --- [ ]* $ \n
             (?: ^ [ ]+ (?: \# | \/\/ ) [^\n]* $ \n )*
         )
@@ -70,25 +94,25 @@ sub validate_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
-    # Check the origin if customization markers are found
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
-
-        my $FoundOrigin;
-        my $Counter = 0;
-        LINE:
-        for my $Line ( split /\n/, $Code ) {
-
-            $Counter++;
-
-            last LINE if $Counter > 5;
-
-            next LINE if $Line !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms;
-
-            $FoundOrigin = 1;
-        }
-
-        die __PACKAGE__ . "\nCustomization markers found but no origin present.\n" if !$FoundOrigin;
-    }
+#    # Check the origin if customization markers are found
+#    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+#
+#        my $FoundOrigin;
+#        my $Counter = 0;
+#        LINE:
+#        for my $Line ( split /\n/, $Code ) {
+#
+#            $Counter++;
+#
+#            last LINE if $Counter > 5;
+#
+#            next LINE if $Line !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms;
+#
+#            $FoundOrigin = 1;
+#        }
+#
+#        die __PACKAGE__ . "\nCustomization markers found but no origin present.\n" if !$FoundOrigin;
+#    }
 
     my ( $Counter, $Flag, $ErrorMessage );
 
@@ -109,16 +133,19 @@ sub validate_source {    ## no critic
         if ( $Line =~ /^ *# --$/ && ( $Counter > 23 || ( $Counter > 10 && $Flag ) ) ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ( $Line =~ /^ *# -$/ ) {
+        elsif ( $Line =~ m{ ^ [ ]* (?: \# | \/\/ )+ [ ]* - [ ]* $ }xms ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ( $Line =~ /^ *##+ -+$/ ) {
+        elsif ( $Line =~ m{ ^ [ ]* (?: \# | \/\/ )+ -{1,} [ ]* $ }xms ) {
+            $ErrorMessage .= "Line $Counter: $Line\n";
+        }
+        elsif ( $Line =~ m{ ^ [ ]* (?: \# | \/\/ )+ [ ]* -{4,40} [ ]* $ }xms ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
         elsif ( $Line =~ /^ *#+ *[\*\+]+$/ ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
-        elsif ( $Line =~ /^ *##+/ ) {
+        elsif ( $Line =~ m{ ^ [ ]* (?: \# | \/\/ ){3,} }xms ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
@@ -130,7 +157,7 @@ $ErrorMessage
 EOF
     }
 
-    return;
+    return $Code;
 }
 
 1;

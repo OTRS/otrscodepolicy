@@ -29,14 +29,28 @@ sub transform_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-    # remove $Id lines and the following separator line
+    # Remove $Id lines
     #
     # Perl files
     # $Id: Main.pm,v 1.69 2013-02-05 10:43:07 mg Exp $
     #
     # JavaScript files
     # // $Id: Core.Agent.Admin.DynamicField.js,v 1.11 2012-08-06 12:33:24 mg Exp $
-    $Code =~ s{ ^ ( \# | // ) [ ] \$Id: [ ] .+? $ \n ( ^ ( \# | // ) [ ] -- $ \n )? }{}xmsg;
+    $Code =~ s{ ^ (?: \# | \/\/ ) [ ] \$Id: [ ] .+? $ \n }{}xmsg;
+
+    # Remove $OldId2, $OldId3 and $OldId4 lines
+    #
+    # Perl files
+    # $OldId2: Main.pm,v 1.69 2013-02-05 10:43:07 mg Exp $
+    #
+    # JavaScript files
+    # // $OldId2: Core.Agent.Admin.DynamicField.js,v 1.11 2012-08-06 12:33:24 mg Exp $
+    $Code =~ s{ ^ (?: \# | \/\/ ) [ ] \$OldId2: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ (?: \# | \/\/ ) [ ] \$OldId3: [ ] .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ (?: \# | \/\/ ) [ ] \$OldId4: [ ] .+? $ \n }{}xmsg;
+
+    # Remove $Id from POD
+    $Code =~ s{ ^ =head1 [ ]+ VERSION \n+ ^ \$Id: [ ]+ .+? \n+ }{}xmsg;
 
     # Postmaster-Test.box files
     # X-CVS: $Id: PostMaster-Test1.box,v 1.2 2007/04/12 23:55:55 martin Exp $
@@ -62,7 +76,7 @@ sub transform_source {    ## no critic
     $Code =~ s{ <Revision \s+ \$VERSION> }{}xmsg;
 
     # Remove VERSION from POD
-    $Code =~ s{ ^=head1 [ ]* VERSION \n+ ^\$Revision: .*? \n+}{}xmsg;
+    $Code =~ s{ ^ =head1 [ ]+ VERSION \n+ ^ \$Revision: .*? \n+ }{}xmsg;
 
     # delete the 'use vars qw($VERSION);' line
     $Code =~ s{ ( ^ $ \n )? ^ use [ ] vars [ ] qw\(\$VERSION\); $ \n }{}ixms;
