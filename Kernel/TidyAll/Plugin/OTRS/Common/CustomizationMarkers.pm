@@ -51,7 +51,8 @@ sub transform_source {    ## no critic
     #
     #   #
     #
-    $Code =~ s{ ^ ( [ ]* (?: \# | \/\/ ) ) [ ]* -{5,40} [ ]* $ }{$1}xmsg;
+    $Code =~ s{ ^ \n ^ [ ]* (?: \# | \/\/ ) [ ]* -{5,50} [ ]* $ \n ^ \n }{\n}xmsg;
+    $Code =~ s{ ^ ( [ ]* (?: \# | \/\/ ) ) [ ]* -{5,50} [ ]* $ }{$1}xmsg;
 
     # Find somesthing like that and remove the leading spaces
     #
