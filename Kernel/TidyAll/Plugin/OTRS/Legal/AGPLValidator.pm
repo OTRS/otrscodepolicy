@@ -131,7 +131,7 @@ sub validate_file {    ## no critic
     }
 
     # Check a perl script license header.
-    elsif ( lc $Filetype eq 'pl' ) {
+    elsif ( lc $Filetype eq 'pl' || lc $Filetype eq 'psgi' ) {
 
         my $AGPLLong = _AGPLLong();
 
