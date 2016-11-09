@@ -28,7 +28,7 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
     # Remove former-origin because it's not needed any more
-    $Code =~ s{ ^ [ ]* (?: \# | \/\/ ) [ ]+ (?: \$ | ) former-origin: .+? $ \n }{}xmsg;
+    $Code =~ s{ ^ [ ]* (?: \# | \/\/ ) [ ]+ (?: \$ )* former-origin: .+? $ \n }{}xmsg;
 
     my $Origin = '$origin:';
 
@@ -42,15 +42,15 @@ sub transform_source {    ## no critic
     #
     $Code =~ s{
         ^
-        ( [ ]* (?: \# | \/\/ ) )
-        [ ]+ (?: \$ | ) origin: [ ]+ http (?: s | ) :\/\/ github \. com \/ OTRS \/
+        ( [ ]* (?: \# [ ]+  | \/\/ [ ]+ | <Git> ) )
+        (?: \$ | ) origin: [ ]+ http (?: s | ) :\/\/ github \. com \/ OTRS \/
         ( [^\/ \n]+ )
-        \/ blob \/
+        \/ (?: blob\/ | commit\/ |  )
         ( [a-z0-9]+ )
         \/
         ( .+? )
         $
-    }{$1 $Origin $2 - $3 - $4}xms;
+    }{$1$Origin $2 - $3 - $4}xms;
 
     # Transfers the old origin
     #

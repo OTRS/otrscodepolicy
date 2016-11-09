@@ -3,7 +3,7 @@
 ;
 
 [+TidyAll::Plugin::OTRS::Common::Origin]
-select = **/*.{pl,psgi,pm,t,js,dtl,css,tt}
+select = **/*.{pl,psgi,pm,t,js,dtl,css,tt,xml,sopm}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = **/{thirdparty,js-cache,css-cache}/**/*
