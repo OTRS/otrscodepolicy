@@ -19,6 +19,7 @@
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
+    <Description Lang="hu">OTRS kódminőség ellenőrzések.</Description>
     <Filelist>
         <File Permission="770" Location="bin/otrs.CodePolicy.pl" />
         <File Permission="660" Location="Kernel/cpan-lib/Pod/Strip.pm" />
