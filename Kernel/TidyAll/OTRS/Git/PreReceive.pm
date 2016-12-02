@@ -41,6 +41,12 @@ my %IgnoreRepositories = (
 
     # Thirdparty code
     'bugs-otrs-org.git' => 1,
+
+    # OTRS Blog
+    'blog-otrs-com.git' => 1,
+
+    # OTRS Blog
+    'www-otrs-com.git' => 1,
 );
 
 sub Run {
