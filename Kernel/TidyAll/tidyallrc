@@ -523,12 +523,16 @@ select = **/*.{xml,xsd}
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+; don't validate oracle diagnostic xml files
+ignore = **/diag/**/log.xml
 
 [+TidyAll::Plugin::OTRS::XML::LintWithOurParsers]
 select = ;**/*.xml
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/sample/**/*
 ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+; don't validate oracle diagnostic xml files
+ignore = **/diag/**/log.xml
 
 ;
 ; Migrations OTRS 4
