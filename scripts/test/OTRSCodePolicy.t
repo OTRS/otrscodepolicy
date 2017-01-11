@@ -135,7 +135,13 @@ for my $File ( $TidyAll->find_matched_files() ) {
         String => "$Version:$CacheVersionMD5:$File:$ContentMD5",
     );
 
-    my $CacheFileName = "$CacheDir$CacheKey.ok";
+    # Put hash files in subdirs to avoid having too many files in one directory.
+    my $SubDir = substr($CacheKey, 0, 2);
+    if (!-d "$CacheDir/$SubDir") {
+        File::Path::make_path("$CacheDir/$SubDir") || die "Could not create $CacheDir/$SubDir: $!";
+    }
+
+    my $CacheFileName = "$CacheDir/$SubDir/$CacheKey.ok";
 
     if ( -e $CacheFileName ) {
         $Self->Is(
