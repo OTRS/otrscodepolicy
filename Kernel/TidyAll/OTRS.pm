@@ -120,10 +120,10 @@ sub GetFileListFromDirectory {
 
         # Files to ignore. Only list files here which cannot be present
         #   in a git repository.
-        return if $File::Find::name eq 'perltidy.LOG';
-        return if index( $File::Find::name, '.tidyall.d/' ) > -1;
-        return if substr( $File::Find::name, 0, 5 ) eq '.git/';
-        return if substr( $File::Find::name, 0, 7 ) eq 'oradiag'; # ignore Oracle log files
+        return if $File::Find::name =~ m{perltidy\.LOG};
+        return if $File::Find::name =~ m{tidyall\.d};
+        return if $File::Find::name =~ m{\.git/};
+        return if $File::Find::name =~ m{oradiag}; # ignore Oracle log files
         return if substr( $File::Find::name, -4 ) eq '.old';
         return if substr( $File::Find::name, -9 ) eq '.DS_Store';
 
