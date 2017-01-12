@@ -126,6 +126,8 @@ my $Version = $ConfigObject->Get('Version');
 FILE:
 for my $File ( $TidyAll->find_matched_files() ) {
 
+    next FILE if $File =~ m{oradiag}; # ignore Oracle log files
+
     # Check for valid cache file that represents a successful test
     my $ContentMD5 = $MainObject->MD5sum(
         Filename => $File,

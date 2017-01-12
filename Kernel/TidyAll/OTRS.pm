@@ -107,6 +107,10 @@ sub DetermineFrameworkVersionFromDirectory {
     return;
 }
 
+#
+# Get a list of files from a directory to be checked. This list is used in some plugins to make validation decisions,
+#   not for the actual decision which files are to be validated.
+#
 sub GetFileListFromDirectory {
     my ( $Self, %Param ) = @_;
 
@@ -118,14 +122,7 @@ sub GetFileListFromDirectory {
         # Also skip symbolic links, TidyAll does not like them.
         return if ( -l $File::Find::name );
 
-        # Files to ignore. Only list files here which cannot be present
-        #   in a git repository.
-        return if $File::Find::name =~ m{perltidy\.LOG};
-        return if $File::Find::name =~ m{tidyall\.d};
         return if $File::Find::name =~ m{\.git/};
-        return if $File::Find::name =~ m{oradiag}; # ignore Oracle log files
-        return if substr( $File::Find::name, -4 ) eq '.old';
-        return if substr( $File::Find::name, -9 ) eq '.DS_Store';
 
         my $RelativeFileName = substr( $File::Find::name, length $Self->{root_dir} );
         $RelativeFileName =~ s{^/*}{};
