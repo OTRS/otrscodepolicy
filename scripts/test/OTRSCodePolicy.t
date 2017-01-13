@@ -126,7 +126,7 @@ my $Version = $ConfigObject->Get('Version');
 FILE:
 for my $File ( $TidyAll->find_matched_files() ) {
 
-    next FILE if $File =~ m{oradiag}; # ignore Oracle log files
+    next FILE if $File =~ m{oradiag};    # ignore Oracle log files
 
     # Check for valid cache file that represents a successful test
     my $ContentMD5 = $MainObject->MD5sum(
@@ -138,8 +138,8 @@ for my $File ( $TidyAll->find_matched_files() ) {
     );
 
     # Put hash files in subdirs to avoid having too many files in one directory.
-    my $SubDir = substr($CacheKey, 0, 2);
-    if (!-d "$CacheDir/$SubDir") {
+    my $SubDir = substr( $CacheKey, 0, 2 );
+    if ( !-d "$CacheDir/$SubDir" ) {
         File::Path::make_path("$CacheDir/$SubDir") || die "Could not create $CacheDir/$SubDir: $!";
     }
 
