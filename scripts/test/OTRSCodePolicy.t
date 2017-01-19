@@ -83,8 +83,8 @@ my $Wanted = sub {
     # Skip nonregular files and directories.
     return if ( !-f $File::Find::name );
     my $Stat = File::stat::stat($File::Find::name);
-    if ( time() - $Stat->ctime() > $CacheTTLSeconds ) {    ## no critic
-        unlink $File::Find::name || die "Could not delete $File::Find::name";
+    if ( $Stat && ( time() - $Stat->ctime() > $CacheTTLSeconds ) ) {    ## no critic
+        unlink $File::Find::name;    # Don't die here, this could be removed in the background by another process too.
     }
 };
 File::Find::find( $Wanted, $CacheDir );
