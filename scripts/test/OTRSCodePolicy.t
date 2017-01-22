@@ -73,21 +73,23 @@ $Self->True(
 );
 die if !$Success;
 
-my $CacheTTLSeconds = 60 * 60 * 24 * 30;
+# Temporarily disable cache cleanup because of stability issues on new CI infrastructure.
 
+# my $CacheTTLSeconds = 60 * 60 * 24 * 30;
 #
-# Clean up old cache files first (TTL expired).
+# #
+# # Clean up old cache files first (TTL expired).
+# #
+# my $Wanted = sub {
 #
-my $Wanted = sub {
-
-    # Skip nonregular files and directories.
-    return if ( !-f $File::Find::name );
-    my $Stat = File::stat::stat($File::Find::name);
-    if ( $Stat && ( time() - $Stat->ctime() > $CacheTTLSeconds ) ) {    ## no critic
-        unlink $File::Find::name;    # Don't die here, this could be removed in the background by another process too.
-    }
-};
-File::Find::find( $Wanted, $CacheDir );
+#     # Skip nonregular files and directories.
+#     return if ( !-f $File::Find::name );
+#     my $Stat = File::stat::stat($File::Find::name);
+#     if ( $Stat && ( time() - $Stat->ctime() > $CacheTTLSeconds ) ) {    ## no critic
+#         unlink $File::Find::name;    # Don't die here, this could be removed in the background by another process too.
+#     }
+# };
+# File::Find::find( $Wanted, $CacheDir );
 
 #
 # Get a cache version MD5 string that changes when the OTRSCodePolicy module changes.
