@@ -63,6 +63,8 @@ $TidyAll->GetFileListFromDirectory();
 # We need a cache for performance reasons. This will live in /var/otrs-unittest (fallback to /tmp)
 #   to be persistent across runs of our UT scenarios. Cache based on file name, content and OTRS version.
 #
+# We don't need to perform cache cleanup here, this will be done by the CI provisioner instead.
+#
 
 my $CacheDir = -d '/var/otrs-unittest' ? '/var/otrs-unittest' : '/tmp';
 $CacheDir .= '/OTRSCodePolicy.t/';
@@ -72,24 +74,6 @@ $Self->True(
     "Created cache directory $CacheDir",
 );
 die if !$Success;
-
-# Temporarily disable cache cleanup because of stability issues on new CI infrastructure.
-
-# my $CacheTTLSeconds = 60 * 60 * 24 * 30;
-#
-# #
-# # Clean up old cache files first (TTL expired).
-# #
-# my $Wanted = sub {
-#
-#     # Skip nonregular files and directories.
-#     return if ( !-f $File::Find::name );
-#     my $Stat = File::stat::stat($File::Find::name);
-#     if ( $Stat && ( time() - $Stat->ctime() > $CacheTTLSeconds ) ) {    ## no critic
-#         unlink $File::Find::name;    # Don't die here, this could be removed in the background by another process too.
-#     }
-# };
-# File::Find::find( $Wanted, $CacheDir );
 
 #
 # Get a cache version MD5 string that changes when the OTRSCodePolicy module changes.
