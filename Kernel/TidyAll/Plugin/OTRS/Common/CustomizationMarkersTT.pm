@@ -7,8 +7,6 @@
 # --
 
 package TidyAll::Plugin::OTRS::Common::CustomizationMarkersTT;
-  #  # nofi  lter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
-  #  # nofi  lter(TidyAll::Plugin::OTRS::Common::Origin)
 
 use strict;
 use warnings;
