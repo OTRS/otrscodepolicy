@@ -142,37 +142,52 @@ sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
-    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
-
-    return if $Filename !~ m{ .* \.css }xmsi;
-
-    # Check if a CSS file is overritten in Custom directory.
-    if ( $Filename =~ m{ \/Custom\/var\/ }xms ) {
-
-        die __PACKAGE__ . "\n" . <<EOF;
-Forbidden to have a CSS file in Custom folder, because it's not allowed to override an existing CSS file.
-Use a new one to override existing CSS classes.
-EOF
-    }
 
     my $Code = $Self->_GetFileContents($Filename);
 
-    # Check if an origin exist.
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* ) [ ]+ (?: \$ | \@ ) origin: [ ]+ [^\n]+ $ }xms ) {
+    # Check if all files in the Custom directory has an origin
+    if ( $Filename =~ m{ \/Custom\/ }xms ) {
 
-        die __PACKAGE__ . "\n" . <<EOF;
+        # Check if an origin exist.
+        if ( $Code !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms ) {
+
+            die __PACKAGE__ . "\n" . <<EOF;
 Forbidden to have an origin in a CSS file, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF
+        }
     }
 
-    # Check if customization markers exists.
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* | \/\* ) [ ]+ --- [ ]* $ }xms ) {
+    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-        die __PACKAGE__ . "\n" . <<EOF;
+    if ( $Filename !~ m{ .* \.css }xmsi ) {
+
+        # Check if a CSS file is overritten in Custom directory.
+        if ( $Filename =~ m{ \/Custom\/var\/ }xms ) {
+
+            die __PACKAGE__ . "\n" . <<EOF;
+Forbidden to have a CSS file in Custom folder, because it's not allowed to override an existing CSS file.
+Use a new one to override existing CSS classes.
+EOF
+        }
+
+        # Check if an origin exist.
+        if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* ) [ ]+ (?: \$ | \@ ) origin: [ ]+ [^\n]+ $ }xms ) {
+
+            die __PACKAGE__ . "\n" . <<EOF;
+Forbidden to have an origin in a CSS file, because it's not allowed to override an existing CSS file.
+Use a new one to override existing CSS classes.
+EOF
+        }
+
+        # Check if customization markers exists.
+        if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* | \/\* ) [ ]+ --- [ ]* $ }xms ) {
+
+            die __PACKAGE__ . "\n" . <<EOF;
 Forbidden to have customization markers in a CSS file, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF
+        }
     }
 
     return;
