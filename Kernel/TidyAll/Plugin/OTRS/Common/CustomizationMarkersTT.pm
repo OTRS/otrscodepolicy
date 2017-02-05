@@ -1,0 +1,71 @@
+# --
+# Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+package TidyAll::Plugin::OTRS::Common::CustomizationMarkersTT;
+  #  # nofi  lter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
+  #  # nofi  lter(TidyAll::Plugin::OTRS::Common::Origin)
+
+use strict;
+use warnings;
+
+use File::Basename;
+
+use base qw(TidyAll::Plugin::OTRS::Base);
+
+=head1 SYNOPSIS
+
+This plugin checks that only valid OTRS customization markers are used
+to mark changed lines in customized/derived .tt files.
+
+=cut
+
+sub transform_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
+
+    # Find customization markers with // in .tt files and replace it with #
+    #
+    #   // ---
+    #   // OTRSXyZ - Here a comment.
+    #   // ---
+    #
+    #   to
+    #
+    #   # ---
+    #   # OTRSXyZ - Here a comment.
+    #   # ---
+    #
+    $Code =~ s{
+        (
+            ^ [ ]* \/\/ [ ]+ --- [ ]* $ \n
+            ^ [ ]* \/\/ [ ]+ [^ ]+ (?: [ ]+ - [^\n]+ | ) $ \n
+            ^ [ ]* \/\/ [ ]+ --- [ ]* $ \n
+            (?: ^ [ ]* \/\/ [^\n]* $ \n )*
+        )
+    }{
+        my $String = $1;
+        $String =~ s{ ^ [ ]* \/\/ }{#}xmsg;
+        $String;
+    }xmsge;
+
+    # Find wron customization markers in .tt files an correct them
+    #
+    #   // ---
+    #
+    #   to
+    #
+    #   # ---
+    #
+    $Code =~ s{ ^ [ ]* \/\/ [ ]+ --- [ ]* $ }{# ---}xmsg;
+
+    return $Code;
+}
+
+1;
