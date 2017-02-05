@@ -8,6 +8,7 @@
 
 package TidyAll::Plugin::OTRS::Common::CustomizationMarkers;
 ## nofilter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
+## nofilter(TidyAll::Plugin::OTRS::Common::Origin)
 
 use strict;
 use warnings;
@@ -38,6 +39,16 @@ sub transform_source {    ## no critic
     #   # ---
     #
     $Code =~ s{ ^ [ ]* ( (?: \# | \/\/ ) ) [ ]* -{3,4} [ ]* $ }{$1 ---}xmsg;
+
+    # Find wron customization markers in JS files an correct them
+    #
+    #   /***/
+    #
+    #   to
+    #
+    #   // ---
+    #
+    $Code =~ s{ ^ [ ]* \/ [ ]* \*{1,3} [ ]* \/ [ ]* $ }{// ---}xmsg;
 
     # Find wron comments and correct them
     #
@@ -79,6 +90,30 @@ sub transform_source {    ## no critic
         $String =~ s{ ^ [ ]+ }{}xmsg;
         $String;
     }xmsge;
+
+    # Find wron customization markers in JS files an correct them
+    #
+    #   /**
+    #   * OTRSXyZ - Here a comment.
+    #   **/
+    #
+    #   or
+    #
+    #   /***
+    #   * OTRSXyZ
+    #   ***/
+    #
+    #   to
+    #
+    #   // ---
+    #   // OTRSXyZ
+    #   // ---
+    #
+    $Code =~ s{
+        ^ [ ]* \/ [ ]* \*{1,3} [ ]* $ \n
+        ^ [ ]* \*{1,3} [ ]+ ( [^ ]+ (?: [ ]+ - [^\n]+ | ) ) $ \n
+        ^ [ ]* \*{1,3} [ ]* \/ [ ]* $ \n
+    }{$Self->_CustomizationMarker($1)}xmsge;
 
     # Find somesthing like that and remove the leading spaces
     #
@@ -139,6 +174,16 @@ EOF
     }
 
     return $Code;
+}
+
+sub _CustomizationMarker {
+    my ( $Self, $Module ) = @_;
+
+    return <<'END_CUSTOMMARKER';
+// ---
+// $Module
+// ---
+END_CUSTOMMARKER
 }
 
 1;
