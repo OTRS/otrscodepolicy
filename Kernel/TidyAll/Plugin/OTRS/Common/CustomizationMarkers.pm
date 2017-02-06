@@ -179,7 +179,7 @@ EOF
 sub _CustomizationMarker {
     my ( $Self, $Module ) = @_;
 
-    return <<'END_CUSTOMMARKER';
+    return <<"END_CUSTOMMARKER";
 // ---
 // $Module
 // ---

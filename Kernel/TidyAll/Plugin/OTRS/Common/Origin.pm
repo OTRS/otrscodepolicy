@@ -150,17 +150,13 @@ sub validate_file {    ## no critic
 
         # Check if an origin exist.
         if ( $Code !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms ) {
-
-            die __PACKAGE__ . "\n" . <<EOF;
-Forbidden to have an origin in a CSS file, because it's not allowed to override an existing CSS file.
-Use a new one to override existing CSS classes.
-EOF
+            die __PACKAGE__ . "\nCustomization markers found but no origin present.\n";
         }
     }
 
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    if ( $Filename !~ m{ .* \.css }xmsi ) {
+    if ( $Filename =~ m{ .* \.css }xmsi ) {
 
         # Check if a CSS file is overritten in Custom directory.
         if ( $Filename =~ m{ \/Custom\/var\/ }xms ) {
