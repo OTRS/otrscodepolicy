@@ -163,7 +163,7 @@ ignore = var/httpd/htdocs/js/{jstree,thirdparty,js-cache}/**/*
 ignore = var/httpd/htdocs/yui/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js}
+select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js,sh,tmpl,html,skel}
 select = .*.dist .bash_completion
 select = var/cron/*
 ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*

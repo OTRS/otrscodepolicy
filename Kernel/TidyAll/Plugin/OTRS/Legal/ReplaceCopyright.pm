@@ -55,11 +55,11 @@ sub transform_source {    ## no critic
         if ( $Line !~ m{ ^\# \s Copyright }smx ) {
             if (
                 $Line
-                =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http:\/\/otrs\. (?: org | com ) \/ }smx
+                =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http:\/\/otrs\. (?: org | com ) \/? }smx
                 )
             {
                 $Line =~ s{
-                     ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http:\/\/otrs\. (?: org | com ) \/
+                     ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http:\/\/otrs\. (?: org | com ) \/?
                  }
                  {$1Copyright (C) $YearString $Copy}smx;
             }
