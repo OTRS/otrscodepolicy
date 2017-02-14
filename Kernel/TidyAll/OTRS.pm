@@ -14,8 +14,8 @@ package TidyAll::OTRS;
 use IO::File;
 use base qw(Code::TidyAll);
 
-# Require some needed modules here for clarity
-use Code::TidyAll 0.17;
+# Require some needed modules here for clarity / better error messages.
+use Code::TidyAll 0.56;
 use Perl::Critic;
 use Perl::Tidy;
 

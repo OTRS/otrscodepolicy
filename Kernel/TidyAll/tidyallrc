@@ -1,13 +1,24 @@
 ;
+; Global ignores
+;
+
+; Ignore all CPAN content.
+ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
+; Ignore all dynamic/temporary data.
+ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
+; Ignore thirdparty content.
+ignore = **/thirdparty/**/*
+; Ignore Loader cache files.
+ignore = **/{js-cache,css-cache}/**/*
+; Ignore test data files.
+ignore = scripts/test/sample/**/*
+
+;
 ; Common
 ;
 
 [+TidyAll::Plugin::OTRS::Common::Origin]
 select = **/*.{pl,psgi,pm,t,js,dtl,css,tt,xml,sopm}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkersTT]
@@ -16,10 +27,6 @@ select = Kernel/Output/HTML/**/*.tt
 
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkers]
 select = **/*.{pl,psgi,pm,t,js,dtl,css,tt}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::XML::Docbook::ReplaceSupportEmail]
@@ -30,21 +37,13 @@ select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Common::ProhibitEmailAddresses]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,sopm}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
 
 [+TidyAll::Plugin::OTRS::Common::RemoveCVSIDs]
 select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js}
 select = var/cron/*
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Common::ValidateFilename]
 select = *
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; Cron
@@ -59,45 +58,27 @@ select = var/cron/*.dist
 
 [+TidyAll::Plugin::OTRS::DTL::Baselink]
 select = **/*.dtl
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::DTL::CGIHandle]
 select = **/*.dtl
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::DTL::Format]
 select = **/*.dtl
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::DTL::LQData]
 select = **/*.dtl
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::DTL::Select]
 select = **/*.dtl
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::DTL::UniqueBlock]
 select = **/*.dtl
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
 ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; JavaScript
@@ -105,44 +86,19 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::DebugCode]
 select = **/*.js
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = **/js-cache/*.js
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::UnloadEvent]
 select = **/*.js **/*.tt
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = **/js-cache/*.js
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::FileName]
 select = **/*.js
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = **/test/*
-ignore = **/thirdparty/**/*
-ignore = **/js-cache/*.js
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::FileNameUnitTest]
 select = var/httpd/htdocs/js/test/*.js
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = **/js-cache/*.js
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::ESLint]
 select = **/*.js
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = **/js-cache/*.js
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; Legal
@@ -153,25 +109,16 @@ select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
-ignore = scripts/test/sample/**/*
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = var/httpd/htdocs/js/{jstree,thirdparty,js-cache}/**/*
-ignore = var/httpd/htdocs/yui/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
 select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js,sh,tmpl,html,skel}
 select = .*.dist .bash_completion
 select = var/cron/*
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::SOPMLicense]
 select = *.{opm,sopm}
@@ -196,8 +143,6 @@ select = bin/*.pl
 [+TidyAll::Plugin::OTRS::Perl::CacheNew]
 select = **/*.{pl,psgi,pm}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
@@ -208,54 +153,34 @@ select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
 [+TidyAll::Plugin::OTRS::Perl::Dumper]
 select = **/*.{pl,pm,psgi}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ForeachToFor]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ForMy]
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::Goto]
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ISA]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::LayoutObject]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/**/*
 ignore = Kernel/{Modules,Output}/**/* Custom/Kernel/{Modules,Output}/**/*
 ignore = Kernel/System/Web/* Custom/Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ModuleFormat]
 select = **/*.{pm,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::NoExitInConsoleCommands]
 select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Command/**/*.pm
@@ -263,17 +188,14 @@ select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Comm
 [+TidyAll::Plugin::OTRS::Perl::ObjectDependencies]
 select = **/*.{pm}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ObjectManagerCreation]
 select = **/*.{pm}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ObjectNameSpace]
 select = **/*.{pl,pm,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Modules/**/* Custom/Kernel/Modules/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ParamObject]
@@ -284,21 +206,15 @@ ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ; do not run for commits to save time
 only_modes = cli tests
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 argv = -l=120 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl -cab=0
 ; do not run for commits to save time
 ; do not run on the UnitTests to save time (needs ~ 5 min for OTRS)
@@ -306,19 +222,12 @@ only_modes = cli
 
 [+TidyAll::Plugin::OTRS::Perl::PodChecker]
 select = **/*.{pm,pod,pod.dist}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PodNewDoc]
 select = **/*.{pm}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::PodSpelling]
 select = **/*.{pm}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::Print]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
@@ -326,71 +235,46 @@ select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/Selenium/**/*.t
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::ScriptFormat]
 select = **/*.{pl,psgi}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::SortKeys]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::SubDeclaration]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::SyntaxCheck]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::TestSubs]
 select = **/*.{t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::Time]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::Translatable]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language.pm
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
 ignore = scripts/test/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::TranslationEncoding]
 select = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::UnitTestConfigChanges]
 select = scripts/test/**/*.{t}
-ignore = scripts/test/sample/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::UseWarnings]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; SOPM
@@ -426,10 +310,6 @@ select = *.{sopm}
 
 [+TidyAll::Plugin::OTRS::TT::ScriptUsage]
 select = **/*.tt
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; SQL
@@ -438,15 +318,9 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::SQL::ColumnTypes]
 select = **/*.{xml,opm,sopm}
 ignore = Kernel/Config/Files/**/*
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::SQL::ReservedWords]
 select = **/*.{xml,opm,sopm}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; Whitespace
@@ -454,26 +328,14 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Whitespace::FourSpaces]
 select = **/*.{opm,sopm}
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Whitespace::Tabs]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,opm,sopm}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = **/{js-cache,css-cache}/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Whitespace::TrailingWhitespace]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,opm,sopm,md}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = **/{js-cache,css-cache}/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; XML
@@ -481,9 +343,6 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::XML::ConfigSyntax]
 select = **/*.xml
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 ; Temporary ignore OTRS 6 new xml SysConfig files.
 ignore = Kernel/Config/**/XML/*.xml
 
@@ -522,15 +381,9 @@ select = **/*.wadl
 
 [+TidyAll::Plugin::OTRS::XML::Lint]
 select = **/*.{xml,xsd}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::XML::LintWithOurParsers]
 select = ;**/*.xml
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; Migrations OTRS 4
@@ -539,9 +392,6 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::Migrations::OTRS4::FontAwesome]
 select = **/*.{tt,css,}
 select = Kernel/Config/**/*.xml
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 ;
 ; Migrations OTRS 5
@@ -550,18 +400,10 @@ ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::HeaderlineFilename]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,spec}
 select = .*.dist .bash_completion
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::Popup]
 select = **/*.tt
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = **/thirdparty/**/*
-ignore = scripts/test/sample/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::StatisticsPreview]
 select = Kernel/System/Stats/Dynamic/*.pm
@@ -572,16 +414,8 @@ select = Kernel/System/Stats/Dynamic/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeZoneOffset]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::DateTime]
 select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/cpan-lib/**/* Custom/Kernel/cpan-lib/**/*
-ignore = var/{article,log,run,sessions,spool,tmp,virtualfs}/**/*
-ignore = **/{thirdparty,js-cache,css-cache}/**/*
-ignore = scripts/test/sample/**/*
 ignore = Kernel/Config/Files/ZZZ*.pm
