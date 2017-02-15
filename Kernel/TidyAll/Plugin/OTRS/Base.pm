@@ -56,19 +56,6 @@ sub IsThirdpartyModule {
     return $TidyAll::OTRS::ThirdpartyModule ? 1 : 0;
 }
 
-# Process Perl code and replace all Pod sections with comments.
-
-sub StripPod {
-    my ( $Self, %Param ) = @_;
-
-    my $PodStrip = Pod::Strip->new();
-    $PodStrip->replace_with_comments(1);
-    my $Code;
-    $PodStrip->output_string( \$Code );
-    $PodStrip->parse_string_document( $Param{Code} );
-    return $Code;
-}
-
 sub _GetFileContents {
     my ( $Self, $Filename ) = @_;
 

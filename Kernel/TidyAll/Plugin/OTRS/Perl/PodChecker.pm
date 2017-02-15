@@ -14,7 +14,7 @@ use Capture::Tiny qw(capture_merged);
 use Pod::Checker;
 
 use base 'Code::TidyAll::Plugin';
-use base 'TidyAll::Plugin::OTRS::Base';
+use base 'TidyAll::Plugin::OTRS::Perl';
 
 sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
