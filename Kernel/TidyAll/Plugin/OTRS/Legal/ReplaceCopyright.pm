@@ -35,7 +35,7 @@ sub transform_source {    ## no critic
         $YearString = $Year;
     }
 
-    my $Output;
+    my $Output = '';
 
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
