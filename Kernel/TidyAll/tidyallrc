@@ -244,6 +244,12 @@ select = **/*.{pl,psgi}
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
 
+;[+TidyAll::Plugin::OTRS::Perl::SpellCheck]
+;select = **/*.{pm,pod}
+;ispell_cmd  = ispell
+;ispell_argv = -p $ROOT/ispell_english_whitelist.txt
+;suggest = 1
+
 [+TidyAll::Plugin::OTRS::Perl::SubDeclaration]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist

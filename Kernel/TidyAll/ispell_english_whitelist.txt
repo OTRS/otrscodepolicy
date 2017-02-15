@@ -1,0 +1,4 @@
+AGPL
+FWD
+OTRS
+SLA
