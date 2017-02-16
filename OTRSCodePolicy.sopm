@@ -87,9 +87,9 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ParamObject.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlCritic.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlTidy.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PodChecker.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PodNewDoc.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PodSpelling.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/FunctionPod.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/SpellCheck.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/Validator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Print.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Require.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ScriptFormat.pm" />
@@ -167,6 +167,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Lint.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/LintWithOurParsers.pm" />
         <File Permission="660" Location="Kernel/TidyAll/tidyallrc" />
+        <File Permission="660" Location="Kernel/TidyAll/ispell_english_whitelist.txt" />
         <File Permission="770" Location="Kernel/TidyAll/git-hooks/pre-commit.pl" />
         <File Permission="770" Location="Kernel/TidyAll/git-hooks/pre-receive.pl" />
         <File Permission="770" Location="Kernel/TidyAll/git-hooks/prepare-commit-msg.pl" />

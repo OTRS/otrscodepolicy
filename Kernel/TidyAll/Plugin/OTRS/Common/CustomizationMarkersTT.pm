@@ -18,7 +18,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 =head1 SYNOPSIS
 
 This plugin checks that only valid OTRS customization markers are used
-to mark changed lines in customized/derived .tt files.
+to mark changed lines in customized/derived C<.tt> files.
 
 =cut
 
@@ -28,7 +28,7 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
-    # Find customization markers with // in .tt files and replace it with #
+    # Find customization markers with // in .tt files and replace them with #.
     #
     #   // ---
     #   // OTRSXyZ - Here a comment.
@@ -53,7 +53,7 @@ sub transform_source {    ## no critic
         $String;
     }xmsge;
 
-    # Find wron customization markers in .tt files an correct them
+    # Find wrong customization markers in .tt files and correct them.
     #
     #   // ---
     #

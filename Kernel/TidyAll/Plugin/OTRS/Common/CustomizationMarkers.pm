@@ -30,7 +30,7 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
-    # Find wron customization markers without space or with 4 hyphens and correct them
+    # Find wrong customization markers without space or with 4 hyphens and correct them
     #
     #   #---
     #
@@ -40,7 +40,7 @@ sub transform_source {    ## no critic
     #
     $Code =~ s{ ^ [ ]* ( (?: \# | \/\/ ) ) [ ]* -{3,4} [ ]* $ }{$1 ---}xmsg;
 
-    # Find wron customization markers in JS files an correct them
+    # Find wrong customization markers in JS files an correct them
     #
     #   /***/
     #
@@ -50,7 +50,7 @@ sub transform_source {    ## no critic
     #
     $Code =~ s{ ^ [ ]* \/ [ ]* \*{2,3} [ ]* \/ [ ]* $ }{// ---}xmsg;
 
-    # Find wron comments and correct them
+    # Find wrong comments and correct them
     #
     #   # --------------------
     #
@@ -91,7 +91,7 @@ sub transform_source {    ## no critic
         $String;
     }xmsge;
 
-    # Find wron customization markers in JS files an correct them
+    # Find wrong customization markers in JS files an correct them
     #
     #   /**
     #   * OTRSXyZ - Here a comment.
