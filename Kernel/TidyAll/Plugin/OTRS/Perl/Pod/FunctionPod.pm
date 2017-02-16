@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::PodSpelling;
+package TidyAll::Plugin::OTRS::Perl::Pod::FunctionPod;
 
 use strict;
 use warnings;

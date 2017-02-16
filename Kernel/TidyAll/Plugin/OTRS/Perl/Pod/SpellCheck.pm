@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::SpellCheck;
+package TidyAll::Plugin::OTRS::Perl::Pod::SpellCheck;
 use strict;
 use warnings;
 
@@ -37,6 +37,7 @@ sub validate_file {    ## no critic
     return if $Self->IsPluginDisabled( Filename => $File );
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
+    # # TODO: MOVE TO SEPARATE Perl::CommentsSpellCheck plugin later
     # my $Code = $Self->_GetFileContents($File);
     #
     # my $Comments = $Self->StripPod( Code => $Code );
@@ -55,8 +56,11 @@ sub validate_file {    ## no critic
     my ($Output);
     my @CMD = ( $Self->ispell_cmd(), shellwords( $Self->ispell_argv() ), "-a" );
     eval { run3( \@CMD, \$SpellCheckText, \$Output, \$Error ) };
-    $Error = $@ if $@;
-    die "error running '" . join( " ", @CMD ) . "': " . $Error if $Error;
+
+    if ($@) {
+        $Error = $@;
+        die "Error running '" . join( " ", @CMD ) . "': " . $Error;
+    }
 
     my ( @Errors, %Seen );
     LINE:
@@ -78,7 +82,7 @@ sub validate_file {    ## no critic
             }
         }
     }
-    die sprintf( "unrecognized words:\n%s\n", join( "\n", sort @Errors ) ) if @Errors;
+    die sprintf( "Pod contains unrecognized words:\n%s\n", join( "\n", sort @Errors ) ) if @Errors;
 }
 
 1;

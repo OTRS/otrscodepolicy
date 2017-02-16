@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::PodChecker;
+package TidyAll::Plugin::OTRS::Perl::Pod::Validator;
 use strict;
 use warnings;
 
@@ -15,6 +15,10 @@ use Pod::Checker;
 
 use base 'Code::TidyAll::Plugin';
 use base 'TidyAll::Plugin::OTRS::Perl';
+
+#
+# Validated Pod with Pod::Checker for syntactical correctness.
+#
 
 sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
