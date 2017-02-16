@@ -36,13 +36,14 @@ use IPC::System::Simple qw(capturex);
 
 use TidyAll::OTRS;
 
-my ( $Verbose, $Directory, $File, $Cached, $All, $Help );
+my ( $Verbose, $Directory, $File, $Mode, $Cached, $All, $Help );
 GetOptions(
     'verbose'     => \$Verbose,
     'all'         => \$All,
     'cached'      => \$Cached,
     'directory=s' => \$Directory,
     'file=s'      => \$File,
+    'mode=s'      => \$Mode,
     'help'        => \$Help,
 );
 
@@ -58,8 +59,9 @@ Usage: OTRSCodePolicy/bin/otrs.CodePolicy.pl [options]
 Options:
     -a, --all           Check all files recursively
     -d, --directory     Check only subdirectory
+    -c, --cached        Check only cached (staged files in git directory)
     -f, --file          Check only one file
-    -c, --cached        Check only cached (staged files)
+    -m, --mode          Use custom Code::TidyAll mode (default: cli)
     -v, --verbose       Activate diagnostics
     -h, --help          Show this usage message
 EOF
@@ -124,7 +126,7 @@ chdir dirname($0) . "/..";
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     $ConfigurationFile,
     check_only => 0,
-    mode       => 'cli',
+    mode       => $Mode // 'cli',
     root_dir   => $RootDir,
     data_dir   => File::Spec->tmpdir(),
     verbose    => $Verbose ? 1 : 0,
