@@ -29,7 +29,7 @@ sub validate_file {    ## no critic
     }
 
     #    if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
-    if ( $Filename !~ m{/XML/}smx ) {
+    elsif ( $Filename !~ m{/XML/}smx ) {
         $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration_before_6.xsd';
     }
 
