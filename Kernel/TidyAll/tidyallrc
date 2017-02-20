@@ -359,8 +359,6 @@ select = Kernel/Config/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
-; Temporary ignore OTRS 6 new xml SysConfig files.
-ignore = Kernel/Config/**/XML/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::Database::XSDValidator]
 select = scripts/database/*.xml

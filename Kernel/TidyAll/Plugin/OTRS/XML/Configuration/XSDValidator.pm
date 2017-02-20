@@ -28,6 +28,11 @@ sub validate_file {    ## no critic
         $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration_before_5.xsd';
     }
 
+    #    if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
+    if ( $Filename !~ m{/XML/}smx ) {
+        $XSDFile = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration_before_6.xsd';
+    }
+
     my $Command = sprintf( "xmllint --noout --nonet --schema %s %s %s", $XSDFile, $Self->argv(), $Filename );
     my ( $Output, @Result ) = capture_merged { system($Command) };
 

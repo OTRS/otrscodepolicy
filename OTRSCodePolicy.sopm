@@ -116,6 +116,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SQL/ReservedWords.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration_before_5.xsd" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration_before_6.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Database.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/calstblx.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/dbhierx.xsd" />
