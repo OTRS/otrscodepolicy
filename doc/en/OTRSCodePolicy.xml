@@ -121,6 +121,7 @@
                 <listitem><para>nodejs</para></listitem>
                 <listitem><para>The nodejs package eslint (install with <literal>npm -g i eslint</literal></para></listitem>
                 <listitem><para>gettext</para></listitem>
+                <listitem><para>hunspell</para></listitem>
             </itemizedlist>
         </para>
     </section>

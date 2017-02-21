@@ -19,8 +19,9 @@ use Text::ParseWords qw(shellwords);
 
 use base 'TidyAll::Plugin::OTRS::Perl';
 
-our $IspellPath;
-our $IspellWhitelist;
+our $HunspellPath;
+our $HunspellDictionaryPath;
+our $HunspellWhitelistPath;
 
 sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
@@ -28,17 +29,19 @@ sub validate_file {    ## no critic
     return if $Self->IsPluginDisabled( Filename => $File );
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    if ( !$IspellPath ) {
-        $IspellPath = `which ispell`;
-        chomp $IspellPath;
-        if ( !$IspellPath ) {
-            print STDERR __PACKAGE__ . "\nCould not find 'ispell', skipping Spelling tests.\n";
+    if ( !$HunspellPath ) {
+        $HunspellPath = `which hunspell`;
+        chomp $HunspellPath;
+        if ( !$HunspellPath ) {
+            print STDERR __PACKAGE__ . "\nCould not find 'hunspell', skipping spell checker tests.\n";
             return;
         }
 
-        $IspellWhitelist = __FILE__;
-        $IspellWhitelist =~ s{SpellCheck\.pm}{ispell_english_pod_whitelist.txt};
+        $HunspellDictionaryPath = __FILE__;
+        $HunspellDictionaryPath =~ s{SpellCheck\.pm}{../../StaticFiles/Hunspell/Dictionaries};
 
+        $HunspellWhitelistPath = __FILE__;
+        $HunspellWhitelistPath =~ s{SpellCheck\.pm}{english_pod_whitelist.txt};
     }
 
     # # TODO: MOVE TO SEPARATE Perl::CommentsSpellCheck plugin later
@@ -55,12 +58,17 @@ sub validate_file {    ## no critic
     die $Error if $Error;
 
     my ($Output);
-    my @CMD = ( $IspellPath, '-p', $IspellWhitelist, "-a" );
+    my @CMD = (
+        $HunspellPath,
+        '-d', "${HunspellDictionaryPath}/en_US",
+        '-d', "${HunspellDictionaryPath}/en_GB",
+        '-p', $HunspellWhitelistPath, "-a"
+    );
     eval { run3( \@CMD, \$PodText, \$Output, \$Error ) };
 
-    if ($@) {
-        $Error = $@;
-        die "Error running '" . join( " ", @CMD ) . "': " . $Error;
+    if ( $@ || $Error ) {
+        $Error = $@ || $Error;
+        die __PACKAGE__ . "\nError running '" . join( " ", @CMD ) . "': " . $Error;
     }
 
     my ( @Errors, %Seen );

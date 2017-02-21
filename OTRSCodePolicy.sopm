@@ -89,7 +89,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlTidy.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/FunctionPod.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/SpellCheck.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/ispell_english_pod_whitelist.txt" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/english_pod_whitelist.txt" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/Validator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Print.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Require.pm" />
@@ -115,6 +115,11 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/XSDValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SQL/ColumnTypes.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SQL/ReservedWords.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/Hunspell/Dictionaries/en_GB.aff" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/Hunspell/Dictionaries/en_GB.dic" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/Hunspell/Dictionaries/en_US.aff" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/Hunspell/Dictionaries/en_US.dic" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/Hunspell/Dictionaries/Readme.md" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration_before_5.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration_before_6.xsd" />
