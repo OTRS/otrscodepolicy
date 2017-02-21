@@ -61,7 +61,6 @@ sub validate_file {    ## no critic
     my @CMD = (
         $HunspellPath,
         '-d', "${HunspellDictionaryPath}/en_US",
-        '-d', "${HunspellDictionaryPath}/en_GB",
         '-p', $HunspellWhitelistPath, "-a"
     );
     eval { run3( \@CMD, \$PodText, \$Output, \$Error ) };

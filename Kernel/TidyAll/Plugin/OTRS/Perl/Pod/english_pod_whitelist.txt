@@ -40,3 +40,8 @@ uninstall
 uninstalls
 sysconfig
 importable
+invoker
+invokers
+minified
+decrypt
+unmanaged
