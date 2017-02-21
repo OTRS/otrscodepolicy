@@ -19,23 +19,27 @@ use Text::ParseWords qw(shellwords);
 
 use base 'TidyAll::Plugin::OTRS::Perl';
 
-use Moo;
-
-has 'ispell_argv' => (
-    is      => 'ro',
-    default => q{}
-);
-has 'ispell_cmd' => (
-    is      => 'ro',
-    default => 'ispell'
-);
-has 'suggest' => ( is => 'ro' );
+our $IspellPath;
+our $IspellWhitelist;
 
 sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
+
+    if ( !$IspellPath ) {
+        $IspellPath = `which ispell`;
+        chomp $IspellPath;
+        if ( !$IspellPath ) {
+            print STDERR __PACKAGE__ . "\nCould not find 'ispell', skipping Spelling tests.\n";
+            return;
+        }
+
+        $IspellWhitelist = __FILE__;
+        $IspellWhitelist =~ s{SpellCheck\.pm}{ispell_english_pod_whitelist.txt};
+
+    }
 
     # # TODO: MOVE TO SEPARATE Perl::CommentsSpellCheck plugin later
     # my $Code = $Self->_GetFileContents($File);
@@ -50,12 +54,9 @@ sub validate_file {    ## no critic
         = Capture::Tiny::capture( sub { Pod::Spell->new()->parse_from_file( $File->stringify() ) } );
     die $Error if $Error;
 
-    #my $SpellCheckText = "$Comments\n$PodText";
-    my $SpellCheckText = $PodText;
-
     my ($Output);
-    my @CMD = ( $Self->ispell_cmd(), shellwords( $Self->ispell_argv() ), "-a" );
-    eval { run3( \@CMD, \$SpellCheckText, \$Output, \$Error ) };
+    my @CMD = ( $IspellPath, '-p', $IspellWhitelist, "-a" );
+    eval { run3( \@CMD, \$PodText, \$Output, \$Error ) };
 
     if ($@) {
         $Error = $@;
@@ -73,7 +74,7 @@ sub validate_file {    ## no critic
 
             if ( !$Seen{$Original}++ ) {
                 my ($Suggestions) = ( $Remaining =~ /: (.*)/ );
-                if ( $Suggestions && $Self->suggest() ) {
+                if ($Suggestions) {
                     push( @Errors, sprintf( "%s (suggestions: %s)", $Original, $Suggestions ) );
                 }
                 else {
@@ -82,7 +83,7 @@ sub validate_file {    ## no critic
             }
         }
     }
-    die sprintf( "Pod contains unrecognized words:\n%s\n", join( "\n", sort @Errors ) ) if @Errors;
+    die __PACKAGE__ . sprintf( "\nPerl Pod contains unrecognized words:\n%s\n", join( "\n", sort @Errors ) ) if @Errors;
 }
 
 1;

@@ -225,11 +225,8 @@ only_modes = cli
 [+TidyAll::Plugin::OTRS::Perl::Pod::FunctionPod]
 select = **/*.{pm}
 
-;[+TidyAll::Plugin::OTRS::Perl::Pod::SpellCheck]
-;select = **/*.{pm,pod}
-;ispell_cmd  = ispell
-;ispell_argv = -p $ROOT/ispell_english_whitelist.txt
-;suggest = 1
+[+TidyAll::Plugin::OTRS::Perl::Pod::SpellCheck]
+select = **/*.{pm,pod}
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::Validator]
 select = **/*.{pm,pod,pod.dist}
