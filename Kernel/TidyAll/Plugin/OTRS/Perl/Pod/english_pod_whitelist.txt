@@ -27,6 +27,8 @@ fetchmail
 tmp
 ipc
 opm
+sopm
+itsm
 pdf
 xml
 stat
