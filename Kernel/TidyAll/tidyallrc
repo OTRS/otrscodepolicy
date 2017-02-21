@@ -40,6 +40,9 @@ select = doc/**/*.xml
 [+TidyAll::Plugin::OTRS::Common::ProhibitEmailAddresses]
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,xml,sopm}
 
+;[+TidyAll::Plugin::OTRS::Common::TranslatableStringsSpellCheck]
+;select = **/*.{pl,pm,tt,js,xml}
+
 [+TidyAll::Plugin::OTRS::Common::RemoveCVSIDs]
 select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js}
 select = var/cron/*

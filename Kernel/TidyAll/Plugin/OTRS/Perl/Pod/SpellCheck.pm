@@ -15,7 +15,6 @@ use warnings;
 use Capture::Tiny qw();
 use IPC::Run3;
 use Pod::Spell;
-use Text::ParseWords qw(shellwords);
 
 use base 'TidyAll::Plugin::OTRS::Perl';
 
@@ -38,10 +37,10 @@ sub validate_file {    ## no critic
         }
 
         $HunspellDictionaryPath = __FILE__;
-        $HunspellDictionaryPath =~ s{SpellCheck\.pm}{../../StaticFiles/Hunspell/Dictionaries};
+        $HunspellDictionaryPath =~ s{SpellCheck\.pm$}{../../StaticFiles/Hunspell/Dictionaries};
 
         $HunspellWhitelistPath = __FILE__;
-        $HunspellWhitelistPath =~ s{SpellCheck\.pm}{english_pod_whitelist.txt};
+        $HunspellWhitelistPath =~ s{\.pm$}{.Whitelist.txt};
     }
 
     # # TODO: MOVE TO SEPARATE Perl::CommentsSpellCheck plugin later
