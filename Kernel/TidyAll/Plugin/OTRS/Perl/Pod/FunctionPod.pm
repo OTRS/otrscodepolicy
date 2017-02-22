@@ -20,18 +20,15 @@ sub validate_source {    ## no critic
 
     # temporarily disable
     # TODO CHECK
-    return;
+    #return;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 3, 2 );
+    return $Code if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    my $FunctionItem        = '';
-    my $FunctionSub         = '';
-    my $ItemLine            = '';
-    my $SubLine             = '';
-    my $DescriptionLine     = '';
-    my $FunctionDescription = '';
-    my $Counter             = 0;
+    my $FunctionNameInPod = '';
+    my $FunctionLineInPod = '';
+    my $FunctionCallInPod = '';
+    my $Counter           = 0;
 
     my $ErrorMessage;
 
@@ -39,51 +36,56 @@ sub validate_source {    ## no critic
 
     for my $Line (@CodeLines) {
         $Counter++;
-        if ( $Line =~ m{^=item}smx ) {
-            if ( $Line =~ /=item (.+)\(\)/ ) {
-                $FunctionItem = $1;
-                $FunctionItem =~ s/ //;
-                $ItemLine = $Line;
-                chomp($ItemLine);
+        if ( $Line =~ m{^=head2 \s+ ([A-Za-z0-9]+) (\(\))? \s* $}smx ) {
+
+            my $FunctionName = $1;
+            my $IsFunctionPod = $2 ? 1 : 0;
+
+            if ($IsFunctionPod) {
+                $FunctionNameInPod = $FunctionName;
+                $FunctionLineInPod = $Line;
+                chomp($FunctionLineInPod);
             }
-            else {
+            elsif ( $Code =~ m{sub $FunctionName} ) {
                 $ErrorMessage
                     .= "Item without function (near Line $Counter), the line should look like '=item functionname()'\n";
-                $ErrorMessage .= "Line $Counter: $Line";
+                $ErrorMessage .= "Line $Counter: $Line\n";
             }
         }
-        if ( $FunctionItem && $Line =~ /->(.+?)\(/ && !$FunctionDescription ) {
-            $FunctionDescription = $1;
-            $FunctionDescription =~ s/ //;
+        if ( $FunctionNameInPod && $Line =~ /->(.+?)\(/ && !$FunctionCallInPod ) {
+            $FunctionCallInPod = $1;
+            $FunctionCallInPod =~ s/ //;
 
             if ( $Line =~ /\$Self->/ ) {
-                chomp($DescriptionLine);
                 $ErrorMessage .= "Don't use \$Self in perldoc\n";
-                $ErrorMessage .= "Line $Counter: $Line";
+                $ErrorMessage .= "Line $Counter: $Line\n";
             }
-            elsif ( $FunctionItem ne $FunctionDescription ) {
-                $DescriptionLine = $Line;
-                chomp($DescriptionLine);
-                $ErrorMessage .= "$ItemLine <-> $DescriptionLine \n";
-            }
-            if ( $FunctionItem && $Line !~ /\$[A-Za-z0-9]+->(.+?)\(/ && $FunctionItem ne 'new' ) {
-                $ErrorMessage .= "The function syntax is not correct!\n";
-                $ErrorMessage .= "Line $Counter: $Line";
-            }
-        }
-        if ( $FunctionItem && $Line =~ /sub/ ) {
-            if ( $Line =~ /sub (.+) \{/ ) {
-                $FunctionSub = $1;
-                $FunctionSub =~ s/ //;
-                $SubLine = $Line;
-
-                if ( $FunctionSub ne $FunctionItem ) {
-                    chomp($SubLine);
-                    $ErrorMessage .= "$ItemLine <-> $SubLine \n";
+            elsif ( $FunctionNameInPod ne $FunctionCallInPod ) {
+                if ( $FunctionNameInPod ne 'new' || ( $FunctionCallInPod ne 'Get' && $FunctionCallInPod ne 'Create' ) )
+                {
+                    my $DescriptionLine = $Line;
+                    chomp($DescriptionLine);
+                    $ErrorMessage .= "$FunctionLineInPod <-> $DescriptionLine\n";
                 }
             }
-            $FunctionItem        = '';
-            $FunctionDescription = '';
+            if ( $FunctionNameInPod && $Line !~ /\$[A-Za-z0-9:]+->(.+?)\(/ && $FunctionNameInPod ne 'new' ) {
+                $ErrorMessage .= "The function syntax is not correct!\n";
+                $ErrorMessage .= "Line $Counter: $Line\n";
+            }
+        }
+        if ( $FunctionNameInPod && $Line =~ /sub/ ) {
+            if ( $Line =~ /sub (.+) \{/ ) {
+                my $FunctionSub = $1;
+                $FunctionSub =~ s/ //;
+                my $SubLine = $Line;
+
+                if ( $FunctionSub ne $FunctionNameInPod ) {
+                    chomp($SubLine);
+                    $ErrorMessage .= "$FunctionLineInPod <-> $SubLine \n";
+                }
+            }
+            $FunctionNameInPod = '';
+            $FunctionCallInPod = '';
         }
     }
 
