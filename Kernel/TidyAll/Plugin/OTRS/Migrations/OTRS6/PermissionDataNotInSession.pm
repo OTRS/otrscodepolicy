@@ -15,6 +15,7 @@ use base qw(TidyAll::Plugin::OTRS::Base);
 
 ## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::PermissionDataNotInSession)
 ## nofilter(TidyAll::Plugin::OTRS::Perl::LayoutObject)
+## nofilter(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
@@ -41,7 +42,7 @@ Since OTRS 6, group permission information is no longer stored in the session no
 
 Example:
 
-    my \$HasPermission = \$Kernel::OM::Get('Kernel::System::Group')->PermissionCheck(
+    my \$HasPermission = \$Kernel::OM->Get('Kernel::System::Group')->PermissionCheck(
         UserID    => \$UserID,
         GroupName => \$GroupName,
         Type      => 'move_into',
