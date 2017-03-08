@@ -350,6 +350,7 @@ ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 select = **/*.xml
 ; Temporary ignore OTRS 6 new xml SysConfig files.
 ignore = Kernel/Config/**/XML/*.xml
+ignore = development/samples/config/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
 select = Kernel/Config/**/*.xml
