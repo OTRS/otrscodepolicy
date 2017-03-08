@@ -422,3 +422,6 @@ ignore = Kernel/Config/Files/ZZZ*.pm
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::DateTime]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config/Files/ZZZ*.pm
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS6::PermissionDataNotInSession]
+select = **/*.{pl,pm,psgi,t}
