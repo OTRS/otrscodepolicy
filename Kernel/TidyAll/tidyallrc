@@ -22,6 +22,8 @@ ignore = var/Vagrant/Instances/**/*
 [+TidyAll::Plugin::OTRS::Common::Origin]
 select = **/*.{pl,psgi,pm,t,js,dtl,css,tt,xml,sopm}
 ignore = Kernel/Config/Files/ZZZ*.pm
+; Ignore docbook documentations
+ignore = */content/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkersTT]
 select = Custom/Kernel/Output/HTML/**/*.tt
