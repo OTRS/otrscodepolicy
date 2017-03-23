@@ -81,7 +81,7 @@ sub transform_source {    ## no critic
     # # $origin: otrs - 0000000000000000000000000000000000000000 - AgentTicketEmail.dtl
     #
 
-    if ( my ($FileString) = $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ [\$]?OldId: [ ]+ ( [^\n]+? ) ,v [ ]+ [^\n]+ \n }xms ) {
+    if ( my ($FileString) = $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$OldId: [ ]+ ( [^\n]+? ) ,v [ ]+ [^\n]+ \n }xms ) {
 
         my $FilePath = $FileString;
 
@@ -102,14 +102,13 @@ sub transform_source {    ## no critic
         }
 
         $Code =~ s{
-            ^ ( [ ]* (?: \# | \/\/ ) ) [ ]+ [\$]?OldId: [ ]+ [^\n]+? ,v [ ]+ [^\n]+ \n
+            ^ ( [ ]* (?: \# | \/\/ ) ) [ ]+ \$OldId: [ ]+ [^\n]+? ,v [ ]+ [^\n]+ \n
         }{$1 $Origin otrs - 0000000000000000000000000000000000000000 - $FilePath\n}xms;
     }
 
 
     # Check the origin if customization markers are found
-    #if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* \n \# [ ]+ [A-Za-z0-9]+[ ]* \n \# [ ]+ --- $ }xms ) {
+    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
 
         my $FoundOrigin;
         my $LineCounter = 0;
@@ -165,9 +164,9 @@ sub transform_source {    ## no critic
             if ( $NewOrigin ) {
 
                 # place new origin after Copyright
-                if ( $Code =~ m{(\#[ ]+Copyright .*\n\#[ ]+--\n\#[ ]+)}xms) {
+                if ( $Code =~ m{(\#[ ]+Copyright .*\/\n\#[ ]+--\n\#[ ]+)}xms) {
                     $Code =~ s{
-                        (\#[ ]+Copyright .*\n\#[ ]+--\n\#[ ]+)
+                        (\#[ ]+Copyright .*\/\n\#[ ]+--\n\#[ ]+)
                         }{$1$NewOrigin\n# --\n# }xms;
                 }
             }
@@ -192,8 +191,7 @@ sub validate_source {    ## no critic
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     # Check the origin if customization markers are found
-    #if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* \n \# [ ]+ [A-Za-z0-9]+[ ]* \n \# [ ]+ --- $ }xms ) {
+    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
 
         my $FoundOrigin;
         my $Counter = 0;
