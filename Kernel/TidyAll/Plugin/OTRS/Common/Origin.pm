@@ -108,7 +108,8 @@ sub transform_source {    ## no critic
 
 
     # Check the origin if customization markers are found
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+    #if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* \n \# [ ]+ [A-Za-z0-9]+[ ]* \n \# [ ]+ --- $ }xms ) {
 
         my $FoundOrigin;
         my $LineCounter = 0;
@@ -143,6 +144,7 @@ sub transform_source {    ## no critic
             }
 
             my $NewOrigin;
+            # only one 'package' allowed per file - split first if there are more packages combined.
             if ( $PackageCounter > 1 ) {
                 die __PACKAGE__ . "\nMore than one package Line found.\n" if !$FoundOrigin;
             }
@@ -170,8 +172,6 @@ sub transform_source {    ## no critic
                 }
             }
 
-            # wenn mehr als 1 package -> Fehlerausgabe
-
             # - later
             # tt
             # dtl
@@ -192,7 +192,8 @@ sub validate_source {    ## no critic
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     # Check the origin if customization markers are found
-    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+    #if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* \n \# [ ]+ [A-Za-z0-9]+[ ]* \n \# [ ]+ --- $ }xms ) {
 
         my $FoundOrigin;
         my $Counter = 0;
