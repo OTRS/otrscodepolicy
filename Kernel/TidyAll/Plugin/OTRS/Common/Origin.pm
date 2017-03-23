@@ -81,7 +81,7 @@ sub transform_source {    ## no critic
     # # $origin: otrs - 0000000000000000000000000000000000000000 - AgentTicketEmail.dtl
     #
 
-    if ( my ($FileString) = $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$OldId: [ ]+ ( [^\n]+? ) ,v [ ]+ [^\n]+ \n }xms ) {
+    if ( my ($FileString) = $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ [\$]?OldId: [ ]+ ( [^\n]+? ) ,v [ ]+ [^\n]+ \n }xms ) {
 
         my $FilePath = $FileString;
 
@@ -102,8 +102,84 @@ sub transform_source {    ## no critic
         }
 
         $Code =~ s{
-            ^ ( [ ]* (?: \# | \/\/ ) ) [ ]+ \$OldId: [ ]+ [^\n]+? ,v [ ]+ [^\n]+ \n
+            ^ ( [ ]* (?: \# | \/\/ ) ) [ ]+ [\$]?OldId: [ ]+ [^\n]+? ,v [ ]+ [^\n]+ \n
         }{$1 $Origin otrs - 0000000000000000000000000000000000000000 - $FilePath\n}xms;
+    }
+
+
+    # Check the origin if customization markers are found
+    if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ --- [ ]* $ }xms ) {
+
+        my $FoundOrigin;
+        my $LineCounter = 0;
+        ORIGINLINE:
+        for my $Line ( split /\n/, $Code ) {
+            $LineCounter++;
+
+            last ORIGINLINE if $LineCounter > 5;
+
+            next ORIGINLINE if $Line !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms;
+
+            $FoundOrigin = 1;
+        }
+
+        if ( !$FoundOrigin ) {
+            # /ws/AAAGitRepositories/AkquinetAdminCustomerIDGroup/Kernel/Config/Files/AdminCustomerIDGroup.pm -> main
+            # /ws/AAAGitRepositories/ADNArticleVisibility/Kernel/Modules/CustomerTicketZoom.pm -> Kernel::Modules::CustomerTicketZoom
+
+            my $PackageCounter = 0;
+            $LineCounter = 0;
+
+            PACKAGELINE:
+            for my $Line ( split /\n/, $Code ) {
+                $LineCounter++;
+
+                last PACKAGELINE if $LineCounter > 15;
+
+                next PACKAGELINE if $Line !~ m{^package[ ]+([A-Za-z0-9\:]+)\;$}xms;
+
+                # count lines with any 'package..;'
+                $PackageCounter++;
+            }
+
+            my $NewOrigin;
+            if ( $PackageCounter > 1 ) {
+                die __PACKAGE__ . "\nMore than one package Line found.\n" if !$FoundOrigin;
+            }
+
+            # check for 'package (Package::Name);\n' and create origin with that
+            elsif (
+                $PackageCounter == 1 &&
+                $Code =~ m{^package[ ]+([A-Za-z0-9]+[\:]+[A-Za-z0-9\:]+)\;$}xms
+            ) {
+                my $FilePath = $1;
+                if ( $FilePath =~ m{\:\:}xms ) {
+                    $FilePath =~ s{\:\:}{/}gsmx;
+
+                    $NewOrigin = $Origin.' otrs - 0000000000000000000000000000000000000000 - '.$FilePath.'.pm';
+                }
+            }
+
+            if ( $NewOrigin ) {
+
+                # place new origin after Copyright
+                if ( $Code =~ m{(\#[ ]+Copyright .*\n\#[ ]+--\n\#[ ]+)}xms) {
+                    $Code =~ s{
+                        (\#[ ]+Copyright .*\n\#[ ]+--\n\#[ ]+)
+                        }{$1$NewOrigin\n# --\n# }xms;
+                }
+            }
+
+            # wenn mehr als 1 package -> Fehlerausgabe
+
+            # - later
+            # tt
+            # dtl
+            # pm
+            # css
+            # t
+            # pl
+        }
     }
 
     return $Code;
