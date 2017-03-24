@@ -19,7 +19,7 @@ sub transform_source {    ## no critic
     return if $Self->IsPluginDisabled( Code => $Code );
 
     # Remove trailing spaces at end of lines
-    $Code =~ s/^(.+?)[ ]+\n/$1\n/xmsg;
+    $Code =~ s/^(.*?)[ ]+\n/$1\n/xmsg;
 
     # Remove empty trailing lines
     $Code =~ s/\n(\s|\n)+\z/\n/xmsg;
