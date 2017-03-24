@@ -124,60 +124,34 @@ sub transform_source {    ## no critic
         }
 
         if ( !$FoundOrigin ) {
-            # /ws/AAAGitRepositories/AkquinetAdminCustomerIDGroup/Kernel/Config/Files/AdminCustomerIDGroup.pm -> main
-            # /ws/AAAGitRepositories/ADNArticleVisibility/Kernel/Modules/CustomerTicketZoom.pm -> Kernel::Modules::CustomerTicketZoom
 
             my $PackageCounter = 0;
-            $LineCounter = 0;
 
             PACKAGELINE:
             for my $Line ( split /\n/, $Code ) {
-                $LineCounter++;
 
-                last PACKAGELINE if $LineCounter > 15;
-
-                next PACKAGELINE if $Line !~ m{^package[ ]+([A-Za-z0-9\:]+)\;$}xms;
+                next PACKAGELINE if $Line !~ m{ ^ package [ ]+ ( [A-Za-z0-9\:]+ ) \; $ }xms;
 
                 # count lines with any 'package..;'
                 $PackageCounter++;
             }
 
-            my $NewOrigin;
+            return $Code if $PackageCounter == 0;
+
             # only one 'package' allowed per file - split first if there are more packages combined.
-            if ( $PackageCounter > 1 ) {
-                die __PACKAGE__ . "\nMore than one package Line found.\n" if !$FoundOrigin;
-            }
+            die __PACKAGE__ . "\n$PackageCounter package lines found.\n" if $PackageCounter > 1;
 
-            # check for 'package (Package::Name);\n' and create origin with that
-            elsif (
-                $PackageCounter == 1 &&
-                $Code =~ m{^package[ ]+([A-Za-z0-9]+[\:]+[A-Za-z0-9\:]+)\;$}xms
-            ) {
-                my $FilePath = $1;
-                if ( $FilePath =~ m{\:\:}xms ) {
-                    $FilePath =~ s{\:\:}{/}gsmx;
+            my ($FilePath) = $Code =~ m{ ^ package [ ]+ ( [A-Za-z0-9\:]+ ) \; $ }xms;
 
-                    $NewOrigin = $Origin.' otrs - 0000000000000000000000000000000000000000 - '.$FilePath.'.pm';
-                }
-            }
+            # just allow Kernel and scripts::tests to be modified automatically
+            return $Code if $FilePath !~ m{ ^ ( Kernel | scripts \:\: tests )? \:\: }xms;
 
-            if ( $NewOrigin ) {
+            $FilePath =~ s{ \:\: }{/}gsmx;
 
-                # place new origin after Copyright
-                if ( $Code =~ m{(\#[ ]+Copyright .*\/\n\#[ ]+--\n\#[ ]+)}xms) {
-                    $Code =~ s{
-                        (\#[ ]+Copyright .*\/\n\#[ ]+--\n\#[ ]+)
-                        }{$1$NewOrigin\n# --\n# }xms;
-                }
-            }
+            my $NewOrigin = $Origin . ' otrs - 0000000000000000000000000000000000000000 - ' . $FilePath . '.pm';
 
-            # - later
-            # tt
-            # dtl
-            # pm
-            # css
-            # t
-            # pl
+            # place new origin after Copyright
+            $Code =~ s{ ( \# [ ]+ Copyright .* \/ \n \# [ ]+ -- \n \# [ ]+ ) }{$1$NewOrigin\n# --\n# }xms;
         }
     }
 
