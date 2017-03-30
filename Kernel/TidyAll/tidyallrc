@@ -118,6 +118,7 @@ select = doc/**/*.xml
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = scripts/auto_build/spec/templates/**/*
+ignore = var/httpd/htdocs/yui/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
