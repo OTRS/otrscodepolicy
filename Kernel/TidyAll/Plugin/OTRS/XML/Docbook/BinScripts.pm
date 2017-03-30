@@ -51,7 +51,7 @@ sub validate_source {    ## no critic
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
-Don't use old bin scrips in documentation.
+Don't use old bin scripts in documentation.
 $ErrorMessage
 EOF
     }
