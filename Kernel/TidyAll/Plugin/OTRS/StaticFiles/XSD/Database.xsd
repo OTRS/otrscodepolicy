@@ -70,6 +70,14 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- Oracle allows table names up to 3 characters only. -->
+    <xs:simpleType name="TableName">
+        <xs:restriction base="xs:token">
+          <xs:maxLength value="30" />
+          <xs:pattern value="[a-zA-Z0-9_-]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:element name="Table">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
@@ -78,8 +86,7 @@
                 <xs:element ref="Index" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Unique" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:token"/>
-            <xs:attribute name="Name" use="optional" type="xs:token"/>
+            <xs:attribute name="Name" use="optional" type="TableName"/>
             <xs:attribute name="Version" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
@@ -92,8 +99,7 @@
                 <xs:element ref="Index" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="Unique" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:token"/>
-            <xs:attribute name="Name" use="optional" type="xs:token"/>
+            <xs:attribute name="Name" use="optional" type="TableName"/>
             <xs:attribute name="Version" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
@@ -111,8 +117,7 @@
                 <xs:element ref="UniqueCreate" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="UniqueDrop" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="Type" use="optional" type="xs:token"/>
-            <xs:attribute name="Name" use="optional" type="xs:token"/>
+            <xs:attribute name="Name" use="optional" type="TableName"/>
             <xs:attribute name="NameOld" use="optional" type="xs:token"/>
             <xs:attribute name="NameNew" use="optional" type="xs:token"/>
             <xs:attribute name="Version" use="optional" type="xs:token"/>
@@ -123,8 +128,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:token"/>
-                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Name" use="required" type="TableName"/>
                     <xs:attribute name="Version" use="optional" type="xs:token"/>
                 </xs:extension>
             </xs:simpleContent>
@@ -133,13 +137,33 @@
 
     <!-- Columns -->
 
+    <!-- Oracle allows column names up to 3 characters only. -->
+    <xs:simpleType name="ColumnName">
+        <xs:restriction base="xs:token">
+          <xs:maxLength value="30" />
+          <xs:pattern value="[a-zA-Z0-9_-]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ColumnType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DATE"/>
+            <xs:enumeration value="SMALLINT"/>
+            <xs:enumeration value="BIGINT"/>
+            <xs:enumeration value="INTEGER"/>
+            <xs:enumeration value="DECIMAL"/>
+            <xs:enumeration value="VARCHAR"/>
+            <xs:enumeration value="LONGBLOB"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:element name="Column">
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="Type" use="optional" type="ColumnType"/>
                     <xs:attribute name="AutoIncrement" use="optional" type="xs:token"/>
-                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Name" use="required" type="ColumnName"/>
                     <xs:attribute name="Required" use="optional" type="xs:token"/>
                     <xs:attribute name="Size" use="optional" type="xs:token"/>
                     <xs:attribute name="PrimaryKey" use="optional" type="xs:token"/>
@@ -152,9 +176,9 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="Type" use="optional" type="ColumnType"/>
                     <xs:attribute name="AutoIncrement" use="optional" type="xs:token"/>
-                    <xs:attribute name="Name" use="required" type="xs:token"/>
+                    <xs:attribute name="Name" use="required" type="ColumnName"/>
                     <xs:attribute name="Required" use="optional" type="xs:token"/>
                     <xs:attribute name="Size" use="optional" type="xs:token"/>
                     <xs:attribute name="PrimaryKey" use="optional" type="xs:token"/>
@@ -167,12 +191,12 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="Type" use="optional" type="xs:token"/>
+                    <xs:attribute name="Type" use="optional" type="ColumnType"/>
                     <xs:attribute name="AutoIncrement" use="optional" type="xs:token"/>
                     <xs:attribute name="PrimaryKey" use="optional" type="xs:token"/>
                     <xs:attribute name="Default" use="optional" type="xs:token"/>
-                    <xs:attribute name="NameOld" use="optional" type="xs:token"/>
-                    <xs:attribute name="NameNew" use="optional" type="xs:token"/>
+                    <xs:attribute name="NameOld" use="optional" type="ColumnName"/>
+                    <xs:attribute name="NameNew" use="optional" type="ColumnName"/>
                     <xs:attribute name="Required" use="optional" type="xs:token"/>
                     <xs:attribute name="Size" use="optional" type="xs:token"/>
                 </xs:extension>
@@ -181,7 +205,7 @@
     </xs:element>
     <xs:element name="ColumnDrop">
         <xs:complexType>
-            <xs:attribute name="Name" use="required" type="xs:token"/>
+            <xs:attribute name="Name" use="required" type="ColumnName"/>
         </xs:complexType>
     </xs:element>
 

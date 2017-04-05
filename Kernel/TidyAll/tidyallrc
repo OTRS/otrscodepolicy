@@ -322,10 +322,6 @@ select = **/*.tt
 ; SQL
 ;
 
-[+TidyAll::Plugin::OTRS::SQL::ColumnTypes]
-select = **/*.{xml,opm,sopm}
-ignore = Kernel/Config/Files/**/*
-
 [+TidyAll::Plugin::OTRS::SQL::ReservedWords]
 select = **/*.{xml,opm,sopm}
 
