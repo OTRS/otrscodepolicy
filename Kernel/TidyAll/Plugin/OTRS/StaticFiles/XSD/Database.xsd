@@ -70,7 +70,7 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- Oracle allows table names up to 3 characters only. -->
+    <!-- Oracle allows table names up to 30 characters only. -->
     <xs:simpleType name="TableName">
         <xs:restriction base="xs:token">
           <xs:maxLength value="30" />
@@ -121,6 +121,7 @@
             <xs:attribute name="NameOld" use="optional" type="xs:token"/>
             <xs:attribute name="NameNew" use="optional" type="xs:token"/>
             <xs:attribute name="Version" use="optional" type="xs:token"/>
+            <xs:attribute name="AutoIncrementColumn" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
@@ -137,7 +138,7 @@
 
     <!-- Columns -->
 
-    <!-- Oracle allows column names up to 3 characters only. -->
+    <!-- Oracle allows column names up to 30 characters only. -->
     <xs:simpleType name="ColumnName">
         <xs:restriction base="xs:token">
           <xs:maxLength value="30" />
