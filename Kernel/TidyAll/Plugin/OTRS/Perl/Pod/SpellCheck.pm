@@ -16,7 +16,7 @@ use Capture::Tiny qw();
 use IPC::Run3;
 use Pod::Spell;
 
-use base 'TidyAll::Plugin::OTRS::Perl';
+use parent 'TidyAll::Plugin::OTRS::Perl';
 
 our $HunspellPath;
 our $HunspellDictionaryPath;

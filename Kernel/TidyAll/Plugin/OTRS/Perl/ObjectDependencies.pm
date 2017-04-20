@@ -17,7 +17,7 @@ use warnings;
 #   about any missing dependencies.
 #
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;

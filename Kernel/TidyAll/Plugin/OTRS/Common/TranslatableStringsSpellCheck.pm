@@ -15,7 +15,7 @@ use warnings;
 use Capture::Tiny qw();
 use IPC::Run3;
 
-use base 'TidyAll::Plugin::OTRS::Base';
+use parent 'TidyAll::Plugin::OTRS::Base';
 
 our $HunspellPath;
 our $HunspellDictionaryPath;

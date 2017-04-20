@@ -13,7 +13,7 @@ use warnings;
 
 use File::Basename;
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 # We only want to allow a handful of scripts in bin. All the rest should be
 #   migrated to console commands.

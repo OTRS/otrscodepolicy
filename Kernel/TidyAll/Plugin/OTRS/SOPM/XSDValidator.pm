@@ -13,7 +13,7 @@ use warnings;
 
 use File::Basename;
 use Capture::Tiny qw(capture_merged);
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd {    ## no critic
     my $XSDFile = dirname(__FILE__) . '/../StaticFiles/XSD/SOPM.xsd';

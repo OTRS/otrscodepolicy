@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::XML::ConfigSyntax;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 use XML::Parser;
 

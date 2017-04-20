@@ -12,7 +12,7 @@ use warnings;
 package TidyAll::OTRS;
 
 use IO::File;
-use base qw(Code::TidyAll);
+use parent qw(Code::TidyAll);
 
 # Require some needed modules here for clarity / better error messages.
 use Code::TidyAll 0.56;

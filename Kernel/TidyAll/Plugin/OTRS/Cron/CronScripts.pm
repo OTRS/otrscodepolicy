@@ -13,7 +13,7 @@ use warnings;
 
 use File::Basename;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 # We only want to allow two cron files from OTRS 5 on as the rest is managed
 # via the cron daemon.

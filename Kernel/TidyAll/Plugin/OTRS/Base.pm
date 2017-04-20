@@ -15,7 +15,7 @@ use Scalar::Util;
 use TidyAll::OTRS;
 use Pod::Strip;
 
-use base qw(Code::TidyAll::Plugin);
+use parent qw(Code::TidyAll::Plugin);
 
 sub IsPluginDisabled {
     my ( $Self, %Param ) = @_;

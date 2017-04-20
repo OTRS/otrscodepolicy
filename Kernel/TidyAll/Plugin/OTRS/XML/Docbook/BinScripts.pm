@@ -13,7 +13,7 @@ use warnings;
 
 use File::Basename;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 =head1 SYNOPSIS
 

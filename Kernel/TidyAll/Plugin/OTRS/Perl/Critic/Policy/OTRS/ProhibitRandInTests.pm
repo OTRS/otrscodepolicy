@@ -11,8 +11,8 @@ use warnings;
 # SYNOPSIS: Check if modules have a "true" return value
 
 use Perl::Critic::Utils qw{ :severities :classification :ppi };
-use base 'Perl::Critic::Policy';
-use base 'Perl::Critic::PolicyOTRS';
+use parent 'Perl::Critic::Policy';
+use parent 'Perl::Critic::PolicyOTRS';
 
 use Readonly;
 

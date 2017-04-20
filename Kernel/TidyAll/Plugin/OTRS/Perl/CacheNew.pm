@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::Perl::CacheNew;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 ## nofilter(TidyAll::Plugin::OTRS::Perl::CacheNew)
 ## nofilter(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)

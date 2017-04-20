@@ -13,7 +13,7 @@ use warnings;
 
 use File::Basename;
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 # Perl::Critic will make sure that use strict is enabled.
 # Now we check that use warnings is also.

@@ -12,7 +12,7 @@ use strict;
 use warnings;
 
 use File::Basename;
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;

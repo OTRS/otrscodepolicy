@@ -12,7 +12,7 @@ use strict;
 use warnings;
 
 use Capture::Tiny qw(capture_merged);
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd {    ## no critic
     return 'xmllint --noout --nonet'

@@ -13,8 +13,8 @@ use warnings;
 use Capture::Tiny qw(capture_merged);
 use Pod::Checker;
 
-use base 'Code::TidyAll::Plugin';
-use base 'TidyAll::Plugin::OTRS::Perl';
+use parent 'Code::TidyAll::Plugin';
+use parent 'TidyAll::Plugin::OTRS::Perl';
 
 #
 # Validated Pod with Pod::Checker for syntactical correctness.

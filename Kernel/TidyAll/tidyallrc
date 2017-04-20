@@ -279,6 +279,10 @@ select = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 [+TidyAll::Plugin::OTRS::Perl::UnitTestConfigChanges]
 select = scripts/test/**/*.{t}
 
+[+TidyAll::Plugin::OTRS::Perl::UseParent]
+select = **/*.pm **/*.pm.skel
+select = Kernel/Config.pm.dist
+
 [+TidyAll::Plugin::OTRS::Perl::UseWarnings]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist

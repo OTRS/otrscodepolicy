@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::XML::Docbook::ReplaceSupportEmail;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 my $English1RegExp = <<'END_REGEXP';
 \n \s* <para> \s*

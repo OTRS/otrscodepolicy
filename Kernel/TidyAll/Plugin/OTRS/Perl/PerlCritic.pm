@@ -14,7 +14,7 @@ use warnings;
 use File::Basename;
 use lib dirname(__FILE__) . '/../';    # Find our Perl::Critic policies
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
 use Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;

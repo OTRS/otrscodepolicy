@@ -14,7 +14,7 @@ use warnings;
 
 use File::Basename;
 use File::Copy qw(copy);
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 =head1 SYNOPSIS
 

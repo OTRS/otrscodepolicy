@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::SOPM::FileList;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 # This module verifies:
 #   - that all packaged files of an SOPM are available,

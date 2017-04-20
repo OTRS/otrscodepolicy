@@ -6,30 +6,20 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::XML::Docbook::RemoveContactChapter;
+package TidyAll::Plugin::OTRS::Perl::UseParent;
 
 use strict;
 use warnings;
 
-use parent qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    # remove chapter
-    $Code =~ s{
-        <chapter> \s*
-        (?:
-            <!-- \s+ \*+ \s+ --> \s+
-            <!-- \s+ \d+ \. \s+ \w+ \s+ --> \s+
-            <!-- \s+ \*+ \s+ --> \s+
-        |
-        )
-        <title> [ ]* (?: Contact | Contacts | Kontakt ) [ ]* <\/title>
-        ( (?! <\/chapter> ). )* <\/chapter> [ \n]*
-    }{}xms;
+    $Code =~ s{ ^ \s* \K use \s+ base \b }{use parent}smxg;
 
     return $Code;
 }

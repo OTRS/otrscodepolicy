@@ -9,7 +9,7 @@ use strict;
 use warnings;
 
 use Perl::Critic::Utils qw{ :severities :classification :ppi };
-use base 'Perl::Critic::Policy';
+use parent 'Perl::Critic::Policy';
 
 use Readonly;
 

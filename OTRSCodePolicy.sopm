@@ -105,6 +105,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Translatable.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TranslationEncoding.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UnitTestConfigChanges.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseParent.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseWarnings.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/Lint.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/msgfmt.pm" />

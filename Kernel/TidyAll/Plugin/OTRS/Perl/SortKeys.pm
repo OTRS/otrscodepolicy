@@ -15,7 +15,7 @@ use warnings;
 
 use File::Basename;
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 =head1 SYNOPSIS
 

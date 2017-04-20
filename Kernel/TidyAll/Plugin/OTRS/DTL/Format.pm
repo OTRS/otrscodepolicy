@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::DTL::Format;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;

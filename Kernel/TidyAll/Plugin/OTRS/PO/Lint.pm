@@ -15,7 +15,7 @@ package TidyAll::Plugin::OTRS::PO::Lint;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Base);
+use parent qw(TidyAll::Plugin::OTRS::Base);
 
 use Locale::PO  ();
 use XML::Parser ();

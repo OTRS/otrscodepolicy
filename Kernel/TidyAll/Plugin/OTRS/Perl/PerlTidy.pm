@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::Perl::PerlTidy;
 use strict;
 use warnings;
 
-use base qw(TidyAll::Plugin::OTRS::Perl);
+use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 use Capture::Tiny qw(capture_merged);
 use Perl::Tidy;
