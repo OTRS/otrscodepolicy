@@ -121,7 +121,6 @@
             <xs:attribute name="NameOld" use="optional" type="xs:token"/>
             <xs:attribute name="NameNew" use="optional" type="xs:token"/>
             <xs:attribute name="Version" use="optional" type="xs:token"/>
-            <xs:attribute name="AutoIncrementColumn" use="optional" type="xs:token"/>
         </xs:complexType>
     </xs:element>
 
