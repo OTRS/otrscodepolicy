@@ -418,13 +418,16 @@ select = Kernel/System/Stats/Dynamic/*.pm
 ; Migrations OTRS 6
 ;
 
-[+TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeZoneOffset]
-select = **/*.{pl,pm,psgi,t}
-ignore = Kernel/Config/Files/ZZZ*.pm
-
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::DateTime]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config/Files/ZZZ*.pm
 
+[+TidyAll::Plugin::OTRS::Migrations::OTRS6::PerlConfigFileFormat]
+select = Kernel/Config/Files/*.pm
+
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::PermissionDataNotInSession]
 select = **/*.{pl,pm,psgi,t}
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeZoneOffset]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/Config/Files/ZZZ*.pm
