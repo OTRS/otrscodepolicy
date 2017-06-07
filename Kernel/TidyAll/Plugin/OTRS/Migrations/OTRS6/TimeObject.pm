@@ -6,12 +6,13 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Migrations::OTRS6::DateTime;
+package TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeObject;
 
 use strict;
 use warnings;
 
 use parent qw(TidyAll::Plugin::OTRS::Base);
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeObject)
 
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
@@ -27,15 +28,14 @@ sub validate_source {    ## no critic
 
         next LINE if $Line =~ m/^\s*\#/smx;
 
-        # Look for code that uses not allowed date/time modules and functions
-        if ( $Line =~ m{(use\s+(Date::Pcalc|Time::Local|Time::Piece)|\b(timelocal|gmtime|timegm)\s*\()}sm ) {
+        if ( $Line =~ m{Kernel::System::Time}sm ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
 
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . <<EOF;
-Use of Date::Pcalc, Time::Local, Time::Piece, timelocal, gmtime and timegm is not allowed anymore. Use Kernel::System::DateTime instead.
+Use of deprecated Kernel::System::Time is not allowed anymore except for legacy API interfaces. Please use Kernel::System::DateTime instead.
     Please see http://doc.otrs.com/doc/manual/developer/6.0/en/html/package-porting.html#package-porting-5-to-6 for porting guidelines.
 $ErrorMessage
 EOF

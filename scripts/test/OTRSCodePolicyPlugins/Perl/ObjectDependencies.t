@@ -144,7 +144,6 @@ our @ObjectDependencies = (
     'Kernel::System::Encode',
     'Kernel::System::Log',
     'Kernel::System::Main',
-    'Kernel::System::Time',
     'Kernel::System::User',
     'Kernel::System::Group',
     'Kernel::System::AuthSession',
