@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::XML::Configuration::OutputFilterPre;
+package TidyAll::Plugin::OTRS::Migrations::OTRS5::OutputFilterPre;
 
 use strict;
 use warnings;

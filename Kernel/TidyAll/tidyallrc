@@ -357,9 +357,6 @@ ignore = development/samples/config/*.xml
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
 select = Kernel/Config/**/*.xml
 
-[+TidyAll::Plugin::OTRS::XML::Configuration::OutputFilterPre]
-select = Kernel/Config/**/*.xml
-
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
 
@@ -407,6 +404,9 @@ select = Kernel/Config/**/*.xml
 select = **/*.{pl,pm,psgi,t,dtl,tt,js,spec}
 select = .*.dist .bash_completion
 ignore = Kernel/Config/Files/ZZZ*.pm
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS5::OutputFilterPre]
+select = Kernel/Config/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::Popup]
 select = **/*.tt
