@@ -196,6 +196,5 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/NameLength.t" />
-        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/OutputFilterPre.t" />
     </Filelist>
 </otrs_package>
