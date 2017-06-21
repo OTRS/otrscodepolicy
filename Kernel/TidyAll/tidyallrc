@@ -357,6 +357,9 @@ ignore = development/samples/config/*.xml
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
 select = Kernel/Config/**/*.xml
 
+[+TidyAll::Plugin::OTRS::XML::Configuration::Navigation]
+select = Kernel/Config/**/*.xml
+
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
 

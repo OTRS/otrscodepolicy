@@ -165,6 +165,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/TrailingWhitespace.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/ConfigDescription.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/ConfigSyntax.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/Navigation.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/XSDValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Database/XSDValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/BinScripts.pm" />
