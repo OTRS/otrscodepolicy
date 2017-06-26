@@ -50,6 +50,7 @@ sub validate_source {    ## no critic
             my %ValidFrontendEntries = (
                 Admin    => 1,
                 Agent    => 1,
+                Base     => 1,
                 Customer => 1,
                 Public   => 1,
             );
