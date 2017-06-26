@@ -21,10 +21,15 @@ sub validate_source {    ## no critic
 
     my ( $Counter, $ErrorMessage );
 
+    my $CurrentSettingName;
+
     LINE:
     for my $Line ( split /\n/, $Code ) {
         $Counter++;
 
+        if ( $Line =~ m{<Setting\s+Name="(.*?)"}smx ) {
+            $CurrentSettingName = $1;
+        }
         my ($NavigationContent) = $Line =~ m{<Navigation>(.*?)</Navigation>}smx;
 
         next LINE if !$NavigationContent;
@@ -60,8 +65,32 @@ sub validate_source {    ## no critic
                     $NavigationArray[1], join( ', ', sort keys %ValidFrontendEntries );
                 $ErrorMessage .= "Line $Counter: $Line\n";
             }
-
         }
+
+        if ( $CurrentSettingName =~ m{::EventModule} ) {
+            if (
+                @NavigationArray != 3
+                || $NavigationArray[0] ne 'Core'
+                || $NavigationArray[1] ne 'Event'
+                )
+            {
+                $ErrorMessage .= "Event handler registrations should be grouped in 'Core::Event::*'\n";
+                $ErrorMessage .= "Line $Counter: $Line\n";
+
+            }
+        }
+
+        # if ($CurrentSettingName =~ m{^Loader}) {
+        #     if (
+        #         @NavigationArray != 3
+        #         || $NavigationArray[0] ne 'Frontend'
+        #         || $NavigationArray[1] ne 'Base'
+        #         || $NavigationArray[1] ne 'Loader'
+        #     ) {
+        #         $ErrorMessage .= "Loader settings should be grouped in 'Frontend::Base::Loader'\n";
+        #         $ErrorMessage .= "Line $Counter: $Line\n";
+        #     }
+        # }
 
     }
 
