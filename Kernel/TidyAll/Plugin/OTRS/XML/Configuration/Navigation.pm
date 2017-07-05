@@ -44,6 +44,13 @@ sub validate_source {    ## no critic
                     'Invalid top level group found (only CloudService|Core|Daemon|GenericInterface|Frontend are allowed).',
             },
             {
+                Name                   => 'Event handlers',
+                MatchSettingName       => qr{::EventModule},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Core::Event::},
+                ErrorMessage           => "Event handler registrations should be grouped in 'Core::Event::*.",
+            },
+            {
                 Name                 => 'Valid Frontend subgroups',
                 MatchSettingName     => qr{.*},
                 MatchNavigationValue => qr{^Frontend},                # no entries allowed in "Frontend" directly
@@ -52,19 +59,21 @@ sub validate_source {    ## no critic
                     'Invalid top Frontend subgroup found (only Admin|Agent|Base|Customer|Public are allowed).',
             },
             {
-                Name                   => 'Event handlers',
-                MatchSettingName       => qr{::EventModule},
-                MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^Core::Event::},
-                ErrorMessage           => "Event handler registrations should be grouped in 'Core::Event::*.",
-            },
-            {
                 Name                   => 'Main Loader config',
                 MatchSettingName       => qr{^Loader::(Agent|Customer|Enabled)},
                 MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^Frontend::Base::Loader},
+                RequireNavigationMatch => qr{^Frontend::Base::Loader$},
                 ErrorMessage           => "Main Loader settings should be grouped in 'Frontend::Base::Loader'.",
             },
+            {
+                Name                   => 'Output filters',
+                MatchSettingName       => qr{(Output::Filter|OutputFilter)},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Base::OutputFilter},
+                ErrorMessage           => "Output filter settings should be grouped in 'Frontend::Base::OutputFilter' or subgroups.",
+            },
+
+            # TODO: frontend module registrations, navigation, loader
 
         );
 
