@@ -66,11 +66,100 @@ sub validate_source {    ## no critic
                 ErrorMessage           => "Main Loader settings should be grouped in 'Frontend::Base::Loader'.",
             },
             {
+                Name                   => 'Loader config for Admin interface',
+                MatchSettingName       => qr{^Loader::Module::Admin},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Admin::ModuleRegistration::Loader},
+                ErrorMessage =>
+                    "Loader config for Admin interface should be grouped in 'Frontend::Admin::ModuleRegistration::Loader'.",
+            },
+            {
+                Name                   => 'Loader config for Agent interface',
+                MatchSettingName       => qr{^Loader::Module::Agent},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::Loader},
+                ErrorMessage =>
+                    "Loader settings for Agent interface should be grouped in 'Frontend::Agent::ModuleRegistration::Loader'.",
+            },
+            {
+                Name                   => 'Loader config for Customer interface',
+                MatchSettingName       => qr{^Loader::Module::Customer},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Customer::ModuleRegistration::Loader},
+                ErrorMessage =>
+                    "Loader settings for Customer interface should be grouped in 'Frontend::ßCustomer::ModuleRegistration::Loader'.",
+            },
+            {
+                Name                   => 'Loader config for Public interface',
+                MatchSettingName       => qr{^Loader::Module::Public},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Public::ModuleRegistration},
+                ErrorMessage =>
+                    "Loader settings for Public interface should be grouped in 'Frontend::Public::ModuleRegistration'.",
+            },
+            {
+                Name                   => 'Frontend navigation config for Admin interface',
+                MatchSettingName       => qr{^Frontend::Navigation###Admin},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Admin::ModuleRegistration::MainMenu},
+                ErrorMessage =>
+                    "Frontend navigation config for Admin interface should be grouped in 'Frontend::Admin::ModuleRegistration::MainMenu'.",
+            },
+            {
+                Name                   => 'Frontend navigation config for Agent interface',
+                MatchSettingName       => qr{^Frontend::Navigation###Agent},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::MainMenu},
+                ErrorMessage =>
+                    "Frontend navigation config for Agent interface should be grouped in 'Frontend::Agent::ModuleRegistration::MainMenu'.",
+            },
+            {
+                Name                   => 'Frontend navigation config for Customer interface',
+                MatchSettingName       => qr{^CustomerFrontend::Navigation###Customer},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Customer::ModuleRegistration::MainMenu},
+                ErrorMessage =>
+                    "Frontend navigation config for Customer interface should be grouped in 'Frontend::Customer::ModuleRegistration::MainMenu'.",
+            },
+            {
+                Name                   => 'Frontend navigation config for Public interface',
+                MatchSettingName       => qr{^PublicFrontend::(Module|Navigation)},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Public::ModuleRegistration},
+                ErrorMessage =>
+                    "Module registration config for Public interface should be grouped in 'Frontend::Public::ModuleRegistration'.",
+            },
+            {
+                Name                   => 'Navigation module config',
+                MatchSettingName       => qr{^Frontend::NavigationModule},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Admin::ModuleRegistration::AdminOverview},
+                ErrorMessage =>
+                    "Navigation module config should be grouped in 'Frontend::Admin::ModuleRegistration::AdminOverview'.",
+            },
+            {
+                Name                   => 'Search router config for Admin interface',
+                MatchSettingName       => qr{^Frontend::Search.*?###Admin},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Admin::ModuleRegistration::Search},
+                ErrorMessage =>
+                    "Search router config for Admin interface should be grouped in 'Frontend::Admin::ModuleRegistration::Search'.",
+            },
+            {
+                Name                   => 'Search router config for Agent interface',
+                MatchSettingName       => qr{^Frontend::Search.*?###Agent},
+                MatchNavigationValue   => qr{.*},
+                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::Search},
+                ErrorMessage =>
+                    "Search router config for Agent interface should be grouped in 'Frontend::Agent::ModuleRegistration::Search'.",
+            },
+            {
                 Name                   => 'Output filters',
                 MatchSettingName       => qr{(Output::Filter|OutputFilter)},
                 MatchNavigationValue   => qr{.*},
                 RequireNavigationMatch => qr{^Frontend::Base::OutputFilter},
-                ErrorMessage           => "Output filter settings should be grouped in 'Frontend::Base::OutputFilter' or subgroups.",
+                ErrorMessage =>
+                    "Output filter settings should be grouped in 'Frontend::Base::OutputFilter' or subgroups.",
             },
 
             # TODO: frontend module registrations, navigation, loader
