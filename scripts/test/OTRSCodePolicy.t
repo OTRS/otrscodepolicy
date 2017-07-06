@@ -15,6 +15,17 @@ use File::Basename;
 use FindBin qw($RealBin);
 use lib dirname($RealBin) . '/Kernel/';    # find TidyAll
 
+# Work around a Perl bug that is triggered in Devel::StackTrace
+#   (probaly from Exception::Class and this from Perl::Critic).
+#
+#   See https://github.com/houseabsolute/Devel-StackTrace/issues/11 and
+#   http://rt.perl.org/rt3/Public/Bug/Display.html?id=78186
+{
+    use Devel::StackTrace();
+    no warnings 'redefine';
+    sub Devel::StackTrace::new { }
+}
+
 use File::Find();
 use File::stat();
 use File::Path();
