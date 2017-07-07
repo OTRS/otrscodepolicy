@@ -20,11 +20,10 @@ use lib dirname($RealBin) . '/Kernel/';    # find TidyAll
 #
 #   See https://github.com/houseabsolute/Devel-StackTrace/issues/11 and
 #   http://rt.perl.org/rt3/Public/Bug/Display.html?id=78186
-{
-    use Devel::StackTrace();
-    no warnings 'redefine';
-    sub Devel::StackTrace::new { }
-}
+no warnings 'redefine';
+use Devel::StackTrace ();
+local *Devel::StackTrace::new = sub { };    # no-op
+use warnings 'redefine';
 
 use File::Find();
 use File::stat();
