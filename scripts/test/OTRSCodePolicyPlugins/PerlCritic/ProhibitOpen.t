@@ -12,6 +12,16 @@ use warnings;
 use vars (qw($Self));
 use utf8;
 
+# Work around a Perl bug that is triggered in Devel::StackTrace
+#   (probaly from Exception::Class and this from Perl::Critic).
+#
+#   See https://github.com/houseabsolute/Devel-StackTrace/issues/11 and
+#   http://rt.perl.org/rt3/Public/Bug/Display.html?id=78186
+no warnings 'redefine';
+use Devel::StackTrace ();
+local *Devel::StackTrace::new = sub { };    # no-op
+use warnings 'redefine';
+
 use scripts::test::OTRSCodePolicyPlugins;
 
 my @Tests = (
