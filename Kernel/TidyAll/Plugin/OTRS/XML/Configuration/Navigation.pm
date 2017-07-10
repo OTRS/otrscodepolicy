@@ -141,7 +141,7 @@ sub validate_source {    ## no critic
                 Name                   => 'Search router config for Admin interface',
                 MatchSettingName       => qr{^Frontend::Search.*?###Admin},
                 MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^Frontend::Admin::ModuleRegistration::Search},
+                RequireNavigationMatch => qr{^Frontend::Admin::ModuleRegistration::MainMenu::Search},
                 ErrorMessage =>
                     "Search router config for Admin interface should be grouped in 'Frontend::Admin::ModuleRegistration::Search'.",
             },
@@ -149,7 +149,7 @@ sub validate_source {    ## no critic
                 Name                   => 'Search router config for Agent interface',
                 MatchSettingName       => qr{^Frontend::Search.*?###Agent},
                 MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::Search},
+                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::MainMenu::Search},
                 ErrorMessage =>
                     "Search router config for Agent interface should be grouped in 'Frontend::Agent::ModuleRegistration::Search'.",
             },
