@@ -43,14 +43,28 @@ sub validate_source {    ## no critic
 
         # Validate otrs_config tag
         if ( $Line =~ /^<otrs_config/ ) {
-            if (
-                $Line !~ /init="(Framework|Application|Config|Changes)"/
-                || $Line !~ /version="1.0"/
-                )
-            {
-                $ErrorMessage
-                    .= "The <otrs_config>-tag has missing or incorrect attributes. ExampleLine: <otrs_config version=\"1.0\" init=\"Application\">\n";
-                $ErrorMessage .= "Line $Counter: $Line\n";
+
+            if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
+                if (
+                    $Line !~ /init="(Framework|Application|Config|Changes)"/
+                    || $Line !~ /version="1.0"/
+                    )
+                {
+                    $ErrorMessage
+                        .= "The <otrs_config>-tag has missing or incorrect attributes. ExampleLine: <otrs_config version=\"1.0\" init=\"Application\">\n";
+                    $ErrorMessage .= "Line $Counter: $Line\n";
+                }
+            }
+            else {
+                if (
+                    $Line !~ /init="(Framework|Application|Config|Changes)"/
+                    || $Line !~ /version="2.0"/
+                    )
+                {
+                    $ErrorMessage
+                        .= "The <otrs_config>-tag has missing or incorrect attributes. ExampleLine: <otrs_config version=\"2.0\" init=\"Application\">\n";
+                    $ErrorMessage .= "Line $Counter: $Line\n";
+                }
             }
         }
     }
