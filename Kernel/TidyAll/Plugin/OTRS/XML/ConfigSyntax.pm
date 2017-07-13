@@ -15,6 +15,17 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 
 use XML::Parser;
 
+# This plugin does not transform any files. Following method is implemented only because it's executed before
+#   validate_source and contains filename of the file. Filename is saved in $Self for later use.
+sub transform_file {    ## no critic
+    my ( $Self, $Filename ) = @_;
+
+    # Store filename for later use.
+    $Self->{Filename} = $Filename;
+
+    return;
+}
+
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
@@ -56,9 +67,17 @@ sub validate_source {    ## no critic
                 }
             }
             else {
+                my $Version = '2.0';
+
+                # TODO: Consider removing the exception below.
+                #   Allow 1.0 version attribute for old-style files located outside XML folder.
+                if ( $Self->{Filename} !~ qr{/Config/Files/XML/} ) {
+                    $Version = '1.0';
+                }
+
                 if (
                     $Line !~ /init="(Framework|Application|Config|Changes)"/
-                    || $Line !~ /version="2.0"/
+                    || $Line !~ /version="$Version"/
                     )
                 {
                     $ErrorMessage
