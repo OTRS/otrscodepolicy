@@ -25,7 +25,7 @@ sub validate_source {    ## no critic
     $Code = $Self->StripPod( Code => $Code );
     $Code = $Self->StripComments( Code => $Code );
 
-    if ( $Code =~ m{LayoutObject}xms ) {
+    if ( $Code =~ m{LayoutObject|Kernel::Output::HTML::Layout}xms ) {
         die __PACKAGE__ . "\n" . <<EOF;
 Don't use the LayoutObject in bin/ or in Kernel/System.
 EOF
