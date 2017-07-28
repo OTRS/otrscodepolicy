@@ -37,7 +37,7 @@ sub validate_file {    ## no critic
 
     if ( !$Critic ) {
         my $Severity = 5;    # TODO: lower to 4 later
-        if ( $Self->IsFrameworkVersionLessThan( 3, 4 ) ) {
+        if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
             $Severity = 5;    #  less strict for older versions
         }
         $Critic = Perl::Critic->new(
