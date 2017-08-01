@@ -36,6 +36,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '<filename.txt');
+close $FH;
 EOF
         Exception => 1,
     },
@@ -50,6 +51,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '<', 'filename.txt');
+close $FH;
 EOF
         Exception => 1,
     },
@@ -63,6 +65,7 @@ EOF
 use strict;
 use warnings;
 open FH, '<', 'filename.txt';
+close $FH;
 EOF
         Exception => 1,
     },
@@ -77,6 +80,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '>', 'filename.txt');
+close $FH;
 EOF
         Exception => 1,
     },
@@ -91,6 +95,7 @@ use strict;
 use warnings;
 my $FH;
 open $FH, '>', 'filename.txt';
+close $FH;
 EOF
         Exception => 1,
     },
@@ -105,6 +110,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '+>', 'filename.txt');
+close $FH;
 EOF
         Exception => 0,
         Result    => <<'EOF',
@@ -113,6 +119,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '+>', 'filename.txt');
+close $FH;
 EOF
     },
     {
@@ -126,6 +133,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '-|', 'some_command');
+close $FH;
 EOF
         Exception => 0,
         Result    => <<'EOF',
@@ -134,6 +142,7 @@ use strict;
 use warnings;
 my $FH;
 open($FH, '-|', 'some_command');
+close $FH;
 EOF
     },
     {
@@ -147,6 +156,7 @@ use strict;
 use warnings;
 my $FH;
 open $FH, $Mode, $Param{Location};
+close $FH;
 EOF
         Exception => 0,
         Result    => <<'EOF',
@@ -155,6 +165,7 @@ use strict;
 use warnings;
 my $FH;
 open $FH, $Mode, $Param{Location};
+close $FH;
 EOF
     },
     {
