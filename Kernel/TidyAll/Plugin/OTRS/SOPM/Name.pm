@@ -6,10 +6,10 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
+package TidyAll::Plugin::OTRS::SOPM::Name;
+
 use strict;
 use warnings;
-
-package TidyAll::Plugin::OTRS::SOPM::Name;
 
 use File::Basename;
 

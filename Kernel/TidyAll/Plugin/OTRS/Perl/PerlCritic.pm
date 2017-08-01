@@ -41,7 +41,10 @@ sub validate_file {    ## no critic
             $Severity = 5;    #  less strict for older versions
         }
         $Critic = Perl::Critic->new(
-            -severity => $Severity
+            -severity => $Severity,
+            -exclude  => [
+                'Perl::Critic::Policy::Modules::RequireExplicitPackage',    # this breaks in our scripts folder
+            ],
         );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator' );

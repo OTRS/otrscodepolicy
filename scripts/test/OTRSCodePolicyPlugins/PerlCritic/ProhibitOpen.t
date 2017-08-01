@@ -17,7 +17,7 @@ use utf8;
 #
 #   See https://github.com/houseabsolute/Devel-StackTrace/issues/11 and
 #   http://rt.perl.org/rt3/Public/Bug/Display.html?id=78186
-no warnings 'redefine';
+no warnings 'redefine';    ## no critic
 use Devel::StackTrace ();
 local *Devel::StackTrace::new = sub { };    # no-op
 use warnings 'redefine';

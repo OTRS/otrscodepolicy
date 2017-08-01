@@ -96,6 +96,8 @@ sub Run {
             "$Test->{Name} - result",
         );
     }
+
+    return;
 }
 
 1;

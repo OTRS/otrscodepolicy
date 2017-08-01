@@ -26,7 +26,7 @@ sub validate_file {    ## no critic
     return if $Self->IsPluginDisabled( Filename => $File );
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    my $Checker = new Pod::Checker();
+    my $Checker = Pod::Checker->new();
 
     # Force stringification of $File as it is a Path::Tiny object in Code::TidyAll 0.50+.
     my $Output = capture_merged { $Checker->parse_from_file( "$File", \*STDERR ) };
