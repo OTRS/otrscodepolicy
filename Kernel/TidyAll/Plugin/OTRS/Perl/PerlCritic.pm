@@ -36,7 +36,7 @@ sub validate_file {    ## no critic
     return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
     if ( !$Critic ) {
-        my $Severity = 5;    # TODO: lower to 4 later
+        my $Severity = 4;
         if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
             $Severity = 5;    #  less strict for older versions
         }
