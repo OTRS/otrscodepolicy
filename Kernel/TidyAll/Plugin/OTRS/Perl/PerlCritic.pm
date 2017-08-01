@@ -43,7 +43,7 @@ sub validate_file {    ## no critic
         $Critic = Perl::Critic->new(
             -severity => $Severity,
             -exclude  => [
-                'Perl::Critic::Policy::Modules::RequireExplicitPackage',    # this breaks in our scripts folder
+                'Perl::Critic::Policy::Modules::RequireExplicitPackage',    # this breaks in our scripts/test folder
             ],
         );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps' );
