@@ -31,6 +31,8 @@ select = Kernel/Output/HTML/**/*.tt
 
 [+TidyAll::Plugin::OTRS::Common::CustomizationMarkers]
 select = **/*.{pl,psgi,pm,t,js,dtl,css,tt}
+ignore = Kernel/Config.pm
+ignore = Kernel/Config/GenericAgent.pm
 ignore = Kernel/Config/Files/ZZZ*.pm
 
 [+TidyAll::Plugin::OTRS::XML::Docbook::ReplaceSupportEmail]
