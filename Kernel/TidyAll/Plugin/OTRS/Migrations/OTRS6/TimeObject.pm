@@ -28,7 +28,7 @@ sub validate_source {    ## no critic
 
         next LINE if $Line =~ m/^\s*\#/smx;
 
-        if ( $Line =~ m{Kernel::System::Time}sm ) {
+        if ( $Line =~ m{Kernel::System::Time[^a-zA-Z]}sm ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
