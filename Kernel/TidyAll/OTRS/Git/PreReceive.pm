@@ -47,6 +47,9 @@ my %IgnoreRepositories = (
 
     # OTRS Blog
     'www-otrs-com.git' => 1,
+
+    # OTRSTube
+    'clips-otrs-com.git' => 1,
 );
 
 sub Run {
