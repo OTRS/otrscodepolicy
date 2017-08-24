@@ -32,7 +32,7 @@ sub validate_file {    ## no critic
 
         if ( $Line =~ m{^([^= ]+)\s*=\s*\(function\s*\(TargetNS\)\s*\{ }xms ) {
 
-            if ( $1 ne $NameOfFile ) {
+            if ( $1 ne $NameOfFile && $Line !~ m{^//} ) {
                 die __PACKAGE__ . "\n" . <<EOF;
 The file name ($NameOfFile.js) is not equal to the name of the JavaScript namespace ($1).
 EOF
