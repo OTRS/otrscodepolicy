@@ -1,0 +1,58 @@
+# --
+# Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+package TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig;
+
+use strict;
+use warnings;
+
+use parent qw(TidyAll::Plugin::OTRS::Base);
+
+sub validate_source {    ## no critic
+    my ( $Self, $Code ) = @_;
+
+    return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
+
+    my ( $Counter, $ErrorMessage );
+
+    LINE:
+    for my $Line ( split /\n/, $Code ) {
+        $Counter++;
+
+        next LINE if $Line =~ m/^\s*\#/smx;
+
+        # Look for code that uses not allowed date/time modules and functions
+        if (
+            $Line =~ m{
+            ->(CreateConfig|ConfigItemUpdate|ConfigItemGet|ConfigItemReset
+            |ConfigItemValidityUpdate|ConfigGroupList|ConfigSubGroupList
+            |ConfigSubGroupConfigItemList|ConfigItemSearch|ConfigItemTranslatableStrings
+            |ConfigItemValidate|ConfigItemCheckAll)\(}smx
+            )
+        {
+            $ErrorMessage .= "Line $Counter: $Line\n";
+        }
+    }
+
+    if ($ErrorMessage) {
+        die __PACKAGE__ . "\n" . <<EOF;
+Use of unexisting methods in Kernel::System::SysConfig is not allowed (CreateConfig, ConfigItemUpdate,
+ConfigItemGet, ConfigItemReset, ConfigItemValidityUpdate,ConfigGroupList, ConfigSubGroupList,
+ConfigSubGroupConfigItemList, ConfigItemSearch, ConfigItemTranslatableStrings, ConfigItemValidate
+and ConfigItemCheckAll).
+
+    Please see http://doc.otrs.com/doc/manual/developer/6.0/en/html/package-porting.html#package-porting-5-to-6 for porting guidelines.
+$ErrorMessage
+EOF
+    }
+
+    return;
+}
+
+1;
