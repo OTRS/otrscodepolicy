@@ -19,7 +19,7 @@ our $ESLintPath;
 our $ESLintConfigPath;
 our $ESLintRulesPath;
 
-sub validate_file {    ## no critic
+sub transform_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
@@ -63,7 +63,7 @@ sub validate_file {    ## no critic
     }
 
     my $Command = sprintf(
-        "%s %s -c %s --rulesdir %s %s",
+        "%s %s -c %s --rulesdir %s --fix %s",
         $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename
     );
     my ( $Output, @Result ) = capture_merged { system($Command) };
