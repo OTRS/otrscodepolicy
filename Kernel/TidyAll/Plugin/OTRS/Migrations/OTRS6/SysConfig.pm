@@ -27,7 +27,7 @@ sub validate_source {    ## no critic
 
         next LINE if $Line =~ m/^\s*\#/smx;
 
-        # Look for code that uses not allowed date/time modules and functions
+        # Look for code that uses not not existing functions.
         if (
             $Line =~ m{
             ->(CreateConfig|ConfigItemUpdate|ConfigItemGet|ConfigItemReset
@@ -36,6 +36,10 @@ sub validate_source {    ## no critic
             |ConfigItemValidate|ConfigItemCheckAll)\(}smx
             )
         {
+            # Skip ITSM functions, which have same name.
+            next LINE if $Line =~ m{ConfigItemObject};
+            next LINE if $Line =~ m{ITSM};
+
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }
