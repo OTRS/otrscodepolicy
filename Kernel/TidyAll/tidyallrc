@@ -355,6 +355,7 @@ select = **/*.xml
 ignore = development/samples/config/*.xml
 ; ignore .xml files in documentation
 ignore = en/content/**/*.xml
+ignore = hu/content/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
 select = Kernel/Config/**/*.xml
