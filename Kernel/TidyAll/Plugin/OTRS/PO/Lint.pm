@@ -48,6 +48,9 @@ sub validate_file {    ## no critic
             #next STRING if $String->automatic() && $String->automatic =~ m{<screen>$}smx;
             next STRING if $String->automatic() && $String->automatic() =~ m{CDATA$}smx;
 
+            # Obsolete strings might loose CDATA comments
+            next STRING if $String->obsolete();
+
             my $Parser = XML::Parser->new();
             if ( !eval { $Parser->parse("<book>$Translation</book>") } ) {
                 $ErrorMessage .= "Invalid XML translation found in Line: "
@@ -88,7 +91,7 @@ sub validate_file {    ## no critic
             }
 
             for my $SourceTag ( sort keys %SourceTagCount ) {
-                my @TranslatedTags     = $Translation =~ m{<$SourceTag}smg;
+                my @TranslatedTags     = $Translation =~ m{<$SourceTag[>| ]}smg;
                 my $TranslatedTagCount = scalar @TranslatedTags;
                 if ( $TranslatedTagCount != $SourceTagCount{$SourceTag} ) {
                     $ErrorMessage .= "Invalid XML translation found in Line: "
