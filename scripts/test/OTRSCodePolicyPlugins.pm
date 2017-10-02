@@ -67,11 +67,8 @@ sub Run {
             for my $PluginModule ( @{ $Test->{Plugins} } ) {
                 $MainObject->Require($PluginModule);
                 my $Plugin = $PluginModule->new(
-                    class   => $PluginModule,
                     name    => $PluginModule,
                     tidyall => $TidyAll,
-
-                    #%$plugin_conf
                 );
 
                 for my $Method (qw(preprocess_source process_source_or_file postprocess_source)) {
