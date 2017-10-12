@@ -170,6 +170,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/Navigation.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Configuration/XSDValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Database/XSDValidator.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Database/KeyLength.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/BinScripts.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/ImageOutput.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Docbook/ReplaceSupportEmail.pm" />
@@ -198,5 +199,6 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/NameLength.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/KeyLength.t" />
     </Filelist>
 </otrs_package>

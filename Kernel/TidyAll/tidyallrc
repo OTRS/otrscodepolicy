@@ -366,6 +366,10 @@ select = Kernel/Config/**/*.xml
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
 
+[+TidyAll::Plugin::OTRS::XML::Database::KeyLength]
+select = scripts/database/otrs-schema.xml
+select = *.{sopm}
+
 [+TidyAll::Plugin::OTRS::XML::Database::XSDValidator]
 select = scripts/database/*.xml
 select = scripts/database/update/*.xml
