@@ -23,7 +23,7 @@ sub transform_source { ## no critic
     return $Code if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     # Don't modify files which are derived files (have change markers).
-    if ( $Code =~ m{ \$OldId: | ^ \# \s* \$origin: }xms ) {
+    if ( $Code =~ m{ \$OldId: | ^ \s* \# \s* \$origin: | ^ \s* \#UX3\# }xms ) {
         return $Code;
     }
 
