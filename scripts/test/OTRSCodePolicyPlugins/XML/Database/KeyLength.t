@@ -167,11 +167,13 @@ EOF
 <!-- object names for dynamic field values -->
 <Table Name="table_name">
     <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
-    <Column Type="VARCHAR" Name="column_one" Required="true" Size="330"/>
+    <Column Type="VARCHAR" Name="column_one" Required="true" Size="329"/>
     <Column Required="true" Name="column_two" Type="BIGINT"/>
+    <Column Name="column_three" Required="true" Type="DECIMAL" Size="10"/>
     <Index Name="column_one_two_three">
         <IndexColumn Name="column_one"/>
         <IndexColumn Name="column_two"/>
+        <IndexColumn Name="column_three"/>
     </Unique>
 </Table>
 EOF
@@ -186,11 +188,13 @@ EOF
 <!-- object names for dynamic field values -->
 <Table Name="table_name">
     <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
-    <Column Type="VARCHAR" Name="column_one" Required="true" Size="331"/>
+    <Column Type="VARCHAR" Name="column_one" Required="true" Size="330"/>
     <Column Required="true" Name="column_two" Type="BIGINT"/>
+    <Column Name="column_three" Required="true" Type="DECIMAL" Size="10"/>
     <Index Name="column_one_two_three">
         <IndexColumn Name="column_one"/>
         <IndexColumn Name="column_two"/>
+        <IndexColumn Name="column_three"/>
     </Unique>
 </Table>
 EOF

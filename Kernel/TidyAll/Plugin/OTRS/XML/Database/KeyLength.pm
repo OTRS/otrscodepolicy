@@ -82,6 +82,7 @@ sub validate_source {    ## no critic
                  #   More info here: https://dev.mysql.com/doc/refman/5.7/en/precision-math-decimal-characteristics.html
                     elsif ( uc $ColumnType eq 'DECIMAL' ) {
                         my ( $TotalDigits, $FractionalDigits ) = split ',', $ColumnSize;
+                        $FractionalDigits //= 0;
                         my $IntegerDigits = $TotalDigits - $FractionalDigits;
                         for my $Digits ( $IntegerDigits, $FractionalDigits ) {
                             $CurrentColumns{$ColumnName} += sprintf( '%0.f', $Digits / 9 * 4 );
