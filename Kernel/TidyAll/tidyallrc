@@ -451,5 +451,9 @@ ignore = scripts/test/Time/**/*.t
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config/Files/ZZZ*.pm
 
-[+TidyAll::Plugin::OTRS::Migrations::OTRS6::TranslatableStringsPlaceholders]
+;
+; Migrations OTRS 7
+;
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS7::TranslatableStringsPlaceholders]
 select = **/*.{pl,pm,tt,js,xml,html.tmpl}

@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Migrations::OTRS6::TranslatableStringsPlaceholders;
+package TidyAll::Plugin::OTRS::Migrations::OTRS7::TranslatableStringsPlaceholders;
 
 use strict;
 use warnings;
@@ -17,7 +17,7 @@ sub validate_file {    ## no critic
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );
-    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
+    return if $Self->IsFrameworkVersionLessThan( 7, 0 );
 
     my $Text = $Self->_ExtractTranslatableStrings($File);
     return if !$Text;
