@@ -163,6 +163,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/WSDL/WSDL.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/TT/ScriptUsage.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/TT/TranslationFilter.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/Tabs.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/TrailingWhitespace.pm" />
@@ -199,6 +200,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/Lint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/TT/TranslationFilter.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/NameLength.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/KeyLength.t" />
     </Filelist>

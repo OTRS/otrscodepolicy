@@ -324,6 +324,9 @@ select = *.{sopm}
 [+TidyAll::Plugin::OTRS::TT::ScriptUsage]
 select = **/*.tt
 
+[+TidyAll::Plugin::OTRS::TT::TranslationFilter]
+select = **/*.tt
+
 ;
 ; SQL
 ;
