@@ -87,7 +87,7 @@ sub validate_source {    ## no critic
                 MatchNavigationValue   => qr{.*},
                 RequireNavigationMatch => qr{^Frontend::Customer::ModuleRegistration::Loader},
                 ErrorMessage =>
-                    "Loader settings for Customer interface should be grouped in 'Frontend::ßCustomer::ModuleRegistration::Loader'.",
+                    "Loader settings for Customer interface should be grouped in 'Frontend::Customer::ModuleRegistration::Loader'.",
             },
             {
                 Name                   => 'Loader config for Public interface',
@@ -164,14 +164,11 @@ sub validate_source {    ## no critic
             {
                 Name                   => 'Valid frontend views',
                 MatchSettingName       => qr{.*},
-                MatchNavigationValue   => qr{^Frontend::(Admin|Agent|Customer|Public)::.+::View.+$},
-                RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Customer|Public)::View},
+                MatchNavigationValue   => qr{^Frontend::(Admin|Agent|Customer|Public)::(.+::)*View.+$},
+                RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Customer|Public)::View::.+$},
                 ErrorMessage =>
-                    "",
+                    "Screen specific seettings should be added in Frontend::(Admin|Agent|Customer|Public)::View.",
             },
-
-            # TODO: frontend module registrations, navigation, loader
-
         );
 
         RULE:
