@@ -161,6 +161,14 @@ sub validate_source {    ## no critic
                 ErrorMessage =>
                     "Output filter settings should be grouped in 'Frontend::Base::OutputFilter' or subgroups.",
             },
+            {
+                Name                   => 'Valid frontend views',
+                MatchSettingName       => qr{.*},
+                MatchNavigationValue   => qr{^Frontend::(Admin|Agent|Customer|Public)::.+::View.+$},
+                RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Customer|Public)::View},
+                ErrorMessage =>
+                    "",
+            },
 
             # TODO: frontend module registrations, navigation, loader
 
