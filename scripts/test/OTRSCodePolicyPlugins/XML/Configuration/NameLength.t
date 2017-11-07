@@ -24,6 +24,17 @@ my $HugeName     = 'A' x 300;
 
 my $SettingTemplate = <<'EOF';
         <Description Translatable="1">Disables the web installer (http://yourhost.example.com/otrs/installer.pl), to prevent the system from being hijacked. If set to "No", the system can be reinstalled and the current basic configuration will be used to pre-populate the questions within the installer script. If not active, it also disables the GenericAgent, PackageManager and SQL Box.</Description>
+        <Navigation>Framework</Navigation>
+        <Value>
+            <Item ValueType="Select">
+                <Item ValueType="Option" Key="0" Translatable="1">No</Item>
+                <Item ValueType="Option" Key="1" Translatable="1">Yes</Item>
+            </Item>
+        </Value>
+EOF
+
+my $SettingTemplateOld = <<'EOF';
+        <Description Translatable="1">Disables the web installer (http://yourhost.example.com/otrs/installer.pl), to prevent the system from being hijacked. If set to "No", the system can be reinstalled and the current basic configuration will be used to pre-populate the questions within the installer script. If not active, it also disables the GenericAgent, PackageManager and SQL Box.</Description>
         <Group>Framework</Group>
         <SubGroup>Core</SubGroup>
         <Setting>
@@ -32,139 +43,174 @@ my $SettingTemplate = <<'EOF';
                 <Item Key="1" Translatable="1">Yes</Item>
             </Option>
         </Setting>
-    </ConfigItem>
 EOF
 
 my @Tests = (
     {
         Name      => 'Small Setting Name',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '6.0',
         Source    => <<"EOF",
-    <ConfigItem Name="$SmallName" Required="1" Valid="1" ConfigLevel="200">
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="$SmallName" Required="1" Valid="1" ConfigLevel="200">
 $SettingTemplate
+    </Setting>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'Medium Setting Name',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '6.0',
         Source    => <<"EOF",
-    <ConfigItem Name="$MediumName" Required="1" Valid="1" ConfigLevel="200">
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="$MediumName" Required="1" Valid="1" ConfigLevel="200">
 $SettingTemplate
+    </Setting>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'Long Setting Name',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '6.0',
         Source    => <<"EOF",
-    <ConfigItem Name="$LongName" Required="1" Valid="1" ConfigLevel="200">
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="$LongName" Required="1" Valid="1" ConfigLevel="200">
 $SettingTemplate
+    </Setting>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'Limit Setting Name',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '6.0',
         Source    => <<"EOF",
-    <ConfigItem Name="$LimitName" Required="1" Valid="1" ConfigLevel="200">
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="$LimitName" Required="1" Valid="1" ConfigLevel="200">
 $SettingTemplate
+    </Setting>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'OverSize Setting Name',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '6.0',
         Source    => <<"EOF",
-    <ConfigItem Name="$OversizeName" Required="1" Valid="1" ConfigLevel="200">
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="$OversizeName" Required="1" Valid="1" ConfigLevel="200">
 $SettingTemplate
+    </Setting>
+</otrs_config>
 EOF
         Exception => 1,
     },
     {
         Name      => 'Huge Setting Name',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '6.0',
         Source    => <<"EOF",
-    <ConfigItem Name="$HugeName" Required="1" Valid="1" ConfigLevel="200">
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="$HugeName" Required="1" Valid="1" ConfigLevel="200">
 $SettingTemplate
+    </Setting>
+</otrs_config>
 EOF
         Exception => 1,
     },
     {
         Name      => 'Small Setting Name (Framework 5.0)',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '5.0',
         Source    => <<"EOF",
+<otrs_config version="1.0" init="Framework">
     <ConfigItem Name="$SmallName" Required="1" Valid="1" ConfigLevel="200">
-$SettingTemplate
+$SettingTemplateOld
+    </ConfigItem>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'Medium Setting Name (Framework 5.0)',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '5.0',
         Source    => <<"EOF",
+<otrs_config version="1.0" init="Framework">
     <ConfigItem Name="$MediumName" Required="1" Valid="1" ConfigLevel="200">
-$SettingTemplate
+$SettingTemplateOld
+    </ConfigItem>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'Long Setting Name (Framework 5.0)',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '5.0',
         Source    => <<"EOF",
+<otrs_config version="1.0" init="Framework">
     <ConfigItem Name="$LongName" Required="1" Valid="1" ConfigLevel="200">
-$SettingTemplate
+$SettingTemplateOld
+    </ConfigItem>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'Limit Setting Name (Framework 5.0)',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '5.0',
         Source    => <<"EOF",
+<otrs_config version="1.0" init="Framework">
     <ConfigItem Name="$LimitName" Required="1" Valid="1" ConfigLevel="200">
-$SettingTemplate
+$SettingTemplateOld
+    </ConfigItem>
+</otrs_config>
 EOF
         Exception => 0,
     },
     {
         Name      => 'OverSize Setting Name (Framework 5.0)',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '5.0',
         Source    => <<"EOF",
+<otrs_config version="1.0" init="Framework">
     <ConfigItem Name="$OversizeName" Required="1" Valid="1" ConfigLevel="200">
-$SettingTemplate
+$SettingTemplateOld
+    </ConfigItem>
+</otrs_config>
 EOF
         Exception => 1,
     },
     {
         Name      => 'Huge Setting Name (Framework 5.0)',
-        Filename  => 'Test.XML',
+        Filename  => 'Kernel/Config/Files/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator)],
         Framework => '5.0',
         Source    => <<"EOF",
+<otrs_config version="1.0" init="Framework">
     <ConfigItem Name="$HugeName" Required="1" Valid="1" ConfigLevel="200">
-$SettingTemplate
+$SettingTemplateOld
+    </ConfigItem>
+</otrs_config>
 EOF
         Exception => 1,
     },
