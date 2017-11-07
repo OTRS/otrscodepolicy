@@ -32,8 +32,7 @@ sub validate_file {    ## no critic
         $XSDFile   = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration_before_5.xsd';
         $WantedDir = 'Kernel/Config/Files';
     }
-
-    if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
+    elsif ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
         $XSDFile   = dirname(__FILE__) . '/../../StaticFiles/XSD/Configuration_before_6.xsd';
         $WantedDir = 'Kernel/Config/Files';
     }
