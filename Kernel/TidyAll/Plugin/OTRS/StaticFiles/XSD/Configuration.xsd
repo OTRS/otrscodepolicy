@@ -94,8 +94,39 @@
 
     <xs:complexType name="ArrayType">
         <xs:sequence>
-            <xs:element name="DefaultItem" type="ItemType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DefaultItem" type="DefaultItemType" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Item" type="ItemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="MinItems" type="xs:int" use="optional" />
+        <xs:attribute name="MaxItems" type="xs:int" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType mixed="true" name="DefaultItemType">
+        <xs:choice>
+            <xs:element name="Array" type="DefaultArrayType"/>
+            <xs:element name="Hash"  type="DefaultHashType"/>
+            <xs:sequence>
+                <xs:element name="Item" minOccurs="0" maxOccurs="unbounded" type="ItemType"/>
+            </xs:sequence>
+        </xs:choice>
+        <xs:attribute name="Translatable" type="BooleanAttribute" use="optional" />
+        <!-- allow for arbitrary unspecified value-type specific attributes -->
+        <xs:anyAttribute processContents="skip"/>
+    </xs:complexType>
+
+    <!-- Hashes in DefaultItems can only contain other DefaultItems, not real Items. -->
+    <xs:complexType name="DefaultHashType">
+        <xs:sequence>
+            <xs:element name="DefaultItem" type="DefaultItemType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="MinItems" type="xs:int" use="optional" />
+        <xs:attribute name="MaxItems" type="xs:int" use="optional" />
+    </xs:complexType>
+
+    <!-- Arrays in DefaultItems can only contain other DefaultItems, not real Items. -->
+    <xs:complexType name="DefaultArrayType">
+        <xs:sequence>
+            <xs:element name="DefaultItem" type="DefaultItemType" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attribute name="MinItems" type="xs:int" use="optional" />
         <xs:attribute name="MaxItems" type="xs:int" use="optional" />
