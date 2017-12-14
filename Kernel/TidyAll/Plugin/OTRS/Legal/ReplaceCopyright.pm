@@ -24,7 +24,7 @@ sub transform_source {    ## no critic
     # Don't replace copyright in thirdparty code.
     return $Code if $Self->IsThirdpartyModule();
 
-    my $Copy      = 'OTRS AG, http://otrs.com/';
+    my $Copy      = 'OTRS AG, https://otrs.com/';
     my $StartYear = 2001;
 
     my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = localtime( time() );    ## no critic
