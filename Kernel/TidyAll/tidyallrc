@@ -128,6 +128,8 @@ select = .*.dist .bash_completion
 select = var/cron/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
+; Don't run this in the CI to avoid updates on year changes. It is enough to update the code when it is changed.
+only_modes = cli editor commit
 
 [+TidyAll::Plugin::OTRS::Legal::SOPMLicense]
 select = *.{opm,sopm}
