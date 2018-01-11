@@ -1,0 +1,6 @@
+Active: 1
+
+PlatformSets:
+ - ondemand-otrs6
+
+DeployOTRSBranch: rel-6_0
