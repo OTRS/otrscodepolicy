@@ -17,7 +17,8 @@ ignore = var/Vagrant/Instances/**/*
 ; Webpack generated output files
 ignore = var/httpd/htdocs/build/**/*
 ; TODO remove: temporarily ignore webpack source files until proper eslint policies are in place.
-ignore = var/httpd/htdocs/src/**/*
+ignore = Frontend/**/*
+ignore = public/dist/**/*
 ignore = scripts/webpack/**/*
 
 ;
