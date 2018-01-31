@@ -14,11 +14,12 @@ ignore = **/{js-cache,css-cache}/**/*
 ignore = scripts/test/sample/**/*
 ; Ignore vagrant instance contents of the CI provisioner.
 ignore = var/Vagrant/Instances/**/*
+; node.js packages
+ignore = node_modules/**/*
 ; Webpack generated output files
-ignore = var/httpd/htdocs/build/**/*
+ignore = var/public/dist/**/*
 ; TODO remove: temporarily ignore webpack source files until proper eslint policies are in place.
 ignore = Frontend/**/*
-ignore = public/dist/**/*
 ignore = scripts/webpack/**/*
 
 ;
