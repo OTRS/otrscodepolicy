@@ -110,6 +110,12 @@ sub transform_source {    ## no critic
         \# \s+ -- \n
     }{$AGPLLong}xmsg;
 
+    if ( !$Self->IsFrameworkVersionLessThan( 7, 0 ) ) {
+
+        # Remove duplicated license information in Perldoc. The license comment at the start of files is enough.
+        $Code =~ s{\n ^=head1 \s+ TERMS \s+ AND \s+ CONDITIONS .*? ^=cut\n?}{}smx;
+    }
+
     return $Code;
 }
 
