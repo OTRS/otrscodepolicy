@@ -241,6 +241,9 @@ only_modes = cli
 [+TidyAll::Plugin::OTRS::Perl::Pod::FunctionPod]
 select = **/*.{pm}
 
+[+TidyAll::Plugin::OTRS::Perl::Pod::NamePod]
+select = **/*.{pm}
+
 [+TidyAll::Plugin::OTRS::Perl::Pod::SpellCheck]
 select = **/*.{pm,pod}
 
