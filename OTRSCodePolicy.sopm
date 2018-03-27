@@ -98,6 +98,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlCritic.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/PerlTidy.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/FunctionPod.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/NamePod.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/SpellCheck.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/SpellCheck.Whitelist.txt" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/Validator.pm" />
