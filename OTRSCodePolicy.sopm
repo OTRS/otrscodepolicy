@@ -196,6 +196,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/Pod/FunctionPod.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/Pod/NamePod.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/SortKeysReference.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t" />
