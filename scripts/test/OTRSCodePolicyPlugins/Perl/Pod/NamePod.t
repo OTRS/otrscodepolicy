@@ -184,6 +184,61 @@ sub Run {
 EOF
     },
     {
+        Name      => 'wrong package name slashes custom file', # Does not modify the file even it its wrong
+        Filename  => 'test.pl',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::Pod::NamePod)],
+        Framework => '6.0',
+        Source    => <<'EOF',
+# $origin: otrs - d152f0ba9f7b326b4bd3b8624cc2c99944e2a956 - scripts/test/Pod/Test.pm
+package scripts::test::Pod::Test;    ## no critic
+
+use strict;
+use warnings;
+
+use parent qw(scripts::DBUpdate::Base);
+
+our @ObjectDependencies = (
+    'Kernel::System::DB',
+    'Kernel::System::Log',
+);
+
+=head1 NAME
+
+scripts/test/Pod/Test.pm -  Testing file.
+
+=cut
+
+sub Run {
+    ...
+}
+EOF
+        Exception => 0,
+        Result    => <<'EOF',
+# $origin: otrs - d152f0ba9f7b326b4bd3b8624cc2c99944e2a956 - scripts/test/Pod/Test.pm
+package scripts::test::Pod::Test;    ## no critic
+
+use strict;
+use warnings;
+
+use parent qw(scripts::DBUpdate::Base);
+
+our @ObjectDependencies = (
+    'Kernel::System::DB',
+    'Kernel::System::Log',
+);
+
+=head1 NAME
+
+scripts/test/Pod/Test.pm -  Testing file.
+
+=cut
+
+sub Run {
+    ...
+}
+EOF
+    },
+    {
         Name      => 'wrong package name just name',
         Filename  => 'test.pl',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::Pod::NamePod)],

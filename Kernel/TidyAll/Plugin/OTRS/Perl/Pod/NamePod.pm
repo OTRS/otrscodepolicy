@@ -21,6 +21,11 @@ sub transform_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
+    # Don't modify files which are derived files (have change markers).
+    if ( $Code =~ m{ \$OldId: | ^ \s* \# \s* \$origin: | ^ \s* \#UX3\# }xms ) {
+        return $Code;
+    }
+
     my $PackageName = '';
     my $InsideNamePod;
     my $PackageNamePod;
@@ -68,6 +73,11 @@ sub validate_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 6, 0 );
+
+    # Don't check files which are derived files (have change markers).
+    if ( $Code =~ m{ \$OldId: | ^ \s* \# \s* \$origin: | ^ \s* \#UX3\# }xms ) {
+        return $Code;
+    }
 
     my $PackageName = '';
     my $InsideNamePod;
