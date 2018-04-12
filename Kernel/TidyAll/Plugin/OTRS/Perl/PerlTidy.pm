@@ -34,6 +34,9 @@ sub transform_source { ## no critic
     # Force re-wrap of assignments too.
     $Code =~ s{ \n^\s+(=\s+) }{$1}smxg;
 
+    # Replase ,; to ;
+    $Code =~ s{ ^ (.*) ,; $ }{$1;}smxg;
+
     # perltidy reports errors in two different ways.
     # Argument/profile errors are output and an error_flag is returned.
     # Syntax errors are sent to errorfile.
