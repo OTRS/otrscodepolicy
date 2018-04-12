@@ -35,7 +35,9 @@ sub transform_source { ## no critic
     $Code =~ s{ \n^\s+(=\s+) }{$1}smxg;
 
     # Replase ,; to ;
-    $Code =~ s{ ^ (.*) ,; $ }{$1;}smxg;
+    for my $Count ( 1 .. 10 ) {
+        $Code =~ s{ ^ (.*) ,; $ }{$1;}smxg;
+    }
 
     # perltidy reports errors in two different ways.
     # Argument/profile errors are output and an error_flag is returned.
