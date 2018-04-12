@@ -103,7 +103,7 @@ elsif ( defined $Cached && length $Cached ) {
     my @StagedFiles = `git diff --name-only --cached`;
     for my $StagedFile (@StagedFiles) {
         chomp $StagedFile;
-        push @Files, ( File::Spec->catfile( $RootDir, $StagedFile ) )
+        push @Files, ( File::Spec->catfile( $RootDir, $StagedFile ) );
     }
 }
 elsif ( !$All ) {
@@ -114,7 +114,7 @@ elsif ( !$All ) {
     push @ChangedFiles, grep { -f && !-l } ( $Output =~ /^\s*RM?+\s+(.*?)\s+->\s+(.*)/gm );
     for my $ChangedFile (@ChangedFiles) {
         chomp $ChangedFile;
-        push @Files, ( File::Spec->catfile( $RootDir, $ChangedFile ) )
+        push @Files, ( File::Spec->catfile( $RootDir, $ChangedFile ) );
     }
 }
 

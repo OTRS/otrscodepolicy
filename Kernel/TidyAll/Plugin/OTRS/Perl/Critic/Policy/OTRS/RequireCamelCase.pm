@@ -30,7 +30,7 @@ my %dispatcher = (
 );
 
 sub applies_to {
-    keys %dispatcher,
+    keys %dispatcher,;
 }
 
 sub violates {

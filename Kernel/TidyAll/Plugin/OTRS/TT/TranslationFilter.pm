@@ -31,7 +31,7 @@ sub validate_source {    ## no critic
             # Check if output is not filtered.
             if ( $+{Filter} !~ m{ \s* (?:FILTER|\|) \s* (?:html|JSON) }sxm ) {
                 $ErrorMessage
-                    .= "ERROR: Found unfiltered translation string in line( $Counter ): $Line\n"
+                    .= "ERROR: Found unfiltered translation string in line( $Counter ): $Line\n";
             }
         }
 
@@ -41,7 +41,7 @@ sub validate_source {    ## no critic
             # Check if output is not filtered.
             if ( $+{Filter} !~ m{ \s* (?:FILTER|\|) \s* (?:html|JSON) }sxm ) {
                 $ErrorMessage
-                    .= "ERROR: Found unfiltered translation string in line( $Counter ): $Line\n"
+                    .= "ERROR: Found unfiltered translation string in line( $Counter ): $Line\n";
             }
         }
     }

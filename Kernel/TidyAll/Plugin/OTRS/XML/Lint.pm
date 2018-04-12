@@ -15,7 +15,7 @@ use Capture::Tiny qw(capture_merged);
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd {    ## no critic
-    return 'xmllint --noout --nonet'
+    return 'xmllint --noout --nonet';
 }
 
 sub validate_file {    ## no critic

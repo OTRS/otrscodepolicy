@@ -38,7 +38,7 @@ sub validate_file {    ## no critic
     }
 
     if ( $Filename !~ m{$WantedDir/[^/]+[.]xml$}smx ) {
-        die __PACKAGE__ . "\nConfiguration file $Filename does not exist in the correct directory $WantedDir.\n"
+        die __PACKAGE__ . "\nConfiguration file $Filename does not exist in the correct directory $WantedDir.\n";
     }
 
     my $Command = sprintf( "xmllint --noout --nonet --schema %s %s %s", $XSDFile, $Self->argv(), $Filename );

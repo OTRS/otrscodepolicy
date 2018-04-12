@@ -32,7 +32,7 @@ sub validate_source {     ## no critic
     return if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     if ( $Code !~ m{<License> .+? </License>}smx ) {
-        die __PACKAGE__ . "\nCould not find a license header."
+        die __PACKAGE__ . "\nCould not find a license header.";
     }
 
     if (
