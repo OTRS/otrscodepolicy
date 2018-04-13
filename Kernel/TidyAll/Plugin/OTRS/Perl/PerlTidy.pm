@@ -36,6 +36,7 @@ sub transform_source { ## no critic
 
     # Replase ,; to ;
     for my $Count ( 1 .. 10 ) {
+        $Code =~ s{ ^ (.*) , $ \n ^ \s* ; \s* $ }{$1;}smxg;
         $Code =~ s{ ^ (.*) ,; $ }{$1;}smxg;
     }
 
