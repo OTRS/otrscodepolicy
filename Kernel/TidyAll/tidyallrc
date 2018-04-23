@@ -253,6 +253,14 @@ select = **/*.{pm,pod,pod.dist}
 [+TidyAll::Plugin::OTRS::Perl::Print]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
 
+; $Kernel::OM must not be used in the base WebApp infrastructure, only
+;   in controllers and the plugin providing Kernel::OM to the controllers.
+[+TidyAll::Plugin::OTRS::Perl::ProhibitObjectManager]
+select = Kernel/WebApp.pm
+select = Kernel/WebApp/**/*.{pl,pm}
+ignore = Kernel/WebApp/Controller/**/*
+ignore = Kernel/WebApp/Plugin/*ProvideObjectManager.pm
+
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
@@ -475,3 +483,7 @@ select = Kernel/Config/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS7::TranslatableStringsPlaceholders]
 select = **/*.{pl,pm,tt,js,xml,html.tmpl}
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS7::WebAppNoLegacyCode]
+select = Kernel/WebApp.pm
+select = Kernel/WebApp/**/*.{pl,pm}

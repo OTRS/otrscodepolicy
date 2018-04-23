@@ -34,7 +34,7 @@ sub transform_source { ## no critic
     # Force re-wrap of assignments too.
     $Code =~ s{ \n^\s+(=\s+) }{$1}smxg;
 
-    # Replase ,; to ;
+    # Replace ,; with ;
     for my $Count ( 1 .. 10 ) {
         $Code =~ s{ ^ (.*) , $ \n ^ \s* ; \s* $ }{$1;}smxg;
         $Code =~ s{ ^ (.*) ,; $ }{$1;}smxg;
