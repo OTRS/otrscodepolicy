@@ -125,7 +125,7 @@ select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js}
-ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
+ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
 
