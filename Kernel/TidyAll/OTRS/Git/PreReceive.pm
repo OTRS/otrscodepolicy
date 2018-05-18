@@ -50,6 +50,9 @@ my %IgnoreRepositories = (
 
     # OTRSTube
     'clips-otrs-com.git' => 1,
+
+    # Internal UX/UI team repository
+    'ux-ui.git' => 1,
 );
 
 sub Run {
