@@ -332,6 +332,9 @@ select = *.{opm,sopm}
 [+TidyAll::Plugin::OTRS::SOPM::Name]
 select = *.{sopm}
 
+[+TidyAll::Plugin::OTRS::SOPM::OndemandTestingPresent]
+select = *.{opm,sopm}
+
 [+TidyAll::Plugin::OTRS::SOPM::PackageRequired]
 select = *.{opm,sopm}
 

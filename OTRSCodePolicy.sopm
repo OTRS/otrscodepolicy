@@ -105,6 +105,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Pod/Validator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Print.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ProhibitObjectManager.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ProhibitMojoJSON.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Require.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ScriptFormat.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SortKeys.pm" />
@@ -124,6 +125,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/FileList.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/FileRights.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/Name.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/OndemandTestingPresent.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/PackageRequired.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/RequiredElements.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/XSDValidator.pm" />
