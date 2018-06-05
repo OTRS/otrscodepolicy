@@ -261,9 +261,8 @@ select = Kernel/WebApp/**/*.{pl,pm}
 ignore = Kernel/WebApp/Controller/**/*
 ignore = Kernel/WebApp/Plugin/*ProvideObjectManager.pm
 
-; TEMPORARILY DEACTIVATED
-;[+TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON]
-;select = **/*.{pm}
+[+TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON]
+select = **/*.{pm}
 
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}
