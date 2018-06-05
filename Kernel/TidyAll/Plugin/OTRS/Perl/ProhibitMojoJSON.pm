@@ -8,6 +8,8 @@
 
 package TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON;
 
+# nofilter(TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON)
+
 use strict;
 use warnings;
 
