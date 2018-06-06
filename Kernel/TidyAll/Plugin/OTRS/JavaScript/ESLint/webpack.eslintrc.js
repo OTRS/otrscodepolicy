@@ -84,6 +84,9 @@ module.exports = {
         // Do not require destructuring from arrays and objects.
         'prefer-destructuring': [ 'error', { 'array': false, 'object': false } ],
 
+        // Enforce consistent line breaks inside function parentheses.
+        'function-paren-newline': [ 'error', 'consistent' ],
+
         // Required (functions: never) since preprocessors are not handled by babel.
         //  See also: https://eslint.org/docs/rules/comma-dangle
         "comma-dangle": ["error", {
