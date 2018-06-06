@@ -18,9 +18,6 @@ ignore = var/Vagrant/Instances/**/*
 ignore = node_modules/**/*
 ; Webpack generated output files
 ignore = var/public/dist/**/*
-; TODO remove: temporarily ignore webpack source files until proper eslint policies are in place.
-ignore = Frontend/**/*
-ignore = scripts/webpack/**/*
 
 ;
 ; Common
@@ -102,6 +99,7 @@ ignore = scripts/test/sample/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::DebugCode]
 select = **/*.js
+ignore = scripts/webpack/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::UnloadEvent]
 select = **/*.js **/*.tt
@@ -114,7 +112,7 @@ ignore = **/test/*
 select = var/httpd/htdocs/js/test/*.js
 
 [+TidyAll::Plugin::OTRS::JavaScript::ESLint]
-select = **/*.js
+select = **/*.{js,vue}
 
 ;
 ; Legal
@@ -128,6 +126,8 @@ select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
+; TEMPORARY EXCEPTION: New frontend codes
+ignore = Frontend/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
 select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js,sh,tmpl,html,skel}

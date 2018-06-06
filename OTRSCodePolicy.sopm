@@ -46,8 +46,10 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/UniqueBlock.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/DebugCode.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLintRules/no-window.js" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/eslintrc" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/frontend.eslintrc.js" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/legacy.eslintrc.js" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/webpack.eslintrc.js" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/Rules/no-window.js" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileName.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileNameUnitTest.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/UnloadEvent.pm" />

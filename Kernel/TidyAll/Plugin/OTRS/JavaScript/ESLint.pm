@@ -16,8 +16,6 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 
 our $NodePath;
 our $ESLintPath;
-our $ESLintConfigPath;
-our $ESLintRulesPath;
 
 sub transform_file {    ## no critic
     my ( $Self, $Filename ) = @_;
@@ -45,13 +43,7 @@ sub transform_file {    ## no critic
             return;
         }
 
-        $ESLintConfigPath = __FILE__;
-        $ESLintConfigPath =~ s{ESLint\.pm}{eslintrc};
-
-        $ESLintRulesPath = __FILE__;
-        $ESLintRulesPath =~ s{ESLint\.pm}{ESLintRules};
-
-        # force minimum version 0.17.1
+        # Force the minimum version of eslint.
         my $ESLintVersion = `$NodePath $ESLintPath -v`;
         chomp $ESLintVersion;
         my ( $Major, $Minor, $Patch ) = $ESLintVersion =~ m{v(\d+)[.](\d+)[.](\d+)};
@@ -62,10 +54,22 @@ sub transform_file {    ## no critic
         }
     }
 
+    my $ESLintConfigPath = __FILE__ =~ s{ESLint\.pm}{ESLint/legacy.eslintrc.js}r;
+    if ( $Filename =~ m{Frontend/} ) {
+        $ESLintConfigPath = __FILE__ =~ s{ESLint\.pm}{ESLint/frontend.eslintrc.js}r;
+
+    }
+    elsif ( $Filename =~ m{scripts/webpack} ) {
+        $ESLintConfigPath = __FILE__ =~ s{ESLint\.pm}{ESLint/webpack.eslintrc.js}r;
+    }
+
+    my $ESLintRulesPath = __FILE__ =~ s{ESLint\.pm}{ESLint/Rules}r;
+
     my $Command = sprintf(
         "%s %s -c %s --rulesdir %s --fix %s",
         $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename
     );
+
     my ( $Output, @Result ) = capture_merged { system($Command) };
 
     if ( @Result && $Result[0] ) {
