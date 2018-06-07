@@ -54,16 +54,19 @@ sub transform_file {    ## no critic
         }
     }
 
-    my $ESLintConfigPath = __FILE__ =~ s{ESLint\.pm}{ESLint/legacy.eslintrc.js}r;
+    my $ESLintConfigPath = __FILE__;
+    $ESLintConfigPath =~ s{ESLint\.pm}{ESLint/legacy.eslintrc.js};
     if ( $Filename =~ m{Frontend/} ) {
-        $ESLintConfigPath = __FILE__ =~ s{ESLint\.pm}{ESLint/frontend.eslintrc.js}r;
-
+        $ESLintConfigPath = __FILE__;
+        $ESLintConfigPath =~ s{ESLint\.pm}{ESLint/frontend.eslintrc.js};
     }
     elsif ( $Filename =~ m{scripts/webpack} ) {
-        $ESLintConfigPath = __FILE__ =~ s{ESLint\.pm}{ESLint/webpack.eslintrc.js}r;
+        $ESLintConfigPath = __FILE__;
+        $ESLintConfigPath =~ s{ESLint\.pm}{ESLint/webpack.eslintrc.js};
     }
 
-    my $ESLintRulesPath = __FILE__ =~ s{ESLint\.pm}{ESLint/Rules}r;
+    my $ESLintRulesPath = __FILE__;
+    $ESLintRulesPath =~ s{ESLint\.pm}{ESLint/Rules};
 
     my $Command = sprintf(
         "%s %s -c %s --rulesdir %s --fix %s",
