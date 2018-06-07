@@ -122,12 +122,10 @@ select = **/*.{js,vue}
 select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::AGPLValidator]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
-; TEMPORARY EXCEPTION: New frontend codes
-ignore = Frontend/**/*
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
 select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js,sh,tmpl,html,skel}

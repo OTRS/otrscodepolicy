@@ -144,6 +144,14 @@ sub validate_file {    ## no critic
         die __PACKAGE__ . "\nFound no valid .pl license header!" if $Code !~ m{\Q$AGPLLong\E};
     }
 
+    # Check minimal license header.
+    elsif ( lc $Filetype eq 'vue' || lc $Filetype eq 'css' || lc $Filetype eq 'scss' ) {
+
+        my $AGPLMinimal = _AGPLMinimal();
+
+        die __PACKAGE__ . "\nFound no valid minimal license header!" if $Code !~ m{\Q$AGPLMinimal\E};
+    }
+
     # Check default license header.
     else {
 
@@ -209,6 +217,14 @@ sub _AGPLJavaScript {
 // did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 // --
 END_AGPLJAVASCRIPT
+}
+
+sub _AGPLMinimal {
+    return <<'END_AGPLMINIMAL';
+This software comes with ABSOLUTELY NO WARRANTY. For details, see
+the enclosed file COPYING for license information (AGPL). If you
+did not receive this file, see: http://www.gnu.org/licenses/agpl.txt.
+END_AGPLMINIMAL
 }
 
 sub _AGPLPerldoc {
