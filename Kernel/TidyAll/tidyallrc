@@ -253,11 +253,12 @@ select = **/*.{pm,pod,pod.dist}
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
 
 ; $Kernel::OM must not be used in the base WebApp infrastructure, only
-;   in controllers and the plugin providing Kernel::OM to the controllers.
+;   in controllers, controller utility packages and the plugin
+;   providing Kernel::OM to the controllers.
 [+TidyAll::Plugin::OTRS::Perl::ProhibitObjectManager]
 select = Kernel/WebApp.pm
-select = Kernel/WebApp/**/*.{pl,pm}
-ignore = Kernel/WebApp/Controller/**/*
+select = Kernel/WebApp/*.pm
+ignore = Kernel/WebApp/Plugin/**/*.pm
 ignore = Kernel/WebApp/Plugin/*ProvideObjectManager.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON]

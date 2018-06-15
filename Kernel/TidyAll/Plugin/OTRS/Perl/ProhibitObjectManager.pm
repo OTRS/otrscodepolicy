@@ -21,7 +21,7 @@ sub validate_source {    ## no critic
 
     if ( $Code =~ m{\$Kernel::OM}smx ) {
         die __PACKAGE__ . "\n" . <<EOF;
-Don't use \$Kernel::OM in Kernel::WebApp, except in controllers.
+Don't use \$Kernel::OM in Kernel::WebApp, except in controllers or their utility packages.
 EOF
     }
 
