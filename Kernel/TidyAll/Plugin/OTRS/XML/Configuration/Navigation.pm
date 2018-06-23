@@ -54,9 +54,9 @@ sub validate_source {    ## no critic
                 Name                 => 'Valid Frontend subgroups',
                 MatchSettingName     => qr{.*},
                 MatchNavigationValue => qr{^Frontend},                # no entries allowed in "Frontend" directly
-                RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Base|Customer|Public)(::|$)},
+                RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Base|Customer|Public|External)(::|$)},
                 ErrorMessage =>
-                    'Invalid top Frontend subgroup found (only Admin|Agent|Base|Customer|Public are allowed).',
+                    'Invalid top Frontend subgroup found (only Admin|Agent|Base|Customer|Public|External are allowed).',
             },
             {
                 Name                   => 'Main Loader config',
