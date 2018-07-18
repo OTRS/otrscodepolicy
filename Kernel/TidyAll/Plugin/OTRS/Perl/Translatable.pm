@@ -21,8 +21,8 @@ sub validate_source {    ## no critic
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 5, 0 );
 
-    #$Code = $Self->StripPod( Code => $Code );
-    #$Code = $Self->StripComments( Code => $Code );
+    $Code = $Self->StripPod( Code => $Code );
+    $Code = $Self->StripComments( Code => $Code );
 
     if ( $Code =~ m{Translatable\(}xms && $Code !~ m{^use\s+Kernel::Language[^\n]+Translatable}xms ) {
         die __PACKAGE__ . "\n" . <<EOF;
