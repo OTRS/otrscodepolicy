@@ -32,6 +32,9 @@ sub validate_source {    ## no critic
 
     my $ErrorMessage;
 
+    my $PackageIsRole;
+    $PackageIsRole = 1 if $Code =~ m{^use \s+ Moose::Role}ismx;
+
     my @CodeLines = split /\n/, $Code;
 
     for my $Line (@CodeLines) {
@@ -56,7 +59,7 @@ sub validate_source {    ## no critic
             $FunctionCallInPod = $1;
             $FunctionCallInPod =~ s/ //;
 
-            if ( $Line =~ /\$Self->/ ) {
+            if ( $Line =~ /\$Self->/ && !$PackageIsRole ) {
                 $ErrorMessage .= "Don't use \$Self in perldoc\n";
                 $ErrorMessage .= "Line $Counter: $Line\n";
             }
