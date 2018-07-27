@@ -119,7 +119,7 @@
             <itemizedlist>
                 <listitem><para>xmllint (often in the libxml2-utils package)</para></listitem>
                 <listitem><para>nodejs</para></listitem>
-                <listitem><para>The nodejs package eslint and some helper packages (install with <literal>npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue vue-eslint-parser babel-eslint eslint-plugin-jest</literal></para></listitem>
+                <listitem><para>The nodejs package eslint and some helper packages (install with <literal>npm install -g eslint@4.19.1 eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest</literal></para></listitem>
                 <listitem><para>gettext</para></listitem>
                 <listitem><para>hunspell</para></listitem>
             </itemizedlist>
