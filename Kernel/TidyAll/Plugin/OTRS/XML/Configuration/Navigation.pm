@@ -39,9 +39,9 @@ sub validate_source {    ## no critic
                 Name                   => 'Valid toplevel entries',
                 MatchSettingName       => qr{.*},
                 MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^(CloudService|Core|Daemon|GenericInterface|Frontend)(::|$)},
+                RequireNavigationMatch => qr{^(CloudService|Core|Daemon|GenericInterface|Frontend|WebApp)(::|$)},
                 ErrorMessage =>
-                    'Invalid top level group found (only CloudService|Core|Daemon|GenericInterface|Frontend are allowed).',
+                    'Invalid top level group found (only CloudService|Core|Daemon|GenericInterface|Frontend|WebApp are allowed).',
             },
             {
                 Name                   => 'Event handlers',
@@ -57,6 +57,14 @@ sub validate_source {    ## no critic
                 RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Base|Customer|Public|External)(::|$)},
                 ErrorMessage =>
                     'Invalid top Frontend subgroup found (only Admin|Agent|Base|Customer|Public|External are allowed).',
+            },
+            {
+                Name                 => 'Valid WebApp subgroups',
+                MatchSettingName     => qr{.*},
+                MatchNavigationValue => qr{^WebApp},                # no entries allowed in "Frontend" directly
+                RequireNavigationMatch => qr{^WebApp::(API)(::|$)},
+                ErrorMessage =>
+                    'Invalid top WebApp subgroup found (only API is allowed).',
             },
             {
                 Name                   => 'Main Loader config',
