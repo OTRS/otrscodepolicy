@@ -21,6 +21,8 @@
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Description Lang="hu">OTRS kódminőség ellenőrzések.</Description>
+    <PackageIsDownloadable>0</PackageIsDownloadable>
+    <PackageIsBuildable>0</PackageIsBuildable>
     <Filelist>
         <File Permission="770" Location="bin/otrs.CodePolicy.pl" />
         <File Permission="660" Location="Kernel/cpan-lib/Pod/Strip.pm" />
@@ -208,6 +210,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/Lint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/RequiredElements.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/TT/TranslationFilter.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/NameLength.t" />

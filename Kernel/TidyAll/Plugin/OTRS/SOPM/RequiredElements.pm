@@ -62,6 +62,9 @@ sub validate_source {    ## no critic
     my $Table           = 0;
     my $DatabaseUpgrade = 0;
     my $NameLength      = 0;
+    my $DownloadFlag    = 0;
+    my $BuildFlag       = 0;
+    my $PackageName     = '';
 
     my $TableNameLength = 30;
 
@@ -69,8 +72,10 @@ sub validate_source {    ## no critic
 
     for my $Line (@CodeLines) {
         $Counter++;
-        if ( $Line =~ /<Name>[^<>]+<\/Name>/ ) {
-            $Name = 1;
+        if ( $Line =~ /<Name>([^<>]+)<\/Name>/ ) {
+
+            $Name        = 1;
+            $PackageName = $1;
         }
         elsif ( $Line =~ /<Description Lang="en">[^<>]+<\/Description>/ ) {
             $DescriptionEN = 1;
@@ -140,6 +145,16 @@ sub validate_source {    ## no critic
                 $NameLength .= "Line $Counter: $Name\n";
             }
         }
+
+        # OTRS 7: Check PackageIsDownloadable + PackageIsBuildable flags.
+        if ( $Line =~ m{ <PackageIsDownloadable>(?: \d )<\/PackageIsDownloadable> }xms ) {
+
+            $DownloadFlag = 1;
+        }
+
+        if ( $Line =~ m{ <PackageIsBuildable>(?: \d )<\/PackageIsBuildable> }xms ) {
+            $BuildFlag = 1;
+        }
     }
 
     if ($Table) {
@@ -178,11 +193,77 @@ sub validate_source {    ## no critic
             .= "Please use Column and Tablenames with less than $TableNameLength letters!\n";
         $ErrorMessage .= $NameLength;
     }
+
+    # Checks for OTRS 7+.
+    if ( !$Self->IsFrameworkVersionLessThan( 7, 0 ) ) {
+
+        # PackageIsDownloadable + PackageIsBuildable flags has to be set for some packages:
+        #   - all packages which starts with OTRS
+        #   - all OTRS Freebie Features
+        #   - all ITSM packages
+        #   - OTRSSTORM package
+        if (
+            $Self->IsRestrictedPackage(
+                Package => $PackageName,
+            )
+            )
+        {
+
+            if ( !$DownloadFlag ) {
+
+                $ErrorMessage .= "You have forgot to use the element <PackageIsDownloadable>!\n";
+            }
+
+            if ( !$BuildFlag ) {
+
+                $ErrorMessage .= "You have forgot to use the element <PackageIsBuildable>!\n";
+            }
+        }
+    }
+
     if ($ErrorMessage) {
         die __PACKAGE__ . "\n" . $ErrorMessage;
     }
 
     return;
+}
+
+sub IsRestrictedPackage {
+    my ( $Self, %Param ) = @_;
+
+    my %RestrictedPackages = (
+
+        # OTRS Freebie Features (otrs.org)
+        FAQ                     => 1,
+        iPhoneHandle            => 1,
+        MasterSlave             => 1,
+        OTRSAppointmentCalendar => 1,
+        OTRSCodePolicy          => 1,
+        OTRSMasterSlave         => 1,
+        Support                 => 1,
+        Survey                  => 1,
+        SystemMonitoring        => 1,
+        TimeAccounting          => 1,
+
+        # ITSM packages (itsm.otrs.org)
+        GeneralCatalog                => 1,
+        ImportExport                  => 1,
+        ITSM                          => 1,
+        ITSMChangeManagement          => 1,
+        ITSMConfigurationManagement   => 1,
+        ITSMCore                      => 1,
+        ITSMIncidentProblemManagement => 1,
+        ITSMServiceLevelManagement    => 1,
+
+        # STORM packages (storm.otrs.org)
+        OTRSSTORM => 1,
+    );
+    return 1 if $RestrictedPackages{ $Param{Package} };
+
+    # All packages which start with "OTRS".
+    return 1 if $Param{Package} =~ m{ \A OTRS .+ }xms;
+
+    return 0;
 }
 
 1;

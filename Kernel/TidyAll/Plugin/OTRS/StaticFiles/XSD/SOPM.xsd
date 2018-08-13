@@ -21,6 +21,7 @@
 
                 <xs:element ref="PackageIsVisible" minOccurs="0" />
                 <xs:element ref="PackageIsDownloadable" minOccurs="0" />
+                <xs:element ref="PackageIsBuildable" minOccurs="0" />
                 <xs:element ref="PackageIsRemovable" minOccurs="0" />
                 <xs:element ref="PackageAllowDirectUpdate" minOccurs="0" />
 
@@ -80,6 +81,15 @@
     </xs:element>
 
     <xs:element name="PackageIsDownloadable">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="PackageIsBuildable">
         <xs:simpleType>
             <xs:restriction base="xs:string">
                 <xs:enumeration value="0"/>
