@@ -59,9 +59,9 @@ sub validate_source {    ## no critic
                     'Invalid top Frontend subgroup found (only Admin|Agent|Base|Customer|Public|External are allowed).',
             },
             {
-                Name                 => 'Valid WebApp subgroups',
-                MatchSettingName     => qr{.*},
-                MatchNavigationValue => qr{^WebApp},                # no entries allowed in "Frontend" directly
+                Name                   => 'Valid WebApp subgroups',
+                MatchSettingName       => qr{.*},
+                MatchNavigationValue   => qr{^WebApp},                # no entries allowed in "Frontend" directly
                 RequireNavigationMatch => qr{^WebApp::(API)(::|$)},
                 ErrorMessage =>
                     'Invalid top WebApp subgroup found (only API is allowed).',
