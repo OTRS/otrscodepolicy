@@ -64,7 +64,7 @@ sub transform_source {    ## no critic
     #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
     #
     $Code =~ s{
-        ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) did [ \s \w ]+ \, \s+ see \s+ (?: L< |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > |  ) \.
+        ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) did [ \s \w ]+ \, \s+ see (?: : |  ) \s+ (?: L< |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > |  ) \.
     }{$1did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.}xmsg;
 
     # Replace this license line in .pm .pl .tt and .js files.
@@ -97,7 +97,7 @@ sub transform_source {    ## no critic
         #     did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.
         #
         $Code =~ s{
-            ^ did [ \s \w ]+ \, \s+ see \s+ (?: L< | < |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > | > |  ) \.
+            ^ did [ \s \w ]+ \, \s+ see (?: : |  ) \s+ (?: L< | < |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > | > |  ) \.
         }{did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.}xmsg;
 
         # Replace this license line in .pm .pl .t (perldoc) files.
@@ -240,19 +240,19 @@ END_GPLJAVASCRIPT
 }
 
 sub _GPLCss {
-    return <<'END_GPLMINIMAL';
+    return <<'END_GPLCSS';
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
-did not receive this file, see: https://www.gnu.org/licenses/gpl-3.0.txt.
-END_GPLMINIMAL
+did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+END_GPLCSS
 }
 
 sub _GPLVue {
-    return <<'END_GPLMINIMAL';
+    return <<'END_GPLVUE';
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
-did not receive this file, see: https://www.gnu.org/licenses/gpl-3.0.txt.
-END_GPLMINIMAL
+did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+END_GPLVUE
 }
 
 sub _GPLGeneric {
