@@ -82,7 +82,21 @@ sub transform_source {    ## no critic
     }{$1This software is part of the OTRS project (https://otrs.org/).}xmsg;
 
     # We are using "use warnings;" as indicator for a .pm or .pl file because we have no access to filetype here.
-    if ( $Code =~ m{ ^ \s* use \s+ warnings; \s* $ }smx ) {
+    if ( $Code =~ m{ ^ \s* use \s+ warnings\; \s* $ }smx ) {
+
+        # Replace this license line in .pm .pl .t (perldoc) files.
+        #
+        # Original:
+        #     This software is part of the OTRS project (https://otrs.org/).
+        #     This software is part of the OTRS project (http://otrs.com/).
+        #     This software is part of the OTRS project (<http://otrs.org/>).
+        #
+        # Replacement:
+        #     This software is part of the OTRS project (L<https://otrs.org/>).
+        #
+        $Code =~ s{
+            ^ This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < |  ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/ (?: > |  ) \) \.
+        }{This software is part of the OTRS project (L<https://otrs.org/>).}xmsg;
 
         # Replace this license line in .pm .pl .t (perldoc) files.
         #
@@ -97,22 +111,8 @@ sub transform_source {    ## no critic
         #     did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.
         #
         $Code =~ s{
-            ^ did [ \s \w ]+ \, \s+ see (?: : |  ) \s+ (?: L< | < |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > | > |  ) \.
+            ^ did [ \s \w ]+ \, \s+ see (?: : |  ) \s+ (?: L< | < |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -3\.0 | -2\.0 |  ) \.txt (?: > | > |  ) \.
         }{did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.}xmsg;
-
-        # Replace this license line in .pm .pl .t (perldoc) files.
-        #
-        # Original:
-        #     This software is part of the OTRS project (https://otrs.org/).
-        #     This software is part of the OTRS project (http://otrs.com/).
-        #     This software is part of the OTRS project (<http://otrs.org/>).
-        #
-        # Replacement:
-        #     This software is part of the OTRS project (L<https://otrs.org/>).
-        #
-        $Code =~ s{
-            ^ This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: < |  ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/ (?: > |  ) \) \.
-        }{This software is part of the OTRS project (L<https://otrs.org/>).}xmsg;
     }
 
     # Define old and new FSF FSF Mailing Addresses.
@@ -269,7 +269,7 @@ sub _GPLPerldoc {
     return <<'END_GPLPERLDOC';
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (L<http://otrs.org/>).
+This software is part of the OTRS project (L<https://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
