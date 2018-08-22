@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,6 +19,26 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
+
+    # Replace this license line...
+    #
+    # Original:
+    #     AFFERO General Public License (AGPL)
+    #
+    # Replacement:
+    #     GNU GENERAL PUBLIC LICENSE (GPL)
+    #
+    $Code =~ s{AFFERO \s+ General \s+ Public \s+ License \s+ \(AGPL\)}{GNU GENERAL PUBLIC LICENSE (GPL)}xmsg;
+
+    # Replace this license line...
+    #
+    # Original:
+    #     GNU AFFERO GENERAL PUBLIC LICENSE
+    #
+    # Replacement:
+    #     GNU GENERAL PUBLIC LICENSE
+    #
+    $Code =~ s{GNU \s+ AFFERO \s+ GENERAL \s+ PUBLIC \s+ LICENSE}{GNU GENERAL PUBLIC LICENSE}xmsg;
 
     # Replace this license line in .pm .pl .tt and .js files.
     #
@@ -44,24 +64,8 @@ sub transform_source {    ## no critic
     #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
     #
     $Code =~ s{
-        ^ ( (?: \# \s+ | \/\/ \s+ ) ) did [ \s \w ]+ \, \s+ see \s+ (?: L< |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > |  ) \.
+        ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) did [ \s \w ]+ \, \s+ see \s+ (?: L< |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > |  ) \.
     }{$1did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.}xmsg;
-
-    # Replace this license line in .pm .pl (perldoc) files.
-    #
-    # Original:
-    #     did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
-    #     did not receive this file, see https://www.gnu.org/licenses/gpl.txt.
-    #     did not receive this file, see L<http://www.gnu.org/licenses/gpl-2.0.txt>.
-    #     did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
-    #     did not receive this file, see <https://www.gnu.org/licenses/agpl.txt>.
-    #
-    # Replacement:
-    #     did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.
-    #
-    $Code =~ s{
-        ^ did [ \s \w ]+ \, \s+ see \s+ (?: L< | < |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > | > |  ) \.
-    }{did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.}xmsg;
 
     # Replace this license line in .pm .pl .tt and .js files.
     #
@@ -74,22 +78,42 @@ sub transform_source {    ## no critic
     #     This software is part of the OTRS project (https://otrs.org/).
     #
     $Code =~ s{
-        ^ ( (?: \# \s+ | \/\/ \s+ ) ) This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/>\) \.
+        ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/>\) \.
     }{$1This software is part of the OTRS project (https://otrs.org/).}xmsg;
 
-    # Replace this license line in .pm .pl (perldoc) files.
-    #
-    # Original:
-    #     This software is part of the OTRS project (https://otrs.org/).
-    #     This software is part of the OTRS project (http://otrs.com/).
-    #     This software is part of the OTRS project (<http://otrs.org/>).
-    #
-    # Replacement:
-    #     This software is part of the OTRS project (L<https://otrs.org/>).
-    #
-    $Code =~ s{
-        ^ This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: < |  ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/ (?: > |  ) \) \.
-    }{This software is part of the OTRS project (L<https://otrs.org/>).}xmsg;
+    # We are using "use warnings;" as indicator for a .pm or .pl file because we have no access to filetype here.
+    if ( $Code =~ m{ ^ \s* use \s+ warnings; \s* $ }smx ) {
+
+        # Replace this license line in .pm .pl .t (perldoc) files.
+        #
+        # Original:
+        #     did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+        #     did not receive this file, see https://www.gnu.org/licenses/gpl.txt.
+        #     did not receive this file, see L<http://www.gnu.org/licenses/gpl-2.0.txt>.
+        #     did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+        #     did not receive this file, see <https://www.gnu.org/licenses/agpl.txt>.
+        #
+        # Replacement:
+        #     did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.
+        #
+        $Code =~ s{
+            ^ did [ \s \w ]+ \, \s+ see \s+ (?: L< | < |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > | > |  ) \.
+        }{did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.}xmsg;
+
+        # Replace this license line in .pm .pl .t (perldoc) files.
+        #
+        # Original:
+        #     This software is part of the OTRS project (https://otrs.org/).
+        #     This software is part of the OTRS project (http://otrs.com/).
+        #     This software is part of the OTRS project (<http://otrs.org/>).
+        #
+        # Replacement:
+        #     This software is part of the OTRS project (L<https://otrs.org/>).
+        #
+        $Code =~ s{
+            ^ This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: < |  ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/ (?: > |  ) \) \.
+        }{This software is part of the OTRS project (L<https://otrs.org/>).}xmsg;
+    }
 
     # Define old and new FSF FSF Mailing Addresses.
     my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
@@ -100,7 +124,7 @@ sub transform_source {    ## no critic
         print "NOTICE: _GPL3LicenseCheck() updated the FSF Mailing Address\n";
     }
 
-    my $GPLLong = _GPLLong();
+    my $GPLPerlScript = _GPLPerlScript();
 
     # Replace the license header in .pl files.
     $Code =~ s{
@@ -108,7 +132,7 @@ sub transform_source {    ## no critic
         \# \s+ This \s+ program \s+ is \s+ free \s+ software; \s+ [ \s \w \, \. \; \# \/ \( \) ]+
         51 \s+ Franklin \s+ St, \s+ Fifth \s+ Floor, \s+ Boston, \s+ MA \s+ 02110-1301 \s+ USA .*?
         \# \s+ -- \n
-    }{$GPLLong}xmsg;
+    }{$GPLPerlScript}xmsg;
 
     if ( !$Self->IsFrameworkVersionLessThan( 7, 0 ) ) {
 
@@ -133,31 +157,39 @@ sub validate_file {    ## no critic
 
         my $GPLJavaScript = _GPLJavaScript();
 
-        die __PACKAGE__ . "\nFound no valid .js license header!" if $Code !~ m{\Q$GPLJavaScript\E};
+        die __PACKAGE__ . "\nFound no valid javascript license header!" if $Code !~ m{\Q$GPLJavaScript\E};
     }
 
     # Check a perl script license header.
     elsif ( lc $Filetype eq 'pl' || lc $Filetype eq 'psgi' ) {
 
-        my $GPLLong = _GPLLong();
+        my $GPLPerlScript = _GPLPerlScript();
 
-        die __PACKAGE__ . "\nFound no valid .pl license header!" if $Code !~ m{\Q$GPLLong\E};
+        die __PACKAGE__ . "\nFound no valid perl script license header!" if $Code !~ m{\Q$GPLPerlScript\E};
     }
 
-    # Check minimal license header.
-    elsif ( lc $Filetype eq 'vue' || lc $Filetype eq 'css' || lc $Filetype eq 'scss' ) {
+    # Check css license header.
+    elsif ( lc $Filetype eq 'css' || lc $Filetype eq 'scss' ) {
 
-        my $GPLMinimal = _GPLMinimal();
+        my $GPLCss = _GPLCss();
 
-        die __PACKAGE__ . "\nFound no valid minimal license header!" if $Code !~ m{\Q$GPLMinimal\E};
+        die __PACKAGE__ . "\nFound no valid css license header!" if $Code !~ m{\Q$GPLCss\E};
     }
 
-    # Check default license header.
+    # Check vue license header.
+    elsif ( lc $Filetype eq 'vue' ) {
+
+        my $GPLVue = _GPLVue();
+
+        die __PACKAGE__ . "\nFound no valid vue license header!" if $Code !~ m{\Q$GPLVue\E};
+    }
+
+    # Check generic license header.
     else {
 
-        my $GPLShort = _GPLShort();
+        my $GPLGeneric = _GPLGeneric();
 
-        die __PACKAGE__ . "\nFound no valid license header!" if $Code !~ m{\Q$GPLShort\E};
+        die __PACKAGE__ . "\nFound no valid license header!" if $Code !~ m{\Q$GPLGeneric\E};
     }
 
     # Check perldoc license header.
@@ -172,13 +204,13 @@ sub validate_file {    ## no critic
     }
 
     # Check if there is aother strange AGPL license content.
-    if ( $Code =~ m{(^ [^\n]* (?: \(AGPL\) | /agpl ) [^\n]* $)}smx ) {
+    if ( $Code =~ m{(^ [^\n]* (?: \(AGPL\) | /agpl | AFFERO ) [^\n]* $)}smx ) {
         die __PACKAGE__ . "\nThere is strange license wording!\nLine: $1";
     }
 }
 
-sub _GPLLong {
-    return <<'END_GPLLONG';
+sub _GPLPerlScript {
+    return <<'END_GPLPERLSCRIPT';
 # --
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -193,18 +225,8 @@ sub _GPLLong {
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
-END_GPLLONG
+END_GPLPERLSCRIPT
 
-}
-
-sub _GPLShort {
-    return <<'END_GPLSHORT';
-# --
-# This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (GPL). If you
-# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
-# --
-END_GPLSHORT
 }
 
 sub _GPLJavaScript {
@@ -217,12 +239,30 @@ sub _GPLJavaScript {
 END_GPLJAVASCRIPT
 }
 
-sub _GPLMinimal {
+sub _GPLCss {
     return <<'END_GPLMINIMAL';
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
 did not receive this file, see: https://www.gnu.org/licenses/gpl-3.0.txt.
 END_GPLMINIMAL
+}
+
+sub _GPLVue {
+    return <<'END_GPLMINIMAL';
+This software comes with ABSOLUTELY NO WARRANTY. For details, see
+the enclosed file COPYING for license information (GPL). If you
+did not receive this file, see: https://www.gnu.org/licenses/gpl-3.0.txt.
+END_GPLMINIMAL
+}
+
+sub _GPLGeneric {
+    return <<'END_GPLGENERIC';
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+# --
+END_GPLGENERIC
 }
 
 sub _GPLPerldoc {
@@ -235,7 +275,6 @@ This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
 did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.
 END_GPLPERLDOC
-
 }
 
 1;

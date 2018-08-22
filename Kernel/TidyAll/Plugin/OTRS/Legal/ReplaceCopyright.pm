@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ sub transform_source {    ## no critic
     # Don't replace copyright in thirdparty code.
     return $Code if $Self->IsThirdpartyModule();
 
-    my $Copy      = 'OTRS AG, http://otrs.com/';
+    my $Copy      = 'OTRS AG, https://otrs.com/';
     my $StartYear = 2001;
 
     my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = localtime( time() );    ## no critic
@@ -55,11 +55,11 @@ sub transform_source {    ## no critic
         if ( $Line !~ m{ ^\# \s Copyright }smx ) {
             if (
                 $Line
-                =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http:\/\/otrs\. (?: org | com ) \/? }smx
+                =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/? }smx
                 )
             {
                 $Line =~ s{
-                     ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http:\/\/otrs\. (?: org | com ) \/?
+                     ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/?
                  }
                  {$1Copyright (C) $YearString $Copy}smx;
             }
