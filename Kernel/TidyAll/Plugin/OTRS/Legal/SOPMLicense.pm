@@ -2,8 +2,8 @@
 # Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (AGPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
 package TidyAll::Plugin::OTRS::Legal::SOPMLicense;
@@ -18,14 +18,18 @@ sub transform_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-    # Replace GPL2 with AGPL3
+    # Replace GPL2 with GPL3
     $Code
-        =~ s{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 2, \s June \s 1991</License>}{<License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
+        =~ s{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 2, \s June \s 1991</License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
+
+    # Replace AGPL3 with GPL3
+    $Code
+        =~ s{<License>GNU \s AFFERO \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s November \s 2007</License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
 
     return $Code;
 }
 
-sub validate_source {     ## no critic
+sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
@@ -37,12 +41,12 @@ sub validate_source {     ## no critic
 
     if (
         $Code
-        !~ m{<License>GNU \s AFFERO \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s November \s 2007</License>}smx
+        !~ m{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s November \s 2007</License>}smx
         )
     {
         die __PACKAGE__ . "\n" . <<EOF;
 Invalid license found.
-Use <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>.
+Use <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>.
 EOF
     }
 

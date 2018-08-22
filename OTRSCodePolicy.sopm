@@ -18,7 +18,7 @@
 
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Description Lang="hu">OTRS kódminőség ellenőrzések.</Description>
     <PackageIsDownloadable>0</PackageIsDownloadable>
@@ -56,7 +56,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileNameUnitTest.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/UnloadEvent.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/AddressUpdate.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/AGPLValidator.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/GPLValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS4/FontAwesome.pm" />

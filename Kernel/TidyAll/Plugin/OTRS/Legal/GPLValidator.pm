@@ -6,9 +6,9 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Legal::AGPLValidator;
+package TidyAll::Plugin::OTRS::Legal::GPLValidator;
 ## nofilter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
-## nofilter(TidyAll::Plugin::OTRS::Legal::AGPLValidator)
+## nofilter(TidyAll::Plugin::OTRS::Legal::GPLValidator)
 
 use strict;
 use warnings;

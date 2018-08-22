@@ -2,7 +2,7 @@ package Perl::Critic::Policy::OTRS::ProhibitOpen;
 
 # nofilter(TidyAll::Plugin::OTRS::Common::HeaderlineFilename)
 # nofilter(TidyAll::Plugin::OTRS::Legal::ReplaceCopyright)
-# nofilter(TidyAll::Plugin::OTRS::Legal::AGPLValidator)
+# nofilter(TidyAll::Plugin::OTRS::Legal::GPLValidator)
 # nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
 
 use strict;
