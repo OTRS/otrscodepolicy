@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -27,7 +27,7 @@ my @Tests = (
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -49,7 +49,7 @@ EOF
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -72,7 +72,7 @@ EOF
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -95,7 +95,7 @@ EOF
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -118,7 +118,7 @@ EOF
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -154,7 +154,7 @@ EOF
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>

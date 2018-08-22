@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,18 +18,14 @@ sub transform_source {    ## no critic
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-    # Replace GPL2 with GPL3
+    # Replace license with GPL3
     $Code
-        =~ s{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 2, \s June \s 1991</License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
-
-    # Replace AGPL3 with GPL3
-    $Code
-        =~ s{<License>GNU \s AFFERO \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s November \s 2007</License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
+        =~ s{<License> .*? </License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
 
     return $Code;
 }
 
-sub validate_source {    ## no critic
+sub validate_source {     ## no critic
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
