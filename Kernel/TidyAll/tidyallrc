@@ -121,7 +121,7 @@ select = **/*.{js,vue}
 [+TidyAll::Plugin::OTRS::Legal::AddressUpdate]
 select = doc/**/*.xml
 
-[+TidyAll::Plugin::OTRS::Legal::GPLValidator]
+[+TidyAll::Plugin::OTRS::Legal::LicenseValidator]
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = scripts/auto_build/spec/templates/**/*

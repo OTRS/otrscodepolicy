@@ -56,7 +56,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileNameUnitTest.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/UnloadEvent.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/AddressUpdate.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/GPLValidator.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/LicenseValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS4/FontAwesome.pm" />
