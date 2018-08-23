@@ -151,6 +151,7 @@ sub validate_file {    ## no critic
     my $Code = $Self->_GetFileContents($Filename);
 
     my ($Filetype) = $Filename =~ m{ .* \. ( .+ ) }xmsi;
+    $Filetype ||= '';
 
     # Check a javascript license header.
     if ( lc $Filetype eq 'js' ) {
