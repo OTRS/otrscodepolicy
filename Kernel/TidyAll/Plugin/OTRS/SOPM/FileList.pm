@@ -35,12 +35,13 @@ sub validate_source {    ## no critic
     # Only validate files in subdirectories that are active for checking by
     #   default or actually appear on the list of packaged files.
     my %ToplevelDirectories = (
-        bin     => 1,
-        Custom  => 1,
-        doc     => 1,
-        Kernel  => 1,
-        scripts => 1,
-        var     => 1,
+        bin      => 1,
+        Custom   => 1,
+        doc      => 1,
+        Frontend => 1,
+        Kernel   => 1,
+        scripts  => 1,
+        var      => 1,
     );
 
     # Go trough the files on the SOPM file list
