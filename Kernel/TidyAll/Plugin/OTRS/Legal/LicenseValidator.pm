@@ -135,7 +135,8 @@ sub transform_source {    ## no critic
     #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
     #     */
     #
-    $Code =~ s{ \A \s* \/ \*+ \n \s* \* \s+ \@project .+? \n \s* \* \s+ \@copyright .+? \n \s* \* \s+ \@license .+? \n \s* \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
+    $Code
+        =~ s{ \A \s* \/ \*+ \n (?: | ( \s* \* ( \s* .*? )*? )+? ) \s* \* \s+ \@project .+? \n \s* \* \s+ \@copyright .+? \n \s* \* \s+ \@license .+? \n \s* \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
 
     # Repair the license header with one star at the beginning.
     #
@@ -157,7 +158,8 @@ sub transform_source {    ## no critic
     #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
     #     */
     #
-    $Code =~ s{ \A \/ \*+ \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
+    $Code
+        =~ s{ \A \/ \*+ \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
 
     # Define old and new FSF FSF Mailing Addresses.
     my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
@@ -197,8 +199,12 @@ sub validate_file {    ## no critic
     my ($Filetype) = $Filename =~ m{ .* \. ( .+ ) }xmsi;
     $Filetype ||= '';
 
+    if ( $Filetype eq 'skel' ) {
+        ($Filetype) = $Filename =~ m{ .* \. ( .+ ) \.skel }xmsi;
+    }
+
     # Check a javascript license header.
-    if ( lc $Filetype eq 'js' || lc $Filetype eq 'skel' ) {
+    if ( lc $Filetype eq 'js' ) {
 
         my $GPLJavaScript = _GPLJavaScript();
 

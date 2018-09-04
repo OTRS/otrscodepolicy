@@ -123,7 +123,7 @@ ignore = scripts/test/sample/Loader/**/*
 select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::LicenseValidator]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel}
 ignore = COPYING RELEASE CREDITS
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = Kernel/WebApp.conf.dist
@@ -134,7 +134,7 @@ ignore = scripts/DBUpdateTo6/TaskConfig/MigrateArticleData.yml.dist
 ignore = var/httpd/htdocs/common/**/*.css
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,html,skel,xml}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,html,xml}
 select = .*.dist .bash_completion
 select = var/cron/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
