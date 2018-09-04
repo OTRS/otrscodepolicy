@@ -122,14 +122,14 @@ select = **/*.{js,vue}
 select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::LicenseValidator]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh}
+ignore = COPYING RELEASE CREDITS
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = scripts/auto_build/spec/templates/**/*
-ignore = **/*.{sopm,xml,sql},COPYING,RELEASE,CREDITS
-ignore = var/httpd/htdocs/{common,skins}/**/*.css
+ignore = var/httpd/htdocs/common/**/*.css
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,xml,dtl,tt,dist,spec,js,sh,tmpl,html,skel}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,html,skel,xml}
 select = .*.dist .bash_completion
 select = var/cron/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm

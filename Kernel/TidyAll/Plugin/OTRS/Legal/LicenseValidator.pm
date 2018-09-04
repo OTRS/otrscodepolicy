@@ -115,6 +115,28 @@ sub transform_source {    ## no critic
         }{did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.}xmsg;
     }
 
+    my $GPLCss = _GPLCss();
+
+    # Replace the old css license with the new one.
+    #
+    # Original:
+    #     /**
+    #      * @project     OTRS (http://www.otrs.org) - Agent Frontend
+    #      * @copyright   OTRS AG
+    #      * @license     AGPL (http://www.gnu.org/licenses/agpl.txt)
+    #      */
+    #
+    # Replacement:
+    #     /*
+    #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
+    #
+    #     This software comes with ABSOLUTELY NO WARRANTY. For details, see
+    #     the enclosed file COPYING for license information (GPL). If you
+    #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+    #     */
+    #
+    $Code =~ s{ \A \s* \/ \*+ \n \s* \* \s+ \@project .+? \n \s* \* \s+ \@copyright .+? \n \s* \* \s+ \@license .+? \n \s* \* \/ }{/*\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
+
     # Define old and new FSF FSF Mailing Addresses.
     my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
     my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA';
@@ -154,7 +176,7 @@ sub validate_file {    ## no critic
     $Filetype ||= '';
 
     # Check a javascript license header.
-    if ( lc $Filetype eq 'js' ) {
+    if ( lc $Filetype eq 'js' || lc $Filetype eq 'skel' ) {
 
         my $GPLJavaScript = _GPLJavaScript();
 
@@ -162,7 +184,7 @@ sub validate_file {    ## no critic
     }
 
     # Check a perl script license header.
-    elsif ( lc $Filetype eq 'pl' || lc $Filetype eq 'psgi' ) {
+    elsif ( lc $Filetype eq 'pl' || lc $Filetype eq 'psgi' || lc $Filetype eq 'sh' ) {
 
         my $GPLPerlScript = _GPLPerlScript();
 
