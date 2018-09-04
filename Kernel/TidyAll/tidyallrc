@@ -11,7 +11,7 @@ ignore = **/thirdparty/**/*
 ; Ignore Loader cache files.
 ignore = **/{js-cache,css-cache}/**/*
 ; Ignore test data files.
-ignore = scripts/test/sample/**/*
+;ignore = scripts/test/sample/**/*
 ; Ignore vagrant instance contents of the CI provisioner.
 ignore = var/Vagrant/Instances/**/*
 ; node.js packages
@@ -113,6 +113,7 @@ select = var/httpd/htdocs/js/test/*.js
 
 [+TidyAll::Plugin::OTRS::JavaScript::ESLint]
 select = **/*.{js,vue}
+ignore = scripts/test/sample/Loader/**/*
 
 ;
 ; Legal
@@ -125,6 +126,8 @@ select = doc/**/*.xml
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh}
 ignore = COPYING RELEASE CREDITS
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
+ignore = Kernel/WebApp.conf.dist
+ignore = scripts/test/sample/Loader/*.min.{css,js}
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = var/httpd/htdocs/common/**/*.css
 
@@ -225,6 +228,7 @@ ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+ignore = scripts/test/sample/**/*
 ; do not run for commits to save time
 only_modes = cli tests
 
