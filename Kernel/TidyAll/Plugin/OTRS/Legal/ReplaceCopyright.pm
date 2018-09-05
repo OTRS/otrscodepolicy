@@ -24,6 +24,9 @@ sub transform_source {    ## no critic
     # Don't replace copyright in thirdparty code.
     return $Code if $Self->IsThirdpartyModule();
 
+    # Replace <URL>http://otrs.org/</URL> with <URL>https://otrs.org/</URL>
+    $Code =~ s{ ^ ( \s* ) \< URL \> .+? \< \/ URL \> }{$1<URL>https://otrs.com/</URL>}xmsg;
+
     my $Copy      = 'OTRS AG, https://otrs.com/';
     my $StartYear = 2001;
 

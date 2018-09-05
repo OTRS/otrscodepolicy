@@ -40,6 +40,18 @@ sub transform_source {    ## no critic
     #
     $Code =~ s{GNU \s+ AFFERO \s+ GENERAL \s+ PUBLIC \s+ LICENSE}{GNU GENERAL PUBLIC LICENSE}xmsg;
 
+    # Replace this license line in .xml files.
+    #
+    # Original:
+    #     <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    #     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    #
+    # Replacement:
+    #     <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
+    #
+    $Code
+        =~ s{ ^ ( \s* ) \< License \> .+? \< \/ License \> }{$1<License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>}xmsg;
+
     # Replace this license line in .pm .pl .tt and .js files.
     #
     # Original:
@@ -235,6 +247,14 @@ sub validate_file {    ## no critic
         die __PACKAGE__ . "\nFound no valid vue license header!" if $Code !~ m{\Q$GPLVue\E};
     }
 
+    # Check xml license tag.
+    elsif ( lc $Filetype eq 'xml' || lc $Filetype eq 'sopm' || lc $Filetype eq 'opm' ) {
+
+        my $GPLXML = _GPLXML();
+
+        die __PACKAGE__ . "\nFound no valid XML license header!" if $Code !~ m{\Q$GPLXML\E};
+    }
+
     # Check generic license header.
     else {
 
@@ -304,6 +324,10 @@ This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
 did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 END_GPLVUE
+}
+
+sub _GPLXML {
+    return '<License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>';
 }
 
 sub _GPLGeneric {

@@ -26,8 +26,8 @@ my @Tests = (
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -48,8 +48,8 @@ EOF
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -71,8 +71,8 @@ EOF
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -94,8 +94,8 @@ EOF
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -117,8 +117,8 @@ EOF
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>
@@ -153,8 +153,8 @@ EOF
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.CodePolicy.pl"/>

@@ -21,6 +21,9 @@ sub transform_source {    ## no critic
     # Replace OTRS GmbH with OTRS AG
     $Code =~ s{ OTRS [ ]+ GmbH }{OTRS AG}xmsg;
 
+    # Replace <URL>http://otrs.org/</URL> with <URL>https://otrs.org/</URL>
+    $Code =~ s{ ^ ( \s* ) \< URL \> .+? \< \/ URL \> }{$1<URL>https://otrs.com/</URL>}xmsg;
+
     # Replace Version
     $Code =~ s{ <Version> [^<>\n]* <\/Version> }{<Version>0.0.0</Version>}xmsg;
 

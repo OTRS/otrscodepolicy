@@ -17,8 +17,8 @@
     <ModuleRequired>Perl::Tidy</ModuleRequired>
 
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">OTRS code quality checks.</Description>
     <Description Lang="hu">OTRS kódminőség ellenőrzések.</Description>
     <PackageIsDownloadable>0</PackageIsDownloadable>

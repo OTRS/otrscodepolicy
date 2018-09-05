@@ -20,7 +20,7 @@ sub transform_source {    ## no critic
 
     # Replace license with GPL3
     $Code
-        =~ s{<License> .*? </License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>}gsmx;
+        =~ s{<License> .*? </License>}{<License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>}gsmx;
 
     return $Code;
 }
@@ -32,17 +32,17 @@ sub validate_source {     ## no critic
     return if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     if ( $Code !~ m{<License> .+? </License>}smx ) {
-        die __PACKAGE__ . "\nCould not find a license header.";
+        die __PACKAGE__ . "\nCould not find a valid OPM license header.";
     }
 
     if (
         $Code
-        !~ m{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s November \s 2007</License>}smx
+        !~ m{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s 29 \s June \s 2007</License>}smx
         )
     {
         die __PACKAGE__ . "\n" . <<EOF;
 Invalid license found.
-Use <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>.
+Use <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>.
 EOF
     }
 
