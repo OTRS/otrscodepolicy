@@ -132,6 +132,8 @@ ignore = scripts/test/sample/Loader/*.min.{css,js}
 ignore = scripts/test/sample/SysConfig/Migration/**/ZZZ*.pm
 ignore = scripts/DBUpdateTo6/TaskConfig/MigrateArticleData.yml.dist
 ignore = var/httpd/htdocs/common/**/*.css
+; OTRSContinuousIntegrationProvisioner - deployment template includes
+ignore = **/*.tt.sh
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html}
