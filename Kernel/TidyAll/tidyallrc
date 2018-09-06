@@ -23,6 +23,9 @@ ignore = var/public/dist/**/*
 ; Common
 ;
 
+[+TidyAll::Plugin::OTRS::Common::CRLFLineEndings]
+select = **/*.{pl,psgi,pm,t,js,dtl,css,tt,xml,sopm,scss,vue}
+
 [+TidyAll::Plugin::OTRS::Common::Origin]
 select = **/*.{pl,psgi,pm,t,js,dtl,css,tt,xml,sopm}
 ignore = Kernel/Config/Files/ZZZ*.pm
@@ -123,7 +126,7 @@ ignore = scripts/test/sample/Loader/**/*
 select = doc/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Legal::LicenseValidator]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,sh,skel}
 ignore = COPYING RELEASE CREDITS
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = Kernel/WebApp.conf.dist
