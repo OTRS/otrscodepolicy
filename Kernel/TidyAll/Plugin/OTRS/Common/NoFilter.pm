@@ -86,7 +86,7 @@ sub validate_source {    ## no critic
     else {
 
         die __PACKAGE__ . "\nFound invalid nofilter() line!"
-            if $Code !~ m{ (?: \#\# | \/\/ ) \s nofilter \( .+? \) }xms;
+            if $Code !~ m{ (?: \#\# | \/\/ | \/\* ) \s nofilter \( .+? \) }xms;
     }
 
     return $Code;
