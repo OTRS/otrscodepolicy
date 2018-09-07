@@ -31,6 +31,7 @@
         <File Permission="660" Location="Kernel/TidyAll/OTRS/Git/PreCommit.pm" />
         <File Permission="660" Location="Kernel/TidyAll/OTRS/Git/PreReceive.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Base.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/CRLFLineEndings.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkersTT.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/Origin.pm" />
