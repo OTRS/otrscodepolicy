@@ -33,7 +33,7 @@ sub transform_source {    ## no critic
     return $Code;
 }
 
-sub validate_source {    ## no critic
+sub validate_source {     ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
