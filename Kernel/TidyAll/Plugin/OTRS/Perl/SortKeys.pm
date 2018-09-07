@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::Perl::SortKeys;
 use strict;
 use warnings;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::SortKeys);
+## nofilter(TidyAll::Plugin::OTRS::Perl::SortKeys)
 
 use File::Basename;
 

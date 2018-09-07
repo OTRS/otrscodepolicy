@@ -1,9 +1,9 @@
 package Perl::Critic::Policy::OTRS::ProhibitRandInTests;
 
-# nofilter(TidyAll::Plugin::OTRS::Common::HeaderlineFilename)
-# nofilter(TidyAll::Plugin::OTRS::Legal::ReplaceCopyright)
-# nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator)
-# nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## nofilter(TidyAll::Plugin::OTRS::Common::HeaderlineFilename)
+## nofilter(TidyAll::Plugin::OTRS::Legal::ReplaceCopyright)
+## nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator)
+## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
 
 use strict;
 use warnings;

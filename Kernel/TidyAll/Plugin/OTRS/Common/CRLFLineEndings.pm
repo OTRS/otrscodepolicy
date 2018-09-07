@@ -25,7 +25,6 @@ sub transform_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 3, 0 );
 
     # Remove CRLF line endings.
     $Code =~ s{ \r $ }{}xmsg;
@@ -37,7 +36,6 @@ sub validate_source {     ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 3, 0 );
 
     die __PACKAGE__ . "\nFound CRLF line endings!" if $Code =~ m{ \r $ }xmsg;
 

@@ -9,7 +9,7 @@
 ## no critic (Modules::RequireExplicitPackage)
 use strict;
 use warnings;
-## nofilter(TidyAll::Plugin::OTRS::Perl::SortKeys);
+## nofilter(TidyAll::Plugin::OTRS::Perl::SortKeys)
 
 use vars (qw($Self));
 use utf8;

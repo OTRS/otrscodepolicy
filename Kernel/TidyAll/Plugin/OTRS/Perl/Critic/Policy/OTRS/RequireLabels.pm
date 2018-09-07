@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::RequireLabels;
 
-# nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
 
 use strict;
 use warnings;

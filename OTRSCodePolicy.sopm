@@ -34,6 +34,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/CRLFLineEndings.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkers.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/CustomizationMarkersTT.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/NoFilter.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/Origin.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/ProhibitEmailAddresses.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/TranslatableStringsSpellCheck.pm" />
