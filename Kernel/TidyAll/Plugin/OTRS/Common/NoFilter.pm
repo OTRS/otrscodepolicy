@@ -57,17 +57,31 @@ sub transform_source {    ## no critic
     #
     $Code =~ s{ ^ ( [^\/\n]* ) \/+ \s* no \s* filter \s* \( ( .+? ) \) .*? \n }{$1// nofilter($2)\n}xmsg;
 
-  # Replace nofilter lines in xml like files.
-  #
-  # Original:
-  #     <!-- nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator) -->
-  #     <!--  no filter (TidyAll::Plugin::OTRS::Legal::LicenseValidator) -->
-  #     <!--  nofilter (TidyAll::Plugin::OTRS::Legal::LicenseValidator); -->
-  #
-  # Replacement:
-  #     <!-- no filter (TidyAll::Plugin::OTRS::Legal::LicenseValidator) -->
-  #
-  #$Code =~ s{ ^ ( \s* ) <!-- [^\n]* no \s* filter \s* \( ( .+? ) \) .*? --> [^\n]* \n }{$1<!-- nofilter($2) -->\n}xmsg;
+    # Replace nofilter lines in css like files.
+    #
+    # Original:
+    #     /* nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator) */
+    #     /**  no filter (TidyAll::Plugin::OTRS::Legal::LicenseValidator) */
+    #     /*  nofilter (TidyAll::Plugin::OTRS::Legal::LicenseValidator); */
+    #
+    # Replacement:
+    #     /* nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator) */
+    #
+    $Code
+        =~ s{ ^ ( \s* ) \\ \*+ [^\n]* no \s* filter \s* \( ( .+? ) \) .*? \*+ \\ [^\n]* \n }{$1/* nofilter($2) */\n}xmsg;
+
+    # Replace nofilter lines in xml like files.
+    #
+    # Original:
+    #     <!-- nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator) -->
+    #     <!--  no filter (TidyAll::Plugin::OTRS::Legal::LicenseValidator) -->
+    #     <!--  nofilter (TidyAll::Plugin::OTRS::Legal::LicenseValidator); -->
+    #
+    # Replacement:
+    #     <!-- nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator) -->
+    #
+    $Code
+        =~ s{ ^ ( \s* ) <!-- [^\n]* no \s* filter \s* \( ( .+? ) \) .*? --> [^\n]* \n }{$1<!-- nofilter($2) -->\n}xmsg;
 
     return $Code;
 }
