@@ -62,9 +62,9 @@ sub validate_source {    ## no critic
                 Name                   => 'Valid WebApp subgroups',
                 MatchSettingName       => qr{.*},
                 MatchNavigationValue   => qr{^WebApp::},              # Allow toplevel entries
-                RequireNavigationMatch => qr{^WebApp::(API)(::|$)},
+                RequireNavigationMatch => qr{^WebApp::(API|APIClient)(::|$)},
                 ErrorMessage =>
-                    'Invalid top WebApp subgroup found (only API is allowed).',
+                    'Invalid top WebApp subgroup found (only API|APIClient is allowed).',
             },
             {
                 Name                   => 'Main Loader config',
