@@ -16,12 +16,6 @@ use parent qw(TidyAll::Plugin::OTRS::Perl);
 sub validate_source {    ## no critic
     my ( $Self, $Code ) = @_;
 
-    #
-    # TODO: activate when changes have landed in the framework.
-    #
-    ## no critic
-    return;
-
     return $Code if $Self->IsPluginDisabled( Code => $Code );
     return $Code if $Self->IsFrameworkVersionLessThan( 7, 0 );
 
