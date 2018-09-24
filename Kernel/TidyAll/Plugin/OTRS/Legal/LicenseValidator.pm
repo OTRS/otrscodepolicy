@@ -173,6 +173,29 @@ sub transform_source {    ## no critic
     $Code
         =~ s{ \A \/ \*+ \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
 
+    # Repair the license header with /*/* at the beginning.
+    #
+    # Original:
+    #     /*/*
+    #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
+    #
+    #     This software comes with ABSOLUTELY NO WARRANTY. For details, see
+    #     the enclosed file COPYING for license information (GPL). If you
+    #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+    #     */
+    #
+    # Replacement:
+    #     /**
+    #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
+    #
+    #     This software comes with ABSOLUTELY NO WARRANTY. For details, see
+    #     the enclosed file COPYING for license information (GPL). If you
+    #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+    #     */
+    #
+    $Code
+        =~ s{ \A \/ \* \/ \* \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
+
     # Define old and new FSF FSF Mailing Addresses.
     my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
     my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA';
