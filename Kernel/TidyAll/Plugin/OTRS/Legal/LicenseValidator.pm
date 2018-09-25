@@ -28,17 +28,18 @@ sub transform_source {    ## no critic
     # Replacement:
     #     GNU GENERAL PUBLIC LICENSE (GPL)
     #
-    $Code =~ s{AFFERO \s+ General \s+ Public \s+ License \s+ \(AGPL\)}{GNU GENERAL PUBLIC LICENSE (GPL)}xmsg;
+    $Code =~ s{AFFERO \s+ General \s+ Public \s+ License \s+ \(AGPL\)}{GNU GENERAL PUBLIC LICENSE (GPL)}xmsgi;
 
     # Replace this license line...
     #
     # Original:
     #     GNU AFFERO GENERAL PUBLIC LICENSE
+    #     GNU Affero General Public License
     #
     # Replacement:
     #     GNU GENERAL PUBLIC LICENSE
     #
-    $Code =~ s{GNU \s+ AFFERO \s+ GENERAL \s+ PUBLIC \s+ LICENSE}{GNU GENERAL PUBLIC LICENSE}xmsg;
+    $Code =~ s{GNU \s+ AFFERO \s+ GENERAL \s+ PUBLIC \s+ LICENSE}{GNU GENERAL PUBLIC LICENSE}xmsgi;
 
     # Replace this license line in .xml files.
     #
@@ -201,9 +202,7 @@ sub transform_source {    ## no critic
     my $NewFSFAddress = '51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA';
 
     # Replace FSF Mailing Address.
-    if ( $Code =~ s{$OldFSFAddress}{$NewFSFAddress}xms ) {
-        print "NOTICE: _GPL3LicenseCheck() updated the FSF Mailing Address\n";
-    }
+    $Code =~ s{$OldFSFAddress}{$NewFSFAddress}xmsg;
 
     my $GPLPerlScript = _GPLPerlScript();
 
@@ -271,11 +270,17 @@ sub validate_file {    ## no critic
     }
 
     # Check xml license tag.
-    elsif ( lc $Filetype eq 'xml' || lc $Filetype eq 'sopm' || lc $Filetype eq 'opm' ) {
+    elsif ( lc $Filetype eq 'xml' ) {
 
-        my $GPLXML = _GPLXML();
+        # Do not validate XML files, because there a so many different content (config XML, documentation XML, ...)
+    }
 
-        die __PACKAGE__ . "\nFound no valid XML license header!" if $Code !~ m{\Q$GPLXML\E};
+    # Check opm and sopm license tag.
+    elsif ( lc $Filetype eq 'sopm' || lc $Filetype eq 'opm' ) {
+
+        my $GPLOPM = _GPLOPM();
+
+        die __PACKAGE__ . "\nFound no valid OPM license header!" if $Code !~ m{\Q$GPLOPM\E};
     }
 
     # Check generic license header.
@@ -353,7 +358,7 @@ did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 END_GPLVUE
 }
 
-sub _GPLXML {
+sub _GPLOPM {
     return '<License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>';
 }
 
