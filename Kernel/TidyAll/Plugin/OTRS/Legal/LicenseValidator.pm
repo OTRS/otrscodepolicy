@@ -139,20 +139,6 @@ sub transform_source {    ## no critic
     #      */
     #
     # Replacement:
-    #     /**
-    #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
-    #
-    #     This software comes with ABSOLUTELY NO WARRANTY. For details, see
-    #     the enclosed file COPYING for license information (GPL). If you
-    #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
-    #     */
-    #
-    $Code
-        =~ s{ \A \s* \/ \*+ \n (?: | ( \s* \* ( \s* .*? )*? )+? ) \s* \* \s+ \@project .+? \n \s* \* \s+ \@copyright .+? \n \s* \* \s+ \@license .+? \n \s* \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
-
-    # Repair the license header with one star at the beginning.
-    #
-    # Original:
     #     /*
     #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
     #
@@ -161,7 +147,12 @@ sub transform_source {    ## no critic
     #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
     #     */
     #
-    # Replacement:
+    $Code
+        =~ s{ \A \s* \/ \*+ \n (?: | ( \s* \* ( \s* .*? )*? )+? ) \s* \* \s+ \@project .+? \n \s* \* \s+ \@copyright .+? \n \s* \* \s+ \@license .+? \n \s* \* \/ \n+ }{/*\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n$GPLCss\n}xmsg;
+
+    # Repair the license header with two stars at the beginning.
+    #
+    # Original:
     #     /**
     #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
     #
@@ -170,8 +161,17 @@ sub transform_source {    ## no critic
     #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
     #     */
     #
+    # Replacement:
+    #     /*
+    #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
+    #
+    #     This software comes with ABSOLUTELY NO WARRANTY. For details, see
+    #     the enclosed file COPYING for license information (GPL). If you
+    #     did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+    #     */
+    #
     $Code
-        =~ s{ \A \/ \*+ \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
+        =~ s{ \A \/ \*+ \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ \n+ }{/*\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n$GPLCss\n}xmsg;
 
     # Repair the license header with /*/* at the beginning.
     #
@@ -185,7 +185,7 @@ sub transform_source {    ## no critic
     #     */
     #
     # Replacement:
-    #     /**
+    #     /*
     #     Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
     #
     #     This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -194,7 +194,7 @@ sub transform_source {    ## no critic
     #     */
     #
     $Code
-        =~ s{ \A \/ \* \/ \* \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ }{/**\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n\n$GPLCss*/}xmsg;
+        =~ s{ \A \/ \* \/ \* \s* \n Copyright .+? \n\n This .+? \n the .+? \n did .+? txt\. \n \* \/ \n+ }{/*\nCopyright (C) 2001-2018 OTRS AG, https://otrs.com/\n$GPLCss\n}xmsg;
 
     # Define old and new FSF FSF Mailing Addresses.
     my $OldFSFAddress = '59 \s+ Temple \s+ Place, \s+ Suite \s+ 330, \s+ Boston, \s+ MA \s+ 02111-1307 \s+ USA';
@@ -335,17 +335,21 @@ END_GPLJAVASCRIPT
 
 sub _GPLCss {
     return <<'END_GPLCSS';
+
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
 did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+*/
 END_GPLCSS
 }
 
 sub _GPLVue {
     return <<'END_GPLVUE';
+
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
 did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+-->
 END_GPLVUE
 }
 
