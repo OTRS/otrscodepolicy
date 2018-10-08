@@ -400,7 +400,9 @@ ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 select = **/*.xml
 ignore = development/samples/config/*.xml
 ; ignore .xml files in documentation
+ignore = doc/**/*.xml
 ignore = en/content/**/*.xml
+ignore = de/content/**/*.xml
 ignore = hu/content/**/*.xml
 
 [+TidyAll::Plugin::OTRS::XML::ConfigDescription]
