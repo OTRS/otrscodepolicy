@@ -16,6 +16,7 @@ ignore = **/{js-cache,css-cache}/**/*
 ignore = var/Vagrant/Instances/**/*
 ; node.js packages
 ignore = node_modules/**/*
+ignore = Frontend/Vendor/**/*
 ; Webpack generated output files
 ignore = var/public/dist/**/*
 
