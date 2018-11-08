@@ -25,8 +25,9 @@ sub validate_file {    ## no critic
     return if $Self->IsFrameworkVersionLessThan( 5, 0 );
 
     my %AllowedFiles = (
-        'aaa_base.dist'    => 1,
-        'otrs_daemon.dist' => 1,
+        'aaa_base.dist'       => 1,
+        'otrs_daemon.dist'    => 1,
+        'otrs_webserver.dist' => 1,
     );
 
     if ( !$AllowedFiles{ File::Basename::basename($Filename) } ) {
