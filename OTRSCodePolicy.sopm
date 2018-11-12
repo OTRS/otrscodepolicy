@@ -4,6 +4,7 @@
 
     <Version>0.0.0</Version>
 
+    <Framework>8.0.x</Framework>
     <Framework>7.0.x</Framework>
     <Framework>6.0.x</Framework>
     <Framework>5.0.x</Framework>
