@@ -25,7 +25,7 @@
     <PackageIsDownloadable>0</PackageIsDownloadable>
     <PackageIsBuildable>0</PackageIsBuildable>
     <Filelist>
-        <File Permission="770" Location="bin/otrs.CodePolicy.pl" />
+        <File Permission="760" Location="bin/otrs.CodePolicy.pl" />
         <File Permission="660" Location="Kernel/cpan-lib/Pod/Strip.pm" />
         <File Permission="660" Location="Kernel/cpan-lib/Locale/PO.pm" />
         <File Permission="660" Location="Kernel/TidyAll/OTRS.pm" />
@@ -197,11 +197,11 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/Lint.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/XML/LintWithOurParsers.pm" />
         <File Permission="660" Location="Kernel/TidyAll/tidyallrc" />
-        <File Permission="770" Location="Kernel/TidyAll/git-hooks/pre-commit.pl" />
-        <File Permission="770" Location="Kernel/TidyAll/git-hooks/pre-receive.pl" />
-        <File Permission="770" Location="Kernel/TidyAll/git-hooks/prepare-commit-msg.pl" />
-        <File Permission="770" Location="scripts/install-git-hooks.pl" />
-        <File Permission="770" Location="scripts/uninstall-git-hooks.pl" />
+        <File Permission="760" Location="Kernel/TidyAll/git-hooks/pre-commit.pl" />
+        <File Permission="760" Location="Kernel/TidyAll/git-hooks/pre-receive.pl" />
+        <File Permission="760" Location="Kernel/TidyAll/git-hooks/prepare-commit-msg.pl" />
+        <File Permission="760" Location="scripts/install-git-hooks.pl" />
+        <File Permission="760" Location="scripts/uninstall-git-hooks.pl" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins.pm" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicy.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t" />

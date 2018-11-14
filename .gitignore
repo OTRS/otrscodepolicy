@@ -4,3 +4,4 @@
 perltidy.LOG
 .includepath
 .DS_Store
+.vstags
