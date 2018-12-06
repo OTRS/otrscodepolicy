@@ -1,17 +1,11 @@
-// --
-// Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
-// --
-// This software comes with ABSOLUTELY NO WARRANTY. For details, see
-// the enclosed file COPYING for license information (GPL). If you
-// did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
-// --
-
+// nofilter(TidyAll::Plugin::OTRS::Legal::LicenseValidator)
 // nofilter(TidyAll::Plugin::OTRS::JavaScript::ESLint)
 
 /*
- * NOTE: In order for linting to work, you will need following globally installed NPM modules:
+ * NOTE: In order for linting to work, you will need following globally installed NPM modules
+ *  (eslint 5 currently not working with airbnb-base):
  *
- *   npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue vue-eslint-parser babel-eslint eslint-plugin-jest
+ *   npm install -g eslint@4.19.1 eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
  *
  */
 
@@ -117,5 +111,22 @@ module.exports = {
         // Don't require default value for props.
         'vue/require-default-prop': 'off',
 
+        // Don't warn about unused components. This is sometime needed for dynamic component usage.
+        'vue/no-unused-components': 'off',
+
+        // Don't correct casing of component names for backward compatibility reasons.
+        'vue/component-name-in-template-casing': 'off',
+
+        // Don't correct closing bracket position of HTML tags for backward compatibility reasons.
+        'vue/html-closing-bracket-newline': 'off',
+
+        // FIXME: Do not warn for v-if usage in v-for loops until the code is refactored.
+        'vue/no-use-v-if-with-v-for': 'off',
+
+        // NOTE: These rules will be turned on again in OTRS 8.
+        'vue/attributes-order': 'off',
+        'vue/html-closing-bracket-spacing': 'off',
+        'vue/multiline-html-element-content-newline': 'off',
+        'vue/singleline-html-element-content-newline': 'off',
     },
 };
