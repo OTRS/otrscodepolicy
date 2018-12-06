@@ -57,8 +57,15 @@ sub transform_file {    ## no critic
     my $ESLintConfigPath = __FILE__;
     $ESLintConfigPath =~ s{ESLint\.pm}{ESLint/legacy.eslintrc.js};
     if ( $Filename =~ m{Frontend/} ) {
+        my $ESLintConfigFile = 'ESLint/frontend.eslintrc.js';
+
+        # A little more lenient before OTRS 8 (certain rules will be turned off).
+        if ( $Self->IsFrameworkVersionLessThan( 8, 0 ) ) {
+            $ESLintConfigFile = 'ESLint/frontend.eslintrc.7.js';
+        }
+
         $ESLintConfigPath = __FILE__;
-        $ESLintConfigPath =~ s{ESLint\.pm}{ESLint/frontend.eslintrc.js};
+        $ESLintConfigPath =~ s{ESLint\.pm}{$ESLintConfigFile};
     }
     elsif ( $Filename =~ m{scripts/webpack} ) {
         $ESLintConfigPath = __FILE__;

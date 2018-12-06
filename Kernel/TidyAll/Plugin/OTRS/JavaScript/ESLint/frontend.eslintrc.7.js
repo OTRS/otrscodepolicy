@@ -122,5 +122,11 @@ module.exports = {
 
         // FIXME: Do not warn for v-if usage in v-for loops until the code is refactored.
         'vue/no-use-v-if-with-v-for': 'off',
+
+        // NOTE: These rules will be turned on again in OTRS 8.
+        'vue/attributes-order': 'off',
+        'vue/html-closing-bracket-spacing': 'off',
+        'vue/multiline-html-element-content-newline': 'off',
+        'vue/singleline-html-element-content-newline': 'off',
     },
 };
