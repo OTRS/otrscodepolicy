@@ -261,12 +261,12 @@ sub GetChangedFiles {
     #   This is not perfect, but otherwise quite complicated.
     if ( $Base =~ m/^0+$/ ) {
         my $Output = capturex( 'git', 'diff-tree', '--no-commit-id', '--name-only', '-r', $Commit );
-        my @Files = grep {/\S/} split( "\n", $Output );
+        my @Files  = grep {/\S/} split( "\n", $Output );
         return @Files;
     }
 
     my $Output = capturex( 'git', "diff", "--numstat", "--name-only", "$Base..$Commit" );
-    my @Files = grep {/\S/} split( "\n", $Output );
+    my @Files  = grep {/\S/} split( "\n", $Output );
     return @Files;
 }
 

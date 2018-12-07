@@ -182,7 +182,7 @@ sub validate_source {    ## no critic
         RULE:
         for my $Rule (@Rules) {
             next RULE if $CurrentSettingName !~ $Rule->{MatchSettingName};
-            next RULE if $NavigationContent !~ $Rule->{MatchNavigationValue};
+            next RULE if $NavigationContent  !~ $Rule->{MatchNavigationValue};
 
             if ( $NavigationContent !~ $Rule->{RequireNavigationMatch} ) {
                 $ErrorMessage

@@ -41,7 +41,7 @@ sub validate_source {    ## no critic
         $Counter++;
         if ( $Line =~ m{^=head2 \s+ ([A-Za-z0-9]+) (\(\))? \s* $}smx ) {
 
-            my $FunctionName = $1;
+            my $FunctionName  = $1;
             my $IsFunctionPod = $2 ? 1 : 0;
 
             if ($IsFunctionPod) {

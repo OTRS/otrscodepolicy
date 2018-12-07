@@ -49,7 +49,7 @@ sub DetermineFrameworkVersionFromDirectory {
     # First check if we have an OTRS directory, use RELEASE info then.
     if ( -r $Self->{root_dir} . '/RELEASE' ) {
         my $FileHandle = IO::File->new( $Self->{root_dir} . '/RELEASE', 'r' );
-        my @Content = $FileHandle->getlines();
+        my @Content    = $FileHandle->getlines();
 
         my ( $VersionMajor, $VersionMinor ) = $Content[1] =~ m{^VERSION\s+=\s+(\d+)\.(\d+)\.}xms;
         $FrameworkVersionMajor = $VersionMajor;
@@ -62,7 +62,7 @@ sub DetermineFrameworkVersionFromDirectory {
 
             # Use the highest framework version from the first SOPM file.
             my $FileHandle = IO::File->new( $SOPMFiles[0], 'r' );
-            my @Content = $FileHandle->getlines();
+            my @Content    = $FileHandle->getlines();
             for my $Line (@Content) {
                 if ( $Line =~ m{ <Framework (?: [ ]+ [^<>]* )? > }xms ) {
                     my ( $VersionMajor, $VersionMinor )

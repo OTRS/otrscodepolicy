@@ -41,7 +41,7 @@ sub validate_source {    ## no critic
         # Check first XML line
         if ( $Counter == 1 ) {
             if (
-                $Line !~ /^<\?xml.+\?>/
+                $Line    !~ /^<\?xml.+\?>/
                 || $Line !~ /version=["'']1.[01]["']/
                 || $Line !~ /encoding=["'](?:iso-8859-1|utf-8)["']/i
                 )

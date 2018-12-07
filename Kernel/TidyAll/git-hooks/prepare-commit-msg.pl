@@ -33,7 +33,7 @@ if ( -r $OTRSCommitTemplateFile ) {
 
     # Get our content and prepend it
     my $FileHandle = IO::File->new( $OTRSCommitTemplateFile, 'r' );
-    my @Content = $FileHandle->getlines();
+    my @Content    = $FileHandle->getlines();
 
     # Get the pre-populated file from GIT and keep its contents
     my $GitCommitTemplateFile = shift;
