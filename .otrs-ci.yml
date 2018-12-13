@@ -1,6 +1,6 @@
 Active: 1
 
 PlatformSets:
- - ondemand-otrs6
+ - ondemand-otrs8
 
-DeployOTRSBranch: rel-6_0
+DeployOTRSBranch: master

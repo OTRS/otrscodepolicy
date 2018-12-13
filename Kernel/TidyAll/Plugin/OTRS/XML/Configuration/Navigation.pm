@@ -59,10 +59,20 @@ sub validate_source {    ## no critic
                     'Invalid top Frontend subgroup found (only Admin|Agent|Base|Customer|Public|External are allowed).',
             },
             {
-                Name                   => 'Valid WebApp subgroups',
-                MatchSettingName       => qr{.*},
-                MatchNavigationValue   => qr{^WebApp::},                        # Allow toplevel entries
-                RequireNavigationMatch => qr{^WebApp::(API|APIClient)(::|$)},
+                Name                 => 'Valid Frontend subgroups (OTRS 7+)',
+                MatchSettingName     => qr{.*},
+                MatchNavigationValue => qr{^Frontend},                       # no entries allowed in "Frontend" directly
+                RequireNavigationMatch          => qr{^Frontend::(Admin|Agent|Base|External)(::|$)},
+                SkipForFrameworkVersionLessThan => [ 7, 0 ],
+                ErrorMessage =>
+                    'Invalid top Frontend subgroup found (only Admin|Agent|Base|External are allowed).',
+            },
+            {
+                Name                            => 'Valid WebApp subgroups (OTRS 7+)',
+                MatchSettingName                => qr{.*},
+                MatchNavigationValue            => qr{^WebApp::},                        # Allow toplevel entries
+                RequireNavigationMatch          => qr{^WebApp::(API|APIClient)(::|$)},
+                SkipForFrameworkVersionLessThan => [ 7, 0 ],
                 ErrorMessage =>
                     'Invalid top WebApp subgroup found (only API|APIClient is allowed).',
             },
@@ -175,7 +185,16 @@ sub validate_source {    ## no critic
                 MatchNavigationValue   => qr{^Frontend::(Admin|Agent|Customer|Public)::(.+::)*View.+$},
                 RequireNavigationMatch => qr{^Frontend::(Admin|Agent|Customer|Public)::View::.+$},
                 ErrorMessage =>
-                    "Screen specific seettings should be added in Frontend::(Admin|Agent|Customer|Public)::View.",
+                    "Screen specific settings should be added in Frontend::(Admin|Agent|Customer|Public)::View.",
+            },
+            {
+                Name                            => 'Valid frontend views (OTRS 7+)',
+                MatchSettingName                => qr{.*},
+                MatchNavigationValue            => qr{^Frontend::(Admin|Agent|Customer|Public)::(.+::)*View.+$},
+                RequireNavigationMatch          => qr{^Frontend::(Admin|Agent)::View::.+$},
+                SkipForFrameworkVersionLessThan => [ 7, 0 ],
+                ErrorMessage =>
+                    "Screen specific settings should be added in Frontend::(Admin|Agent)::View.",
             },
         );
 
@@ -183,6 +202,14 @@ sub validate_source {    ## no critic
         for my $Rule (@Rules) {
             next RULE if $CurrentSettingName !~ $Rule->{MatchSettingName};
             next RULE if $NavigationContent  !~ $Rule->{MatchNavigationValue};
+
+            if (
+                $Rule->{SkipForFrameworkVersionLessThan}
+                && $Self->IsFrameworkVersionLessThan( @{ $Rule->{SkipForFrameworkVersionLessThan} } )
+                )
+            {
+                next RULE;
+            }
 
             if ( $NavigationContent !~ $Rule->{RequireNavigationMatch} ) {
                 $ErrorMessage

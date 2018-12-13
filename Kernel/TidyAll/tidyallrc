@@ -507,6 +507,9 @@ select = Kernel/Config/**/*.xml
 ; Migrations OTRS 7
 ;
 
+[+TidyAll::Plugin::OTRS::Migrations::OTRS7::DeprecatedSettings]
+select = Kernel/Config/**/*.xml
+
 [+TidyAll::Plugin::OTRS::Migrations::OTRS7::TranslatableStringsPlaceholders]
 select = **/*.{pl,pm,tt,js,xml,html.tmpl}
 
