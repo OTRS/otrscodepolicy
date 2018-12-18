@@ -119,8 +119,5 @@ module.exports = {
 
         // Don't correct closing bracket position of HTML tags for backward compatibility reasons.
         'vue/html-closing-bracket-newline': 'off',
-
-        // FIXME: Do not warn for v-if usage in v-for loops until the code is refactored.
-        'vue/no-use-v-if-with-v-for': 'off',
     },
 };
