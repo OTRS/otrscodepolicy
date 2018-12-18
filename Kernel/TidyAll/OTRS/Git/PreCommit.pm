@@ -49,6 +49,13 @@ sub Run {
         push @ChangedFiles, grep { -f && !-l } ( $Output =~ /^\s*RM?+\s+(.*?)\s+->\s+(.*)/gm );
         return if !@ChangedFiles;
 
+        # Always include all SOPM files to verify the file list.
+        for my $SOPMFile ( map { File::Spec->abs2rel( $_, $RootDir ) } glob("$RootDir/*.sopm") ) {
+            if ( !grep { $_ eq $SOPMFile } @ChangedFiles ) {
+                push @ChangedFiles, $SOPMFile;
+            }
+        }
+
         # Find OTRSCodePolicy configuration
         my $ScriptDirectory;
         if ( -l $0 ) {

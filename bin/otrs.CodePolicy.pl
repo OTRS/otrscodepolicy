@@ -150,6 +150,13 @@ elsif ( !$All ) {
         chomp $ChangedFile;
         push @Files, ( File::Spec->catfile( $RootDir, $ChangedFile ) );
     }
+
+    # Always include all SOPM files to verify the file list.
+    for my $SOPMFile ( map { File::Spec->abs2rel( $_, $RootDir ) } glob("$RootDir/*.sopm") ) {
+        if ( !grep { $_ eq $SOPMFile } @ChangedFiles ) {
+            push @Files, ( File::Spec->catfile( $RootDir, $SOPMFile ) );
+        }
+    }
 }
 
 # Ignore non-regular files and symlinks
