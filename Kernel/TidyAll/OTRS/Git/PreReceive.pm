@@ -125,7 +125,7 @@ sub HandleInput {
         my @ChangedFiles = $Self->GetChangedFiles( $Base, $Commit );
 
         # Always include all SOPM files to verify the file list.
-        for my $SOPMFile ( grep { $_ =~ m{\.sopm$}} @FileList ) {
+        for my $SOPMFile ( grep { $_ =~ m{\.sopm$} } @FileList ) {
             if ( !grep { $_ eq $SOPMFile } @ChangedFiles ) {
                 push @ChangedFiles, $SOPMFile;
             }

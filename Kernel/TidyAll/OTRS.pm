@@ -108,11 +108,29 @@ sub DetermineFrameworkVersionFromDirectory {
 }
 
 #
-# Get a list of files from a directory to be checked. This list is used in some plugins to make validation decisions,
+# Get a list (almost) all relative file paths from the root directory. This list is used in some plugins to make validation decisions,
 #   not for the actual decision which files are to be validated.
 #
 sub GetFileListFromDirectory {
     my ( $Self, %Param ) = @_;
+
+    # Only run once.
+    return if @FileList;
+
+    @FileList = $Self->FindFilesInDirectory( Directory => $Self->{root_dir} );
+
+    return;
+}
+
+#
+# Get a list of all relative file paths in a directory with some global ignores for speed's sake.
+#
+sub FindFilesInDirectory {
+    my ( $Self, %Param ) = @_;
+
+    my $Directory = $Param{Directory};
+
+    my @Files;
 
     my $Wanted = sub {
 
@@ -122,20 +140,31 @@ sub GetFileListFromDirectory {
         # Also skip symbolic links, TidyAll does not like them.
         return if ( -l $File::Find::name );
 
-        return if $File::Find::name =~ m{\.git/};
+        # Some global hard ignores that are meant to speed up the loading process,
+        #   as applying the TidyAll ignore/select rules can be quite slow.
+        return if $File::Find::name =~ m{/\.git/};
+        return if $File::Find::name =~ m{/node_modules/};
+        return if $File::Find::name =~ m{/\.tidyall.d/};
+        return if $File::Find::name =~ m{/var/public/dist/};
 
-        my $RelativeFileName = substr( $File::Find::name, length $Self->{root_dir} );
-        $RelativeFileName =~ s{^/*}{};
-
-        push @FileList, $RelativeFileName;
+        push @Files, File::Spec->abs2rel( $File::Find::name, $Self->{root_dir} );
     };
 
     File::Find::find(
         $Wanted,
-        $Self->{root_dir},
+        $Directory,
     );
 
-    return;
+    return @Files;
+}
+
+#
+# Filter relative file paths for only the files that are matched by at least one plugin.
+#
+sub FilterMatchedFiles {
+    my ( $Self, %Param ) = @_;
+
+    return grep { $Self->plugins_for_path($_) } @{ $Param{Files} };
 }
 
 1;

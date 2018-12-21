@@ -119,10 +119,12 @@ my $CacheVersionMD5 = $MainObject->MD5sum(
 
 my $Version = $ConfigObject->Get('Version');
 
-FILE:
-for my $File ( $TidyAll->find_matched_files() ) {
+# Don't use TidyAll::process_all() or TidyAll::find_matched_files() as it is too slow on large code bases.
+my @Files = $TidyAll->FilterMatchedFiles( Files => \@TidyAll::OTRS::FileList );
+@Files = map { File::Spec->catfile( $Home, $_ ) } @Files;
 
-    next FILE if $File =~ m{oradiag};    # ignore Oracle log files
+FILE:
+for my $File (@Files) {
 
     # Check for valid cache file that represents a successful test
     my $ContentMD5 = $MainObject->MD5sum(

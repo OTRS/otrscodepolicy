@@ -74,15 +74,10 @@ EOF
 
 my $ConfigurationFile = dirname($0) . '/../Kernel/TidyAll/tidyallrc';
 
-# Change to otrs-code-policy directory to be able to load all plugins.
 my $RootDir = getcwd();
 
 if ( !defined $Processes ) {
     $Processes = 6;
-}
-if ( $All && $Processes ) {
-    $Directory = './';
-    $All       = 0;
 }
 
 # To store results from child processes.
@@ -107,28 +102,30 @@ if (@TempFiles) {
     exit 1;
 }
 
+my $TidyAll = TidyAll::OTRS->new_from_conf_file(
+    $ConfigurationFile,
+    check_only => 0,
+    mode       => $Mode // 'cli',
+    root_dir   => $RootDir,
+    data_dir   => File::Spec->tmpdir(),
+    verbose    => $Verbose ? 1 : 0,
+);
+
+$TidyAll->DetermineFrameworkVersionFromDirectory();
+$TidyAll->GetFileListFromDirectory();
+
 my @Files;
-if ( defined $Directory && length $Directory ) {
+if ($All) {
 
-    my $Wanted = sub {
-
-        # Skip non-regular files and directories.
-        return if ( !-f $File::Find::name );
-
-        # Also skip symbolic links, TidyAll does not like them.
-        return if ( -l $File::Find::name );
-
-        # Skip git and tidyall cache files
-        return if index( $File::Find::name, '.git/' ) > -1;
-        return if index( $File::Find::name, '.tidyall.d/' ) > -1;
-
-        push @Files, $File::Find::name;
-    };
-
-    File::Find::find(
-        $Wanted,
-        File::Spec->catfile( $RootDir, $Directory ),
-    );
+    # Don't use TidyAll::process_all() or TidyAll::find_matched_files() as it is too slow on large code bases.
+    @Files = @TidyAll::OTRS::FileList;
+    @Files = $TidyAll->FilterMatchedFiles( Files => \@Files );
+    @Files = map { File::Spec->catfile( $RootDir, $_ ) } @Files;
+}
+elsif ( defined $Directory && length $Directory ) {
+    @Files = $TidyAll->FindFilesInDirectory( Directory => File::Spec->catfile( $RootDir, $Directory ) );
+    @Files = $TidyAll->FilterMatchedFiles( Files => \@Files );
+    @Files = map { File::Spec->catfile( $RootDir, $_ ) } @Files;
 }
 elsif ( defined $File && length $File ) {
     @Files = ( File::Spec->catfile( $RootDir, $File ) );
@@ -140,7 +137,7 @@ elsif ( defined $Cached && length $Cached ) {
         push @Files, ( File::Spec->catfile( $RootDir, $StagedFile ) );
     }
 }
-elsif ( !$All ) {
+else {
     my $Output = capturex( 'git', "status", "--porcelain" );
 
     # Fetch all changed files, staged and unstaged
@@ -159,29 +156,19 @@ elsif ( !$All ) {
     }
 }
 
-# Ignore non-regular files and symlinks
+# Safeguard: ignore non-regular files and symlinks (causes TidyAll errors).
 @Files = grep { -f && !-l } @Files;
 
+# Change to OTRSCodePolicy directory to be able to load all plugins.
+#   TODO: Clarify if this is still needed (it still works when it's commented out!), and remove if not.
 chdir dirname($0) . "/..";
-
-my $TidyAll = TidyAll::OTRS->new_from_conf_file(
-    $ConfigurationFile,
-    check_only => 0,
-    mode       => $Mode // 'cli',
-    root_dir   => $RootDir,
-    data_dir   => File::Spec->tmpdir(),
-    verbose    => $Verbose ? 1 : 0,
-);
-
-$TidyAll->DetermineFrameworkVersionFromDirectory();
-$TidyAll->GetFileListFromDirectory();
 
 my %ActiveChildPID;
 local $SIG{INT}  = sub { Stop() };
 local $SIG{TERM} = sub { Stop() };
 
 my @GlobalResults;
-if ( !$All && $Processes ) {
+if ($Processes) {
 
     # split chunks of files for every process
     my @Chunks;
@@ -271,11 +258,8 @@ if ( !$All && $Processes ) {
         }
     }
 }
-elsif ( !$All ) {
-    my @Results = $TidyAll->process_paths(@Files);
-}
 else {
-    @GlobalResults = $TidyAll->process_all();
+    $TidyAll->process_paths(@Files);
 }
 
 # Remove any temp file left.
