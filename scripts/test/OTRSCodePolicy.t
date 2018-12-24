@@ -126,6 +126,9 @@ my @Files = $TidyAll->FilterMatchedFiles( Files => \@TidyAll::OTRS::FileList );
 FILE:
 for my $File (@Files) {
 
+    # Ignore Oracle log files.
+    next FILE if $File =~ m{oradiag};
+
     # Check for valid cache file that represents a successful test
     my $ContentMD5 = $MainObject->MD5sum(
         Filename => $File,
