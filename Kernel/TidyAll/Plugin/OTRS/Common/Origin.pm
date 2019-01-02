@@ -199,7 +199,7 @@ sub validate_file {    ## no critic
 
         # Check if an origin exist.
         if ( $Code !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms ) {
-            die __PACKAGE__ . "\nCustomization markers found but no origin present.\n";
+            die __PACKAGE__ . "\nFile is in Custom directory but no origin present.\n";
         }
     }
 
