@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
+# Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ sub transform_source {    ## no critic
     # Don't replace copyright in thirdparty code.
     return $Code if $Self->IsThirdpartyModule();
 
-    # Replace <URL>http://otrs.org/</URL> with <URL>https://otrs.org/</URL>
+    # Replace <URL>http://otrs.org/</URL> with <URL>https://otrs.com/</URL>
     $Code =~ s{ ^ ( \s* ) \< URL \> .+? \< \/ URL \> }{$1<URL>https://otrs.com/</URL>}xmsg;
 
     my $Copy      = 'OTRS AG, https://otrs.com/';
@@ -42,6 +42,8 @@ sub transform_source {    ## no critic
 
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
+
+        # next line if Copyright string is not found
         if ( $Line !~ m{Copyright}smx ) {
             $Output .= $Line . "\n";
             next LINE;
@@ -56,6 +58,7 @@ sub transform_source {    ## no critic
         # for the commandline help
         # e.g : print "Copyright (c) 2003-2008 OTRS AG, http://www.otrs.com/\n";
         if ( $Line !~ m{ ^\# \s Copyright }smx ) {
+
             if (
                 $Line
                 =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/? }smx
@@ -66,7 +69,9 @@ sub transform_source {    ## no critic
                  }
                  {$1Copyright (C) $YearString $Copy}smx;
             }
+
             $Output .= $Line . "\n";
+
             next LINE;
         }
 
