@@ -25,7 +25,7 @@ ignore = var/public/dist/**/*
 ;
 
 [+TidyAll::Plugin::OTRS::Common::CRLFLineEndings]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html,service,conf}
 
 [+TidyAll::Plugin::OTRS::Common::NoFilter]
 select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html}
@@ -143,7 +143,7 @@ ignore = var/httpd/htdocs/common/**/*.css
 ignore = **/*.tt.sh
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html,service,conf}
 select = .*.dist .bash_completion
 select = var/cron/*
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
