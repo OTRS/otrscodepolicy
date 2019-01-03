@@ -66,9 +66,6 @@ sub Run {
         }
         my $ConfigFile = $ScriptDirectory . '/../tidyallrc';
 
-        # Change to otrs-code-policy directory to be able to load all plugins.
-        chdir $ScriptDirectory . '/../../';
-
         my $TidyAll = TidyAll::OTRS->new_from_conf_file(
             $ConfigFile,
             check_only => 1,

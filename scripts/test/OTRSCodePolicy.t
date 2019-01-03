@@ -55,9 +55,6 @@ my $OldWorkingDir = getcwd();
 
 my $Home = $ConfigObject->Get('Home');
 
-# Change to toplevel dir so that perlcritic finds all plugins.
-chdir($Home);
-
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     "$Home/Kernel/TidyAll/tidyallrc",
     check_only => 1,
@@ -174,8 +171,5 @@ for my $File (@Files) {
         );
     }
 }
-
-# Change back to previous working directory.
-chdir($OldWorkingDir);
 
 1;

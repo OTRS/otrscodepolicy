@@ -159,10 +159,6 @@ else {
 # Safeguard: ignore non-regular files and symlinks (causes TidyAll errors).
 @Files = grep { -f && !-l } @Files;
 
-# Change to OTRSCodePolicy directory to be able to load all plugins.
-#   TODO: Clarify if this is still needed (it still works when it's commented out!), and remove if not.
-chdir dirname($0) . "/..";
-
 my %ActiveChildPID;
 local $SIG{INT}  = sub { Stop() };
 local $SIG{TERM} = sub { Stop() };
@@ -264,9 +260,6 @@ else {
 
 # Remove any temp file left.
 unlink glob "'$TempDirectory/*.tmp'";
-
-# Change working directory back.
-chdir $RootDir;
 
 my $FailMsg;
 if ( my @ErrorResults = grep { $_->error() } @GlobalResults ) {
