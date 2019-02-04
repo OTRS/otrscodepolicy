@@ -15,9 +15,9 @@ use scripts::test::OTRSCodePolicyPlugins;
 
 my @Tests = (
     {
-        Name      => 'PO::Lint, valid docbook',
+        Name      => 'PO::DocbookLint, valid docbook',
         Filename  => 'doc-admin-test.xml',
-        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::Lint)],
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::DocbookLint)],
         Framework => '4.0',
         Source    => <<'EOF',
 msgid "Yes <link linkend=\"123\">this</link> works"
@@ -26,9 +26,9 @@ EOF
         Exception => 0,
     },
     {
-        Name      => 'PO::Lint, valid docbook (ignored tag missing)',
+        Name      => 'PO::DocbookLint, valid docbook (ignored tag missing)',
         Filename  => 'doc-admin-test.xml',
-        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::Lint)],
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::DocbookLint)],
         Framework => '4.0',
         Source    => <<'EOF',
 msgid "Yes <emphasis>this</emphasis> works"
@@ -37,9 +37,9 @@ EOF
         Exception => 0,
     },
     {
-        Name      => 'PO::Lint, invalid docbook (invalid xml)',
+        Name      => 'PO::DocbookLint, invalid docbook (invalid xml)',
         Filename  => 'doc-admin-test.xml',
-        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::Lint)],
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::DocbookLint)],
         Framework => '4.0',
         Source    => <<'EOF',
 msgid "Yes <link linkend=\"123\">this</link> works"
@@ -48,9 +48,9 @@ EOF
         Exception => 1,
     },
     {
-        Name      => 'PO::Lint, invalid docbook (missing tags)',
+        Name      => 'PO::DocbookLint, invalid docbook (missing tags)',
         Filename  => 'doc-admin-test.xml',
-        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::Lint)],
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::DocbookLint)],
         Framework => '4.0',
         Source    => <<'EOF',
 msgid "<placeholder type=\"screeninfo\" id=\"0\"/> <graphic srccredit=\"process-"

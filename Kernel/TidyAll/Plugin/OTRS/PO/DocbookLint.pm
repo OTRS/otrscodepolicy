@@ -6,7 +6,7 @@
 # did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
-package TidyAll::Plugin::OTRS::PO::Lint;
+package TidyAll::Plugin::OTRS::PO::DocbookLint;
 
 #
 # Perform some quality checks on po files.
@@ -27,8 +27,7 @@ sub validate_file {    ## no critic
     return if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
     my $IsDocbookTranslation = $Filename =~ m{/doc-}smx;
-
-    my $Strings = Locale::PO->load_file_asarray($Filename);
+    my $Strings              = Locale::PO->load_file_asarray($Filename);
 
     my $ErrorMessage;
 

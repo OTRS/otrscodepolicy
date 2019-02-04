@@ -158,11 +158,13 @@ select = *.{opm,sopm}
 ; POT/PO
 ;
 
-[+TidyAll::Plugin::OTRS::PO::Lint]
+[+TidyAll::Plugin::OTRS::PO::DocbookLint]
 select = i18n/**/*.{pot,po}
+select = locale/**/*.{pot,po}
 
 [+TidyAll::Plugin::OTRS::PO::msgfmt]
-select = i18n/**/*.{pot,po}
+select = locale/**/*.{pot,po}
+select = locale/**/*.{pot,po}
 
 ;
 ; Perl

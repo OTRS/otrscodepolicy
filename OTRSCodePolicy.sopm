@@ -128,7 +128,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseParent.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/UseWarnings.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/WebApp/HeadGetWithoutBody.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/Lint.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/DocbookLint.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/msgfmt.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/CodeTags.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm" />
@@ -215,7 +215,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/SortKeysReference.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t" />
-        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/Lint.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/DocbookLint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/RequiredElements.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t" />
