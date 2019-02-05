@@ -162,6 +162,9 @@ select = *.{opm,sopm}
 select = i18n/**/*.{pot,po}
 select = locale/**/*.{pot,po}
 
+[+TidyAll::Plugin::OTRS::PO::HTMLTags]
+select = i18n/**/*.{pot,po}
+
 [+TidyAll::Plugin::OTRS::PO::msgfmt]
 select = locale/**/*.{pot,po}
 select = locale/**/*.{pot,po}
