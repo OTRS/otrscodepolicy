@@ -28,14 +28,14 @@ sub transform_file {    ## no critic
         # On some systems (Ubuntu) nodejs is called /usr/bin/nodejs instead of /usr/bin/node,
         #   which can lead to problems with calling the node scripts directly. Therefore we
         #   determine the nodejs binary and call it directly.
-        $NodePath = `which nodejs` || `which node`;
+        $NodePath = `which nodejs 2>/dev/null` || `which node 2>/dev/null`;
         chomp $NodePath;
         if ( !$NodePath ) {
             print STDERR "Could not find 'nodejs' binary, skipping ESLint tests.\n";
             return;
         }
 
-        $ESLintPath = `which eslint`;
+        $ESLintPath = `which eslint 2>/dev/null`;
         chomp $ESLintPath;
         if ( !$ESLintPath ) {
             print STDERR "Could not find 'eslint' script, skipping ESLint tests.\n";
