@@ -53,6 +53,9 @@ my %IgnoreRepositories = (
 
     # Internal UX/UI team repository
     'ux-ui.git' => 1,
+
+    # Streamline icons repository
+    'streamline-icons.git' => 1,
 );
 
 sub Run {
