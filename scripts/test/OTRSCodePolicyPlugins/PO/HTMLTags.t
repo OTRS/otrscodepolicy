@@ -58,6 +58,39 @@ msgstr ""
 EOF
         Exception => 1,
     },
+    {
+        Name      => 'PO::HTMLTags, paragraph tag with forbidden attribute',
+        Filename  => 'otrs.pot',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::HTMLTags)],
+        Framework => '6.0',
+        Source    => <<'EOF',
+msgid "<p onmouseover=\"alert(1);\">Paragraph string</p>"
+msgstr ""
+EOF
+        Exception => 1,
+    },
+    {
+        Name      => 'PO::HTMLTags, anchor tag with forbidden attributes',
+        Filename  => 'otrs.pot',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::HTMLTags)],
+        Framework => '6.0',
+        Source    => <<'EOF',
+msgid "<a href=\"https://evil.com/danger.php\" style=\"color:red\">No more space on device! OTRS will stop. Click here for details.</a>"
+msgstr ""
+EOF
+        Exception => 1,
+    },
+    {
+        Name      => 'PO::HTMLTags, link tag with forbidden attributes',
+        Filename  => 'otrs.pot',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::PO::HTMLTags)],
+        Framework => '6.0',
+        Source    => <<'EOF',
+msgid "foo<link href=\"https://evil.com/danger.php\" rel=\"stylesheet\">bar"
+msgstr ""
+EOF
+        Exception => 1,
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );

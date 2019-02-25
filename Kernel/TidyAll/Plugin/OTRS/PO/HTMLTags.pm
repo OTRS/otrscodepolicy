@@ -23,12 +23,14 @@ sub validate_file {    ## no critic
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
-    return if $Self->IsFrameworkVersionLessThan( 4, 0 );
+    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
     my $IsDocbookTranslation = $Filename =~ m{/doc-}smx;
     return if $IsDocbookTranslation;
 
     my @ForbiddenTags = (
+
+        # Dangerous tags that could be used without attributes.
         qr(^<script)ixms,
         qr(^<style)ixms,
         qr(^<applet)ixms,
@@ -38,6 +40,9 @@ sub validate_file {    ## no critic
         qr(^<meta)ixms,
         qr(^<img)ixms,
         qr(^<video)ixms,
+
+        # Any HTML tag with additional attributes.
+        qr(^<[^> ]+[ ]+[^>]+=)ixms,
     );
 
     my $Strings = Locale::PO->load_file_asarray($Filename);
@@ -48,10 +53,10 @@ sub validate_file {    ## no critic
     for my $String ( @{ $Strings // [] } ) {
         next STRING if $String->fuzzy();
 
-        my $Source      = $String->dequote( $String->msgid() )  // '';
-        my $Translation = $String->dequote( $String->msgstr() ) // '';
+        my $Source = $String->dequote( $String->msgid() )  // '';
+        next STRING if !$Source;
 
-        next STRING if !$Source && !$Translation;
+        my $Translation = $String->dequote( $String->msgstr() ) // '';
 
         my @InvalidTags;
 
@@ -61,7 +66,7 @@ sub validate_file {    ## no critic
             TAG:
             for my $Tag (@Tags) {
                 for my $ForbiddenTag (@ForbiddenTags) {
-                    push @InvalidTags, @Tags if $Tag =~ $ForbiddenTag;
+                    push @InvalidTags, $Tag if $Tag =~ $ForbiddenTag;
                 }
             }
         }
