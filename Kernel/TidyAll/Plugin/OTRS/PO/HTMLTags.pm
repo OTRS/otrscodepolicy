@@ -53,7 +53,7 @@ sub validate_file {    ## no critic
     for my $String ( @{ $Strings // [] } ) {
         next STRING if $String->fuzzy();
 
-        my $Source = $String->dequote( $String->msgid() )  // '';
+        my $Source = $String->dequote( $String->msgid() ) // '';
         next STRING if !$Source;
 
         my $Translation = $String->dequote( $String->msgstr() ) // '';
