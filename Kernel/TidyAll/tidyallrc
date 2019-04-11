@@ -137,8 +137,7 @@ ignore = Kernel/WebApp.conf.dist
 ignore = scripts/auto_build/spec/templates/**/*
 ignore = scripts/test/sample/Loader/*.min.{css,js}
 ignore = scripts/test/sample/SysConfig/Migration/**/ZZZ*.pm
-ignore = scripts/DBUpdateTo6/TaskConfig/MigrateArticleData.yml.dist
-ignore = scripts/DBUpdate/TaskConfig/MigrateIconSettings.yml.dist
+ignore = scripts/DBUpdate{To6,}/TaskConfig/*.yml.dist
 ignore = var/httpd/htdocs/common/**/*.css
 ; OTRSContinuousIntegrationProvisioner - deployment template includes
 ignore = **/*.tt.sh
