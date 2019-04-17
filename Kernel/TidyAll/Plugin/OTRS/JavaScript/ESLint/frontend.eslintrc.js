@@ -5,7 +5,7 @@
  * NOTE: In order for linting to work, you will need following globally installed NPM modules
  *  (eslint 5 currently not working with airbnb-base):
  *
- *   npm install -g eslint@4.19.1 eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
+ *   npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
  *
  */
 

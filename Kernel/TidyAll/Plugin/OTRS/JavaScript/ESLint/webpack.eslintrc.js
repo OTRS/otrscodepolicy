@@ -11,7 +11,7 @@
 /*
  * NOTE: In order for linting to work, you will need following globally installed NPM modules:
  *
- *   npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue vue-eslint-parser babel-eslint
+ *   npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
  *
  */
 
