@@ -25,8 +25,13 @@ sub validate_source {    ## no critic
         $Counter++;
         if ( $Line =~ m{ console\.log\( }xms ) {
             $ErrorMessage
-                .= "ERROR: JavaScriptDebugCheck() found a console.log() statement in line( $Counter ): $Line\n";
+                .= "ERROR: JavaScript debug check found a console.log() statement in line( $Counter ): $Line\n";
             $ErrorMessage .= "This will break IE and Opera. Please remove it from your code.\n";
+        }
+        if ( $Line =~ m{ \bxit\( }xms ) {
+            $ErrorMessage
+                .= "ERROR: JavaScript debug check found a skipped test 'xit()' statement in line( $Counter ): $Line\n";
+            $ErrorMessage .= "If the test is no longer necessary, please remove it from your code.\n";
         }
     }
     if ($ErrorMessage) {

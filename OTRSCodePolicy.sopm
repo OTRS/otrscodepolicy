@@ -208,6 +208,7 @@
         <File Permission="760" Location="scripts/uninstall-git-hooks.pl" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins.pm" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicy.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/DebugCode.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS7/DeprecatedSettings.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t" />
