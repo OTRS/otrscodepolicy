@@ -284,8 +284,8 @@ ignore = Kernel/WebApp/Plugin/*ProvideObjectManager.pm
 [+TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON]
 select = **/*.{pm}
 
-[+TidyAll::Plugin::OTRS::Perl::HasEndpointDocumentation]
-select = **/*.{pm}
+;[+TidyAll::Plugin::OTRS::Perl::HasEndpointDocumentation]
+;select = **/*.{pm}
 
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}
