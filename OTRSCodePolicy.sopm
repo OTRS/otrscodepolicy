@@ -97,7 +97,6 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ForeachToFor.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ForMy.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Goto.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/HasEndpointDocumentation.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ISA.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/LayoutObject.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm" />
@@ -227,6 +226,5 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/NameLength.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/Navigation.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/KeyLength.t" />
-        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/HasEndpointDocumentation.t" />
     </Filelist>
 </otrs_package>
