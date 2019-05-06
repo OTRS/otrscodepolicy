@@ -68,7 +68,7 @@ sub Run {
 
         my $Input = $Param{Input};
         if ( !$Input ) {
-            $Input = do { local $/; <STDIN> };
+            $Input = do { local $/; <> };
         }
 
         # Debug
