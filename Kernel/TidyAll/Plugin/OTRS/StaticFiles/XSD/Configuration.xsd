@@ -34,7 +34,7 @@
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
-                            <xs:attribute name="Translatable" use="optional" type="BooleanAttribute"/>
+                            <xs:attribute name="Translatable" use="required" type="BooleanAttribute"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
