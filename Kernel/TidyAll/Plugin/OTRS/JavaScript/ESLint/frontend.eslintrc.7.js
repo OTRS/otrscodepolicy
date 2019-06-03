@@ -3,7 +3,6 @@
 
 /*
  * NOTE: In order for linting to work, you will need following globally installed NPM modules
- *  (eslint 5 currently not working with airbnb-base):
  *
  *   npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
  *
@@ -119,6 +118,9 @@ module.exports = {
 
         // Don't correct closing bracket position of HTML tags for backward compatibility reasons.
         'vue/html-closing-bracket-newline': 'off',
+
+        // Don't correct new lines in single line HTML elements for backward compatibility reasons.
+        'vue/singleline-html-content-newline': 'off',
 
         // NOTE: These rules will be turned on again in OTRS 8.
         'vue/attributes-order': 'off',
