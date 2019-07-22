@@ -417,6 +417,9 @@ select = Kernel/Config/**/*.xml
 [+TidyAll::Plugin::OTRS::XML::Configuration::Navigation]
 select = Kernel/Config/**/*.xml
 
+[+TidyAll::Plugin::OTRS::XML::Configuration::UnitTestBlacklist]
+select = Kernel/Config/**/*.xml
+
 [+TidyAll::Plugin::OTRS::XML::Configuration::XSDValidator]
 select = Kernel/Config/**/*.xml
 
