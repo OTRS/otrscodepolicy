@@ -41,8 +41,8 @@ sub validate_source {    ## no critic
             my @TestNames = split /\//, $1;
             $TestNames[-1] = $PackageName . $TestNames[-1];
 
-            my $PackageUnitTest = './scripts/test/' . join( '/', @TestNames );
-            if ( !-e $PackageUnitTest ) {
+            my $PackageUnitTest = 'scripts/test/' . join( '/', @TestNames );
+            if ( !grep { $_ eq $PackageUnitTest } @TidyAll::OTRS::FileList ) {
                 $ErrorMessage .= $PackageUnitTest . "\n";
             }
         }

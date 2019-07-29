@@ -61,6 +61,9 @@ sub Run {
         $TidyAll::OTRS::FrameworkVersionMajor = $FrameworkVersionMajor;
         $TidyAll::OTRS::FrameworkVersionMinor = $FrameworkVersionMinor;
 
+        # Set the list of files to the same one defined in the test case.
+        @TidyAll::OTRS::FileList = @{ $Test->{FileList} // [] };
+
         my $Source = $Test->{Source};
 
         eval {
