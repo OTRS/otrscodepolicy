@@ -11,8 +11,9 @@
 /*
  * NOTE: In order for linting to work, you will need following globally installed NPM modules:
  *
- *   npm install -g eslint eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
+ *   npm install -g eslint@5 eslint-plugin-import eslint-config-airbnb-base eslint-plugin-vue babel-eslint eslint-plugin-jest
  *
+ * FIXME: We have to pin the ESLint version to 5.x since not all plugins we use are compatible with 6.x just yet.
  */
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
     rules: {
 
         /*
-         * AirBnB JS rule overriddes.
+         * AirBnB JS rule overrides.
          */
 
         // Enforce consistent indentation.
@@ -96,5 +97,11 @@ module.exports = {
             "exports": "always-multiline",
             "functions": "never",
         }],
+
+        // Do not force the use of the object spread just yet (target ES2018).
+        'prefer-object-spread': 'off',
+
+        // Do not force parentheses on arrow functions with single arguments.
+        'arrow-parens': 'off',
     },
 };
