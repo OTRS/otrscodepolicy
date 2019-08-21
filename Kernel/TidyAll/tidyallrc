@@ -245,12 +245,17 @@ select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = scripts/test/sample/**/*
+; do not run for commits to save time
+only_modes = cli tests
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 argv = -l=120 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl -cab=0
+; do not run for commits to save time
+; do not run on the UnitTests to save time (needs ~ 5 min for OTRS)
+only_modes = cli
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::FunctionPod]
 select = **/*.{pm}
