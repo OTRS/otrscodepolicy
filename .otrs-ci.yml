@@ -4,3 +4,11 @@ PlatformSets:
  - ondemand-otrs8
 
 DeployOTRSBranch: master
+
+TestModes:
+ Merge:
+  PlatformSets:
+   - ondemand-merge-otrs8
+
+ Silent:
+  Active: 0
