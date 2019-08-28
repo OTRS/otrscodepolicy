@@ -143,8 +143,12 @@ sub FindFilesInDirectory {
         # Some global hard ignores that are meant to speed up the loading process,
         #   as applying the TidyAll ignore/select rules can be quite slow.
         return if $File::Find::name =~ m{/\.git/};
-        return if $File::Find::name =~ m{/node_modules/};
         return if $File::Find::name =~ m{/\.tidyall.d/};
+        return if $File::Find::name =~ m{/\.vscode/};
+        return if $File::Find::name =~ m{/node_modules/};
+        return if $File::Find::name =~ m{/js-cache/};
+        return if $File::Find::name =~ m{/css-cache/};
+        return if $File::Find::name =~ m{/var/tmp/};
         return if $File::Find::name =~ m{/var/public/dist/};
 
         push @Files, File::Spec->abs2rel( $File::Find::name, $Self->{root_dir} );
