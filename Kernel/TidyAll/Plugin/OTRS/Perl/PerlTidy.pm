@@ -14,7 +14,9 @@ use warnings;
 use parent qw(TidyAll::Plugin::OTRS::Perl);
 
 use Capture::Tiny qw(capture_merged);
-use Perl::Tidy;
+
+# Require a recent version of Perl::Tidy for consistent formatting on all systems.
+use Perl::Tidy v20190601;
 
 sub transform_source { ## no critic
     my ( $Self, $Code ) = @_;
