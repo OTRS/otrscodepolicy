@@ -31,16 +31,13 @@ sub transform_file {    ## no critic
         $NodePath = `which nodejs 2>/dev/null` || `which node 2>/dev/null`;
         chomp $NodePath;
         if ( !$NodePath ) {
-            print STDERR "Could not find 'nodejs' binary, skipping ESLint tests.\n";
-            return;
+            die "Error: could not find the 'nodejs' binary.\n";
         }
 
         $ESLintPath = `which eslint 2>/dev/null`;
         chomp $ESLintPath;
         if ( !$ESLintPath ) {
-            print STDERR "Could not find 'eslint' script, skipping ESLint tests.\n";
-            print STDERR "Install nodejs and run 'npm -g i eslint' to install eslint.\n";
-            return;
+            die "Error: could not find the 'eslint' script.\n";
         }
 
         # Force the minimum version of eslint.
@@ -48,9 +45,9 @@ sub transform_file {    ## no critic
         chomp $ESLintVersion;
         my ( $Major, $Minor, $Patch ) = $ESLintVersion =~ m{v(\d+)[.](\d+)[.](\d+)};
         my $Compare = sprintf( "%03d%03d%03d", $Major, $Minor, $Patch );
-        if ( !length($Major) || $Compare < 3_000_001 ) {
-            undef $ESLintPath;
-            die "Your eslint version ($ESLintVersion) is outdated. Please update with 'npm -g update eslint'.\n";
+        if ( !length($Major) || $Compare < 5_000_001 ) {
+            undef $ESLintPath;    # Make sure to re-issue this error for future files.
+            die "Error: your eslint version ($ESLintVersion) is outdated.\n";
         }
     }
 
