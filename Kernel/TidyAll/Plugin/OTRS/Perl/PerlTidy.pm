@@ -36,11 +36,16 @@ sub transform_source { ## no critic
     # Force re-wrap of assignments too.
     $Code =~ s{ \n^\s+(=\s+) }{$1}smxg;
 
-    # Replace ,; with ;
-    for my $Count ( 1 .. 10 ) {
-        $Code =~ s{ ^ (.*) , $ \n ^ \s* ; \s* $ }{$1;}smxg;
-        $Code =~ s{ ^ (.*) ,; $ }{$1;}smxg;
-    }
+    # There was some custom code in place here to replace ',;' with ';', but that proved to
+    #   be much too slow on large files (> 40s on AgentTicketProcess.pm of OTRS 7).
+    #   Therefore, this logic was removed.
+
+    # This bit of insanity is needed because if some other code calls
+    # Getopt::Long::Configure() to change some options, then everything can go
+    # to hell. Internally perltidy() tries to use Getopt::Long without
+    # resetting the configuration defaults, leading to very confusing
+    # errors. See https://rt.cpan.org/Ticket/Display.html?id=118558
+    Getopt::Long::ConfigDefaults();
 
     # perltidy reports errors in two different ways.
     # Argument/profile errors are output and an error_flag is returned.
