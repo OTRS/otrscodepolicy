@@ -148,7 +148,7 @@ sub FindFilesInDirectory {
         return if $File::Find::name =~ m{/node_modules/};
         return if $File::Find::name =~ m{/js-cache/};
         return if $File::Find::name =~ m{/css-cache/};
-        return if $File::Find::name =~ m{/var/tmp/};
+        return if $File::Find::name =~ m{/var/tmp/} && $File::Find::name !~ m{.*\.sample$};
         return if $File::Find::name =~ m{/var/public/dist/};
 
         push @Files, File::Spec->abs2rel( $File::Find::name, $Self->{root_dir} );
