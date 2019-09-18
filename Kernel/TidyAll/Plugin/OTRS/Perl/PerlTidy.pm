@@ -18,6 +18,15 @@ use Capture::Tiny qw(capture_merged);
 # Require a recent version of Perl::Tidy for consistent formatting on all systems.
 use Perl::Tidy v20190601;
 
+# TODO: Latest release 20190915 of Perl::Tidy seems to be buggy about vertical indentation.
+#   Force a certain version for now.
+if ( Perl::Tidy->VERSION() ne '20190601' ) {
+    my $Error = 'Newer versions of Perl::Tidy than v20190601 are currently not supported.';
+    $Error   .= ' Please use exactly that version (sudo cpanm Perl::Tidy@v20190601).';
+    $Error   .= ' Your installed version is: ' . Perl::Tidy->VERSION() . ".\n";
+    die $Error;
+}
+
 sub transform_source { ## no critic
     my ( $Self, $Code ) = @_;
 
