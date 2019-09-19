@@ -15,7 +15,6 @@
 
     <ModuleRequired Version="0.17">Code::TidyAll</ModuleRequired>
     <ModuleRequired>Perl::Critic</ModuleRequired>
-    <ModuleRequired>Perl::Tidy</ModuleRequired>
 
     <Vendor>OTRS AG</Vendor>
     <URL>https://otrs.com/</URL>
@@ -26,8 +25,27 @@
     <PackageIsBuildable>0</PackageIsBuildable>
     <Filelist>
         <File Permission="760" Location="bin/otrs.CodePolicy.pl" />
-        <File Permission="660" Location="Kernel/cpan-lib/Pod/Strip.pm" />
         <File Permission="660" Location="Kernel/cpan-lib/Locale/PO.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy.pod" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/Formatter.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/IndentationItem.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/IOScalar.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/HtmlWriter.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/LineSink.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/LineBuffer.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/DevNull.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/Diagnostics.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/LineSource.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/Logger.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/VerticalAligner.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/Tokenizer.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/Debugger.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/FileWriter.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/IOScalarArray.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/VerticalAligner/Alignment.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Perl/Tidy/VerticalAligner/Line.pm" />
+        <File Permission="660" Location="Kernel/cpan-lib/Pod/Strip.pm" />
         <File Permission="660" Location="Kernel/TidyAll/OTRS.pm" />
         <File Permission="660" Location="Kernel/TidyAll/OTRS/Git/PreCommit.pm" />
         <File Permission="660" Location="Kernel/TidyAll/OTRS/Git/PreReceive.pm" />
