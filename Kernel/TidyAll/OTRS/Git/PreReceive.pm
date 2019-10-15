@@ -56,6 +56,9 @@ my %IgnoreRepositories = (
 
     # Streamline icons repository
     'streamline-icons.git' => 1,
+
+    # CKEditor 5 custom build repository
+    'ckeditor5-build-inline-otrs.git' => 1,
 );
 
 sub Run {
