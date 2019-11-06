@@ -111,13 +111,21 @@ sub HandleInput {
         chomp($Line);
         my ( $Base, $Commit, $Ref ) = split( /\s+/, $Line );
 
-        if ( substr( $Ref, 0, 9 ) eq 'refs/tags' ) {
-            print "$Ref is a tag, ignoring.\n";
+        if ( $Commit =~ m/^0+$/ ) {
+
+            # No target commit (branch / tag delete).
             next LINE;
         }
 
-        if ( $Commit =~ m/^0+$/ ) {
-            print "No target commit found, stopping.\n";
+        if ( substr( $Ref, 0, 9 ) eq 'refs/tags' ) {
+
+            # Only allow "rel-*" as name for new and updated tags.
+            if ( substr( $Ref, 0, 14 ) ne 'refs/tags/rel-' ) {
+                my $ErrorMessage = "Found invalid tag $Ref - please only use rel-*.";
+                return $ErrorMessage;
+            }
+
+            # Valid tag.
             next LINE;
         }
 
