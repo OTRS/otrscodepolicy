@@ -59,6 +59,9 @@ my %IgnoreRepositories = (
 
     # CKEditor 5 custom build repository
     'ckeditor5-build-inline-otrs.git' => 1,
+
+    # OTRS Mobile App repository
+    'otrs-mobile-app.git' => 1,
 );
 
 sub Run {
