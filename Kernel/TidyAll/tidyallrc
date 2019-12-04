@@ -143,9 +143,10 @@ ignore = var/httpd/htdocs/common/**/*.css
 ignore = **/*.tt.sh
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
-select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html,service,conf}
+select = **/*.{pl,pm,psgi,t,dtl,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html,service,conf,example,template}
 select = .*.dist .bash_completion
 select = var/cron/*
+select = var/git/hooks/*-receive
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
 ; Don't run this in the CI to avoid updates on year changes. It is enough to update the code when it is changed.
