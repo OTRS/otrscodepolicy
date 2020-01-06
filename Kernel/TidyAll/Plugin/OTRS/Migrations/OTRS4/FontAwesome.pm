@@ -17,7 +17,7 @@ sub validate_source {                                             ## no critic
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return if $Self->IsFrameworkVersionLessThan( 4, 0 );
+    return       if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
     my %Icons = (
         'icon-adjust'                 => 1,
