@@ -41,7 +41,18 @@ module.exports = {
          */
 
         // Enforce consistent indentation.
-        'indent': [ 'error', 4, { 'SwitchCase': 1 } ],
+        'indent': [ 'error', 4, {
+            'SwitchCase': 1,
+            // Fix issue with `Cannot read property 'range' of null` errors. Please see
+            //   https://stackoverflow.com/questions/48391913/eslint-error-cannot-read-property-range-of-null
+            //   for more information.
+            'ignoredNodes': [ 'TemplateLiteral' ],
+        }],
+
+        // Fix issue with `Cannot read property 'range' of null` errors. Please see
+        //   https://stackoverflow.com/questions/48391913/eslint-error-cannot-read-property-range-of-null
+        //   for more information.
+        'template-curly-spacing': 'off',
 
         // Allow unnecessarily quoted properties.
         'quote-props': 'off',
@@ -92,11 +103,11 @@ module.exports = {
             },
         ],
 
-       // Do not force the use of the object spread just yet (target ES2018).
-       'prefer-object-spread': 'off',
+        // Do not force the use of the object spread just yet (target ES2018).
+        'prefer-object-spread': 'off',
 
-       // Do not force parentheses on arrow functions with single arguments.
-       'arrow-parens': 'off',
+        // Do not force parentheses on arrow functions with single arguments.
+        'arrow-parens': 'off',
 
         // Allow require() calls with expressions (dynamic imports).
         'import/no-dynamic-require': 'off',

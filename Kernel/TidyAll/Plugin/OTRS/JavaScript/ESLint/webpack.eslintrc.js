@@ -29,7 +29,18 @@ module.exports = {
          */
 
         // Enforce consistent indentation.
-        'indent': [ 'error', 4, { 'SwitchCase': 1 } ],
+        'indent': [ 'error', 4, {
+            'SwitchCase': 1,
+            // Fix issue with `Cannot read property 'range' of null` errors. Please see
+            //   https://stackoverflow.com/questions/48391913/eslint-error-cannot-read-property-range-of-null
+            //   for more information.
+            'ignoredNodes': [ 'TemplateLiteral' ],
+        }],
+
+        // Fix issue with `Cannot read property 'range' of null` errors. Please see
+        //   https://stackoverflow.com/questions/48391913/eslint-error-cannot-read-property-range-of-null
+        //   for more information.
+        'template-curly-spacing': 'off',
 
         // Allow unnecessarily quoted properties.
         'quote-props': 'off',
