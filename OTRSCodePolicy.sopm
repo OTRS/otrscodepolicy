@@ -61,12 +61,6 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/RemoveCVSIDs.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Common/ValidateFilename.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Cron/CronScripts.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Baselink.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/CGIHandle.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Format.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/LQData.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/Select.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/DTL/UniqueBlock.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/DebugCode.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/frontend.eslintrc.7.js" />
