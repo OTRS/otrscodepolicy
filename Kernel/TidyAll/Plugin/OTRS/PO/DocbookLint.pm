@@ -26,6 +26,9 @@ sub validate_file {    ## no critic
     return if $Self->IsPluginDisabled( Filename => $Filename );
     return if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
+    # With OTRS 7 documentation was converted to RST.
+    return if !$Self->IsFrameworkVersionLessThan( 7, 0 );
+
     my $IsDocbookTranslation = $Filename =~ m{/doc-}smx;
     my $Strings              = Locale::PO->load_file_asarray($Filename);
 
