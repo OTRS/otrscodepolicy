@@ -70,6 +70,7 @@ sub IsCamelCase {
         if (
             $Name =~ m{ Kernel::Language :: [a-z]{2,3}_ }xms
             || $Name eq 'main'
+            || $Name =~ m{ ^scripts:: }xms
             || $Name =~ m{ ^var::packagesetup:: }xms
             )
         {
