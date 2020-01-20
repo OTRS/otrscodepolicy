@@ -33,9 +33,6 @@ use File::Path qw();
 use Code::TidyAll;
 use IPC::System::Simple qw(capturex);
 
-use POSIX ":sys_wait_h";
-use Time::HiRes qw(sleep);
-
 use TidyAll::OTRS;
 
 my ( $Verbose, $Directory, $File, $Mode, $Cached, $All, $Help, $Processes );
@@ -66,7 +63,7 @@ Options:
     -f, --file          Check only one file
     -m, --mode          Use custom Code::TidyAll mode (default: cli)
     -v, --verbose       Activate diagnostics
-    -p, --processes     The number of processes to use (default 6)
+    -p, --processes     The number of processes to use (default: env var OTRSCODEPOLICY_PROCESSES if set, otherwise "6")
     -h, --help          Show this usage message
 EOF
     exit 0;
@@ -75,32 +72,6 @@ EOF
 my $ConfigurationFile = dirname($0) . '/../Kernel/TidyAll/tidyallrc';
 
 my $RootDir = getcwd();
-
-if ( !defined $Processes ) {
-    $Processes = 6;
-}
-
-# To store results from child processes.
-my $TempDirectory = dirname($0) . '/../var/tmp/OTRSCodePolicy/';
-
-if ( !-e $TempDirectory ) {
-
-    File::Path::mkpath( $TempDirectory, 0, 0770 );    ## no critic
-
-    if ( !-e $TempDirectory ) {
-        print "\nCan't create directory '$TempDirectory': $!\n";
-        exit 1;
-    }
-}
-
-# Make sure to cleanup log directory.
-unlink glob "'$TempDirectory/*.tmp'";
-
-my @TempFiles = glob "$TempDirectory/*.tmp";
-if (@TempFiles) {
-    print "\nCould not remove all .tmp files form $TempDirectory please delete them manually and try again\n";
-    exit 1;
-}
 
 my $TidyAll = TidyAll::OTRS->new_from_conf_file(
     $ConfigurationFile,
@@ -115,6 +86,7 @@ $TidyAll->DetermineFrameworkVersionFromDirectory();
 $TidyAll->GetFileListFromDirectory();
 
 my @Files;
+
 if ($All) {
 
     # Don't use TidyAll::process_all() or TidyAll::find_matched_files() as it is too slow on large code bases.
@@ -159,107 +131,10 @@ else {
 # Safeguard: ignore non-regular files and symlinks (causes TidyAll errors).
 @Files = grep { -f && !-l } @Files;
 
-my %ActiveChildPID;
-local $SIG{INT}  = sub { Stop() };
-local $SIG{TERM} = sub { Stop() };
-
-my @GlobalResults;
-if ($Processes) {
-
-    # split chunks of files for every process
-    my @Chunks;
-    my $ItemCount = 0;
-
-    for my $File (@Files) {
-        push @{ $Chunks[ $ItemCount++ % $Processes ] }, $File;
-    }
-
-    CHUNK:
-    for my $Chunk (@Chunks) {
-
-        # Create a child process.
-        my $PID = fork;
-
-        # Child process could not be created.
-        if ( $PID < 0 ) {
-
-            print "Unable to fork a child process for tiding!";
-
-            last CHUNK;
-        }
-
-        # ------------------- #
-        # Start child process #
-        # ------------------- #
-
-        if ( !$PID ) {
-
-            my @Results = $TidyAll->process_paths( @{$Chunk} );
-
-            my $ChildPID = $$;
-            Storable::store( \@Results, "$TempDirectory/$ChildPID.tmp" );
-
-            # Close child process at the end.
-            exit 0;
-        }
-
-        # ----------------- #
-        # End child process #
-        # ----------------- #
-
-        $ActiveChildPID{$PID} = {
-            PID => $PID,
-        };
-    }
-
-    # Check the status of all child processes every 0.1 seconds.
-    # Wait for all child processes to be finished.
-    WAIT:
-    while (1) {
-
-        last WAIT if !%ActiveChildPID;
-
-        sleep 0.1;
-
-        PID:
-        for my $PID ( sort keys %ActiveChildPID ) {
-
-            my $WaitResult = waitpid( $PID, WNOHANG );
-
-            if ( $WaitResult == -1 ) {
-
-                print "Child process '$PID' exited with errors: $?";
-
-                delete $ActiveChildPID{$PID};
-
-                next PID;
-            }
-
-            if ($WaitResult) {
-                delete $ActiveChildPID{$PID};
-
-                my $TempFile = "$TempDirectory/$PID.tmp";
-                my $Results;
-
-                if ( -e $TempFile ) {
-                    $Results = Storable::retrieve($TempFile);
-                }
-
-                # Join the child results.
-                @GlobalResults = ( @GlobalResults, @{ $Results || [] } );
-
-                # Remove temp file.
-                unlink $TempFile;
-            }
-        }
-    }
-}
-else {
-    $TidyAll->process_paths(@Files);
-}
-
-# Remove any temp file left.
-unlink glob "'$TempDirectory/*.tmp'";
+my @GlobalResults = $TidyAll->ProcessPathsParallel(
+    Processes => $Processes,
+    FilePaths => \@Files,
+);
 
 my $FailMsg;
 if ( my @ErrorResults = grep { $_->error() } @GlobalResults ) {
@@ -270,14 +145,3 @@ if ( my @ErrorResults = grep { $_->error() } @GlobalResults ) {
     );
 }
 die "$FailMsg\n" if $FailMsg;
-
-sub Stop {
-
-    # Propagate kill signal to all forks
-    for my $PID ( sort keys %ActiveChildPID ) {
-        kill 9, $PID;
-    }
-
-    print "Stopped by user!\n";
-    return 1;
-}

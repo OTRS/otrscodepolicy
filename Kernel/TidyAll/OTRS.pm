@@ -11,11 +11,16 @@ package TidyAll::OTRS;
 use strict;
 use warnings;
 
+use Code::TidyAll 0.56;
+use File::Basename;
+use File::Temp ();
 use IO::File;
+use POSIX ":sys_wait_h";
+use Time::HiRes qw(sleep);
+
 use parent qw(Code::TidyAll);
 
 # Require some needed modules here for clarity / better error messages.
-use Code::TidyAll 0.56;
 use Perl::Critic;
 use Perl::Tidy;
 
@@ -105,6 +110,123 @@ sub DetermineFrameworkVersionFromDirectory {
     }
 
     return;
+}
+
+#
+# Process a list of file paths in parallel with forking (if needed).
+#
+sub ProcessPathsParallel {
+    my ( $Self, %Param ) = @_;
+
+    my $Processes = $Param{Processes} // $ENV{OTRSCODEPOLICY_PROCESSES} // 6;
+    my @Files     = @{ $Param{FilePaths} // [] };
+
+    # No parallel processing needed: execute directly.
+    if ( $Processes <= 1 ) {
+        return $Self->process_paths(@Files);
+    }
+
+    # Parallel processing. We chunk the data and execute the chunks in parallel.
+    #
+    # TidyAll's built-in --jobs flag is not used, it seems to be way too slow,
+    #   perhaps because of forking for each single job.
+
+    my %ActiveChildPID;
+
+    my $Stop = sub {
+
+        # Propagate kill signal to all forks
+        for my $PID ( sort keys %ActiveChildPID ) {
+            kill 9, $PID;
+        }
+
+        print "Stopped by user!\n";
+        return 1;
+    };
+
+    local $SIG{INT}  = sub { $Stop->() };
+    local $SIG{TERM} = sub { $Stop->() };
+
+    my @GlobalResults;
+
+    print "OTRSCodePolicy will use $Processes parallel processes.\n";
+
+    # To store results from child processes.
+    my $TempDirectory = File::Temp->newdir() || die "Could not create temporary directory: $!";
+
+    # split chunks of files for every process
+    my @Chunks;
+    my $ItemCount = 0;
+
+    for my $File (@Files) {
+        push @{ $Chunks[ $ItemCount++ % $Processes ] }, $File;
+    }
+
+    CHUNK:
+    for my $Chunk (@Chunks) {
+
+        # Create a child process.
+        my $PID = fork;
+
+        # Child process could not be created.
+        if ( $PID < 0 ) {
+            die "Unable to fork a child process for tiding!";
+        }
+
+        # Child process.
+        if ( !$PID ) {
+
+            my @Results = $Self->process_paths( @{$Chunk} );
+
+            my $ChildPID = $$;
+            Storable::store( \@Results, "$TempDirectory/$ChildPID.tmp" );
+
+            # Close child process at the end.
+            exit 0;
+        }
+
+        # Parent process.
+        $ActiveChildPID{$PID} = {
+            PID => $PID,
+        };
+    }
+
+    # Check the status of all child processes every 0.1 seconds.
+    # Wait for all child processes to be finished.
+    WAIT:
+    while (1) {
+
+        last WAIT if !%ActiveChildPID;
+        sleep 0.1;
+
+        PID:
+        for my $PID ( sort keys %ActiveChildPID ) {
+
+            my $WaitResult = waitpid( $PID, WNOHANG );
+
+            die "Child process '$PID' exited with errors: $?" if $WaitResult == -1;
+
+            if ($WaitResult) {
+
+                my $TempFile = "$TempDirectory/$PID.tmp";
+                my $Results;
+
+                if ( !-e $TempFile ) {
+                    die "Could not read results of process $PID.\n";
+                }
+
+                $Results = Storable::retrieve($TempFile);
+                unlink $TempFile;
+
+                # Join the child results.
+                @GlobalResults = ( @GlobalResults, @{ $Results || [] } );
+
+                delete $ActiveChildPID{$PID};
+            }
+        }
+    }
+
+    return @GlobalResults;
 }
 
 #

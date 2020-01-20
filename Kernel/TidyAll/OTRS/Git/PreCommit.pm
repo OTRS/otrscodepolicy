@@ -76,7 +76,9 @@ sub Run {
         $TidyAll->DetermineFrameworkVersionFromDirectory();
         $TidyAll->GetFileListFromDirectory();
 
-        my @CheckResults = $TidyAll->process_paths( map {"$RootDir/$_"} @ChangedFiles );
+        my @CheckResults = $TidyAll->ProcessPathsParallel(
+            FilePaths => [ map {"$RootDir/$_"} @ChangedFiles ],
+        );
 
         if ( my @ErrorResults = grep { $_->error() } @CheckResults ) {
             my $ErrorCount = scalar(@ErrorResults);
