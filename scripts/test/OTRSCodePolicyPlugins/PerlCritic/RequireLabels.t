@@ -7,7 +7,6 @@
 # --
 use strict;
 use warnings;
-## nofilter(TidyAll::Plugin::OTRS::Common::CustomizationMarkers)
 
 use vars (qw($Self));
 use utf8;
