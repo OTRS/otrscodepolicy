@@ -14,6 +14,7 @@ use warnings;
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
 ## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::PermissionDataNotInSession)
+## nofilter(TidyAll::Plugin::OTRS::Perl::LayoutObject)
 ## nofilter(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)
 
 sub validate_source {    ## no critic
