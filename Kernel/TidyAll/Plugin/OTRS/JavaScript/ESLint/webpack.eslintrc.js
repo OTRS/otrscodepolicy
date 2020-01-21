@@ -6,8 +6,6 @@
 // did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 // --
 
-// nofilter(TidyAll::Plugin::OTRS::JavaScript::ESLint)
-
 /*
  * NOTE: In order for linting to work, you will need following globally installed NPM modules:
  *
