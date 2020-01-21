@@ -26,9 +26,9 @@ sub validate_source {    ## no critic
     $Code = $Self->StripPod( Code => $Code );
     $Code = $Self->StripComments( Code => $Code );
 
-    my $Forbidden = qr{LayoutObject|Kernel::Output::HTML::Layout}xms;
+    my $Forbidden = qr{\$LayoutObject|Kernel::Output::HTML::Layout}xms;
     if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
-        $Forbidden = qr{LayoutObject}xms;
+        $Forbidden = qr{\$LayoutObject}xms;
     }
 
     if ( $Code =~ $Forbidden ) {
