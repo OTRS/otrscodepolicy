@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::RequireCamelCase;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
 
 use strict;
 use warnings;
@@ -35,7 +35,7 @@ my %dispatcher = (
 );
 
 sub applies_to {
-    keys %dispatcher;
+    return keys %dispatcher;
 }
 
 sub violates {

@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::RequireParensWithMethods;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
 
 use strict;
 use warnings;
@@ -33,7 +33,7 @@ sub violates {
 
     return if $elem ne '->';
 
-    my $method = $elem->snext_sibling;
+    my $method = $elem->snext_sibling();
 
     # $Variable->();
     return if ref $method eq 'PPI::Structure::List';
@@ -41,7 +41,7 @@ sub violates {
     # $Variable->method();
     return if ref $method eq 'PPI::Structure::Subscript';
 
-    my $list = $method->snext_sibling;
+    my $list = $method->snext_sibling();
     return if ref $list eq 'PPI::Structure::List';
 
     return $self->violation( $DESC, $EXPL, $elem );

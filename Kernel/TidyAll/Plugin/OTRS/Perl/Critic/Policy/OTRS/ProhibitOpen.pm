@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitOpen;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
 
 use strict;
 use warnings;
@@ -52,6 +52,7 @@ sub violates {
     else {
         # Loop until we found the Token after the first comma
         my $Counter;
+        COUNTER:
         while ( $Counter++ < 10 ) {
             $NextSibling = $NextSibling->snext_sibling();
 
@@ -63,7 +64,7 @@ sub violates {
                 my $Quote = $NextSibling->snext_sibling();
                 return if ( !$Quote || !$Quote->isa('PPI::Token::Quote') );
                 $OpenMode = $Quote->string();
-                last;
+                last COUNTER;
             }
         }
     }

@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitRandInTests;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
 
 use strict;
 use warnings;
@@ -48,8 +48,8 @@ sub violates {
 sub _is_test {
     my ( $Self, $Element ) = @_;
 
-    my $Document = $Element->document;
-    my $Filename = $Document->logical_filename;
+    my $Document = $Element->document();
+    my $Filename = $Document->logical_filename();
     my $IsTest   = $Filename =~ m{ \.t \z }xms;
 
     return $IsTest;

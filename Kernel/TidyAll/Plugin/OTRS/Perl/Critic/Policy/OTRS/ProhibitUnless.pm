@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitUnless;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
 
 use strict;
 use warnings;

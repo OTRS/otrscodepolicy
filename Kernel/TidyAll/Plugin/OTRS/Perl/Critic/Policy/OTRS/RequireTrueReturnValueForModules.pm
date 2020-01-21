@@ -8,7 +8,7 @@
 
 package Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules;
 
-## nofilter(TidyAll::Plugin::OTRS::Perl::PerlCritic)
+## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
 
 use strict;
 use warnings;
@@ -41,7 +41,7 @@ sub violates {
 sub _returns_1 {
     my ( $self, $elem ) = @_;
 
-    my $last_statement = ( grep { ref $_ eq 'PPI::Statement' } $elem->schildren )[-1];
+    my $last_statement = ( grep { ref $_ eq 'PPI::Statement' } $elem->schildren() )[-1];
     return 0 if !$last_statement;
     return 1 if $last_statement eq '1;';
     return 0;
@@ -50,8 +50,8 @@ sub _returns_1 {
 sub _is_script {
     my ( $self, $elem ) = @_;
 
-    my $document = $elem->document;
-    my $filename = $document->logical_filename;
+    my $document = $elem->document();
+    my $filename = $document->logical_filename();
 
     my $is_module = $filename =~ m{ \.pm \z }xms;
 
