@@ -149,7 +149,7 @@ sub ProcessPathsParallel {
 
     my @GlobalResults;
 
-    print "OTRSCodePolicy will use $Processes parallel processes.\n";
+    print "OTRSCodePolicy will use up to $Processes parallel processes.\n";
 
     # To store results from child processes.
     my $TempDirectory = File::Temp->newdir() || die "Could not create temporary directory: $!";
