@@ -27,16 +27,12 @@ sub transform_source {    ## no critic
     # Replace <URL>http://otrs.org/</URL> with <URL>https://otrs.com/</URL>
     $Code =~ s{ ^ ( \s* ) \< URL \> .+? \< \/ URL \> }{$1<URL>https://otrs.com/</URL>}xmsg;
 
-    my $Copy      = 'OTRS AG, https://otrs.com/';
-    my $StartYear = 2001;
+    my $Copy = 'OTRS AG, https://otrs.com/';
 
     my ( $Sec, $Min, $Hour, $Day, $Month, $Year ) = localtime( time() );    ## no critic
     $Year += 1900;
 
-    my $YearString = "$StartYear-$Year";
-    if ( $StartYear == $Year ) {
-        $YearString = $Year;
-    }
+    my $YearString = "2001-$Year";
 
     my $Output = '';
 
@@ -55,29 +51,27 @@ sub transform_source {    ## no critic
             next LINE;
         }
 
-        # for the commandline help
-        # e.g : print "Copyright (c) 2003-2008 OTRS AG, http://www.otrs.com/\n";
-        if ( $Line !~ m{ ^\# \s Copyright }smx ) {
-
-            if (
-                $Line
-                =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/? }smx
-                )
-            {
-                $Line =~ s{
-                     ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/?
-                 }
-                 {$1Copyright (C) $YearString $Copy}smx;
-            }
-
-            $Output .= $Line . "\n";
-
-            next LINE;
+        # POD copyright statements.
+        if ( $Line =~ m{ ^\# \s Copyright }smx ) {
+            $Line = "# Copyright (C) $YearString $Copy";
         }
 
-        # check string in the comment line
-        if ( $Line !~ m{^\# \s Copyright \s \( C \) \s $YearString \s $Copy$}smx ) {
-            $Line = "# Copyright (C) $YearString $Copy";
+        # Check string in documentation.yml files
+        elsif ( $Line =~ m{^Copyright: \s+ .* OTRS[ ]AG}smx ) {
+            $Line = "Copyright: $YearString $Copy";
+        }
+
+        # Any other generic copyright statements, e.g :
+        #   print "Copyright (c) 2003-2008 OTRS AG, http://www.otrs.com/\n";
+        elsif (
+            $Line
+            =~ m{ ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/? }smx
+            )
+        {
+            $Line =~ s{
+                    ^ ( [^\n]* ) Copyright [ ]+ \( [Cc] \) .+? OTRS [ ]+ (?: AG | GmbH ), [ ]+ http (?: s |  ) :\/\/otrs\. (?: org | com ) \/?
+                }
+                {$1Copyright (C) $YearString $Copy}smx;
         }
 
         $Output .= $Line . "\n";

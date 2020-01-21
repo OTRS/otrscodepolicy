@@ -119,6 +119,7 @@ select = **/*.{pl,pm,psgi,t,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,h
 select = .*.dist .bash_completion
 select = var/cron/*
 select = var/git/hooks/*-receive
+select = documentation.yml
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = module-format.xml,codesyntax.xml,language-translations.xml,writing-otrs-application.xml,test-mechanism.xml
 ; Don't run this in the CI to avoid updates on year changes. It is enough to update the code when it is changed.
