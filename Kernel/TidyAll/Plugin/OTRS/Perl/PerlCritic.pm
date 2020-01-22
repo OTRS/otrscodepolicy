@@ -17,6 +17,7 @@ use lib dirname(__FILE__) . '/../';    # Find our Perl::Critic policies
 use parent qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
+use Perl::Critic::Policy::OTRS::ProhibitGoto;
 use Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;
 use Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator;
 use Perl::Critic::Policy::OTRS::ProhibitRandInTests;
@@ -46,10 +47,11 @@ sub validate_file {    ## no critic
                 'Perl::Critic::Policy::Modules::RequireExplicitPackage',    # this breaks in our scripts/test folder
             ],
         );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitGoto' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitRandInTests' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitOpen' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitRandInTests' );
+        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitUnless' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireCamelCase' );
         $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireLabels' );

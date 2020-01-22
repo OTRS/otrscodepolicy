@@ -172,10 +172,6 @@ select = Kernel/Config.pm.dist
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
 
-[+TidyAll::Plugin::OTRS::Perl::Goto]
-select = **/*.{pl,psgi,pm,t}
-select = Kernel/Config.pm.dist
-
 [+TidyAll::Plugin::OTRS::Perl::ISA]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
