@@ -75,7 +75,6 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/LicenseValidator.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/ReplaceCopyright.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Legal/SOPMLicense.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS4/FontAwesome.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS5/HeaderlineFilename.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS5/OutputFilterPre.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS5/Popup.pm" />

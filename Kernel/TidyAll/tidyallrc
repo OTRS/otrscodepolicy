@@ -425,14 +425,6 @@ select = **/*.{xml,xsd}
 select = ;**/*.xml
 
 ;
-; Migrations OTRS 4
-;
-
-[+TidyAll::Plugin::OTRS::Migrations::OTRS4::FontAwesome]
-select = **/*.{tt,css,}
-select = Kernel/Config/**/*.xml
-
-;
 ; Migrations OTRS 5
 ;
 
