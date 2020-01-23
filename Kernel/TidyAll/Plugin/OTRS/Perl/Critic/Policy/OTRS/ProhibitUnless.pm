@@ -29,10 +29,16 @@ sub default_severity     { return $SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Word' }
 
-sub violates {
-    my ( $Self, $Element ) = @_;
+sub prepare_to_scan_document {
+    my ( $Self, $Document ) = @_;
 
     return if $Self->IsFrameworkVersionLessThan( 4, 0 );
+
+    return 1;
+}
+
+sub violates {
+    my ( $Self, $Element ) = @_;
 
     return if ( $Element->content() ne 'unless' );
     return $Self->violation( $DESC, $EXPL, $Element );

@@ -27,10 +27,16 @@ sub default_severity     { return $SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Statement::Break' }
 
-sub violates {
-    my ( $Self, $Element ) = @_;
+sub prepare_to_scan_document {
+    my ( $Self, $Document ) = @_;
 
     return if $Self->IsFrameworkVersionLessThan( 4, 0 );
+
+    return 1;
+}
+
+sub violates {
+    my ( $Self, $Element ) = @_;
 
     my @Children = $Element->children();
     if ( $Children[0]->content() ne 'next' && $Children[0]->content() ne 'last' ) {

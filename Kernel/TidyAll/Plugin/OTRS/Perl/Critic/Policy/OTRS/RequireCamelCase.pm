@@ -38,10 +38,16 @@ sub applies_to {
     return keys %dispatcher;
 }
 
-sub violates {
-    my ( $Self, $Element ) = @_;
+sub prepare_to_scan_document {
+    my ( $Self, $Document ) = @_;
 
     return if $Self->IsFrameworkVersionLessThan( 3, 3 );
+
+    return 1;
+}
+
+sub violates {
+    my ( $Self, $Element ) = @_;
 
     $Self->{Errors} = ();
 
