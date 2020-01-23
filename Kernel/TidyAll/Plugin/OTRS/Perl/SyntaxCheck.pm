@@ -60,8 +60,6 @@ sub validate_source {    ## no critic
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
 
-        $Line =~ s{\[gettimeofday\]}{1}smx;
-
         # We'll skip all use *; statements exept for core modules because the modules cannot be found at runtime.
         if ( $Line =~ m{ \A \s* use \s+ }xms && $Line !~ m{$AllowedExternalModulesRegex}xms ) {
             $DeletableStatement = 1;
