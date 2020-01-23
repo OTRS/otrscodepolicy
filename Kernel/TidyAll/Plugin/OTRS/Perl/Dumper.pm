@@ -29,7 +29,7 @@ sub validate_source {    ## no critic
 
         next LINE if $Line =~ m/^\s*\#/smx;
 
-        if ( $Line =~ m{Data::Dumper|(->|\s)Dumper\(}smx ) {
+        if ( $Line =~ m{use\s+Data::Dumper|(->|\s)Dumper\(}smx ) {
             $ErrorMessage .= "Line $Counter: $Line\n";
         }
     }

@@ -23,19 +23,47 @@ sub validate_source {    ## no critic
 
     my ( $CleanedSource, $DeletableStatement );
 
+    # Allow important modules that come with the Perl core or are external
+    #   dependencies of OTRS and can thus be assumed as being installed.
+    my @AllowedExternalModules = qw(
+        vars
+        constant
+        strict
+        warnings
+        threads
+        lib
+
+        Archive::Zip
+        Archive::Tar
+        Cwd
+        Carp
+        Data::Dumper
+        DateTime
+        DBI
+        Fcntl
+        File::Basename
+        FindBin
+        IO::Socket
+        List::Util
+        Moo
+        Moose
+        Perl::Critic::Utils
+        POSIX
+        Readonly
+        Search::Elasticsearch
+        Template
+        Time::HiRes
+    );
+
+    my $AllowedExternalModulesRegex = '\A \s* use \s+ (?: ' . join( '|', @AllowedExternalModules ) . ' ) ';
+
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
 
         $Line =~ s{\[gettimeofday\]}{1}smx;
 
         # We'll skip all use *; statements exept for core modules because the modules cannot be found at runtime.
-        ## nofilter(TidyAll::Plugin::OTRS::Perl::Dumper)
-        if (
-            $Line =~ m{ \A \s* use \s+ }xms
-            && $Line
-            !~ m{\A \s* use \s+ (?: vars | constant | strict | warnings | Fcntl | Data::Dumper | threads | Readonly | lib | FindBin | IO::Socket | File::Basename | Moo | Perl::Critic::Utils | List::Util | Cwd | POSIX ) }xms
-            )
-        {
+        if ( $Line =~ m{ \A \s* use \s+ }xms && $Line !~ m{$AllowedExternalModulesRegex}xms ) {
             $DeletableStatement = 1;
         }
 
