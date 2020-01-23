@@ -80,14 +80,9 @@ sub Run {
             FilePaths => [ map {"$RootDir/$_"} @ChangedFiles ],
         );
 
-        if ( my @ErrorResults = grep { $_->error() } @CheckResults ) {
-            my $ErrorCount = scalar(@ErrorResults);
-            $ErrorMessage = sprintf(
-                "%d file%s did not pass TidyAll check\n",
-                $ErrorCount,
-                $ErrorCount > 1 ? "s" : ""
-            );
-        }
+        $TidyAll->HandleResults(
+            Results => \@CheckResults,
+        );
     }
     catch {
         my $Exception = $_;

@@ -136,12 +136,6 @@ my @GlobalResults = $TidyAll->ProcessPathsParallel(
     FilePaths => \@Files,
 );
 
-my $FailMsg;
-if ( my @ErrorResults = grep { $_->error() } @GlobalResults ) {
-    my $ErrorCount = scalar(@ErrorResults);
-    $FailMsg = sprintf(
-        "%d file%s did not pass tidyall check\n",
-        $ErrorCount, $ErrorCount > 1 ? "s" : ""
-    );
-}
-die "$FailMsg\n" if $FailMsg;
+$TidyAll->HandleResults(
+    Results => \@GlobalResults
+);

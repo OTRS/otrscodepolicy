@@ -230,6 +230,37 @@ sub ProcessPathsParallel {
 }
 
 #
+# Print a useful summary and die in case of errors.
+#
+sub HandleResults {
+    my ( $Self, %Param ) = @_;
+
+    my @GlobalResults = @{ $Param{Results} // [] };
+
+    my @ErrorResults = grep { $_->error() } @GlobalResults;
+    if (@ErrorResults) {
+        my $ErrorCount   = scalar(@ErrorResults);
+        my $ErrorMessage = sprintf( "\nError: %d file(s) did not pass validation.\n", $ErrorCount );
+        if ( $ErrorCount < 10 ) {
+            for my $Error (@ErrorResults) {
+                $ErrorMessage .= " - " . $Error->path() . "\n";
+            }
+        }
+        die "$ErrorMessage\n";
+    }
+
+    my @TidiedResults = grep { $_->state() eq 'tidied' } @GlobalResults;
+    if (@TidiedResults) {
+        printf "\nValidation finished, %d file(s) were tidied.\n", scalar(@TidiedResults);
+    }
+    else {
+        print "\nValidation finished, no problems found.\n";
+    }
+
+    return 1;
+}
+
+#
 # Get a list (almost) all relative file paths from the root directory. This list is used in some plugins to make validation decisions,
 #   not for the actual decision which files are to be validated.
 #
