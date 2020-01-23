@@ -31,28 +31,23 @@ sub default_severity     { return $SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Word' }
 
+# Only apply to test (.t) files.
+sub prepare_to_scan_document {
+    my ( $Self, $Document ) = @_;
+
+    return $Document->logical_filename() =~ m{ \.t \z }xms;
+}
+
 sub violates {
     my ( $Self, $Element ) = @_;
 
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
-
-    return if !$Self->_is_test($Element);
 
     if ( $Element eq 'rand' || $Element eq 'srand' ) {
         return $Self->violation( $DESC, $EXPL, $Element );
     }
 
     return;
-}
-
-sub _is_test {
-    my ( $Self, $Element ) = @_;
-
-    my $Document = $Element->document();
-    my $Filename = $Document->logical_filename();
-    my $IsTest   = $Filename =~ m{ \.t \z }xms;
-
-    return $IsTest;
 }
 
 1;
