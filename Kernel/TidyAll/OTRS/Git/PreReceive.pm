@@ -167,17 +167,11 @@ sub HandleInput {
         }
     }
 
-    my $ErrorMessage;
     if ( my @ErrorResults = grep { $_->error() } @Results ) {
-        my $ErrorCount = scalar(@ErrorResults);
-        $ErrorMessage = sprintf(
-            "%d file%s did not pass tidyall check",
-            $ErrorCount,
-            $ErrorCount > 1 ? "s" : ""
-        );
+        return sprintf( "Error: %d file(s) did not pass validation", scalar(@ErrorResults) );
     }
 
-    return $ErrorMessage;
+    return;
 }
 
 sub CreateTidyAll {
