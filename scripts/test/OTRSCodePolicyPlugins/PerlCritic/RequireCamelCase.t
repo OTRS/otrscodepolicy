@@ -247,6 +247,42 @@ sub my_function {}
 EOF
         Exception => 1,
     },
+    {
+        Name      => 'RequireBaseClass',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
+        Framework => '8.0',
+        Source    => <<'EOF',
+package Kernel::Test;
+use strict;
+use warnings;
+
+$Kernel::OM->Get('Kernel::System::Main')->RequireBaseClass('Some::Class');
+
+sub overridden_method {}
+
+1;
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'Mojo::Base',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
+        Framework => '8.0',
+        Source    => <<'EOF',
+package Kernel::Test;
+use strict;
+use warnings;
+
+use Mojo::Base 'Some::Class';
+
+sub overridden_method {}
+
+1;
+EOF
+        Exception => 0,
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );

@@ -68,7 +68,29 @@ sub prepare_to_scan_document {
         );
     };
 
-    if ( $FindPerlInheritance->() || $FindMooseInheritance->() ) {
+    # Find any Mojo::Base inheritance.
+    my $FindMojoInheritance = sub {
+        return $Document->find_any(
+            sub { return $_[1]->isa('PPI::Statement::Include') && $_[1] =~ m{\A use \s+ Mojo::Base}smx }
+        );
+    };
+
+    # Find all K::S::Main->RequireBaseClass() statements.
+    my $FindRequireBaseClass = sub {
+        return $Document->find_any(
+            sub {
+                return $_[1]->isa('PPI::Token::Word') && $_[1] eq 'RequireBaseClass';
+            }
+        );
+    };
+
+    if (
+        $FindPerlInheritance->()
+        || $FindMooseInheritance->()
+        || $FindMojoInheritance->()
+        || $FindRequireBaseClass->()
+        )
+    {
         $Self->{_IsDerivedModule} = 1;
     }
 
