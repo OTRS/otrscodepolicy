@@ -50,7 +50,6 @@ sub validate_source {    ## no critic
         Perl::Critic::Utils
         POSIX
         Readonly
-        Search::Elasticsearch
         Template
         Time::HiRes
     );
