@@ -7,7 +7,6 @@
 # --
 
 package TidyAll::Plugin::OTRS::SQL::ReservedWords;
-## nofilter(TidyAll::Plugin::OTRS::Perl::Goto)
 
 use strict;
 use warnings;
