@@ -227,6 +227,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/Pod/NamePod.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/SortKeysReference.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireCamelCase.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/DocbookLint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/HTMLTags.t" />

@@ -8,26 +8,22 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitRandInTests;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
 # SYNOPSIS: Check if modules have a "true" return value
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
 use parent 'Perl::Critic::PolicyOTRS';
 
-use Readonly;
-
 our $VERSION = '0.02';
 
-Readonly::Scalar my $DESC => q{Use of "rand()" or "srand()" is not allowed in tests.};
-Readonly::Scalar my $EXPL => q{Use Kernel::System::UnitTest::Helper::GetRandomNumber() or GetRandomID() instead.};
+my $Description = q{Use of "rand()" or "srand()" is not allowed in tests.};
+my $Explanation = q{Use Kernel::System::UnitTest::Helper::GetRandomNumber() or GetRandomID() instead.};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Word' }
 
@@ -44,7 +40,7 @@ sub violates {
     my ( $Self, $Element ) = @_;
 
     if ( $Element eq 'rand' || $Element eq 'srand' ) {
-        return $Self->violation( $DESC, $EXPL, $Element );
+        return $Self->violation( $Description, $Explanation, $Element );
     }
 
     return;

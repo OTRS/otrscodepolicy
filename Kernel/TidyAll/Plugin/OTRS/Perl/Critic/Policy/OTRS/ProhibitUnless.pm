@@ -8,24 +8,20 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitUnless;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
 use parent 'Perl::Critic::PolicyOTRS';
 
-use Readonly;
-
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Use of 'unless' is not allowed.};
-Readonly::Scalar my $EXPL => q{Please use a negating 'if' instead.};
+my $Description = q{Use of 'unless' is not allowed.};
+my $Explanation = q{Please use a negating 'if' instead.};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Word' }
 
@@ -41,7 +37,7 @@ sub violates {
     my ( $Self, $Element ) = @_;
 
     return if ( $Element->content() ne 'unless' );
-    return $Self->violation( $DESC, $EXPL, $Element );
+    return $Self->violation( $Description, $Explanation, $Element );
 }
 
 1;

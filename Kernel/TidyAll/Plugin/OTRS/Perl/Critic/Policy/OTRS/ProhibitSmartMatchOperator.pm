@@ -8,32 +8,28 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
-
-use Readonly;
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Use of smart match operator ~~ is not allowed};
-Readonly::Scalar my $EXPL =>
+my $Description = q{Use of smart match operator ~~ is not allowed};
+my $Explanation =
     q{This operator behaves differently in Perl 5.10.0 and 5.10.1.};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Operator' }
 
 sub violates {
-    my ( $self, $elem ) = @_;
+    my ( $Self, $Element ) = @_;
 
-    return if $elem ne '~~';
-    return $self->violation( $DESC, $EXPL, $elem );
+    return if $Element ne '~~';
+    return $Self->violation( $Description, $Explanation, $Element );
 }
 
 1;

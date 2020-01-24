@@ -8,24 +8,19 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitGoto;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
-
-use Readonly;
-use Scalar::Util qw();
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Don't use "goto" in Perl code.};
-Readonly::Scalar my $EXPL => q{};
+my $Description = q{Don't use "goto" in Perl code.};
+my $Explanation = q{};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Word' }
 
@@ -33,7 +28,7 @@ sub violates {
     my ( $Self, $Element ) = @_;
 
     return if $Element ne 'goto';
-    return $Self->violation( $DESC, $EXPL, $Element );
+    return $Self->violation( $Description, $Explanation, $Element );
 }
 
 1;

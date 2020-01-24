@@ -8,22 +8,18 @@
 
 package Perl::Critic::Policy::OTRS::RequireLabels;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
 use parent 'Perl::Critic::PolicyOTRS';
 
-use Readonly;
-
-Readonly::Scalar my $DESC => q{Please always use 'next' and 'last' with a label.};
-Readonly::Scalar my $EXPL => q{};
+my $Description = q{Please always use 'next' and 'last' with a label.};
+my $Explanation = q{};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Statement::Break' }
 
@@ -51,7 +47,7 @@ sub violates {
         || $Label->content() !~ m{^[A-Z_]+}xms
         )
     {
-        return $Self->violation( $DESC, $EXPL, $Element );
+        return $Self->violation( $Description, $Explanation, $Element );
     }
 
     return;

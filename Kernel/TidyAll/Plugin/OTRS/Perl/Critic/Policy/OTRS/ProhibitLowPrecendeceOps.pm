@@ -8,38 +8,34 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
-
-use Readonly;
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Use of low precedence operators is not allowed};
-Readonly::Scalar my $EXPL =>
+my $Description = q{Use of low precedence operators is not allowed};
+my $Explanation =
     q{Replace low precedence operators with the high precedence substitutes};
 
-my %lowprecendece = (
+my %LowPrecendeceOperators = (
     not => '!',
     and => '&&',
     or  => '||',
 );
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Operator' }
 
 sub violates {
-    my ( $self, $elem ) = @_;
+    my ( $Self, $Element ) = @_;
 
-    return if !grep { $elem eq $_ } keys %lowprecendece;
-    return $self->violation( $DESC, $EXPL, $elem );
+    return if !grep { $Element eq $_ } keys %LowPrecendeceOperators;
+    return $Self->violation( $Description, $Explanation, $Element );
 }
 
 1;

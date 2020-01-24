@@ -8,24 +8,19 @@
 
 package Perl::Critic::Policy::OTRS::ProhibitOpen;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
-
-use Readonly;
-use Scalar::Util qw();
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Use of "open" is not allowed to read or write files.};
-Readonly::Scalar my $EXPL => q{Use MainObject::FileRead() or FileWrite() instead.};
+my $Description = q{Use of "open" is not allowed to read or write files.};
+my $Explanation = q{Use MainObject::FileRead() or FileWrite() instead.};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Word' }
 
@@ -42,7 +37,7 @@ sub violates {
     my $OpenMode;
 
     # parentheses around open are present: open()
-    if ( Scalar::Util::blessed($NextSibling) eq 'PPI::Structure::List' ) {
+    if ( $NextSibling->isa('PPI::Structure::List') ) {
         my $Quote = $NextSibling->find('PPI::Token::Quote');
         return if ( ref $Quote ne 'ARRAY' );
         $OpenMode = $Quote->[0]->string();
@@ -57,7 +52,7 @@ sub violates {
             $NextSibling = $NextSibling->snext_sibling();
 
             if (
-                Scalar::Util::blessed($NextSibling) eq 'PPI::Token::Operator'
+                $NextSibling->isa('PPI::Token::Operator')
                 && $NextSibling->content() eq ','
                 )
             {
@@ -70,7 +65,7 @@ sub violates {
     }
 
     if ( $OpenMode eq '>' || $OpenMode eq '<' ) {
-        return $Self->violation( $DESC, $EXPL, $Element );
+        return $Self->violation( $Description, $Explanation, $Element );
     }
 
     return;

@@ -8,43 +8,39 @@
 
 package Perl::Critic::Policy::OTRS::RequireParensWithMethods;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
-
-use Readonly;
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Method invocation should use "()"};
-Readonly::Scalar my $EXPL => q{Use "->MethodName()" instead of "->MethodName".};
+my $Description = q{Method invocation should use "()"};
+my $Explanation = q{Use "->MethodName()" instead of "->MethodName".};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 sub applies_to           { return 'PPI::Token::Operator' }
 
 sub violates {
-    my ( $self, $elem ) = @_;
+    my ( $Self, $Element ) = @_;
 
-    return if $elem ne '->';
+    return if $Element ne '->';
 
-    my $method = $elem->snext_sibling();
+    my $Method = $Element->snext_sibling();
 
     # $Variable->();
-    return if ref $method eq 'PPI::Structure::List';
+    return if ref $Method eq 'PPI::Structure::List';
 
     # $Variable->method();
-    return if ref $method eq 'PPI::Structure::Subscript';
+    return if ref $Method eq 'PPI::Structure::Subscript';
 
-    my $list = $method->snext_sibling();
-    return if ref $list eq 'PPI::Structure::List';
+    my $List = $Method->snext_sibling();
+    return if ref $List eq 'PPI::Structure::List';
 
-    return $self->violation( $DESC, $EXPL, $elem );
+    return $Self->violation( $Description, $Explanation, $Element );
 }
 
 1;

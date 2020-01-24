@@ -8,40 +8,69 @@
 
 package Perl::Critic::Policy::OTRS::RequireCamelCase;
 
-## no critic (Perl::Critic::Policy::OTRS::RequireCamelCase)
-
 use strict;
 use warnings;
 
-use Perl::Critic::Utils qw{ :severities :classification :ppi };
+use Perl::Critic::Utils qw{};
 use parent 'Perl::Critic::Policy';
 use parent 'Perl::Critic::PolicyOTRS';
 
-use Readonly;
-
 our $VERSION = '0.01';
 
-Readonly::Scalar my $DESC => q{Variable, subroutine, and package names have to be in CamelCase};
-Readonly::Scalar my $EXPL => q{};
+my $Description = q{Variable, subroutine, and package names have to be in CamelCase};
+my $Explanation = q{};
 
 sub supported_parameters { return; }
-sub default_severity     { return $SEVERITY_HIGHEST; }
+sub default_severity     { return $Perl::Critic::Utils::SEVERITY_HIGHEST; }
 sub default_themes       { return qw( otrs ) }
 
-my %dispatcher = (
+my %Dispatcher = (
     'PPI::Statement::Sub'     => \&IsCamelCase,
     'PPI::Statement::Package' => \&IsCamelCase,
     'PPI::Token::Symbol'      => \&VariableIsCamelCase,
 );
 
 sub applies_to {
-    return keys %dispatcher;
+    return keys %Dispatcher;
 }
 
 sub prepare_to_scan_document {
     my ( $Self, $Document ) = @_;
 
+    # Cleanup, one instance can scan multiple files.
+    delete $Self->{_IsDerivedModule};
+
     return if $Self->IsFrameworkVersionLessThan( 3, 3 );
+
+    if ( $Document->logical_filename() !~ m{ (\.pm) \z }xms ) {
+        return 1;
+    }
+
+    # Find all use parent/base statements
+    my $FindPerlInheritance = sub {
+        return $Document->find_any(
+            sub {
+                return $_[1]->isa('PPI::Statement::Include') && $_[1] =~ m{\A use \s+ (parent|base) \s+}smx;
+            }
+        );
+    };
+
+    # Find any Moose or Moose::Role objects that extend another class or role (extends/with).
+    my $FindMooseInheritance = sub {
+        my $MooseFound = $Document->find_any(
+            sub { return $_[1]->isa('PPI::Statement::Include') && $_[1] =~ m{\A use \s+ Moose(::Role)?}smx }
+        );
+
+        return 0 if !$MooseFound;
+
+        return $Document->find_any(
+            sub { return $_[1]->isa('PPI::Token::Word') && $_[1] =~ m{\A extends|with \Z}smx }
+        );
+    };
+
+    if ( $FindPerlInheritance->() || $FindMooseInheritance->() ) {
+        $Self->{_IsDerivedModule} = 1;
+    }
 
     return 1;
 }
@@ -51,11 +80,11 @@ sub violates {
 
     $Self->{Errors} = ();
 
-    my $Function = $dispatcher{ ref $Element };
+    my $Function = $Dispatcher{ ref $Element };
     return if !$Function;
     return if $Self->$Function($Element);
 
-    return $Self->violation( "$DESC: " . join( ", ", @{ $Self->{Errors} } ), $EXPL, $Element );
+    return $Self->violation( "$Description: " . join( ", ", @{ $Self->{Errors} } ), $Explanation, $Element );
 }
 
 sub IsCamelCase {
@@ -69,8 +98,9 @@ sub IsCamelCase {
         new => 1,
     );
 
-    if ( $Element->isa('PPI::Statement::Sub') && $AllowedFunctions{$Name} ) {
-        return 1;
+    if ( $Element->isa('PPI::Statement::Sub') ) {
+        return 1 if $AllowedFunctions{$Name};
+        return 1 if $Self->{_IsDerivedModule};
     }
     elsif ( $Element->isa('PPI::Statement::Package') ) {
         if (
@@ -98,6 +128,9 @@ sub VariableIsCamelCase {
 
     my $Name = "$Element";
     return 1 if !$Name;
+
+    # Allow variables from other packages.
+    return 1 if index( $Name, '::' ) > -1;
 
     # Allow Perl builtins.
     return 1 if $Name eq '$a';
