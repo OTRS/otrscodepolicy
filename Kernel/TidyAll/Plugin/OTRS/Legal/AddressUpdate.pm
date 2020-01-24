@@ -13,7 +13,7 @@ use warnings;
 
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
-sub transform_source {    ## no critic
+sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

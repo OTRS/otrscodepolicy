@@ -22,7 +22,7 @@ in customized/derived files.
 
 =cut
 
-sub transform_source {    ## no critic
+sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
@@ -158,7 +158,7 @@ sub transform_source {    ## no critic
     return $Code;
 }
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
@@ -187,7 +187,7 @@ sub validate_source {    ## no critic
     return $Code;
 }
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

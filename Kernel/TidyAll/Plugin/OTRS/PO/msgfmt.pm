@@ -18,11 +18,11 @@ use warnings;
 use Capture::Tiny qw(capture_merged);
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
-sub _build_cmd {    ## no critic
+sub _build_cmd {
     return 'msgfmt -c -o /dev/null';
 }
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

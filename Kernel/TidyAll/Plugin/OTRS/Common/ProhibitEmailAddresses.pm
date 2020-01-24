@@ -21,7 +21,7 @@ This plugin disallows problematic email addresses.
 
 =cut
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

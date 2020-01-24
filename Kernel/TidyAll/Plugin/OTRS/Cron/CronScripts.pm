@@ -18,7 +18,7 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 # We only want to allow two cron files from OTRS 5 on as the rest is managed
 # via the cron daemon.
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

@@ -18,7 +18,7 @@ use parent qw(TidyAll::Plugin::OTRS::Perl);
 # We only want to allow a handful of scripts in bin. All the rest should be
 #   migrated to console commands.
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

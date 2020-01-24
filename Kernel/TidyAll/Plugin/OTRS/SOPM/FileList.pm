@@ -18,7 +18,7 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 #   - that the SOPM does not try to create new toplevel files or directories in /opt/otrs,
 #   - that all files in a valid toplevel directory are also packaged (except for documentation).
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );

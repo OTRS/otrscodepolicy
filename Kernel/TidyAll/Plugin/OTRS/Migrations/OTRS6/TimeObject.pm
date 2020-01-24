@@ -14,7 +14,7 @@ use warnings;
 use parent qw(TidyAll::Plugin::OTRS::Base);
 ## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeObject)
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

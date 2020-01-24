@@ -15,7 +15,7 @@ use File::Basename;
 
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );
@@ -39,6 +39,8 @@ EOF
             }
         }
     }
+
+    return;
 }
 
 1;

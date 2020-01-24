@@ -19,7 +19,7 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 
 use Locale::PO ();
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

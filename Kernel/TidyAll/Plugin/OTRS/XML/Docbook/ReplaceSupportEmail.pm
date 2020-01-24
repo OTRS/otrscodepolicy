@@ -34,7 +34,7 @@ my $German1RegExp = <<'END_REGEXP';
 \s*    <\/para> \n
 END_REGEXP
 
-sub transform_source {    ## no critic
+sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

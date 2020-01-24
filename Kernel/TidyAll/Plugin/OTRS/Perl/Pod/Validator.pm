@@ -20,7 +20,7 @@ use parent 'TidyAll::Plugin::OTRS::Perl';
 # Validated Pod with Pod::Checker for syntactical correctness.
 #
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );

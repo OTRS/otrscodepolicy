@@ -29,7 +29,7 @@ our $FrameworkVersionMinor = 0;
 our $ThirdpartyModule      = 0;
 our @FileList              = ();    # all files in current repository
 
-sub new_from_conf_file {            ## no critic
+sub new_from_conf_file {
     my ( $Class, $ConfigFile, %Param ) = @_;
 
     my $Self = $Class->SUPER::new_from_conf_file(

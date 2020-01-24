@@ -16,7 +16,7 @@ use parent qw(TidyAll::Plugin::OTRS::Perl);
 ## nofilter(TidyAll::Plugin::OTRS::Perl::CacheNew)
 ## nofilter(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );

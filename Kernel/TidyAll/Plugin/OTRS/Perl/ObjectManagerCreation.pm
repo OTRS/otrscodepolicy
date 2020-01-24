@@ -16,7 +16,7 @@ use File::Basename;
 
 use parent qw(TidyAll::Plugin::OTRS::Perl);
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );

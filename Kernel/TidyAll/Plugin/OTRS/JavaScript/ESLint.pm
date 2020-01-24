@@ -17,7 +17,7 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 our $NodePath;
 our $ESLintPath;
 
-sub transform_file {    ## no critic
+sub transform_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

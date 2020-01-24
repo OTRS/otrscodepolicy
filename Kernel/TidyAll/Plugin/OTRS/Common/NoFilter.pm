@@ -22,7 +22,7 @@ This plugin fixes nofilter lines.
 
 =cut
 
-sub transform_source {    ## no critic
+sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
@@ -86,7 +86,7 @@ sub transform_source {    ## no critic
     return $Code;
 }
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );

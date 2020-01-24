@@ -13,7 +13,7 @@ use warnings;
 
 use parent 'TidyAll::Plugin::OTRS::Base';
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );

@@ -15,7 +15,7 @@ use File::Basename;
 use Capture::Tiny qw(capture_merged);
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
-sub transform_source {    ## no critic
+sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
@@ -36,7 +36,7 @@ sub transform_source {    ## no critic
     return $Code;
 }
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $Filename ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $Filename );

@@ -17,7 +17,7 @@ use XML::Parser;
 
 # This plugin does not transform any files. Following method is implemented only because it's executed before
 #   validate_source and contains filename of the file. Filename is saved in $Self for later use.
-sub transform_file {    ## no critic
+sub transform_file {
     my ( $Self, $Filename ) = @_;
 
     # Store filename for later use.
@@ -26,7 +26,7 @@ sub transform_file {    ## no critic
     return;
 }
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );

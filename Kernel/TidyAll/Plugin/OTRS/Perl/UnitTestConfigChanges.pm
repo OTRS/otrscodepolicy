@@ -19,7 +19,7 @@ our $ObjectManagerDisabled = 1;
 
 # Make sure Selenium tests only modify the configuration via $Helper->ConfigSettingChange().
 
-sub validate_source {    ## no critic
+sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );

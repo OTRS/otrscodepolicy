@@ -22,7 +22,7 @@ our $HunspellPath;
 our $HunspellDictionaryPath;
 our $HunspellWhitelistPath;
 
-sub validate_file {    ## no critic
+sub validate_file {
     my ( $Self, $File ) = @_;
 
     return if $Self->IsPluginDisabled( Filename => $File );
@@ -90,6 +90,8 @@ sub validate_file {    ## no critic
         }
     }
     die __PACKAGE__ . sprintf( "\nPerl Pod contains unrecognized words:\n%s\n", join( "\n", sort @Errors ) ) if @Errors;
+
+    return;
 }
 
 1;
