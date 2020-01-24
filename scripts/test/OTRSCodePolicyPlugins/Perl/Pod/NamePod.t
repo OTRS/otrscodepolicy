@@ -9,7 +9,6 @@
 ## no critic (Modules::RequireExplicitPackage)
 use strict;
 use warnings;
-## nofilter(TidyAll::Plugin::OTRS::Perl::TestSubs)
 
 use vars (qw($Self));
 use utf8;

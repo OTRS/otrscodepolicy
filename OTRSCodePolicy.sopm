@@ -131,7 +131,6 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SortKeys.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SubDeclaration.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TestSubs.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Time.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Translatable.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TranslationEncoding.pm" />
