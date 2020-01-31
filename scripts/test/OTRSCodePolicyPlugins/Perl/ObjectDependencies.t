@@ -191,6 +191,18 @@ $Kernel::OM->Get('Kernel::System::Ticket');
 EOF
         Exception => 1,
     },
+    {
+        Name      => 'ObjectDependencies, Moose::Role',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+use Moose::Role;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
+
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );

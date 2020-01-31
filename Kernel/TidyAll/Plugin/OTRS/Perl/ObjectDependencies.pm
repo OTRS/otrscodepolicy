@@ -31,6 +31,9 @@ sub validate_source {
     # Skip if the code doesn't use the ObjectManager
     return if $Code !~ m{\$Kernel::OM}smx;
 
+    # Skip if we have a role, as it cannot be instantiated.
+    return if $Code =~ m{use\s+Moose::Role}smx;
+
     # Skip if the package cannot be loaded via ObjectManager
     return if $Code =~ m{
         ^ \s* our \s* \$ObjectManagerDisabled \s* = \s* 1
