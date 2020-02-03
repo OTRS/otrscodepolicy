@@ -16,6 +16,7 @@ use File::Basename;
 use File::Temp ();
 use IO::File;
 use POSIX ":sys_wait_h";
+use Term::ANSIColor();
 use Time::HiRes qw(sleep);
 
 use parent qw(Code::TidyAll);
@@ -240,7 +241,10 @@ sub HandleResults {
     my @ErrorResults = grep { $_->error() } @GlobalResults;
     if (@ErrorResults) {
         my $ErrorCount   = scalar(@ErrorResults);
-        my $ErrorMessage = sprintf( "\nError: %d file(s) did not pass validation.\n", $ErrorCount );
+        my $ErrorMessage = sprintf(
+            _ReplaceColorTags("\n<red>Error: %d file(s) did not pass validation.</red>\n"),
+            $ErrorCount,
+        );
         if ( $ErrorCount < 10 ) {
             for my $Error (@ErrorResults) {
                 $ErrorMessage .= " - " . $Error->path() . "\n";
@@ -251,10 +255,14 @@ sub HandleResults {
 
     my @TidiedResults = grep { $_->state() eq 'tidied' } @GlobalResults;
     if (@TidiedResults) {
-        printf "\nValidation finished, %d file(s) were tidied.\n", scalar(@TidiedResults);
+        printf(
+            _ReplaceColorTags("\n<green>Validation finished,</green> <yellow>%d file(s) were tidied.</yellow>\n"),
+            scalar(@TidiedResults),
+        );
+
     }
     else {
-        print "\nValidation finished, no problems found.\n";
+        print _ReplaceColorTags("\n<green>Validation finished, no problems found.</green>\n");
     }
 
     return 1;
@@ -322,6 +330,33 @@ sub FilterMatchedFiles {
     my ( $Self, %Param ) = @_;
 
     return grep { $Self->plugins_for_path($_) } @{ $Param{Files} };
+}
+
+sub _ReplaceColorTags {
+    my ($Text) = @_;
+
+    $Text //= '';
+
+    $Text =~ s{<(green|yellow|red)>(.*?)</\1>}{_Color($1, $2)}gsmxe;
+
+    return $Text;
+}
+
+=head2 _Color()
+
+This will color the given text (see Term::ANSIColor::color()) if ANSI output is available and active, otherwise the text
+stays unchanged.
+
+    my $PossiblyColoredText = _Color('green', $Text);
+
+=cut
+
+sub _Color {
+    my ( $Color, $Text ) = @_;
+
+    return $Text if $ENV{OTRSCODEPOLICY_NOCOLOR};
+
+    return Term::ANSIColor::color($Color) . $Text . Term::ANSIColor::color('reset');
 }
 
 1;
