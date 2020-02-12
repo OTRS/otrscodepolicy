@@ -12,7 +12,6 @@ use warnings;
 
 # Implementation is based on https://metacpan.org/source/DROLSKY/Code-TidyAll-0.56/lib/Code/TidyAll/Plugin/PodSpell.pm
 
-use Capture::Tiny qw();
 use IPC::Run3;
 
 use parent 'TidyAll::Plugin::OTRS::Base';
