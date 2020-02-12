@@ -12,7 +12,7 @@ use strict;
 use warnings;
 
 use File::Basename;
-use Capture::Tiny qw(capture_merged);
+
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub transform_source {
