@@ -78,7 +78,7 @@ sub transform_file {
     );
 
     my $Output = `$Command`;
-    if ($Output) {
+    if ( ${^CHILD_ERROR_NATIVE} || $Output ) {
         Encode::_utf8_on($Output);
         die __PACKAGE__ . "\n$Output\n";
     }
