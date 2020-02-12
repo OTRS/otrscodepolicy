@@ -15,7 +15,6 @@ package TidyAll::Plugin::OTRS::PO::msgfmt;
 use strict;
 use warnings;
 
-use Capture::Tiny qw(capture_merged);
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
 sub _build_cmd {
@@ -28,15 +27,15 @@ sub validate_file {
     return if $Self->IsPluginDisabled( Filename => $Filename );
     return if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
-    my $Command = sprintf( "%s %s %s", $Self->cmd(), $Self->argv(), $Filename );
-    my ( $Output, @Result ) = capture_merged { system($Command) };
+    my $Command = sprintf( "%s %s %s 2>&1", $Self->cmd(), $Self->argv(), $Filename );
+    my $Output  = `$Command`;
 
-    # if execution failed, warn about installing package
-    if ( $Result[0] == -1 ) {
-        print STDERR "'msgfmt' is not installed. Please install 'gettext'.\n";
+    # If execution failed, warn about installing package.
+    if ( ${^CHILD_ERROR_NATIVE} == -1 ) {
+        die __PACKAGE__ . "'msgfmt' was not found, please install 'gettext'.\n";
     }
 
-    if ( @Result && $Result[0] ) {
+    if ( ${^CHILD_ERROR_NATIVE} ) {
         die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
     }
 }

@@ -28,6 +28,11 @@ sub validate_file {
     my $Command = sprintf( "%s %s %s 2>&1", $Self->cmd(), $Self->argv(), $Filename );
     my $Output  = `$Command`;
 
+    # If execution failed, warn about installing package.
+    if ( ${^CHILD_ERROR_NATIVE} == -1 ) {
+        die __PACKAGE__ . "\n'xmllint' was not found, please install it.\n";
+    }
+
     if ( ${^CHILD_ERROR_NATIVE} ) {
         die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
     }

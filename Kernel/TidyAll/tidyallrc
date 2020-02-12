@@ -140,7 +140,7 @@ select = locale/**/*.{pot,po}
 select = i18n/**/*.{pot,po}
 
 [+TidyAll::Plugin::OTRS::PO::msgfmt]
-select = locale/**/*.{pot,po}
+select = i18n/**/*.{pot,po}
 select = locale/**/*.{pot,po}
 
 ;
