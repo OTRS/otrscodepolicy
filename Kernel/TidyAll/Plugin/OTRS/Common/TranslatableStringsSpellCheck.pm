@@ -12,7 +12,7 @@ use warnings;
 
 # Implementation is based on https://metacpan.org/source/DROLSKY/Code-TidyAll-0.56/lib/Code/TidyAll/Plugin/PodSpell.pm
 
-use IPC::Run3;
+use File::Temp();
 
 use parent 'TidyAll::Plugin::OTRS::Base';
 
@@ -45,17 +45,15 @@ sub validate_file {
 
     return if !$Text;
 
-    my ( $Output, $Error );
-    my @CMD = (
-        $HunspellPath,
-        '-d', "${HunspellDictionaryPath}/en_US",
-        '-p', $HunspellWhitelistPath, "-a"
-    );
-    eval { run3( \@CMD, \$Text, \$Output, \$Error ) };
+    my $TempFile = File::Temp->new();
+    print $TempFile $Text;
+    $TempFile->close();
 
-    if ( $@ || $Error ) {
-        $Error = $@ || $Error;
-        die __PACKAGE__ . "\nError running '" . join( " ", @CMD ) . "': " . $Error;
+    my $CMD    = "$HunspellPath -d ${HunspellDictionaryPath}/en_US -p $HunspellWhitelistPath -a $TempFile";
+    my $Output = `$CMD`;
+
+    if ( ${^CHILD_ERROR_NATIVE} ) {
+        die __PACKAGE__ . "\nError running '$CMD': $Output";
     }
 
     my ( @Errors, %Seen );

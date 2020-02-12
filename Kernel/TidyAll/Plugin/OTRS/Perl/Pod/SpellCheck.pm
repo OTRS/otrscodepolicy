@@ -13,7 +13,7 @@ use warnings;
 # Implementation is based on https://metacpan.org/source/DROLSKY/Code-TidyAll-0.56/lib/Code/TidyAll/Plugin/PodSpell.pm
 
 use Capture::Tiny qw();
-use IPC::Run3;
+use File::Temp();
 use Pod::Spell;
 
 use parent 'TidyAll::Plugin::OTRS::Perl';
@@ -56,17 +56,15 @@ sub validate_file {
         = Capture::Tiny::capture( sub { Pod::Spell->new()->parse_from_file( $File->stringify() ) } );
     die $Error if $Error;
 
-    my ($Output);
-    my @CMD = (
-        $HunspellPath,
-        '-d', "${HunspellDictionaryPath}/en_US",
-        '-p', $HunspellWhitelistPath, "-a"
-    );
-    eval { run3( \@CMD, \$PodText, \$Output, \$Error ) };
+    my $TempFile = File::Temp->new();
+    print $TempFile $PodText;
+    $TempFile->close();
 
-    if ( $@ || $Error ) {
-        $Error = $@ || $Error;
-        die __PACKAGE__ . "\nError running '" . join( " ", @CMD ) . "': " . $Error;
+    my $CMD    = "$HunspellPath -d ${HunspellDictionaryPath}/en_US -p $HunspellWhitelistPath -a $TempFile";
+    my $Output = `$CMD`;
+
+    if ( ${^CHILD_ERROR_NATIVE} ) {
+        die __PACKAGE__ . "\nError running '$CMD': $Output";
     }
 
     my ( @Errors, %Seen );
