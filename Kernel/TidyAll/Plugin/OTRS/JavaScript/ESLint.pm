@@ -11,7 +11,7 @@ package TidyAll::Plugin::OTRS::JavaScript::ESLint;
 use strict;
 use warnings;
 
-use Capture::Tiny qw(capture_merged);
+use Encode;
 use parent qw(TidyAll::Plugin::OTRS::Base);
 
 our $NodePath;
@@ -73,14 +73,14 @@ sub transform_file {
     $ESLintRulesPath =~ s{ESLint\.pm}{ESLint/Rules};
 
     my $Command = sprintf(
-        "%s %s -c %s --rulesdir %s --fix %s",
+        "%s %s -c %s --rulesdir %s --fix %s --quiet",
         $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename
     );
 
-    my ( $Output, @Result ) = capture_merged { system($Command) };
-
-    if ( @Result && $Result[0] ) {
-        die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
+    my $Output = `$Command`;
+    if ($Output) {
+        Encode::_utf8_on($Output);
+        die __PACKAGE__ . "\n$Output\n";
     }
 }
 

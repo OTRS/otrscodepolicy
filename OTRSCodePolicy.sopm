@@ -221,6 +221,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins.pm" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicy.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/DebugCode.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/ESLint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS7/DeprecatedSettings.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t" />
