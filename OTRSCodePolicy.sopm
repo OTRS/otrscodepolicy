@@ -68,6 +68,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/legacy.eslintrc.js" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/webpack.eslintrc.js" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/Rules/no-window.js" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/Vue/EventListeners.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileName.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileNameUnitTest.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/UnloadEvent.pm" />
@@ -222,6 +223,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicy.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/DebugCode.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/ESLint.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/Vue/EventListeners.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS7/DeprecatedSettings.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t" />
