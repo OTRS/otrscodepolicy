@@ -90,9 +90,9 @@ ignore = **/test/*
 [+TidyAll::Plugin::OTRS::JavaScript::FileNameUnitTest]
 select = var/httpd/htdocs/js/test/*.js
 
-;[+TidyAll::Plugin::OTRS::JavaScript::ESLint]
-;select = **/*.{js,vue}
-;ignore = scripts/test/sample/Loader/**/*
+[+TidyAll::Plugin::OTRS::JavaScript::ESLint]
+select = **/*.{js,vue}
+ignore = scripts/test/sample/Loader/**/*
 
 [+TidyAll::Plugin::OTRS::JavaScript::Vue::EventListeners]
 select = Frontend/**/*.{js,vue}
