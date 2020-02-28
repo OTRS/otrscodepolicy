@@ -36,7 +36,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't create your own instance of Kernel::System::Cache.pm, but use $Kernel::OM->Get('Kernel::System::Cache') instead.
 $ErrorMessage
 EOF

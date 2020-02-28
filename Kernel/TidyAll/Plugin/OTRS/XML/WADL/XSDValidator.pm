@@ -30,11 +30,11 @@ sub validate_file {
 
     # If execution failed, warn about installing package.
     if ( ${^CHILD_ERROR_NATIVE} == -1 ) {
-        die __PACKAGE__ . "\n'xmllint' was not found, please install it.\n";
+        return $Self->DieWithError("'xmllint' was not found, please install it.\n");
     }
 
     if ( ${^CHILD_ERROR_NATIVE} ) {
-        die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
+        return $Self->DieWithError("$Output\n");    # non-zero exit code
     }
 }
 

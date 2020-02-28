@@ -65,8 +65,10 @@ sub validate_file {
     my @Violations = $Critic->critique("$Filename");
 
     if (@Violations) {
-        die __PACKAGE__ . "\n@Violations";
+        return $Self->DieWithError("@Violations");
     }
+
+    return;
 }
 
 1;

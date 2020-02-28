@@ -225,7 +225,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . $ErrorMessage;
+        return $Self->DieWithError($ErrorMessage);
     }
 
     return;

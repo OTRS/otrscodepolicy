@@ -70,10 +70,10 @@ sub transform_source {
         );
     };
     if ($ErrorFile) {
-        die __PACKAGE__ . "\n$ErrorFile";
+        return $Self->DieWithError("$ErrorFile");
     }
     if ($ErrorFlag) {
-        die __PACKAGE__ . "\n$Output";
+        return $Self->DieWithError("$Output");
     }
     if ( defined $Output ) {
         print STDERR $Output;

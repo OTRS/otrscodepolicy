@@ -139,7 +139,9 @@ sub transform_source {
             return $Code if $PackageCounter == 0;
 
             # only one 'package' allowed per file - split first if there are more packages combined.
-            die __PACKAGE__ . "\n$PackageCounter package lines found.\n" if $PackageCounter > 1;
+            if ($PackageCounter > 1) {
+                return $Self->DieWithError("$PackageCounter package lines found.\n");
+            }
 
             my ($FilePath) = $Code =~ m{ ^ package [ ]+ ( [A-Za-z0-9\:]+ ) \; $ }xms;
 
@@ -181,7 +183,9 @@ sub validate_source {
             $FoundOrigin = 1;
         }
 
-        die __PACKAGE__ . "\nCustomization markers found but no origin present.\n" if !$FoundOrigin;
+        if (!$FoundOrigin) {
+            return $Self->DieWithError("Customization markers found but no origin present.\n");
+        }
     }
 
     return $Code;
@@ -199,7 +203,7 @@ sub validate_file {
 
         # Check if an origin exist.
         if ( $Code !~ m{ ^ [ ]* (?: \# | \/\/ ) [ ]+ \$origin: [ ]+ [^\n]+ $ }xms ) {
-            die __PACKAGE__ . "\nFile is in Custom directory but no origin present.\n";
+            return $Self->DieWithError("File is in Custom directory but no origin present.\n");
         }
     }
 
@@ -210,7 +214,7 @@ sub validate_file {
         # Check if a CSS file is overritten in Custom directory.
         if ( $Filename =~ m{ \/Custom\/var\/ }xms ) {
 
-            die __PACKAGE__ . "\n" . <<EOF;
+            return $Self->DieWithError(<<EOF);
 Forbidden to have a CSS file in Custom folder, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF
@@ -219,7 +223,7 @@ EOF
         # Check if an origin exist.
         if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* ) [ ]+ (?: \$ | \@ ) origin: [ ]+ [^\n]+ $ }xms ) {
 
-            die __PACKAGE__ . "\n" . <<EOF;
+            return $Self->DieWithError(<<EOF);
 Forbidden to have an origin in a CSS file, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF
@@ -228,7 +232,7 @@ EOF
         # Check if customization markers exists.
         if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* | \/\* ) [ ]+ --- [ ]* $ }xms ) {
 
-            die __PACKAGE__ . "\n" . <<EOF;
+            return $Self->DieWithError(<<EOF);
 Forbidden to have customization markers in a CSS file, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF

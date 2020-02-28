@@ -35,7 +35,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Code might contain deprecated time zone offset calculations. Only use methods provided by Kernel::System::DateTime to change time zones and calculate date/time.
 $ErrorMessage
 EOF

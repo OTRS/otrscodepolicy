@@ -32,7 +32,7 @@ sub validate_source {
     }
 
     if ( $Code =~ $Forbidden ) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use the LayoutObject in bin/ or in Kernel/System.
 EOF
     }

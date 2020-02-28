@@ -36,7 +36,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Please use the functions of the TimeObject instead of 'localtime'.
 $ErrorMessage
 EOF

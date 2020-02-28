@@ -22,7 +22,7 @@ sub validate_source {
 
     my $Parser = XML::Parser->new();
     if ( !eval { $Parser->parse($Code) } ) {
-        die __PACKAGE__ . "\nXML::Parser produced errors: $@\n";
+        return $Self->DieWithError("XML::Parser produced errors: $@\n");
     }
 
     # XML::Parser::Lite may not be installed, only check if present.
@@ -30,7 +30,7 @@ sub validate_source {
         my $ParserLite = XML::Parser::Lite->new();
         eval { $ParserLite->parse($Code) };
         if ($@) {
-            die __PACKAGE__ . "\nXML::Parser::Lite produced errors: $@\n";
+            return $Self->DieWithError("XML::Parser::Lite produced errors: $@\n");
         }
     }
 }

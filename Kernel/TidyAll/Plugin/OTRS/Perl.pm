@@ -11,9 +11,8 @@ package TidyAll::Plugin::OTRS::Perl;
 use strict;
 use warnings;
 
-use Scalar::Util;
+use Pod::Strip();
 use TidyAll::OTRS;
-use Pod::Strip;
 
 use parent qw(TidyAll::Plugin::OTRS::Base);
 

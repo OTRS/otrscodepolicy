@@ -37,7 +37,9 @@ sub validate_source {
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
-    die __PACKAGE__ . "\nFound CRLF line endings!" if $Code =~ m{ \r $ }xmsg;
+    if ( $Code =~ m{ \r $ }xmsg ) {
+        return $Self->DieWithError("Found CRLF line endings!");
+    }
 
     return $Code;
 }

@@ -25,7 +25,7 @@ sub validate_source {
     $Code = $Self->StripComments( Code => $Code );
 
     if ( $Code =~ m{Translatable\(}xms && $Code !~ m{^use\s+Kernel::Language[^\n]+Translatable}xms ) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 The code uses Kernel::Language::Translatable(), but does not import it to the current package. Please add:
 use Kernel::Language qw(Translatable);
 EOF

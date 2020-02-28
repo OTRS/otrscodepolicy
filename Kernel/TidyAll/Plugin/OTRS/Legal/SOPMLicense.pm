@@ -32,7 +32,7 @@ sub validate_source {
     return if $Self->IsFrameworkVersionLessThan( 2, 4 );
 
     if ( $Code !~ m{<License> .+? </License>}smx ) {
-        die __PACKAGE__ . "\nCould not find a valid OPM license header.";
+        return $Self->DieWithError("Could not find a valid OPM license header.");
     }
 
     if (
@@ -40,7 +40,7 @@ sub validate_source {
         !~ m{<License>GNU \s GENERAL \s PUBLIC \s LICENSE \s Version \s 3, \s 29 \s June \s 2007</License>}smx
         )
     {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Invalid license found.
 Use <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>.
 EOF

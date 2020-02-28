@@ -42,6 +42,9 @@ sub Run {
 
     my $Home = $ConfigObject->Get('Home');
 
+    # Suppress colored output to not clutter log files.
+    local $ENV{OTRSCODEPOLICY_NOCOLOR} = 1;
+
     my $TidyAll = TidyAll::OTRS->new_from_conf_file(
         "$Home/Kernel/TidyAll/tidyallrc",
         no_cache   => 1,

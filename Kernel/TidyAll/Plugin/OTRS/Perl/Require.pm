@@ -35,7 +35,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use require directly, but Main::Require instead.
 $ErrorMessage
 EOF

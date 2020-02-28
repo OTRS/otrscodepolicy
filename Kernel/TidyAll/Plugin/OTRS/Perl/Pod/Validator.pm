@@ -34,7 +34,7 @@ sub validate_file {
     # Only die if Output is filled with errors. Otherwise it could be
     #   that there just was no POD in the file.
     if ( $Checker->num_errors() && $Output ) {
-        die __PACKAGE__ . "\n$Output";
+        return $Self->DieWithError("$Output");
     }
 }
 

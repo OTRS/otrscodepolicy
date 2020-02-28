@@ -34,7 +34,7 @@ sub validate_source {
 
     if (@ErrorPaths) {
         my $ErrorPathJoin = join( ' or ', @ErrorPaths );
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use legacy code from $ErrorPathJoin in Kernel::WebApp.
 EOF
     }

@@ -242,7 +242,9 @@ sub validate_file {
 
         my $GPLJavaScript = _GPLJavaScript();
 
-        die __PACKAGE__ . "\nFound no valid javascript license header!" if $Code !~ m{\Q$GPLJavaScript\E};
+        if ( $Code !~ m{\Q$GPLJavaScript\E} ) {
+            return $Self->DieWithError("Found no valid javascript license header!");
+        }
     }
 
     # Check a perl script license header.
@@ -250,7 +252,9 @@ sub validate_file {
 
         my $GPLPerlScript = _GPLPerlScript();
 
-        die __PACKAGE__ . "\nFound no valid perl script license header!" if $Code !~ m{\Q$GPLPerlScript\E};
+        if ( $Code !~ m{\Q$GPLPerlScript\E} ) {
+            return $Self->DieWithError("Found no valid perl script license header!");
+        }
     }
 
     # Check css license header.
@@ -258,7 +262,9 @@ sub validate_file {
 
         my $GPLCss = _GPLCss();
 
-        die __PACKAGE__ . "\nFound no valid css license header!" if $Code !~ m{\Q$GPLCss\E};
+        if ( $Code !~ m{\Q$GPLCss\E} ) {
+            return $Self->DieWithError("Found no valid css license header!");
+        }
     }
 
     # Check vue license header.
@@ -266,7 +272,9 @@ sub validate_file {
 
         my $GPLVue = _GPLVue();
 
-        die __PACKAGE__ . "\nFound no valid vue license header!" if $Code !~ m{\Q$GPLVue\E};
+        if ( $Code !~ m{\Q$GPLVue\E} ) {
+            return $Self->DieWithError("Found no valid vue license header!");
+        }
     }
 
     # Check xml license tag.
@@ -280,7 +288,9 @@ sub validate_file {
 
         my $GPLOPM = _GPLOPM();
 
-        die __PACKAGE__ . "\nFound no valid OPM license header!" if $Code !~ m{\Q$GPLOPM\E};
+        if ( $Code !~ m{\Q$GPLOPM\E} ) {
+            return $Self->DieWithError("Found no valid OPM license header!");
+        }
     }
 
     # Check generic license header.
@@ -288,7 +298,9 @@ sub validate_file {
 
         my $GPLGeneric = _GPLGeneric();
 
-        die __PACKAGE__ . "\nFound no valid license header!" if $Code !~ m{\Q$GPLGeneric\E};
+        if ( $Code !~ m{\Q$GPLGeneric\E} ) {
+            return $Self->DieWithError("Found no valid license header!");
+        }
     }
 
     # Check perldoc license header.
@@ -298,13 +310,15 @@ sub validate_file {
 
             my $GPLPerldoc = _GPLPerldoc();
 
-            die __PACKAGE__ . "\nFound no valid perldoc license header!" if $Code !~ m{\Q$GPLPerldoc\E};
+            if ( $Code !~ m{\Q$GPLPerldoc\E} ) {
+                return $Self->DieWithError("Found no valid perldoc license header!");
+            }
         }
     }
 
     # Check if there is aother strange AGPL license content.
     if ( $Code =~ m{(^ [^\n]* (?: \(AGPL\) | /agpl | AFFERO ) [^\n]* $)}smx ) {
-        die __PACKAGE__ . "\nThere is strange license wording!\nLine: $1";
+        return $Self->DieWithError("There is strange license wording!\nLine: $1");
     }
 }
 

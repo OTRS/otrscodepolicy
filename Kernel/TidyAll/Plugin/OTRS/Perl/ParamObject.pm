@@ -25,7 +25,7 @@ sub validate_source {
     $Code = $Self->StripComments( Code => $Code );
 
     if ( $Code =~ m{ParamObject}xms ) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use the ParamObject in bin/ or in Kernel/System.
 EOF
     }

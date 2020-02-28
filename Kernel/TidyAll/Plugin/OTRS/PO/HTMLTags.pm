@@ -80,7 +80,7 @@ sub validate_file {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n$ErrorMessage";
+        return $Self->DieWithError("$ErrorMessage");
     }
 }
 

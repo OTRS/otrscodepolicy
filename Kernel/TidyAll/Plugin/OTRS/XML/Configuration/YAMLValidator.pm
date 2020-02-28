@@ -30,7 +30,7 @@ sub validate_source {
                 YAML::XS::Load($2);
             };
             if ($@) {
-                die __PACKAGE__ . "\nCould not load YAML data for Item $1\nData:\n$2\nError: $@";
+                return $Self->DieWithError("Could not load YAML data for Item $1\nData:\n$2\nError: $@");
             }
         }exmsg;
 

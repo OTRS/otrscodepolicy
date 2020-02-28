@@ -22,7 +22,9 @@ sub validate_source {
     my $DocumentationPresent = grep { $_ =~ m{[.]otrs-ci[.]yml} } @TidyAll::OTRS::FileList;
 
     if ( !$DocumentationPresent ) {
-        die __PACKAGE__ . "\nEvery package needs to contain an active OnDemand testing configuration (.otrs-ci.yml).\n";
+        return $Self->DieWithError(
+            "Every package needs to contain an active OnDemand testing configuration (.otrs-ci.yml).\n"
+        );
     }
 }
 

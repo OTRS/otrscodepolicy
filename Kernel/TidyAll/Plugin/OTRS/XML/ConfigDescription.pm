@@ -43,7 +43,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Please make complete sentences in <Description> tags: start with a capital letter and finish with a dot.
 $ErrorMessage
 EOF

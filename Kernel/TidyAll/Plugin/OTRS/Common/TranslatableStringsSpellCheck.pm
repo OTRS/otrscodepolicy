@@ -53,7 +53,7 @@ sub validate_file {
     my $Output = `$CMD`;
 
     if ( ${^CHILD_ERROR_NATIVE} ) {
-        die __PACKAGE__ . "\nError running '$CMD': $Output";
+        return $Self->DieWithError("Error running '$CMD': $Output");
     }
 
     my ( @Errors, %Seen );
@@ -76,8 +76,11 @@ sub validate_file {
             }
         }
     }
-    die __PACKAGE__ . sprintf( "\nTranslatable strings contains unrecognized words:\n%s\n", join( "\n", sort @Errors ) )
-        if @Errors;
+
+    if (@Errors) {
+        my $Error = sprintf( "\nTranslatable strings contains unrecognized words:\n%s\n", join( "\n", sort @Errors ) );
+        return $Self->DieWithError($Error);
+    }
 
     return;
 }

@@ -95,12 +95,15 @@ sub validate_source {
 
     if ( $Code =~ m{ <!-- \s* nofilter \s* \( }xms ) {
 
-        die __PACKAGE__ . "\nFound invalid nofilter() XML line!" if $Code !~ m{ <!-- \s nofilter \( .+? \) \s --> }xms;
+        if ( $Code !~ m{ <!-- \s nofilter \( .+? \) \s --> }xms ) {
+            return $Self->DieWithError("Found invalid nofilter() XML line!");
+        }
     }
     else {
 
-        die __PACKAGE__ . "\nFound invalid nofilter() line!"
-            if $Code !~ m{ (?: \#\# | \/\/ | \/\* ) \s nofilter \( .+? \) }xms;
+        if ( $Code !~ m{ (?: \#\# | \/\/ | \/\* ) \s nofilter \( .+? \) }xms ) {
+            return $Self->DieWithError("Found invalid nofilter() line!");
+        }
     }
 
     return $Code;

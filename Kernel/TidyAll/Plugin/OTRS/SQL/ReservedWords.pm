@@ -28,7 +28,7 @@ sub validate_source {
         }
         if ( $TableCreate && $Line =~ /<Column.+?Name="(.+?)".*?\/>/i ) {
             if ( !$1 ) {
-                die __PACKAGE__ . "\n" . <<EOF;
+                return $Self->DieWithError(<<EOF);
 Found an empty column name!
 Line $Counter: $Line
 EOF

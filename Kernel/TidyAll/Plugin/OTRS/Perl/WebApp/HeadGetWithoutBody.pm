@@ -21,7 +21,7 @@ sub validate_source {
 
     if ( $Code =~ m/^sub\s+RequestMethods[^}]+(get|head)[^}]+\}/xms && $Code =~ m{^sub\s+ValidationJSONBodyFields}xms )
     {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Endpoints using the HEAD or GET request methods may not use a body payload. Use query params instead.
 EOF
     }

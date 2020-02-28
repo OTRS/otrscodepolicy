@@ -45,7 +45,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<"EOF";
+        return $Self->DieWithError(<<"EOF");
 Selenium tests should modify the system configuration exclusively via
 \$Helper->ConfigSettingChange() (it has the same API as ConfigSettingUpdate()).
 This also makes "sleep" statements for mod_perl unneeded.
@@ -62,7 +62,7 @@ EOF
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<"EOF";
+        return $Self->DieWithError(<<"EOF");
 Please don't use the 'RestoreSystemConfiguration' flag any more.
 $ErrorMessage
 EOF

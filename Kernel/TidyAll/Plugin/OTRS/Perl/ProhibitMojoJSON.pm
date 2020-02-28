@@ -22,7 +22,7 @@ sub validate_source {
     return if $Self->IsFrameworkVersionLessThan( 7, 0 );
 
     if ( $Code =~ m{Mojo::JSON}smx ) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use Mojo::JSON directly, use Kernel::System::JSON instead.
 EOF
     }

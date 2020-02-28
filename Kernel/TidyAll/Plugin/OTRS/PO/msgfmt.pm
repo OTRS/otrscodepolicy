@@ -32,11 +32,11 @@ sub validate_file {
 
     # If execution failed, warn about installing package.
     if ( ${^CHILD_ERROR_NATIVE} == -1 ) {
-        die __PACKAGE__ . "'msgfmt' was not found, please install 'gettext'.\n";
+        return $Self->DieWithError("'msgfmt' was not found, please install 'gettext'.\n");
     }
 
     if ( ${^CHILD_ERROR_NATIVE} ) {
-        die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
+        return $Self->DieWithError("$Output\n");    # non-zero exit code
     }
 }
 

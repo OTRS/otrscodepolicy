@@ -85,7 +85,7 @@ sub validate_source {
     my $ErrorMessage;
     my $FileHandle;
     if ( !open $FileHandle, '-|', "perl -cw " . $TempFile->filename() . " 2>&1" ) {    ## no critic
-        die __PACKAGE__ . "\nFILTER: Can't open tempfile: $!\n";
+        return $Self->DieWithError("FILTER: Can't open tempfile: $!\n");
     }
 
     while ( my $Line = <$FileHandle> ) {
@@ -96,7 +96,7 @@ sub validate_source {
     close $FileHandle;
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n$ErrorMessage";
+        return $Self->DieWithError("$ErrorMessage");
     }
 }
 

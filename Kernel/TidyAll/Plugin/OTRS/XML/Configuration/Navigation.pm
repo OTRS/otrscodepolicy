@@ -220,7 +220,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Problems were found in the navigation structure of the XML configuration:
 $ErrorMessage
 EOF

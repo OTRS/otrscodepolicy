@@ -47,9 +47,12 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n$ErrorMessage"
-            . "Please make sure to process translated strings with html or JSON filter.\n";
+        return $Self->DieWithError(
+            "${ErrorMessage}Please make sure to process translated strings with html or JSON filter.\n"
+        );
     }
+
+    return;
 }
 
 1;

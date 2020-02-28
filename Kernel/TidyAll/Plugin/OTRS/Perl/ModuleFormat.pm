@@ -22,7 +22,7 @@ sub validate_source {
 
     # Check for absense of shebang line
     if ( $Code =~ m{\A\#!}xms ) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Perl modules should not have a shebang line (#!/usr/bin/perl).
 EOF
     }

@@ -34,7 +34,7 @@ sub validate_file {
     for my $ForbiddenCharacter (@ForbiddenCharacters) {
         if ( index( $Filename, $ForbiddenCharacter ) > -1 ) {
             my $ForbiddenList = join( ' ', @ForbiddenCharacters );
-            die __PACKAGE__ . "\n" . <<EOF;
+            return $Self->DieWithError(<<EOF);
 Forbidden character '$ForbiddenCharacter' found in file name.
 You should not use these characters in file names: $ForbiddenList.
 EOF

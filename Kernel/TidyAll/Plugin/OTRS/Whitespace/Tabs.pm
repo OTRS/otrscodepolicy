@@ -38,7 +38,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Please substitute all tabulators with four spaces.
 $ErrorMessage
 EOF

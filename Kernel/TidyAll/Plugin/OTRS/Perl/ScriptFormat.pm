@@ -37,7 +37,7 @@ sub validate_source {
 
     # Check for presence of shebang line
     if ( $Code !~ m{\A\#!/usr/bin/perl\s*(?:-w)?}xms ) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Need #!/usr/bin/perl at the start of script files.
 EOF
     }

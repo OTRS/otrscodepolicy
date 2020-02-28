@@ -60,7 +60,7 @@ Here is a valid example tag:
 EOF
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n$ErrorMessage\n$Example";
+        return $Self->DieWithError("$ErrorMessage\n$Example");
     }
 }
 

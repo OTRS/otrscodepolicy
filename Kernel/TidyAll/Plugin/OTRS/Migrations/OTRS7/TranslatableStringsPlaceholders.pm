@@ -30,7 +30,7 @@ sub validate_file {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Translatable strings contain prohibited placeholders (\%d):\n
 $ErrorMessage
 EOF

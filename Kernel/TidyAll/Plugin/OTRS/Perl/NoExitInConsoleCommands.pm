@@ -34,7 +34,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use 'exit' in console commands, use 'return \$Self->ExitCodeOk();' or 'return \$Self->ExitCodeError();' instead.
 $ErrorMessage
 EOF

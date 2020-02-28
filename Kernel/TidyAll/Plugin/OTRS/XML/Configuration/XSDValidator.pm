@@ -37,7 +37,9 @@ sub validate_file {
     }
 
     if ( $Filename !~ m{$WantedDir/[^/]+[.]xml$}smx ) {
-        die __PACKAGE__ . "\nConfiguration file $Filename does not exist in the correct directory $WantedDir.\n";
+        return $Self->DieWithError(
+            "Configuration file $Filename does not exist in the correct directory $WantedDir.\n"
+        );
     }
 
     my $Command = sprintf( "xmllint --noout --nonet --schema %s %s %s 2>&1", $XSDFile, $Self->argv(), $Filename );
@@ -45,11 +47,11 @@ sub validate_file {
 
     # If execution failed, warn about installing package.
     if ( ${^CHILD_ERROR_NATIVE} == -1 ) {
-        die __PACKAGE__ . "\n'xmllint' was not found, please install it.\n";
+        return $Self->DieWithError("'xmllint' was not found, please install it.\n");
     }
 
     if ( ${^CHILD_ERROR_NATIVE} ) {
-        die __PACKAGE__ . "\n$Output\n";    # non-zero exit code
+        return $Self->DieWithError("$Output\n");    # non-zero exit code
     }
 }
 

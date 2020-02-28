@@ -37,7 +37,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Don't use support\@otrs.com in any source files or documents as this address has SPAM problems.
 $ErrorMessage
 EOF

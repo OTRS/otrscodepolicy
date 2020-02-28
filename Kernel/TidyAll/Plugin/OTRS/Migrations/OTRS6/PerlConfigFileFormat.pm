@@ -21,7 +21,7 @@ sub validate_source {
 
     if ( $Code !~ m{^package \s}smx || $Code !~ m{^sub \s+ Load}smx ) {
 
-        die __PACKAGE__ . "\n" . <<EOF;
+        return $Self->DieWithError(<<EOF);
 Perl configuration files for OTRS 6+ must use the the new format like Kernel/Config/Files/ZZZAAuto.pm (they need to be created as a package with a Load() method).
 EOF
     }
