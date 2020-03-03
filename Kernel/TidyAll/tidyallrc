@@ -273,6 +273,9 @@ select = Kernel/Config.pm.dist
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
 
+[+TidyAll::Plugin::OTRS::Perl::Tests::Helper]
+select = **/*.{t}
+
 [+TidyAll::Plugin::OTRS::Perl::Time]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist

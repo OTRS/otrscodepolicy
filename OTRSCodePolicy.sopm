@@ -132,6 +132,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SortKeys.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SubDeclaration.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/SyntaxCheck.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Tests/Helper.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Time.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Translatable.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/TranslationEncoding.pm" />
@@ -231,6 +232,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/Pod/FunctionPod.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/Pod/NamePod.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/SortKeysReference.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/Tests/Helper.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/ProhibitOpen.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireCamelCase.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PerlCritic/RequireLabels.t" />
