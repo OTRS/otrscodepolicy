@@ -17,7 +17,7 @@ sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return if $Self->IsPluginDisabled( Code => $Code );
-    return if $Self->IsFrameworkVersionLessThan( 8, 0 );
+    return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
     my %MatchRegexes = (
         HelperObjectParams              => qr{->ObjectParamAdd\(\s*'Kernel::System::UnitTest::Helper'}xms,
@@ -53,6 +53,8 @@ EOF
 Don't use the Helper flag 'RestoreDatabase' in  Selenium tests, as the web server cannot access the test transaction.
 EOF
     }
+
+    return if $Self->IsFrameworkVersionLessThan( 8, 0 );
 
     if ( $MatchPositions{PGPInstantiation} && !$MatchPositions{HelperObjectFlagPGPEnvironment} ) {
         return $Self->DieWithError(<<EOF);
