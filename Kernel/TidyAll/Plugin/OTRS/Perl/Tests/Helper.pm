@@ -56,7 +56,7 @@ EOF
 
     if ( $MatchPositions{PGPInstantiation} && !$MatchPositions{HelperObjectFlagPGPEnvironment} ) {
         return $Self->DieWithError(<<EOF);
-Don't use the Helper flag 'RestoreDatabase' in  Selenium tests, as the web server cannot access the test transaction.
+PGP tests should always use the 'ProvideTestPGPEnvironment' flag of the unit test Helper.
 EOF
     }
 
