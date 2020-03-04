@@ -110,6 +110,33 @@ my $PGPObject = $Kernel::OM->Get('Kernel::System::Crypt::PGP');
 EOF
         Exception => 1,
     },
+    {
+        Name      => 'Set ProvideTestSMIMEEnvironment in a Selenium test',
+        Filename  => 'test.t',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::Tests::Helper)],
+        Framework => '8.0',
+        Source    => <<'EOF',
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        ProvideTestSMIMEEnvironment => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+my $SMIMEObject = $Kernel::OM->Get('Kernel::System::Crypt::SMIME');
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'Missing ProvideTestSMIMEEnvironment in a Selenium test',
+        Filename  => 'test.t',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::Tests::Helper)],
+        Framework => '8.0',
+        Source    => <<'EOF',
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+my $SMIMEObject = $Kernel::OM->Get('Kernel::System::Crypt::SMIME');
+EOF
+        Exception => 1,
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );

@@ -20,12 +20,14 @@ sub validate_source {
     return if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
     my %MatchRegexes = (
-        HelperObjectParams              => qr{->ObjectParamAdd\(\s*'Kernel::System::UnitTest::Helper'}xms,
-        HelperObjectFlagRestoreDatabase => qr{RestoreDatabase\s*=>\s*1}xms,
-        HelperObjectFlagPGPEnvironment  => qr{ProvideTestPGPEnvironment\s*=>\s*1}xms,
-        HelperInstantiation             => qr{->Get\('Kernel::System::UnitTest::Helper'}xms,
-        SeleniumInstantiation           => qr{->Get\('Kernel::System::UnitTest::Selenium'}xms,
-        PGPInstantiation                => qr{->Get\('Kernel::System::Crypt::PGP'}xms,
+        HelperObjectParams               => qr{->ObjectParamAdd\(\s*'Kernel::System::UnitTest::Helper'}xms,
+        HelperObjectFlagRestoreDatabase  => qr{RestoreDatabase\s*=>\s*1}xms,
+        HelperObjectFlagPGPEnvironment   => qr{ProvideTestPGPEnvironment\s*=>\s*1}xms,
+        HelperObjectFlagSMIMEEnvironment => qr{ProvideTestSMIMEEnvironment\s*=>\s*1}xms,
+        HelperInstantiation              => qr{->Get\('Kernel::System::UnitTest::Helper'}xms,
+        SeleniumInstantiation            => qr{->Get\('Kernel::System::UnitTest::Selenium'}xms,
+        PGPInstantiation                 => qr{->Get\('Kernel::System::Crypt::PGP'}xms,
+        SMIMEInstantiation               => qr{->Get\('Kernel::System::Crypt::SMIME'}xms,
     );
 
     my %MatchPositions;
@@ -59,6 +61,12 @@ EOF
     if ( $MatchPositions{PGPInstantiation} && !$MatchPositions{HelperObjectFlagPGPEnvironment} ) {
         return $Self->DieWithError(<<EOF);
 PGP tests should always use the 'ProvideTestPGPEnvironment' flag of the unit test Helper.
+EOF
+    }
+
+    if ( $MatchPositions{SMIMEInstantiation} && !$MatchPositions{HelperObjectFlagSMIMEEnvironment} ) {
+        return $Self->DieWithError(<<EOF);
+SMIME tests should always use the 'ProvideTestSMIMEEnvironment' flag of the unit test Helper.
 EOF
     }
 
