@@ -80,36 +80,8 @@ sub transform_source {
         ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) did [ \s \w ]+ \, \s+ see (?: : |  ) \s+ (?: L< |  ) http (?: s |  ) :\/\/www\.gnu\.org\/licenses\/ (?: a |  ) gpl (?: -2\.0 |  ) \.txt (?: > |  ) \.
     }{$1did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.}xmsg;
 
-    # Replace this license line in .pm .pl .tt and .js files.
-    #
-    # Original:
-    #     This software is part of the OTRS project (L<http://otrs.org/>).
-    #     This software is part of the OTRS project (L<http://otrs.com/>).
-    #     This software is part of the OTRS project (<http://otrs.com/>).
-    #
-    # Replacement:
-    #     This software is part of the OTRS project (https://otrs.org/).
-    #
-    $Code =~ s{
-        ^ ( (?: \# \s+ | \/\/ \s+ |  ) ) This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/>\) \.
-    }{$1This software is part of the OTRS project (https://otrs.org/).}xmsg;
-
     # We are using "use warnings;" as indicator for a .pm or .pl file because we have no access to filetype here.
     if ( $Code =~ m{ ^ \s* use \s+ warnings\; \s* $ }smx ) {
-
-        # Replace this license line in .pm .pl .t (perldoc) files.
-        #
-        # Original:
-        #     This software is part of the OTRS project (https://otrs.org/).
-        #     This software is part of the OTRS project (http://otrs.com/).
-        #     This software is part of the OTRS project (<http://otrs.org/>).
-        #
-        # Replacement:
-        #     This software is part of the OTRS project (L<https://otrs.org/>).
-        #
-        $Code =~ s{
-            ^ This \s+ software \s+ is \s+ part \s+ of \s+ the \s+ OTRS \s+ project \s+ \( (?: L< | < |  ) http (?: s |  ) :\/\/otrs\. (?: org | com ) \/ (?: > |  ) \) \.
-        }{This software is part of the OTRS project (L<https://otrs.org/>).}xmsg;
 
         # Replace this license line in .pm .pl .t (perldoc) files.
         #

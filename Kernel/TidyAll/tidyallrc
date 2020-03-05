@@ -29,6 +29,7 @@ select = **/*.{pl,pm,psgi,t,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,h
 
 [+TidyAll::Plugin::OTRS::Common::NoFilter]
 select = **/*.{pl,pm,psgi,t,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Common::Origin]
 select = **/*.{pl,psgi,pm,t,js,css,tt,xml,sopm}
@@ -45,6 +46,7 @@ select = **/*.{pl,psgi,pm,t,js,css,tt}
 ignore = Kernel/Config.pm
 ignore = Kernel/Config/GenericAgent.pm
 ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::XML::Docbook::ReplaceSupportEmail]
 select = doc/**/*.xml
@@ -157,28 +159,35 @@ select = bin/*.pl
 [+TidyAll::Plugin::OTRS::Perl::CacheNew]
 select = **/*.{pl,psgi,pm}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::DBObject]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::DieExit]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Dumper]
 select = **/*.{pl,pm,psgi}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ForeachToFor]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ForMy]
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ISA]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::LayoutObject]
 select = **/*.{pl,pm,psgi,t}
@@ -187,10 +196,12 @@ ignore = scripts/test/**/*
 ignore = Kernel/{Modules,Output}/**/* Custom/Kernel/{Modules,Output}/**/*
 ignore = Kernel/System/Web/* Custom/Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ModuleFormat]
 select = **/*.{pm,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::NoExitInConsoleCommands]
 select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Command/**/*.pm
@@ -198,21 +209,25 @@ select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Comm
 [+TidyAll::Plugin::OTRS::Perl::ObjectDependencies]
 select = **/*.{pm}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ObjectManagerCreation]
 select = **/*.{pm}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ObjectNameSpace]
 select = **/*.{pl,pm,t}
 select = Kernel/Config.pm.dist
 ignore = Kernel/Modules/**/* Custom/Kernel/Modules/**/*
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ParamObject]
 select = **/*.{pl,psgi}
 select = Kernel/System/**/*.pm Custom/Kernel/System/**/*.pm
 ignore = Kernel/System/Web/* Custom/Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::PerlCritic]
 select = **/*.{pl,pm,psgi,t}
@@ -228,15 +243,19 @@ argv = -l=120 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -no
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::FunctionPod]
 select = **/*.{pm}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::NamePod]
 select = **/*.{pm}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::SpellCheck]
 select = **/*.{pm,pod}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::Validator]
 select = **/*.{pm,pod,pod.dist}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Print]
 select = Kernel/Modules/**/*.pm Custom/Kernel/Modules/**/*.pm
@@ -252,11 +271,13 @@ ignore = Kernel/WebApp/Plugin/*ProvideObjectManager.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ProhibitMojoJSON]
 select = **/*.{pm}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Require]
 select = **/*.{pl,psgi,pm,t}
 select = Kernel/Config.pm.dist
 ignore = scripts/test/Selenium/**/*.t
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ScriptFormat]
 select = **/*.{pl,psgi}
@@ -264,10 +285,12 @@ select = **/*.{pl,psgi}
 [+TidyAll::Plugin::OTRS::Perl::SortKeys]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::SubDeclaration]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::SyntaxCheck]
 select = **/*.{pl,pm,psgi,t}
@@ -280,11 +303,13 @@ select = **/*.{t}
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
 ignore = scripts/test/**/*
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::Translatable]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm Kernel/Config/**/ZZZ*.pm
 ignore = Kernel/Language.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = scripts/test/**/*
 
 [+TidyAll::Plugin::OTRS::Perl::TranslationEncoding]
@@ -296,10 +321,12 @@ select = scripts/test/**/*.{t}
 [+TidyAll::Plugin::OTRS::Perl::UseParent]
 select = **/*.pm **/*.pm.skel
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::UseWarnings]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::WebApp::HeadGetWithoutBody]
 select = Kernel/WebApp/Controller/**/*.pm
@@ -438,6 +465,7 @@ select = ;**/*.xml
 select = **/*.{pl,pm,psgi,t,tt,js,spec}
 select = .*.dist .bash_completion
 ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS5::OutputFilterPre]
 select = Kernel/Config/**/*.xml
@@ -455,25 +483,30 @@ select = Kernel/System/Stats/Dynamic/*.pm
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::DateTime]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::PerlConfigFileFormat]
 select = Kernel/Config/Files/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::PermissionDataNotInSession]
 select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig]
 select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeObject]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/System/Time.pm
 ignore = scripts/test/Time.t
 ignore = scripts/test/Time/**/*.t
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::TimeZoneOffset]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS6::XMLFrontendNavigation]
 select = Kernel/Config/**/*.xml
@@ -487,6 +520,7 @@ select = Kernel/Config/**/*.xml
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS7::TranslatableStringsPlaceholders]
 select = **/*.{pl,pm,tt,js,xml,html.tmpl}
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS7::WebAppNoLegacyCode]
 select = Kernel/WebApp.pm
