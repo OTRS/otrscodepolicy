@@ -16,8 +16,9 @@ use parent qw(TidyAll::Plugin::OTRS::Base);
 sub validate_source {
     my ( $Self, $Code ) = @_;
 
-    return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return       if $Self->IsFrameworkVersionLessThan( 5, 0 );
+    return if $Self->IsPluginDisabled( Code => $Code );
+    return if $Self->IsFrameworkVersionLessThan( 5, 0 );
+    return if !$Self->IsFrameworkVersionLessThan( 6, 0 );
 
     if ( $Code !~ m{^sub\sGetStat(Table|Element)Preview}smx ) {
         return $Self->DieWithError(<<EOF);

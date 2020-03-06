@@ -18,6 +18,7 @@ sub validate_source {
 
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 7, 0 );
+    return if !$Self->IsFrameworkVersionLessThan( 8, 0 );
 
     my @ForbiddenPaths = qw(
         Kernel::Output::HTML

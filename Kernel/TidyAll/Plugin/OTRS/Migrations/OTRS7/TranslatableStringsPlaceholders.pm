@@ -18,6 +18,7 @@ sub validate_file {
 
     return if $Self->IsPluginDisabled( Filename => $File );
     return if $Self->IsFrameworkVersionLessThan( 7, 0 );
+    return if !$Self->IsFrameworkVersionLessThan( 8, 0 );
 
     my $Text = $Self->_ExtractTranslatableStrings($File);
     return if !$Text;

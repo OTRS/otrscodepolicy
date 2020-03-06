@@ -19,6 +19,7 @@ sub validate_source {
 
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 5, 0 );
+    return if !$Self->IsFrameworkVersionLessThan( 6, 0 );
 
     my @InvalidSettings;
 
