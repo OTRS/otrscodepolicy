@@ -34,6 +34,9 @@ sub validate_source {
     # Skip if we have a role, as it cannot be instantiated.
     return if $Code =~ m{use\s+Moose::Role}smx;
 
+    # Skip if we have a webapp controller, as these are not managed via OM.
+    return if $Code =~ m{package\s+Kernel::WebApp::(Controller|Plugin|Server)::}smx;
+
     # Skip if the package cannot be loaded via ObjectManager
     return if $Code =~ m{
         ^ \s* our \s* \$ObjectManagerDisabled \s* = \s* 1

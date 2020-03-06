@@ -202,7 +202,39 @@ $Kernel::OM->Get('Kernel::System::Ticket');
 EOF
         Exception => 0,
     },
-
+    {
+        Name      => 'ObjectDependencies, WebApp controller',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+package Kernel::WebApp::Controller::Test;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'ObjectDependencies, WebApp plugin',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+package Kernel::WebApp::Plugin::Test;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'ObjectDependencies, WebApp server',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+package Kernel::WebApp::Server::Test;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );
