@@ -95,6 +95,8 @@ select = var/httpd/htdocs/js/test/*.js
 [+TidyAll::Plugin::OTRS::JavaScript::ESLint]
 select = **/*.{js,vue}
 ignore = scripts/test/sample/Loader/**/*
+; Ignore this slow plugin for more agile OTRSCodePolicy filter development with a custom mode "fast".
+except_modes = fast
 
 [+TidyAll::Plugin::OTRS::JavaScript::Vue::EventListeners]
 select = Frontend/**/*.{js,vue}
@@ -234,12 +236,16 @@ select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 ignore = scripts/test/sample/**/*
+; Ignore this slow plugin for more agile OTRSCodePolicy filter development with a custom mode "fast".
+except_modes = fast
 
 [+TidyAll::Plugin::OTRS::Perl::PerlTidy]
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config.pm Kernel/Config/Defaults.pm Kernel/Config/**/ZZZ*.pm Kernel/Config/Files/User/*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 argv = -l=120 -i=4 -ci=4 -vt=0 -vtc=0 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -bbao -nola -ndnl -cab=0
+; Ignore this slow plugin for more agile OTRSCodePolicy filter development with a custom mode "fast".
+except_modes = fast
 
 [+TidyAll::Plugin::OTRS::Perl::Pod::FunctionPod]
 select = **/*.{pm}
@@ -525,3 +531,12 @@ ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 [+TidyAll::Plugin::OTRS::Migrations::OTRS7::WebAppNoLegacyCode]
 select = Kernel/WebApp.pm
 select = Kernel/WebApp/**/*.{pl,pm}
+
+;
+; Migrations OTRS 8
+;
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS8::UselessComments]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm

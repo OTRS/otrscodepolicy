@@ -128,7 +128,6 @@ sub validate_file {
 sub _DataDiff {
     my ( $Self, %Param ) = @_;
 
-    # check needed stuff
     for (qw(Data1 Data2)) {
         if ( !defined $Param{$_} ) {
             print STDERR "Need $_!\n";

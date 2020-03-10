@@ -88,7 +88,7 @@ sub Run {
         $Self->Is(
             $Exception ? 1 : 0,
             $Test->{Exception},
-            "$Test->{Name} - exception found: $@",
+            "$Test->{Name} - " . ( $Exception ? "exception found:\n$Exception" : 'no exception' ),
         );
 
         next TEST if $Exception;

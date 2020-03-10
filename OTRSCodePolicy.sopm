@@ -90,6 +90,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS7/DeprecatedSettings.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS7/TranslatableStringsPlaceholders.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS7/WebAppNoLegacyCode.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS8/UselessComments.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/BinScripts.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm" />
@@ -226,6 +227,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/ESLint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/JavaScript/Vue/EventListeners.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS7/DeprecatedSettings.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS8/UselessComments.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t" />
