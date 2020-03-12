@@ -145,7 +145,6 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/HTMLTags.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/PO/msgfmt.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/CodeTags.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/DocumentationPresent.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/FileList.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/FileRights.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/SOPM/Name.pm" />
@@ -241,6 +240,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/DocbookLint.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/PO/HTMLTags.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/CodeTags.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/OndemandTestingPresent.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/RequiredElements.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/SOPM/XSDValidator.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/TT/TranslationFilter.t" />

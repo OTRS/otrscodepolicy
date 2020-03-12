@@ -78,7 +78,7 @@
                 ## nofilter(TidyAll::Plugin::OTRS::Perl::ISA)
 
                 Example SOPM:
-                <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
+                <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::FileRights) -->
                 ]]></screen>
                 </para></listitem>
                 <listitem><para>

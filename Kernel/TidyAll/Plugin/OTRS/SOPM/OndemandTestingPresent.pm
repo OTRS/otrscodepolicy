@@ -19,9 +19,9 @@ sub validate_source {
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 7, 0 );
 
-    my $DocumentationPresent = grep { $_ =~ m{[.]otrs-ci[.]yml} } @TidyAll::OTRS::FileList;
+    my $OndemandTestingPresent = grep { $_ =~ m{[.]otrs-ci[.]yml} } @TidyAll::OTRS::FileList;
 
-    if ( !$DocumentationPresent ) {
+    if ( !$OndemandTestingPresent ) {
         return $Self->DieWithError(
             "Every package needs to contain an active OnDemand testing configuration (.otrs-ci.yml).\n"
         );

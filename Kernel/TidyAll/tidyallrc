@@ -348,9 +348,6 @@ select = Kernel/WebApp/Controller/**/*.pm
 [+TidyAll::Plugin::OTRS::SOPM::CodeTags]
 select = *.{opm,sopm}
 
-[+TidyAll::Plugin::OTRS::SOPM::DocumentationPresent]
-select = *.{opm,sopm}
-
 [+TidyAll::Plugin::OTRS::SOPM::FileList]
 select = *.{opm,sopm}
 
