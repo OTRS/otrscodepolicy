@@ -123,8 +123,10 @@ sub HandleInput {
         if ( substr( $Ref, 0, 9 ) eq 'refs/tags' ) {
 
             # Only allow "rel-*" as name for new and updated tags.
-            if ( substr( $Ref, 0, 14 ) ne 'refs/tags/rel-' ) {
-                my $ErrorMessage = "Found invalid tag $Ref - please only use rel-*.";
+            if ( $Ref !~ m{ \A refs/tags/rel-\d+_\d+_\d+ (_alpha\d+ | _beta\d+ | _rc\d+)? \z }xms ) {
+
+                my $ErrorMessage
+                    = "Error: found invalid tag '$Ref' - please only use rel-A_B_C or rel-A_B_C_(alpha|beta|rc)D.";
                 return $ErrorMessage;
             }
 
