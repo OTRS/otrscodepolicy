@@ -69,7 +69,7 @@ sub validate_file {
 
     my ( @Errors, %Seen );
     LINE:
-    for my $Line ( split( "\n", $Output ) ) {
+    for my $Line ( split( m/\n/, $Output ) ) {
         if ( my ( $Original, $Remaining ) = ( $Line =~ /^[\&\?\#] (\S+)\s+(.*)/ ) ) {
 
             if ( $Original =~ m{^ _? [A-Z]+ [a-z0-9]+ [A-Za-z0-9]* }smx ) {

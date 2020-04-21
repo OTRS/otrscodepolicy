@@ -17,6 +17,8 @@ use lib dirname(__FILE__) . '/../';    # Find our Perl::Critic policies
 use parent qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
+use Perl::Critic::Policy::BuiltinFunctions::ProhibitStringySplit;
+
 use Perl::Critic::Policy::OTRS::ProhibitGoto;
 use Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;
 use Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator;
@@ -28,7 +30,9 @@ use Perl::Critic::Policy::OTRS::RequireLabels;
 use Perl::Critic::Policy::OTRS::RequireParensWithMethods;
 use Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules;
 
-our $Critic;
+# Cache Perl::Critic object instance to save time. But cache it
+#   for every framework version, because the configuration may differ.
+our $CachedPerlCritic = {};
 
 sub validate_file {
     my ( $Self, $Filename ) = @_;
@@ -36,12 +40,15 @@ sub validate_file {
     return if $Self->IsPluginDisabled( Filename => $Filename );
     return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
-    if ( !$Critic ) {
-        my $Severity = 4;
+    my $FrameworkVersion = "$TidyAll::OTRS::FrameworkVersionMajor.$TidyAll::OTRS::FrameworkVersionMinor";
+
+    if ( !$CachedPerlCritic->{$FrameworkVersion} ) {
+
+        my $Severity = 4;    # STERN
         if ( $Self->IsFrameworkVersionLessThan( 6, 0 ) ) {
-            $Severity = 5;    #  less strict for older versions
+            $Severity = 5;    #  GENTLE, less strict for older versions
         }
-        $Critic = Perl::Critic->new(
+        my $Critic = Perl::Critic->new(
             -severity => $Severity,
             -exclude  => [
                 'Perl::Critic::Policy::Modules::RequireExplicitPackage',    # this breaks in our scripts/test folder
@@ -59,10 +66,15 @@ sub validate_file {
         $Critic->add_policy(
             -policy => 'Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules'
         );
+        if ( !$Self->IsFrameworkVersionLessThan( 9, 0 ) ) {
+            $Critic->add_policy( -policy => 'Perl::Critic::Policy::BuiltinFunctions::ProhibitStringySplit' );
+        }
+
+        $CachedPerlCritic->{$FrameworkVersion} = $Critic;
     }
 
     # Force stringification of $Filename as it is a Path::Tiny object in Code::TidyAll 0.50+.
-    my @Violations = $Critic->critique("$Filename");
+    my @Violations = $CachedPerlCritic->{$FrameworkVersion}->critique("$Filename");
 
     if (@Violations) {
         return $Self->DieWithError("@Violations");

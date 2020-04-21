@@ -81,7 +81,7 @@ sub validate_source {
                  # For decimal column type use approximate calculation, it should be enough for our purposes.
                  #   More info here: https://dev.mysql.com/doc/refman/5.7/en/precision-math-decimal-characteristics.html
                     elsif ( uc $ColumnType eq 'DECIMAL' ) {
-                        my ( $TotalDigits, $FractionalDigits ) = split ',', $ColumnSize;
+                        my ( $TotalDigits, $FractionalDigits ) = split m/,/, $ColumnSize;
                         $FractionalDigits //= 0;
                         my $IntegerDigits = $TotalDigits - $FractionalDigits;
                         for my $Digits ( $IntegerDigits, $FractionalDigits ) {

@@ -105,14 +105,14 @@ sub Run {
 sub HandleInput {
     my ( $Self, $Input ) = @_;
 
-    my @Lines = split( "\n", $Input );
+    my @Lines = split( m/\n/, $Input );
 
     my (@Results);
 
     LINE:
     for my $Line (@Lines) {
         chomp($Line);
-        my ( $Base, $Commit, $Ref ) = split( /\s+/, $Line );
+        my ( $Base, $Commit, $Ref ) = split( m/\s+/, $Line );
 
         if ( $Commit =~ m/^0+$/ ) {
 
@@ -281,12 +281,12 @@ sub GetChangedFiles {
     #   This is not perfect, but otherwise quite complicated.
     if ( $Base =~ m/^0+$/ ) {
         my $Output = capturex( 'git', 'diff-tree', '--no-commit-id', '--name-only', '-r', $Commit );
-        my @Files  = grep {/\S/} split( "\n", $Output );
+        my @Files  = grep {/\S/} split( m/\n/, $Output );
         return @Files;
     }
 
     my $Output = capturex( 'git', "diff", "--numstat", "--name-only", "$Base..$Commit" );
-    my @Files  = grep {/\S/} split( "\n", $Output );
+    my @Files  = grep {/\S/} split( m/\n/, $Output );
     return @Files;
 }
 
