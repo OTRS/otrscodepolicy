@@ -58,7 +58,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Dont use hash references while accesing its keys
 $ErrorMessage
 EOF

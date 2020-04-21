@@ -214,7 +214,7 @@ sub validate_file {
         # Check if a CSS file is overritten in Custom directory.
         if ( $Filename =~ m{ \/Custom\/var\/ }xms ) {
 
-            return $Self->DieWithError(<<EOF);
+            return $Self->DieWithError(<<"EOF");
 Forbidden to have a CSS file in Custom folder, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF
@@ -223,7 +223,7 @@ EOF
         # Check if an origin exist.
         if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* ) [ ]+ (?: \$ | \@ ) origin: [ ]+ [^\n]+ $ }xms ) {
 
-            return $Self->DieWithError(<<EOF);
+            return $Self->DieWithError(<<"EOF");
 Forbidden to have an origin in a CSS file, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF
@@ -232,7 +232,7 @@ EOF
         # Check if customization markers exists.
         if ( $Code =~ m{ ^ [ ]* (?: \# | \/\/ | \* | \/\* ) [ ]+ --- [ ]* $ }xms ) {
 
-            return $Self->DieWithError(<<EOF);
+            return $Self->DieWithError(<<"EOF");
 Forbidden to have customization markers in a CSS file, because it's not allowed to override an existing CSS file.
 Use a new one to override existing CSS classes.
 EOF

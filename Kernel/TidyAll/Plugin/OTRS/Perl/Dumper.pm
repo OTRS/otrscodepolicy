@@ -35,7 +35,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Use Main::Dump() instead of Dumper().
 Don't forget to remove debug code like print STDERR Dumper(...).
 $ErrorMessage

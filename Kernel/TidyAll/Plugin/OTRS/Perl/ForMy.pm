@@ -32,7 +32,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Please use my to declare the key variable in
 $ErrorMessage
 EOF

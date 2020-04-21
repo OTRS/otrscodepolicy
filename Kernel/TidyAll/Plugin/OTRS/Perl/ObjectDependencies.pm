@@ -113,7 +113,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 $ErrorMessage
 EOF
     }

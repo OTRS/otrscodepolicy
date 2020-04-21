@@ -38,7 +38,7 @@ sub validate_source {
 
     # Don't allow push @ISA.
     if ( $Code =~ m{push\(?\s*\@ISA }xms ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Don't push to \@ISA, this can cause problems in persistent environments.
 Use Main::RequireBaseClass() instead.
 EOF

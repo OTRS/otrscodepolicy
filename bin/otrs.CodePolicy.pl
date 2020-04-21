@@ -48,7 +48,7 @@ GetOptions(
 );
 
 if ($Help) {
-    print <<EOF;
+    print <<"EOF";
 Usage: OTRSCodePolicy/bin/otrs.CodePolicy.pl [options]
 
     Performs OTRS code policy checks. Run this script from the toplevel directory

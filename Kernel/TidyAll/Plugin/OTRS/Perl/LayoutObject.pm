@@ -32,7 +32,7 @@ sub validate_source {
     }
 
     if ( $Code =~ $Forbidden ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Don't use the LayoutObject in bin/ or in Kernel/System.
 EOF
     }

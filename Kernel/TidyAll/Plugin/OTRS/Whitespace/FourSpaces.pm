@@ -60,7 +60,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Spaces at the beginning of a line should be in steps of four!
 $ErrorMessage
 EOF

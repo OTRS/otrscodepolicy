@@ -34,7 +34,7 @@ sub validate_file {
     );
 
     if ( !$AllowedFiles{ File::Basename::basename($Filename) } ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Please migrate all bin/ scripts to Kernel::System::Console::Command objects.
 EOF
     }

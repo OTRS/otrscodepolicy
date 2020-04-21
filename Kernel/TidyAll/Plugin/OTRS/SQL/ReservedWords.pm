@@ -28,7 +28,7 @@ sub validate_source {
         }
         if ( $TableCreate && $Line =~ /<Column.+?Name="(.+?)".*?\/>/i ) {
             if ( !$1 ) {
-                return $Self->DieWithError(<<EOF);
+                return $Self->DieWithError(<<"EOF");
 Found an empty column name!
 Line $Counter: $Line
 EOF
@@ -222,7 +222,7 @@ EOF
                 # 'reference' and 'login' seems to be allowed (checked by www.petefreitag.com)
 
                 if ( $1 && $1 =~ /^$ReservedWord$/i ) {
-                    die <<EOF;
+                    die <<"EOF";
 You use a reserved SQL-Word!
 Line $Counter: $Line
 You can use the following tool for your own checking:

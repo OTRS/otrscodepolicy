@@ -54,7 +54,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 
 
 In order to blacklist unit test file(s), you need to first provide a suitable replacement under these path(s):

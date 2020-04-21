@@ -44,14 +44,14 @@ sub validate_source {
 
     if ( $MatchPositions{SeleniumInstantiation} && $MatchPositions{HelperObjectParams} ) {
         if ( $MatchPositions{SeleniumInstantiation} < $MatchPositions{HelperObjectParams} ) {
-            return $Self->DieWithError(<<EOF);
+            return $Self->DieWithError(<<"EOF");
 Please always set the Helper object params before creating the Selenium object to make sure any constructor flags are properly set and processed. This needs to be done because Selenium::new() already may create the Helper.
 EOF
         }
     }
 
     if ( $MatchPositions{SeleniumInstantiation} && $MatchPositions{HelperObjectFlagRestoreDatabase} ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Don't use the Helper flag 'RestoreDatabase' in  Selenium tests, as the web server cannot access the test transaction.
 EOF
     }
@@ -59,13 +59,13 @@ EOF
     return if $Self->IsFrameworkVersionLessThan( 8, 0 );
 
     if ( $MatchPositions{PGPInstantiation} && !$MatchPositions{HelperObjectFlagPGPEnvironment} ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 PGP tests should always use the 'ProvideTestPGPEnvironment' flag of the unit test Helper.
 EOF
     }
 
     if ( $MatchPositions{SMIMEInstantiation} && !$MatchPositions{HelperObjectFlagSMIMEEnvironment} ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 SMIME tests should always use the 'ProvideTestSMIMEEnvironment' flag of the unit test Helper.
 EOF
     }

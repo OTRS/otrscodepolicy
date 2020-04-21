@@ -33,7 +33,7 @@ sub validate_file {
         if ( $Line =~ m{^([^= ]+)\s*=\s*\(function\s*\(Namespace\)\s*\{ }xms ) {
 
             if ( $1 . ".UnitTest" ne $NameOfFile ) {
-                return $Self->DieWithError(<<EOF);
+                return $Self->DieWithError(<<"EOF");
 The file name ($NameOfFile.js) is not correct for the unit tests of the JavaScript namespace ($1). Must be $1.UnitTest.js.
 EOF
             }

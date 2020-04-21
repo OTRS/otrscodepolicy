@@ -31,7 +31,7 @@ sub validate_file {
     );
 
     if ( !$AllowedFiles{ File::Basename::basename($Filename) } ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Please migrate all scron scripts to be handled via the OTRS Daemon (see SysConfig setting Daemon::SchedulerCronTaskManager::Task).
 EOF
     }

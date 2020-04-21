@@ -38,7 +38,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Don't create new instances of the ObjectManager in Perl modules. This should only be done in toplevel scripts.
 $ErrorMessage
 EOF

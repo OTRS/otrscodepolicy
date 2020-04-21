@@ -36,7 +36,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Don't use the DBObject in frontend modules.
 $ErrorMessage
 EOF

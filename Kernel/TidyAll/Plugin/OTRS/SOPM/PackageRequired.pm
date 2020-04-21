@@ -20,7 +20,7 @@ sub validate_source {
     return if $Self->IsFrameworkVersionLessThan( 3, 1 );
 
     if ( $Code =~ m{<PackageRequired>}smx ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 You use the attribute PackageRequired without a version tag.
 Use: \"<PackageRequired Version="1.1.1">NewPackage</PackageRequired>
 EOF

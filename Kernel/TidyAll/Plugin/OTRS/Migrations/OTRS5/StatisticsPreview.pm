@@ -21,7 +21,7 @@ sub validate_source {
     return if !$Self->IsFrameworkVersionLessThan( 6, 0 );
 
     if ( $Code !~ m{^sub\sGetStat(Table|Element)Preview}smx ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 The new statistics GUI provides a preview for the current configuration. This must be implemented
 in the statistic modules and usually returns fake / random data for speed reasons. So for any
 dynamic (matrix) statistic that provides the method GetStatElement() you should also add a method

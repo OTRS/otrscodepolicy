@@ -60,7 +60,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Problems were found in the structure of the XML configuration:
 $ErrorMessage
 EOF

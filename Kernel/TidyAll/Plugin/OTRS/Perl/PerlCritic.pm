@@ -17,8 +17,6 @@ use lib dirname(__FILE__) . '/../';    # Find our Perl::Critic policies
 use parent qw(TidyAll::Plugin::OTRS::Perl);
 use Perl::Critic;
 
-use Perl::Critic::Policy::BuiltinFunctions::ProhibitStringySplit;
-
 use Perl::Critic::Policy::OTRS::ProhibitGoto;
 use Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps;
 use Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator;
@@ -51,23 +49,25 @@ sub validate_file {
         my $Critic = Perl::Critic->new(
             -severity => $Severity,
             -exclude  => [
-                'Perl::Critic::Policy::Modules::RequireExplicitPackage',    # this breaks in our scripts/test folder
+                'Modules::RequireExplicitPackage',    # this breaks in our scripts/test folder
             ],
         );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitGoto' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitLowPrecendeceOps' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitOpen' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitRandInTests' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitSmartMatchOperator' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::ProhibitUnless' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireCamelCase' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireLabels' );
-        $Critic->add_policy( -policy => 'Perl::Critic::Policy::OTRS::RequireParensWithMethods' );
+        $Critic->add_policy( -policy => 'OTRS::ProhibitGoto' );
+        $Critic->add_policy( -policy => 'OTRS::ProhibitLowPrecendeceOps' );
+        $Critic->add_policy( -policy => 'OTRS::ProhibitOpen' );
+        $Critic->add_policy( -policy => 'OTRS::ProhibitRandInTests' );
+        $Critic->add_policy( -policy => 'OTRS::ProhibitSmartMatchOperator' );
+        $Critic->add_policy( -policy => 'OTRS::ProhibitUnless' );
+        $Critic->add_policy( -policy => 'OTRS::RequireCamelCase' );
+        $Critic->add_policy( -policy => 'OTRS::RequireLabels' );
+        $Critic->add_policy( -policy => 'OTRS::RequireParensWithMethods' );
         $Critic->add_policy(
-            -policy => 'Perl::Critic::Policy::OTRS::RequireTrueReturnValueForModules'
+            -policy => 'OTRS::RequireTrueReturnValueForModules'
         );
         if ( !$Self->IsFrameworkVersionLessThan( 9, 0 ) ) {
-            $Critic->add_policy( -policy => 'Perl::Critic::Policy::BuiltinFunctions::ProhibitStringySplit' );
+            $Critic->add_policy( -policy => 'BuiltinFunctions::ProhibitStringySplit' );
+
+            #$Critic->add_policy( -policy => 'ValuesAndExpressions::RequireQuotedHeredocTerminator' );
         }
 
         $CachedPerlCritic->{$FrameworkVersion} = $Critic;

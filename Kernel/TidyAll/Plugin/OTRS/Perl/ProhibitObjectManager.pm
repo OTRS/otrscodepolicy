@@ -20,7 +20,7 @@ sub validate_source {
     return if $Self->IsFrameworkVersionLessThan( 7, 0 );
 
     if ( $Code =~ m{\$Kernel::OM}smx ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Don't use \$Kernel::OM in Kernel::WebApp, except in controllers or their utility packages.
 EOF
     }

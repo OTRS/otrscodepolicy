@@ -34,7 +34,7 @@ sub validate_source {
     }
 
     if ($ErrorMessage) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 Popup close notice should not contain the word "window".
 $ErrorMessage
 EOF

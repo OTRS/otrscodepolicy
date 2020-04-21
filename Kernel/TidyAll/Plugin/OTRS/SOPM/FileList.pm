@@ -101,7 +101,7 @@ sub validate_source {
     my $ErrorMessage;
 
     if ($ErrorMessageForbiddenToplevel) {
-        $ErrorMessage .= <<EOF;
+        $ErrorMessage .= <<"EOF";
 The following packaged files try to create new toplevel files or directories in /opt/otrs, which is not possible
 due to permission restrictions:
 $ErrorMessageForbiddenToplevel
@@ -109,14 +109,14 @@ EOF
     }
 
     if ($ErrorMessageMissingFiles) {
-        $ErrorMessage .= <<EOF;
+        $ErrorMessage .= <<"EOF";
 The following files were listed in the SOPM but not found in the directory:
 $ErrorMessageMissingFiles
 EOF
     }
 
     if ($ErrorMessageUnpackagedFiles) {
-        $ErrorMessage .= <<EOF;
+        $ErrorMessage .= <<"EOF";
 The following files were found in the directory but not listed in the SOPM:
 $ErrorMessageUnpackagedFiles
 EOF

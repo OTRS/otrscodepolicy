@@ -22,7 +22,7 @@ sub validate_source {
     return $Code if $Self->IsFrameworkVersionLessThan( 4, 0 );
 
     if ( $Code !~ m{^[ \t]*use\s+utf8;}mx ) {
-        return $Self->DieWithError(<<EOF);
+        return $Self->DieWithError(<<"EOF");
 All language files must be encoded in "utf-8", and include the "use utf8;" Perl pragma.
 EOF
     }
