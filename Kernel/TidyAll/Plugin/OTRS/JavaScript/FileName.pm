@@ -24,7 +24,6 @@ sub validate_file {
     my $Code       = $Self->_GetFileContents($Filename);
     my $NameOfFile = substr( basename($Filename), 0, -3 );    # cut off .js
 
-    my $ErrorMessage;
     my $Counter;
 
     for my $Line ( split( /\n/, $Code ) ) {

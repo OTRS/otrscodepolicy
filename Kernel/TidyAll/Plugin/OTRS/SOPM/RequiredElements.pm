@@ -104,9 +104,9 @@ sub validate_source {
         elsif ( $Line =~ m{ <Framework (?: [ ]+ [^<>]* )? > ( [^<>]+ ) <\/Framework> }xms ) {
             $Framework = 1;
 
-            my $Version = $1;
+            my $FrameworkVersion = $1;
 
-            if ( $Version !~ m{ \d+ \. \d+ \. [x\d]+ }xms ) {
+            if ( $FrameworkVersion !~ m{ \d+ \. \d+ \. [x\d]+ }xms ) {
                 $ErrorMessage .= "Version needs to have the format 0.0.x or 0.0.0!\n";
             }
         }

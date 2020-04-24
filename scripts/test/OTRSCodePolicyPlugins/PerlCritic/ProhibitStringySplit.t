@@ -78,7 +78,7 @@ use strict;
 use warnings;
 my $Regex = qr{:};
 my @Strings = split $Regex, 'some::code';
-my @Strings = split($Regex, 'some::code');
+@Strings = split($Regex, 'some::code');
 EOF
         Exception => 0,
     },

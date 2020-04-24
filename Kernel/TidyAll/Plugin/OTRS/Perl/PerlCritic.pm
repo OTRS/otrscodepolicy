@@ -61,13 +61,27 @@ sub validate_file {
         $Critic->add_policy( -policy => 'OTRS::RequireCamelCase' );
         $Critic->add_policy( -policy => 'OTRS::RequireLabels' );
         $Critic->add_policy( -policy => 'OTRS::RequireParensWithMethods' );
-        $Critic->add_policy(
-            -policy => 'OTRS::RequireTrueReturnValueForModules'
-        );
-        if ( !$Self->IsFrameworkVersionLessThan( 9, 0 ) ) {
-            $Critic->add_policy( -policy => 'BuiltinFunctions::ProhibitStringySplit' );
+        $Critic->add_policy( -policy => 'OTRS::RequireTrueReturnValueForModules' );
 
-            #$Critic->add_policy( -policy => 'ValuesAndExpressions::RequireQuotedHeredocTerminator' );
+        if ( !$Self->IsFrameworkVersionLessThan( 9, 0 ) ) {
+            $Critic->add_policy( -policy => 'BuiltinFunctions::ProhibitLvalueSubstr' );
+            $Critic->add_policy( -policy => 'BuiltinFunctions::ProhibitStringySplit' );
+            $Critic->add_policy( -policy => 'BuiltinFunctions::ProhibitVoidGrep' );
+            $Critic->add_policy( -policy => 'BuiltinFunctions::RequireSimpleSortBlock' );
+            $Critic->add_policy( -policy => 'ClassHierarchies::ProhibitAutoloading' );
+            $Critic->add_policy( -policy => 'ClassHierarchies::ProhibitExplicitISA' );
+            $Critic->add_policy( -policy => 'InputOutput::ProhibitJoinedReadline' );
+            $Critic->add_policy( -policy => 'Miscellanea::ProhibitFormats' );
+            $Critic->add_policy( -policy => 'Modules::ProhibitConditionalUseStatements' );
+            $Critic->add_policy( -policy => 'NamingConventions::ProhibitAmbiguousNames' );
+            $Critic->add_policy( -policy => 'Subroutines::ProtectPrivateSubs' );
+            $Critic->add_policy( -policy => 'ValuesAndExpressions::ProhibitComplexVersion' );
+            $Critic->add_policy( -policy => 'ValuesAndExpressions::ProhibitMismatchedOperators' );
+            $Critic->add_policy( -policy => 'ValuesAndExpressions::ProhibitQuotesAsQuotelikeOperatorDelimiters' );
+            $Critic->add_policy( -policy => 'ValuesAndExpressions::ProhibitSpecialLiteralHeredocTerminator' );
+            $Critic->add_policy( -policy => 'ValuesAndExpressions::RequireQuotedHeredocTerminator' );
+            $Critic->add_policy( -policy => 'Variables::ProhibitUnusedVariables' );
+            $Critic->add_policy( -policy => 'Variables::ProtectPrivateVars' );
         }
 
         $CachedPerlCritic->{$FrameworkVersion} = $Critic;

@@ -22,7 +22,7 @@ sub validate_file {
 
     # read the file as an array
     open FH, "$Filename" or die $!;    ## no critic
-    my $String = do { local $/; <FH> };
+    my $String = do { local $/ = undef; <FH> };
     close FH;
 
     my $LiteralStyle;

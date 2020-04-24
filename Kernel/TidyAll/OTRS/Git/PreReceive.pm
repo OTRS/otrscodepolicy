@@ -74,7 +74,7 @@ sub Run {
 
         my $Input = $Param{Input};
         if ( !$Input ) {
-            $Input = do { local $/; <> };
+            $Input = do { local $/ = undef; <> };
         }
 
         # Debug

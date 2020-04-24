@@ -89,7 +89,7 @@ sub _GetFileContents {
         die;
     }
 
-    my $Content = do { local $/; <$FileHandle> };
+    my $Content = do { local $/ = undef; <$FileHandle> };
     close $FileHandle;
 
     return $Content;

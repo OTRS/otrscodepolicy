@@ -79,7 +79,7 @@ sub transform_file {
 
     my $Output = `$Command`;
     if ( ${^CHILD_ERROR_NATIVE} || $Output ) {
-        Encode::_utf8_on($Output);
+        Encode::_utf8_on($Output);    ## no critic
         return $Self->DieWithError("$Output\n");
     }
 }
