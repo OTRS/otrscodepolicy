@@ -161,6 +161,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration_before_5.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Configuration_before_6.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Database.xsd" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Database_before_9.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/calstblx.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/dbhierx.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/Docbook/4_2/dbnotnx.xsd" />
@@ -252,5 +253,6 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/YAMLValidator.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/UnitTestBlacklist.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/KeyLength.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/RequiredNameAttribute.t" />
     </Filelist>
 </otrs_package>
