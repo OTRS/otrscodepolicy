@@ -24,10 +24,7 @@ sub validate_source {
     return if $Self->IsPluginDisabled( Code => $Code );
     return if $Self->IsFrameworkVersionLessThan( 3, 2 );
 
-    my (
-        $ErrorMessageMissingFiles,      $ErrorMessageUnpackagedFiles,
-        $ErrorMessageForbiddenToplevel, $ErrorMessageForbiddenFiles
-    );
+    my ( $ErrorMessageMissingFiles, $ErrorMessageUnpackagedFiles, $ErrorMessageForbiddenToplevel );
 
     # From OTRS 3.3 on, packages cannot create new toplevel directories/files
     #   because of stricter permissions.
@@ -47,8 +44,6 @@ sub validate_source {
         var      => 1,
     );
 
-    my $ForbiddenFileRegex = qr{(?:^|/)(?:.keep|.gitignore)$};
-
     # Go trough the files on the SOPM file list
     LINE:
     for my $Line ( split /\n/, $Code ) {
@@ -57,10 +52,6 @@ sub validate_source {
             push @SOPMFileList, $File;
 
             my ($ToplevelDirectory) = $File =~ m{^([^/]+)/};
-
-            if ( $File =~ m{$ForbiddenFileRegex} ) {
-                $ErrorMessageForbiddenFiles .= "$File\n";
-            }
 
             # Toplevel file
             if ( !$ToplevelDirectory ) {
@@ -99,8 +90,6 @@ sub validate_source {
         next FILE if !$ToplevelDirectory;
         next FILE if !$ToplevelDirectories{$ToplevelDirectory};
 
-        next FILE if $File =~ m{$ForbiddenFileRegex};
-
         # Skip documentation files, these don't have to be on the SOPM list.
         next FILE if $File =~ m{\A doc/ }msx;
 
@@ -130,13 +119,6 @@ EOF
         $ErrorMessage .= <<"EOF";
 The following files were found in the directory but not listed in the SOPM:
 $ErrorMessageUnpackagedFiles
-EOF
-    }
-
-    if ($ErrorMessageForbiddenFiles) {
-        $ErrorMessage .= <<"EOF";
-The following files were found in the SOPM but may not be packaged:
-$ErrorMessageForbiddenFiles
 EOF
     }
 
