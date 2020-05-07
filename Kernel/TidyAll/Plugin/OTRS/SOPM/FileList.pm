@@ -93,6 +93,9 @@ sub validate_source {
         # Skip documentation files, these don't have to be on the SOPM list.
         next FILE if $File =~ m{\A doc/ }msx;
 
+        # Allow unpackaged hidden files.
+        next FILE if $File =~ m{/[.]}msx;
+
         if ( !grep { $_ eq $File } @SOPMFileList ) {
             $ErrorMessageUnpackagedFiles .= "$File\n";
         }
