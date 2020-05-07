@@ -34,7 +34,8 @@ my %IgnoreRepositories = (
     'otrscodepolicy.git' => 1,
 
     # auto-generated documentation
-    'otrs-github-io.git' => 1,
+    'otrs-github-io.git' => 1,    # deprecated
+    'doc-otrs-com.git'   => 1,
 
     # documentation toolchain
     'docbuild.git' => 1,
