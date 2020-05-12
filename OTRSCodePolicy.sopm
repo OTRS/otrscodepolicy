@@ -193,6 +193,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/WSDL/Literal.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/WSDL/WSDL.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM.xsd" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/StaticFiles/XSD/SOPM_before_9.xsd" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/TT/ScriptUsage.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/TT/TranslationFilter.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Whitespace/FourSpaces.pm" />
