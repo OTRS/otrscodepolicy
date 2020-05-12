@@ -35,6 +35,10 @@ use IPC::System::Simple qw(capturex);
 
 use TidyAll::OTRS;
 
+# Ensure UTF8 output works.
+binmode( \*STDOUT, ':encoding(UTF-8)' );
+binmode( \*STDERR, ':encoding(UTF-8)' );
+
 my ( $Verbose, $Directory, $File, $Mode, $Cached, $All, $Help, $Processes );
 GetOptions(
     'verbose'     => \$Verbose,
