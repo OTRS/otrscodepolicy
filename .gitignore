@@ -5,3 +5,4 @@ perltidy.LOG
 .includepath
 .DS_Store
 .vstags
+Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/node_modules

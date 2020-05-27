@@ -34,10 +34,10 @@ sub transform_file {
             die "Error: could not find the 'nodejs' binary.\n";
         }
 
-        $ESLintPath = `which eslint 2>/dev/null`;
-        chomp $ESLintPath;
-        if ( !$ESLintPath ) {
-            die "Error: could not find the 'eslint' script.\n";
+        $ESLintPath = __FILE__;
+        $ESLintPath =~ s{ESLint\.pm}{ESLint/node_modules/eslint/bin/eslint.js};
+        if ( !-e $ESLintPath ) {
+            die "Error: could not find the 'eslint' script. Please run `bin/otrs.CodePolicy.pl --install`.\n";
         }
 
         # Force the minimum version of eslint.
@@ -45,9 +45,10 @@ sub transform_file {
         chomp $ESLintVersion;
         my ( $Major, $Minor, $Patch ) = $ESLintVersion =~ m{v(\d+)[.](\d+)[.](\d+)};
         my $Compare = sprintf( "%03d%03d%03d", $Major, $Minor, $Patch );
-        if ( !length($Major) || $Compare < 5_000_001 ) {
+        if ( !length($Major) || $Compare < 6_000_001 ) {
             undef $ESLintPath;    # Make sure to re-issue this error for future files.
-            die "Error: your eslint version ($ESLintVersion) is outdated.\n";
+            die
+                "Error: installed eslint version ($ESLintVersion) is outdated. Please run `bin/otrs.CodePolicy.pl --install`.\n";
         }
     }
 
@@ -69,12 +70,16 @@ sub transform_file {
         $ESLintConfigPath =~ s{ESLint\.pm}{ESLint/webpack.eslintrc.js};
     }
 
+    # ESLint plugins should be resolved relative to the repo root folder.
+    my $ESLintPluginsPath = __FILE__;
+    $ESLintPluginsPath =~ s{ESLint\.pm}{ESLint/};
+
     my $ESLintRulesPath = __FILE__;
     $ESLintRulesPath =~ s{ESLint\.pm}{ESLint/Rules};
 
     my $Command = sprintf(
-        "%s %s -c %s --rulesdir %s --fix %s --quiet",
-        $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintRulesPath, $Filename
+        "%s %s --config %s --no-eslintrc --resolve-plugins-relative-to %s --rulesdir %s --fix %s --quiet",
+        $NodePath, $ESLintPath, $ESLintConfigPath, $ESLintPluginsPath, $ESLintRulesPath, $Filename
     );
 
     my $Output = `$Command`;

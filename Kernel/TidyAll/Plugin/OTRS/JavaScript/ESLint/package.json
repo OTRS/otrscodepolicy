@@ -1,0 +1,16 @@
+{
+  "name": "OTRSCodePolicy",
+  "version": "1.0.0",
+  "description": "OTRS code quality checks.",
+  "repository": "git@github.com:OTRS/otrscodepolicy.git",
+  "author": "OTRS AG <sales@otrs.com>",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "6",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-vue": "^6.2.2"
+  }
+}

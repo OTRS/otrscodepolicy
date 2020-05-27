@@ -49,6 +49,14 @@ module.exports = {
         "no-implied-eval": 2,
 
         // OTRS-specific rules
-        "no-window": 2
+        "no-window": 2,
+
+        // Allow re-declaration of built-in globals (i.e. `Core` namespace).
+        "no-redeclare": ["error", {
+            "builtinGlobals": false
+        }],
+
+        // Allow usage of prototype built-in methods (i.e. `hasOwnProperty`).
+        "no-prototype-builtins": 0
     }
 }

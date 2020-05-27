@@ -67,8 +67,10 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/frontend.eslintrc.7.js" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/frontend.eslintrc.js" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/legacy.eslintrc.js" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/webpack.eslintrc.js" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/package-lock.json" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/package.json" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/Rules/no-window.js" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint/webpack.eslintrc.js" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/Vue/EventListeners.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileName.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/JavaScript/FileNameUnitTest.pm" />
@@ -255,5 +257,15 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Configuration/UnitTestBlacklist.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/KeyLength.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/XML/Database/RequiredNameAttribute.t" />
+        <File Permission="660" Location="var/packagesetup/OTRSCodePolicy.pm" />
     </Filelist>
+    <CodeInstall Type="post"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::OTRSCodePolicy')->CodeInstall();
+    ]]></CodeInstall>
+    <CodeUpgrade Type="post"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::OTRSCodePolicy')->CodeUpgrade();
+    ]]></CodeUpgrade>
+    <CodeUninstall Type="pre"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::OTRSCodePolicy')->CodeUninstall();
+    ]]></CodeUninstall>
 </otrs_package>

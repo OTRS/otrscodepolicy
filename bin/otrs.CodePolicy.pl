@@ -39,13 +39,14 @@ use TidyAll::OTRS;
 binmode( \*STDOUT, ':encoding(UTF-8)' );
 binmode( \*STDERR, ':encoding(UTF-8)' );
 
-my ( $Verbose, $Directory, $File, $Mode, $Cached, $All, $Help, $Processes );
+my ( $Verbose, $Directory, $File, $Install, $Mode, $Cached, $All, $Help, $Processes );
 GetOptions(
     'verbose'     => \$Verbose,
     'all'         => \$All,
     'cached'      => \$Cached,
     'directory=s' => \$Directory,
     'file=s'      => \$File,
+    'install'     => \$Install,
     'mode=s'      => \$Mode,
     'help'        => \$Help,
     'processes=s' => \$Processes,
@@ -65,6 +66,7 @@ Options:
     -d, --directory     Check only subdirectory
     -c, --cached        Check only cached (staged files in git directory)
     -f, --file          Check only one file
+    -i, --install       Install additional required dependencies, such as ESLint and its plugins
     -m, --mode          Use custom Code::TidyAll mode (default: cli)
     -v, --verbose       Activate diagnostics
     -p, --processes     The number of processes to use (default: env var OTRSCODEPOLICY_PROCESSES if set, otherwise "6")
@@ -73,7 +75,31 @@ EOF
     exit 0;
 }
 
-my $ConfigurationFile = dirname($0) . '/../Kernel/TidyAll/tidyallrc';
+my $BinDir = dirname($0);
+
+if ($Install) {
+    my $ESLintDir = $BinDir . '/../Kernel/TidyAll/Plugin/OTRS/JavaScript/ESLint';
+    if ( !-d $ESLintDir ) {
+        print "Error: Please run this command from the toplevel directory of your module.\n";
+        exit 1;
+    }
+
+    my $RedirectOutput = $Verbose ? '' : '--silent > /dev/null';
+
+    print "Performing `npm install --no-save` to make sure all needed node.js modules are present...\n";
+
+    my $Success = system("cd $ESLintDir && npm install --no-save $RedirectOutput");
+
+    if ( $Success != 0 ) {
+        print "Error: Something went wrong during `npm install --no-save`.\n";
+        exit 1;
+    }
+
+    print "Done.\n";
+    exit 0;
+}
+
+my $ConfigurationFile = $BinDir . '/../Kernel/TidyAll/tidyallrc';
 
 my $RootDir = getcwd();
 
