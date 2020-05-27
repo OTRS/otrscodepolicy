@@ -35,6 +35,9 @@ sub validate_source {
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
+    # Skip shebang check for now with OTRS 6+.
+    return $Code if !$Self->IsFrameworkVersionLessThan( 6, 0 );
+
     # Check for presence of shebang line
     if ( $Code !~ m{\A\#!/usr/bin/perl\s*(?:-w)?}xms ) {
         return $Self->DieWithError(<<"EOF");
