@@ -6,7 +6,7 @@
 # did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::ScriptFormat;
+package TidyAll::Plugin::OTRS::Perl::ShebangLine;
 
 use strict;
 use warnings;
@@ -19,13 +19,11 @@ sub transform_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
-    return $Code if $Self->IsFrameworkVersionLessThan( 3, 2 );
+    return $Code if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    # For framework 3.2 or later, rewrite /usr/bin/perl -w to
-    # /usr/bin/perl
-    # we use 'use warnings;' which works lexical and not global
-
-    $Code =~ s{\A\#!/usr/bin/perl[ ]-w}{\#!/usr/bin/perl}xms;
+    if ( substr( $Code, 0, 15 ) eq '#!/usr/bin/perl' ) {
+        $Code =~ s{\A\#!/usr/bin/perl.*?$}{#!/usr/bin/env perl}xms;
+    }
 
     return $Code;
 }
@@ -34,14 +32,12 @@ sub validate_source {
     my ( $Self, $Code ) = @_;
 
     return $Code if $Self->IsPluginDisabled( Code => $Code );
+    return $Code if $Self->IsFrameworkVersionLessThan( 6, 0 );
 
-    # Skip shebang check for now with OTRS 6+.
-    return $Code if !$Self->IsFrameworkVersionLessThan( 6, 0 );
-
-    # Check for presence of shebang line
-    if ( $Code !~ m{\A\#!/usr/bin/perl\s*(?:-w)?}xms ) {
+    # Check for presence of the correct shebang line.
+    if ( substr( $Code, 0, 20 ) ne "#!/usr/bin/env perl\n" ) {
         return $Self->DieWithError(<<"EOF");
-Need #!/usr/bin/perl at the start of script files.
+Please change the shebang line to '#!/usr/bin/env perl'.
 EOF
     }
 

@@ -287,7 +287,7 @@ select = Kernel/Config.pm.dist
 ignore = scripts/test/Selenium/**/*.t
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
-[+TidyAll::Plugin::OTRS::Perl::ScriptFormat]
+[+TidyAll::Plugin::OTRS::Perl::ShebangLine]
 select = **/*.{pl,psgi}
 
 [+TidyAll::Plugin::OTRS::Perl::SortKeys]
