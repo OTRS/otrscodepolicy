@@ -21,9 +21,9 @@ sub validate_source {
     return $Code if $Self->IsPluginDisabled( Code => $Code );
 
     # Check for absense of shebang line
-    if ( $Code =~ m{\A\#!}xms ) {
+    if ( substr( $Code, 0, 2 ) eq '#!' ) {
         return $Self->DieWithError(<<"EOF");
-Perl modules should not have a shebang line (#!/usr/bin/perl).
+Perl modules should not have a shebang line.
 EOF
     }
 
