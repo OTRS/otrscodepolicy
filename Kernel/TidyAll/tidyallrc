@@ -200,13 +200,13 @@ ignore = Kernel/System/Web/* Custom/Kernel/System/Web/*
 ignore = Kernel/System/DynamicField/**/* Custom/Kernel/System/DynamicField/**/*
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
-[+TidyAll::Plugin::OTRS::Perl::ModuleFormat]
+[+TidyAll::Plugin::OTRS::Perl::NoExitInConsoleCommands]
+select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Command/**/*.pm
+
+[+TidyAll::Plugin::OTRS::Perl::NoShebangLine]
 select = **/*.{pm,t}
 select = Kernel/Config.pm.dist
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
-
-[+TidyAll::Plugin::OTRS::Perl::NoExitInConsoleCommands]
-select = Kernel/System/Console/Command/**/*.pm Custom/Kernel/System/Console/Command/**/*.pm
 
 [+TidyAll::Plugin::OTRS::Perl::ObjectDependencies]
 select = **/*.{pm}

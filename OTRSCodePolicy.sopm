@@ -115,8 +115,8 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ForMy.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ISA.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/LayoutObject.pm" />
-        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ModuleFormat.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/NoExitInConsoleCommands.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/NoShebangLine.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectDependencies.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectManagerCreation.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/ObjectNameSpace.pm" />

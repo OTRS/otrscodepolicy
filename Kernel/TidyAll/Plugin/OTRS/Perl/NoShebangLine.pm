@@ -6,7 +6,7 @@
 # did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
-package TidyAll::Plugin::OTRS::Perl::ModuleFormat;
+package TidyAll::Plugin::OTRS::Perl::NoShebangLine;
 
 use strict;
 use warnings;
