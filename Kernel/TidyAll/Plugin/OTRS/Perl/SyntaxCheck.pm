@@ -47,6 +47,7 @@ sub validate_source {
         List::Util
         Moo
         Moose
+        Moose::Role
         Perl::Critic::Utils
         POSIX
         Readonly
