@@ -54,7 +54,7 @@ sub validate_source {
         Time::HiRes
     );
 
-    my $AllowedExternalModulesRegex = '\A \s* use \s+ (?: ' . join( '|', @AllowedExternalModules ) . ' ) ';
+    my $AllowedExternalModulesRegex = '\A \s* use \s+ (?: ' . join( '|', @AllowedExternalModules ) . ' ) [ ;(] ';
 
     LINE:
     for my $Line ( split( /\n/, $Code ) ) {
