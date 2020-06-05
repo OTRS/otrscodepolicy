@@ -53,6 +53,7 @@ sub validate_source {
         POSIX
         Readonly
         Template
+        Template::Constants
         Time::HiRes
     );
 
