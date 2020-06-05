@@ -63,6 +63,9 @@ my %IgnoreRepositories = (
 
     # OTRS Mobile App repository
     'otrs-mobile-app.git' => 1,
+
+    # VueTreeselect custom build repository
+    'vue-treeselect-otrs.git' => 1,
 );
 
 sub Run {
