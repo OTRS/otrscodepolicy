@@ -43,7 +43,8 @@ sub validate_source {
         Fcntl
         File::Basename
         FindBin
-        IO::Socket
+        IO::Socket::IP
+        IO::Socket::SSL
         List::Util
         Moo
         Moose
