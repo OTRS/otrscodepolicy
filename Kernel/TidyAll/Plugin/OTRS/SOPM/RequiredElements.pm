@@ -60,7 +60,6 @@ sub validate_source {
     my $License         = 0;
     my $BuildDate       = 0;
     my $BuildHost       = 0;
-    my $DescriptionDE   = 0;
     my $DescriptionEN   = 0;
     my $Table           = 0;
     my $DatabaseUpgrade = 0;
@@ -80,11 +79,8 @@ sub validate_source {
             $Name        = 1;
             $PackageName = $1;
         }
-        elsif ( $Line =~ /<Description Lang="en">[^<>]+<\/Description>/ ) {
+        elsif ( $Line =~ /<Description Lang="en"[^<>]*>[^<>]+<\/Description>/ ) {
             $DescriptionEN = 1;
-        }
-        elsif ( $Line =~ /<Description Lang="de">[^<>]+<\/Description>/ ) {
-            $DescriptionDE = 1;
         }
         elsif ( $Line =~ /<License>([^<>]+)<\/License>/ ) {
             $License = 1;

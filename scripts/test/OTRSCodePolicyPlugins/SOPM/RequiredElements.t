@@ -28,7 +28,7 @@ my @Tests = (
     <Vendor>OTRS AG</Vendor>
     <URL>https://otrs.com/</URL>
     <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
-    <Description Lang="en">OTRS code quality checks.</Description>
+    <Description Lang="en" Translatable="1">OTRS code quality checks.</Description>
     <PackageIsDownloadable>0</PackageIsDownloadable>
     <PackageIsBuildable>0</PackageIsBuildable>
     <Filelist>
