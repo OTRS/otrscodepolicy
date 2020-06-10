@@ -121,6 +121,8 @@ ignore = scripts/DBUpdate{To6,}/TaskConfig/*.yml.dist
 ignore = var/httpd/htdocs/common/**/*.css
 ; OTRSContinuousIntegrationProvisioner - deployment template includes
 ignore = **/*.tt.sh
+; devshare
+ignore = **/*.json.dist
 
 [+TidyAll::Plugin::OTRS::Legal::ReplaceCopyright]
 select = **/*.{pl,pm,psgi,t,tt,spec,js,css,scss,vue,dist,tmpl,sh,skel,xml,sopm,html,service,conf,example,template}
