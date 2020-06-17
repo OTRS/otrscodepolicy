@@ -210,6 +210,44 @@ EOF
         Exception => 0,
     },
     {
+        Name      => 'Derived Package (Moo::Role + with)',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
+        Framework => '8.0',
+        Source    => <<'EOF',
+package Kernel::Test;
+use strict;
+use warnings;
+
+use Moo::Role;
+with qw(My::Package);
+
+sub overridden_method {}
+
+1;
+EOF
+        Exception => 0,
+    },
+    {
+        Name      => 'Derived Package (Moo + extends)',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],
+        Framework => '8.0',
+        Source    => <<'EOF',
+package Kernel::Test;
+use strict;
+use warnings;
+
+use Moo;
+extends qw(My::Package);
+
+sub overridden_method {}
+
+1;
+EOF
+        Exception => 0,
+    },
+    {
         Name      => 'Derived Package (Moose + extends)',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::PerlCritic)],

@@ -55,10 +55,10 @@ sub prepare_to_scan_document {
         );
     };
 
-    # Find any Moose or Moose::Role objects that extend another class or role (extends/with).
+    # Find any Moose, Moo, Moose::Role or Moo::Role objects that extend another class or role (extends/with).
     my $FindMooseInheritance = sub {
         my $MooseFound = $Document->find_any(
-            sub { return $_[1]->isa('PPI::Statement::Include') && $_[1] =~ m{\A use \s+ Moose(::Role)?}smx }
+            sub { return $_[1]->isa('PPI::Statement::Include') && $_[1] =~ m{\A use \s+ Moo(se)?(::Role)?}smx }
         );
 
         return 0 if !$MooseFound;
