@@ -125,11 +125,13 @@ sub validate_source {
                 ErrorMessage =>
                     "Frontend navigation config for Admin interface should be grouped in 'Frontend::Admin::ModuleRegistration::MainMenu'.",
             },
+
+            # Allow Agent entries also in Admin group for OTRS 8+.
             {
                 Name                   => 'Frontend navigation config for Agent interface',
                 MatchSettingName       => qr{^Frontend::Navigation###Agent},
                 MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::MainMenu},
+                RequireNavigationMatch => qr{^Frontend::(Agent|Admin)::ModuleRegistration::MainMenu},
                 ErrorMessage =>
                     "Frontend navigation config for Agent interface should be grouped in 'Frontend::Agent::ModuleRegistration::MainMenu'.",
             },

@@ -385,6 +385,21 @@ EOF
         Exception => 1,
     },
     {
+        Name      => 'Frontend navigation config for Agent interface grouped in Admin - Valid',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::Navigation)],
+        Framework => '8.0',
+        Source    => <<"EOF",
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="Frontend::Navigation###Agent###001-Framework" Required="1" Valid="1">
+        <Navigation>Frontend::Admin::ModuleRegistration::MainMenu</Navigation>
+$SettingTemplate
+    </Setting>
+</otrs_config>
+EOF
+        Exception => 0,
+    },
+    {
         Name      => 'Frontend navigation config for Customer interface - Valid',
         Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::Navigation)],
