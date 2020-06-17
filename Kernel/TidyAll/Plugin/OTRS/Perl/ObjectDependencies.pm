@@ -32,7 +32,7 @@ sub validate_source {
     return if $Code !~ m{\$Kernel::OM}smx;
 
     # Skip if we have a role, as it cannot be instantiated.
-    return if $Code =~ m{use\s+Moose::Role}smx;
+    return if $Code =~ m{use\s+Moo(se)?::Role}smx;
 
     # Skip if we have a webapp controller, as these are not managed via OM.
     return if $Code =~ m{package\s+Kernel::WebApp::(Controller|Plugin|Server)::}smx;

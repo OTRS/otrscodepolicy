@@ -203,6 +203,17 @@ EOF
         Exception => 0,
     },
     {
+        Name      => 'ObjectDependencies, Moo::Role',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+use Moo::Role;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
+    {
         Name      => 'ObjectDependencies, WebApp controller',
         Filename  => 'Test.pm',
         Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
