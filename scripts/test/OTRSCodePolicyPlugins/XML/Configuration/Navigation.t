@@ -250,6 +250,21 @@ EOF
         Exception => 1,
     },
     {
+        Name      => 'Loader config for Agent interface grouped in Admin entry - Valid',
+        Filename  => 'Kernel/Config/Files/XML/Test.xml',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::Navigation)],
+        Framework => '8.0',
+        Source    => <<"EOF",
+<otrs_config version="2.0" init="Framework">
+    <Setting Name="Loader::Module::AgentDashboard###001-Framework" Required="1" Valid="1">
+        <Navigation>Frontend::Admin::ModuleRegistration::Loader</Navigation>
+$SettingTemplate
+    </Setting>
+</otrs_config>
+EOF
+        Exception => 0,
+    },
+    {
         Name      => 'Loader config for Customer interface - Valid',
         Filename  => 'Kernel/Config/Files/XML/Test.xml',
         Plugins   => [qw(TidyAll::Plugin::OTRS::XML::Configuration::Navigation)],

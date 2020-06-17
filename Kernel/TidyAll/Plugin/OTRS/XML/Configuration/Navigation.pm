@@ -91,11 +91,13 @@ sub validate_source {
                 ErrorMessage =>
                     "Loader config for Admin interface should be grouped in 'Frontend::Admin::ModuleRegistration::Loader'.",
             },
+
+            # Allow Agent entries also in Admin group for OTRS 8+.
             {
                 Name                   => 'Loader config for Agent interface',
                 MatchSettingName       => qr{^Loader::Module::Agent},
                 MatchNavigationValue   => qr{.*},
-                RequireNavigationMatch => qr{^Frontend::Agent::ModuleRegistration::Loader},
+                RequireNavigationMatch => qr{^Frontend::(Agent|Admin)::ModuleRegistration::Loader},
                 ErrorMessage =>
                     "Loader settings for Agent interface should be grouped in 'Frontend::Agent::ModuleRegistration::Loader'.",
             },
