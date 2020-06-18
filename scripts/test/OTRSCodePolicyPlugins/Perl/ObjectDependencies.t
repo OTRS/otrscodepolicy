@@ -246,6 +246,17 @@ $Kernel::OM->Get('Kernel::System::Ticket');
 EOF
         Exception => 0,
     },
+    {
+        Name      => 'ObjectDependencies, Test Case',
+        Filename  => 'Test.pm',
+        Plugins   => [qw(TidyAll::Plugin::OTRS::Perl::ObjectDependencies)],
+        Framework => '4.0',
+        Source    => <<'EOF',
+package Kernel::Test::Case::Demo;
+$Kernel::OM->Get('Kernel::System::Ticket');
+EOF
+        Exception => 0,
+    },
 );
 
 $Self->scripts::test::OTRSCodePolicyPlugins::Run( Tests => \@Tests );

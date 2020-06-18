@@ -28,8 +28,8 @@ sub validate_source {
     $Code = $Self->StripPod( Code => $Code );
     $Code = $Self->StripComments( Code => $Code );
 
-    # Skip if the code doesn't use the ObjectManager
-    return if $Code !~ m{\$Kernel::OM}smx;
+    # Skip if the code doesn't use the ObjectManager.
+    return if index( $Code, '$Kernel::OM' ) == -1;
 
     # Skip if we have a role, as it cannot be instantiated.
     return if $Code =~ m{use\s+Moo(se)?::Role}smx;
@@ -37,10 +37,11 @@ sub validate_source {
     # Skip if we have a webapp controller, as these are not managed via OM.
     return if $Code =~ m{package\s+Kernel::WebApp::(Controller|Plugin|Server)::}smx;
 
+    # Skip if we have a test case object, these are not managed via OM.
+    return if index( $Code, 'package Kernel::Test::Case::' ) > -1;
+
     # Skip if the package cannot be loaded via ObjectManager
-    return if $Code =~ m{
-        ^ \s* our \s* \$ObjectManagerDisabled \s* = \s* 1
-    }smx;
+    return if $Code =~ m{ ^ \s* our \s* \$ObjectManagerDisabled \s* = \s* 1 }smx;
 
     my $ErrorMessage;
 
