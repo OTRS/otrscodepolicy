@@ -95,6 +95,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS7/WebAppNoLegacyCode.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS8/NewTestsNoLegacyCode.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS8/UselessComments.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS9/DropVariableCheck.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/BinScripts.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm" />

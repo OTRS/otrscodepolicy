@@ -546,3 +546,12 @@ ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
 
 [+TidyAll::Plugin::OTRS::Migrations::OTRS8::NewTestsNoLegacyCode]
 select = Kernel/Test/**/*.pm
+
+;
+; Migrations OTRS 9
+;
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS9::DropVariableCheck]
+select = **/*.{pl,pm,psgi,t}
+ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
