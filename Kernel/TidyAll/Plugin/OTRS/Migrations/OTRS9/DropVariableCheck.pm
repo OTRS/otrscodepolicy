@@ -39,6 +39,12 @@ sub transform_source {
     my $Replaced;
 
     for my $LegacyFunction ( sort keys %FunctionMap ) {
+
+        # Replace fully qualified calls like K:S:VariableCheck::DataIsDifferent( ... ).
+        $Replaced += $Code
+            =~ s{Kernel::System::VariableCheck::$LegacyFunction\(}{Kernel::System::DataTypes::$FunctionMap{$LegacyFunction}(}smxg;
+
+        # Replace imported calls like IsHashRefWithData( ... ).
         $Replaced += $Code =~ s{$LegacyFunction\(}{$FunctionMap{$LegacyFunction}(}smxg;
     }
 
