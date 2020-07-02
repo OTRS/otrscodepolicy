@@ -23,7 +23,7 @@ sub validate_source {
     #return if !$Self->IsFrameworkVersionLessThan( 9, 0 );
 
     my @ForbiddenPaths = qw(
-        Kernel::System::UnitTest
+        Kernel::System::UnitTest::
     );
 
     my @ErrorPaths;
