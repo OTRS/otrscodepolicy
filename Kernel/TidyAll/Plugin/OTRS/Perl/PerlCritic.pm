@@ -82,6 +82,13 @@ sub validate_file {
             $Critic->add_policy( -policy => 'ValuesAndExpressions::RequireQuotedHeredocTerminator' );
             $Critic->add_policy( -policy => 'Variables::ProhibitUnusedVariables' );
             $Critic->add_policy( -policy => 'Variables::ProtectPrivateVars' );
+
+            # Moose
+            $Critic->add_policy( -policy => 'Moose::ProhibitDESTROYMethod' );
+            $Critic->add_policy( -policy => 'Moose::ProhibitMultipleWiths' );
+            $Critic->add_policy( -policy => 'Moose::ProhibitNewMethod' );
+            $Critic->add_policy( -policy => 'Moose::RequireCleanNamespace' );
+            $Critic->add_policy( -policy => 'Moose::ProhibitLazyBuild' );
         }
 
         $CachedPerlCritic->{$FrameworkVersion} = $Critic;

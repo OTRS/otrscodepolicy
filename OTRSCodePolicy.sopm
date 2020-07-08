@@ -16,6 +16,7 @@
 
     <ModuleRequired Version="0.17">Code::TidyAll</ModuleRequired>
     <ModuleRequired>Perl::Critic</ModuleRequired>
+    <ModuleRequired>Perl::Critic::Moose</ModuleRequired>
 
     <Vendor>OTRS AG</Vendor>
     <URL>https://otrs.com/</URL>
@@ -96,6 +97,7 @@
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS8/NewTestsNoLegacyCode.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS8/UselessComments.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS9/DropVariableCheck.pm" />
+        <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Migrations/OTRS9/UnimportMoose.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/BinScripts.pm" />
         <File Permission="660" Location="Kernel/TidyAll/Plugin/OTRS/Perl/Critic/Policy/OTRS/ProhibitLowPrecendeceOps.pm" />
@@ -235,6 +237,7 @@
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS7/DeprecatedSettings.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS8/UselessComments.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS8/NewTestsNoLegacyCode.t" />
+        <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Migrations/OTRS9/UnimportMoose.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/CacheNew.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/NoExitInConsoleCommands.t" />
         <File Permission="660" Location="scripts/test/OTRSCodePolicyPlugins/Perl/ObjectDependencies.t" />

@@ -555,3 +555,8 @@ select = Kernel/Test/**/*.pm
 select = **/*.{pl,pm,psgi,t}
 ignore = Kernel/Config/Files/ZZZ*.pm
 ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
+
+[+TidyAll::Plugin::OTRS::Migrations::OTRS9::UnimportMoose]
+select = **/*.pm
+ignore = Kernel/Config/Files/ZZZ*.pm
+ignore = Kernel/Language/*.pm Custom/Kernel/Language/*.pm
