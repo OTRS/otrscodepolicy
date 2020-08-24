@@ -154,23 +154,36 @@ sub HandleInput {
             }
         }
 
-        FILE:
-        for my $File (@ChangedFiles) {
+        push @Results, $TidyAll->ProcessParallel(
+            Processes => 2,
+            FilePaths => \@ChangedFiles,
+            Handler   => sub {
+                my @HandlerFiles = @_;
 
-            # Don't try to validate deleted files.
-            if ( !grep { $_ eq $File } @FileList ) {
-                print "$File was deleted, ignoring.\n";
-                next FILE;
-            }
+                my @HandlerResults;
 
-            # Get file from git repository.
-            my $Contents = $Self->GetGitFileContents( $File, $Commit );
+                FILE:
+                for my $File (@HandlerFiles) {
 
-            # Only validate files which actually have some content.
-            if ( $Contents =~ /\S/ && $Contents =~ /\n/ ) {
-                push( @Results, $TidyAll->process_source( $Contents, $File ) );
-            }
-        }
+                    # Don't try to validate deleted files.
+                    if ( !grep { $_ eq $File } @FileList ) {
+                        print "$File was deleted, ignoring.\n";
+                        next FILE;
+                    }
+
+                    # Get file from git repository, one by one only as the commits could be huge.
+                    my $Contents = $Self->GetGitFileContents( $File, $Commit );
+
+                    # Only validate files which actually have some content.
+                    if ( $Contents =~ /\S/ && $Contents =~ /\n/ ) {
+                        push( @HandlerResults, $TidyAll->process_source( $Contents, $File ) );
+                    }
+                }
+
+                return @HandlerResults;
+            },
+        );
+
     }
 
     if ( my @ErrorResults = grep { $_->error() } @Results ) {

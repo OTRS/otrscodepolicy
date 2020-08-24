@@ -115,16 +115,33 @@ sub DetermineFrameworkVersionFromDirectory {
 
 #
 # Process a list of file paths in parallel with forking (if needed).
+#   This method calls process_paths internally to handle the files that are already available on disk.
 #
 sub ProcessPathsParallel {
     my ( $Self, %Param ) = @_;
 
+    return $Self->ProcessParallel(
+        %Param,
+        Handler => sub {
+            return $Self->process_paths(@_);
+        },
+    );
+}
+
+#
+# Process a list of file paths in parallel with forking (if needed).
+#   This method will call a custom handler method to operate on the file names.
+#
+sub ProcessParallel {
+    my ( $Self, %Param ) = @_;
+
     my $Processes = $Param{Processes} // $ENV{OTRSCODEPOLICY_PROCESSES} // 6;
     my @Files     = @{ $Param{FilePaths} // [] };
+    my $Handler   = $Param{Handler};
 
     # No parallel processing needed: execute directly.
     if ( $Processes <= 1 ) {
-        return $Self->process_paths(@Files);
+        return $Handler->(@Files);
     }
 
     # Parallel processing. We chunk the data and execute the chunks in parallel.
@@ -177,7 +194,7 @@ sub ProcessPathsParallel {
         # Child process.
         if ( !$PID ) {
 
-            my @Results = $Self->process_paths( @{$Chunk} );
+            my @Results = $Handler->( @{$Chunk} );
 
             my $ChildPID = $$;
             Storable::store( \@Results, "$TempDirectory/$ChildPID.tmp" );
