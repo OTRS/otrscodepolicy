@@ -52,6 +52,22 @@ sub CodeInstall {
     return $Result;
 }
 
+=head2 CodeReinstall()
+
+Run the code reinstall part:
+
+    my $Result = $CodeObject->CodeReinstall();
+
+=cut
+
+sub CodeReinstall {
+    my ( $Self, %Param ) = @_;
+
+    my $Result = $Self->_InstallDependencies();
+
+    return $Result;
+}
+
 =head2 CodeUpgrade()
 
 Run the code upgrade part:
@@ -70,7 +86,7 @@ sub CodeUpgrade {
 
 =head2 CodeUninstall()
 
-run the code uninstall part
+Run the code uninstall part:
 
     my $Result = $CodeObject->CodeUninstall();
 
@@ -88,7 +104,7 @@ sub CodeUninstall {
 
 =head2 _InstallDependencies()
 
-Installs dependencies if needed:
+Installs dependencies, if needed:
 
     my $Success = $CodeObject->_InstallDependencies();
 
@@ -114,7 +130,7 @@ sub _InstallDependencies {
 
 =head2 _DeleteDependencies()
 
-Deletes the dependency folder if it exist:
+Deletes the dependency folder, if it exists:
 
     my $Success = $CodeObject->_DeleteDependencies();
 

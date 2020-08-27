@@ -269,6 +269,9 @@
     <CodeInstall Type="post"><![CDATA[
         $Kernel::OM->Get('var::packagesetup::OTRSCodePolicy')->CodeInstall();
     ]]></CodeInstall>
+    <CodeReinstall Type="post"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::OTRSCodePolicy')->CodeReinstall();
+    ]]></CodeReinstall>
     <CodeUpgrade Type="post"><![CDATA[
         $Kernel::OM->Get('var::packagesetup::OTRSCodePolicy')->CodeUpgrade();
     ]]></CodeUpgrade>
