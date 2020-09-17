@@ -66,6 +66,9 @@ my %IgnoreRepositories = (
 
     # VueTreeselect custom build repository
     'vue-treeselect-otrs.git' => 1,
+
+    # GSD Tools repository
+    'gsd-tools.git' => 1,
 );
 
 sub Run {
