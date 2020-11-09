@@ -158,7 +158,7 @@ sub HandleInput {
         }
 
         push @Results, $TidyAll->ProcessParallel(
-            Processes => 2,
+            Processes => 4,    # Careful here, this affects the git server's resources, especially with parallel pushes.
             FilePaths => \@ChangedFiles,
             Handler   => sub {
                 my @HandlerFiles = @_;
