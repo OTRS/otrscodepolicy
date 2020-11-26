@@ -311,6 +311,10 @@ except_modes = fast
 [+TidyAll::Plugin::OTRS::Perl::Tests::Helper]
 select = **/*.{t}
 
+[+TidyAll::Plugin::OTRS::Perl::Tests::Roles]
+select = Kernel/Test/Case/**/*.{pm}
+select = Custom/Kernel/Test/Case/**/*.{pm}
+
 [+TidyAll::Plugin::OTRS::Perl::Time]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
