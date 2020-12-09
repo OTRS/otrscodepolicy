@@ -315,6 +315,10 @@ select = **/*.{t}
 select = Kernel/Test/Case/**/*.{pm}
 select = Custom/Kernel/Test/Case/**/*.{pm}
 
+[+TidyAll::Plugin::OTRS::Perl::Tests::UserID]
+select = Kernel/Test/**/*.{pm}
+select = Custom/Kernel/Test/**/*.{pm}
+
 [+TidyAll::Plugin::OTRS::Perl::Time]
 select = **/*.{pl,pm,psgi,t}
 select = Kernel/Config.pm.dist
